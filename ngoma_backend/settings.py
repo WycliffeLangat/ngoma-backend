@@ -101,7 +101,7 @@ USE_TZ = True
 # === STATIC & MEDIA ===
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -124,9 +124,11 @@ REST_FRAMEWORK = {
 }
 
 # === Security in production ===
+# Note: SECURE_SSL_REDIRECT is intentionally OFF — Railway/Render terminate SSL
+# at their load balancer. Enabling it inside the app causes redirect loops (500).
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False   # let the host handle this
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_SECONDS = 31536000

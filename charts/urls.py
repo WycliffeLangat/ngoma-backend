@@ -1,5 +1,7 @@
-from rest_framework.routers import DefaultRouter  # type: ignore[import]
+from rest_framework.routers import DefaultRouter
+from django.urls import path
 from . import views
+from .ai_analyst import ai_analyst
 
 router = DefaultRouter()
 router.register('platforms', views.PlatformViewSet)
@@ -11,9 +13,6 @@ router.register('news', views.NewsArticleViewSet)
 router.register('certifications', views.CertificationViewSet)
 router.register('normalization-rules', views.NormalizationRuleViewSet)
 
-from django.urls import path
-from .ai_analyst import ai_analyst
-
 urlpatterns = router.urls + [
-       path('ai/analyst/', ai_analyst),
-   ]
+    path('ai/analyst/', ai_analyst),
+]
