@@ -28,6 +28,15 @@ def format_last_month(entry):
     return entry.prev_rank
 
 
+def country_code_to_flag(country_code):
+    code = (country_code or "").strip().upper()
+
+    if len(code) != 2 or not code.isalpha():
+        return "🌍"
+
+    return "".join(chr(127397 + ord(char)) for char in code)
+
+
 @require_GET
 def chart_image_data(request):
     chart_type = request.GET.get("type", "singles").lower()
@@ -85,6 +94,8 @@ def chart_image_data(request):
     for entry in entries_query.order_by("rank"):
         release = entry.release
         artist = release.artist
+        artist_country_code = (artist.country_code or "").strip().upper()
+        artist_country = artist.country or ""
 
         entries.append(
             {
@@ -92,6 +103,9 @@ def chart_image_data(request):
                 "rank": entry.rank,
                 "title": release.title,
                 "artist": artist.name,
+                "artist_country": artist_country,
+                "artist_country_code": artist_country_code,
+                "artist_flag": country_code_to_flag(artist_country_code),
                 "movement": format_movement(entry),
                 "last_month": format_last_month(entry),
                 "prev_rank": entry.prev_rank,
