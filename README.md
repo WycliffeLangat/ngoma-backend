@@ -12,7 +12,7 @@ pip install -r requirements.txt
 python manage.py migrate
 
 # 3. Seed initial data (Q4 2024 charts)
-python manage.py seed_data
+python manage.py seed_data --clear
 
 # 4. Create admin user
 python manage.py createsuperuser

@@ -162,13 +162,18 @@ class MonthlyChartEntry(models.Model):
     release = models.ForeignKey(Release, on_delete=models.CASCADE)
     rank = models.IntegerField()
     total_points = models.IntegerField()
+    raw_total_points = models.IntegerField(null=True, blank=True)
     weeks_on_chart = models.IntegerField(default=1)
     platform_count = models.IntegerField(default=1, help_text="Number of platforms charted on (combined only)")
+    platform_max = models.IntegerField(default=1)
+    featured_artists = models.TextField(blank=True, default='')
+    release_year = models.IntegerField(null=True, blank=True)
+    confidence = models.CharField(max_length=30, blank=True, default='')
     peak_rank = models.IntegerField(default=1)
     prev_rank = models.IntegerField(null=True, blank=True, help_text="Rank in previous month")
 
     class Meta:
-        unique_together = ['chart', 'platform', 'release']
+        unique_together = ['chart', 'platform', 'rank']
         ordering = ['rank']
 
     def __str__(self):

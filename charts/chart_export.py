@@ -94,6 +94,8 @@ def chart_image_data(request):
     for entry in entries_query.order_by("rank"):
         release = entry.release
         artist = release.artist
+        featured_artists = (entry.featured_artists or "").strip()
+        display_artist = f"{artist.name} feat. {featured_artists}" if featured_artists else artist.name
         artist_country_code = (artist.country_code or "").strip().upper()
         artist_country = artist.country or ""
 
@@ -102,16 +104,22 @@ def chart_image_data(request):
                 "id": entry.id,
                 "rank": entry.rank,
                 "title": release.title,
-                "artist": artist.name,
+                "artist": display_artist,
+                "primary_artist": artist.name,
+                "featured_artists": featured_artists,
                 "artist_country": artist_country,
                 "artist_country_code": artist_country_code,
                 "artist_flag": country_code_to_flag(artist_country_code),
+                "total_points": entry.total_points,
                 "movement": format_movement(entry),
                 "last_month": format_last_month(entry),
                 "prev_rank": entry.prev_rank,
                 "weeks_on_chart": entry.weeks_on_chart,
                 "platform_count": entry.platform_count,
+                "platform_max": entry.platform_max,
                 "peak_rank": entry.peak_rank,
+                "release_year": entry.release_year,
+                "confidence": entry.confidence,
                 "chart_type": chart.chart_type,
                 "platform": platform_label,
             }

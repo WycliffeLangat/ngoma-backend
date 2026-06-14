@@ -51,7 +51,7 @@ git push -u origin main
 In Railway, click your app → three-dot menu → **Open Shell**:
 
 ```bash
-python manage.py seed_data
+python manage.py seed_data --clear
 python manage.py createsuperuser
 ```
 
@@ -76,7 +76,7 @@ Almost identical workflow. Render has a free tier but spins down after 15 min of
 4. Start command: `gunicorn ngoma_backend.wsgi`
 5. Add a **PostgreSQL** database from the dashboard, copy its connection string into `DATABASE_URL`
 6. Add the same env vars as Railway above
-7. After deploy, use the **Shell** tab to run `python manage.py seed_data` and `createsuperuser`
+7. After deploy, use the **Shell** tab to run `python manage.py seed_data --clear` and `createsuperuser`
 
 ---
 
