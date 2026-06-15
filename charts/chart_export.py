@@ -1,6 +1,7 @@
 import calendar
 
 from django.http import JsonResponse
+from django.db.models import Q
 from django.views.decorators.http import require_GET
 
 from .models import MonthlyChart, MonthlyChartEntry, Platform
@@ -77,6 +78,7 @@ def chart_image_data(request):
     if platform_slug == "combined":
         entries_query = entries_query.filter(platform__isnull=True)
         platform_label = "Combined"
+        prior_entries = MonthlyChartEntry.objects.filter(platform__isnull=True)
     else:
         platform = Platform.objects.filter(slug=platform_slug).first()
 
@@ -88,14 +90,28 @@ def chart_image_data(request):
 
         entries_query = entries_query.filter(platform=platform)
         platform_label = platform.name
+        prior_entries = MonthlyChartEntry.objects.filter(platform=platform)
 
+    prior_release_ids = set(
+        prior_entries.filter(chart__chart_type=chart.chart_type, rank__lte=50)
+        .filter(Q(chart__year__lt=chart.year) | Q(chart__year=chart.year, chart__month__lt=chart.month))
+        .values_list("release_id", flat=True)
+    )
+
+    entries_query = entries_query.filter(rank__lte=50)
     entries = []
 
     for entry in entries_query.order_by("rank"):
         release = entry.release
         artist = release.artist
         featured_artists = (entry.featured_artists or "").strip()
-        display_artist = f"{artist.name} & {featured_artists.replace(', ', ' & ')}" if featured_artists else artist.name
+        credit_members = [artist.name, *[name.strip() for name in featured_artists.split(",") if name.strip()]]
+        if len(credit_members) <= 1:
+            display_artist = credit_members[0]
+        elif len(credit_members) == 2:
+            display_artist = " & ".join(credit_members)
+        else:
+            display_artist = f"{', '.join(credit_members[:-1])} & {credit_members[-1]}"
         artist_country_code = (artist.country_code or "").strip().upper()
         artist_country = artist.country or ""
 
@@ -111,7 +127,7 @@ def chart_image_data(request):
                 "artist_country_code": artist_country_code,
                 "artist_flag": country_code_to_flag(artist_country_code),
                 "total_points": entry.total_points,
-                "movement": format_movement(entry),
+                "movement": "RE" if entry.prev_rank is None and entry.release_id in prior_release_ids else format_movement(entry),
                 "last_month": format_last_month(entry),
                 "prev_rank": entry.prev_rank,
                 "weeks_on_chart": entry.weeks_on_chart,

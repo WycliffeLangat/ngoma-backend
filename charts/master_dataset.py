@@ -50,9 +50,9 @@ PLATFORM_DATA = [
 ]
 
 CERTIFICATION_THRESHOLDS = {
-    "gold": 100,
-    "platinum": 200,
-    "diamond": 350,
+    "gold": 200,
+    "platinum": 400,
+    "diamond": 600,
 }
 
 ARTIST_SEPARATOR_RE = re.compile(
@@ -140,7 +140,11 @@ def _format_featured_artists(members):
 
 def _format_artist_credit(primary_artist, featured_artists=""):
     members = _credit_members(primary_artist, featured_artists)
-    return " & ".join(members)
+    if len(members) <= 1:
+        return members[0] if members else ""
+    if len(members) == 2:
+        return " & ".join(members)
+    return f"{', '.join(members[:-1])} & {members[-1]}"
 
 
 def _release_key(title, primary_artist, featured_artists=""):
@@ -586,8 +590,8 @@ def import_master_workbook(app_registry, workbook_path, clear=True, write_line=N
             MonthlyChartEntry.objects.bulk_create(entries, batch_size=500)
             combined_count += len(entries)
             for key, rank in current_best.items():
-                previous_rank[key] = rank
                 peak_rank[key] = min(peak_rank.get(key, 999), rank)
+            previous_rank = current_best
 
         platform_groups = defaultdict(list)
         for row in data[chart_type]["platforms"]:
@@ -602,6 +606,7 @@ def import_master_workbook(app_registry, workbook_path, clear=True, write_line=N
                 platform = platforms[platform_name]
                 rows = platform_groups[(month_label, platform_name)]
                 entries = []
+                current_top_50 = {}
                 for row in rows:
                     key = (
                         platform_name,
@@ -630,10 +635,15 @@ def import_master_workbook(app_registry, workbook_path, clear=True, write_line=N
                             prev_rank=platform_previous.get(key),
                         )
                     )
-                    platform_previous[key] = rank
-                    platform_peak[key] = min(platform_peak.get(key, 999), rank)
+                    if rank <= 50:
+                        current_top_50[key] = rank
+                        platform_peak[key] = min(platform_peak.get(key, 999), rank)
                 MonthlyChartEntry.objects.bulk_create(entries, batch_size=500)
                 platform_count += len(entries)
+                platform_previous = {
+                    key: value for key, value in platform_previous.items() if key[0] != platform_name
+                }
+                platform_previous.update(current_top_50)
 
     certification_rows = []
     cumulative_points = (

@@ -230,7 +230,7 @@ class Certification(models.Model):
     ]
 
     # Points thresholds
-    THRESHOLDS = {'gold': 100, 'platinum': 200, 'diamond': 350}
+    THRESHOLDS = {'gold': 200, 'platinum': 400, 'diamond': 600}
 
     release = models.ForeignKey(Release, on_delete=models.CASCADE, related_name='certifications')
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
