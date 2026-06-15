@@ -3,7 +3,10 @@ from datetime import datetime
 from pathlib import Path
 
 from django.utils.text import slugify
+from django.db.models import Sum
 from openpyxl import load_workbook
+
+from charts.artist_metadata import artist_country
 
 
 MONTHS = [
@@ -43,6 +46,12 @@ PLATFORM_DATA = [
     ("YouTube", "youtube", "#FF0000", 100, 101),
     ("Shazam", "shazam", "#0088FF", 100, 101),
 ]
+
+CERTIFICATION_THRESHOLDS = {
+    "gold": 100,
+    "platinum": 200,
+    "diamond": 350,
+}
 
 
 def _sheet_records(workbook, sheet_name, expected_headers):
@@ -180,9 +189,16 @@ def import_master_workbook(app_registry, workbook_path, clear=True, write_line=N
     def get_artist(name):
         name = str(name).strip()
         artist = artist_cache.get(name)
+        metadata = artist_country(name)
         if artist is None:
-            artist = Artist.objects.create(name=name, slug=_safe_slug(name, used_slugs))
+            defaults = {"name": name, "slug": _safe_slug(name, used_slugs)}
+            if metadata:
+                defaults.update(country=metadata[0], country_code=metadata[1])
+            artist = Artist.objects.create(**defaults)
             artist_cache[name] = artist
+        elif metadata and (not artist.country or not artist.country_code):
+            artist.country, artist.country_code = metadata
+            artist.save(update_fields=["country", "country_code"])
         return artist
 
     def get_release(title, artist_name, chart_type):
@@ -306,10 +322,33 @@ def import_master_workbook(app_registry, workbook_path, clear=True, write_line=N
                 MonthlyChartEntry.objects.bulk_create(entries, batch_size=500)
                 platform_count += len(entries)
 
-    write_line(f"Imported {combined_count} Combined rows and {platform_count} platform rows")
+    certification_rows = []
+    cumulative_points = (
+        MonthlyChartEntry.objects.filter(platform__isnull=True)
+        .values("release_id")
+        .annotate(total=Sum("total_points"))
+    )
+    for item in cumulative_points:
+        total = int(item["total"] or 0)
+        for level, threshold in CERTIFICATION_THRESHOLDS.items():
+            if total >= threshold:
+                certification_rows.append(
+                    Certification(
+                        release_id=item["release_id"],
+                        level=level,
+                        total_points=total,
+                    )
+                )
+    Certification.objects.bulk_create(certification_rows, batch_size=500)
+
+    write_line(
+        f"Imported {combined_count} Combined rows, {platform_count} platform rows, "
+        f"and {len(certification_rows)} certifications"
+    )
     return {
         "combined_rows": combined_count,
         "platform_rows": platform_count,
         "total_rows": combined_count + platform_count,
+        "certifications": len(certification_rows),
         "months": MONTHS,
     }
