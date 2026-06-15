@@ -11,7 +11,7 @@ pip install -r requirements.txt
 # 2. Run migrations
 python manage.py migrate
 
-# 3. Seed initial data (Q4 2024 charts)
+# 3. Seed the chart data
 python manage.py seed_data --clear
 
 # 4. Create admin user
@@ -55,6 +55,9 @@ Platform filter values: `combined` (default), or platform ID (1=Apple Music, 2=A
 - `GET /platforms/` — list of tracked platforms
 - `GET /certifications/?level=diamond&chart_type=singles` — Diamond/Platinum/Gold awards
 - `GET /news/` — published news articles
+- `POST /ai/analyst/` — grounded generative analyst with conversation history, data tools, forecasts, and chart specifications
+
+The AI Analyst only answers from read-only Ngoma chart tools. Set `OPENAI_API_KEY` on the server to enable generative responses; without it, the frontend uses its bundled local analyst.
 
 ### Admin-only
 - `POST /uploads/` — upload weekly xlsx file (auto-processes)
@@ -89,10 +92,9 @@ The pipeline runs automatically when you upload a weekly file via the admin.
 
 | Level | Points |
 |---|---|
-| 🎵 Ngoma | 500+ |
-| 🥇 Gold | 1,000+ |
-| 🪙 Platinum | 2,000+ |
-| 💎 Diamond | 5,000+ |
+| Gold | 200+ |
+| Platinum | 400+ |
+| Diamond | 600+ |
 
 ## License & Contact
 
