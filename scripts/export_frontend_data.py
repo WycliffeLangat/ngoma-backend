@@ -7,11 +7,17 @@ from pathlib import Path
 BACKEND_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND_ROOT))
 
+from charts.artist_metadata import artist_country
 from charts.master_dataset import MONTHS, load_master_workbook
 
 
+def compact_country(artist_name):
+    metadata = artist_country(artist_name)
+    return {"cc": metadata[1] if metadata else ""}
+
+
 def compact_combined(row):
-    return {
+    result = {
         "r": int(row["Rank"]),
         "t": str(row["Title"]),
         "a": str(row["Primary_Artist"]),
@@ -23,16 +29,22 @@ def compact_combined(row):
         "y": int(row["Release_Year"]) if row["Release_Year"] is not None else None,
         "c": str(row["Confidence"] or ""),
     }
+    result.update(compact_country(row["Primary_Artist"]))
+    return result
 
 
 def compact_platform(row):
-    return {
+    primary_artist = str(row.get("Primary_Artist") or row["Artist"])
+    result = {
         "r": int(row["Rank"]),
         "t": str(row["Title"]),
-        "a": str(row["Artist"]),
+        "a": primary_artist,
+        "fa": str(row.get("Featured_Artists") or ""),
         "p": int(row["Points"]),
         "w": int(row["Weeks"]),
     }
+    result.update(compact_country(primary_artist))
+    return result
 
 
 def build_frontend_data(data):

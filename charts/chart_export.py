@@ -95,7 +95,7 @@ def chart_image_data(request):
         release = entry.release
         artist = release.artist
         featured_artists = (entry.featured_artists or "").strip()
-        display_artist = f"{artist.name} feat. {featured_artists}" if featured_artists else artist.name
+        display_artist = f"{artist.name} & {featured_artists.replace(', ', ' & ')}" if featured_artists else artist.name
         artist_country_code = (artist.country_code or "").strip().upper()
         artist_country = artist.country or ""
 

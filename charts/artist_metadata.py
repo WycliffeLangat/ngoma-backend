@@ -1,5 +1,9 @@
 """Verified and reviewed country metadata for artists in the master dataset."""
 
+import ast
+from functools import lru_cache
+from pathlib import Path
+
 
 ARTIST_COUNTRIES = {
     "031choppa": ("South Africa", "ZA"),
@@ -53,6 +57,7 @@ ARTIST_COUNTRIES = {
     "floyymenor": ("Chile", "CL"),
     "fola": ("Nigeria", "NG"),
     "gajendra verma": ("India", "IN"),
+    "giveon": ("United States", "US"),
     "gl_ceejay": ("South Africa", "ZA"),
     "goon flavour": ("South Africa", "ZA"),
     "gradine toto": ("Kenya", "KE"),
@@ -70,6 +75,8 @@ ARTIST_COUNTRIES = {
     "jetti": ("United States", "US"),
     "kehlani": ("United States", "US"),
     "kondela": ("Kenya", "KE"),
+    "kahuti": ("Kenya", "KE"),
+    "kinoti": ("Kenya", "KE"),
     "kpop demon hunters cast": ("South Korea", "KR"),
     "kunatino music": ("Zimbabwe", "ZW"),
     "kunmie": ("Nigeria", "NG"),
@@ -79,6 +86,7 @@ ARTIST_COUNTRIES = {
     "leehleza": ("South Africa", "ZA"),
     "licky tones": ("Kenya", "KE"),
     "lil baby": ("United States", "US"),
+    "lilmaina": ("Kenya", "KE"),
     "maandy": ("Kenya", "KE"),
     "mad g": ("Kenya", "KE"),
     "mahoo": ("South Africa", "ZA"),
@@ -105,6 +113,7 @@ ARTIST_COUNTRIES = {
     "raye": ("United Kingdom", "GB"),
     "rei ami": ("United States", "US"),
     "rymey": ("Jamaica", "JM"),
+    "rvssian": ("Jamaica", "JM"),
     "saja boys": ("South Korea", "KR"),
     "sarz": ("Nigeria", "NG"),
     "scotts maphuma": ("South Africa", "ZA"),
@@ -124,6 +133,7 @@ ARTIST_COUNTRIES = {
     "udede": ("Kenya", "KE"),
     "unjaps": ("South Africa", "ZA"),
     "urban chords": ("Nigeria", "NG"),
+    "unspoken salaton": ("Kenya", "KE"),
     "wapendwa muziki": ("Kenya", "KE"),
     "x.o": ("South Africa", "ZA"),
     "xania monet": ("United States", "US"),
@@ -136,5 +146,19 @@ ARTIST_COUNTRIES = {
 }
 
 
+@lru_cache(maxsize=1)
+def _base_artist_countries():
+    command_path = Path(__file__).parent / "management" / "commands" / "update_artist_countries.py"
+    module = ast.parse(command_path.read_text(encoding="utf-8"))
+    for node in module.body:
+        if isinstance(node, ast.Assign) and any(
+            isinstance(target, ast.Name) and target.id == "ARTIST_COUNTRIES" for target in node.targets
+        ):
+            base_countries = ast.literal_eval(node.value)
+            return {str(name).strip().casefold(): value for name, value in base_countries.items()}
+    return {}
+
+
 def artist_country(name):
-    return ARTIST_COUNTRIES.get(str(name or "").strip().casefold())
+    key = str(name or "").strip().casefold()
+    return ARTIST_COUNTRIES.get(key) or _base_artist_countries().get(key)
