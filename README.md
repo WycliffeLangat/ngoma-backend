@@ -55,9 +55,9 @@ Platform filter values: `combined` (default), or platform ID (1=Apple Music, 2=A
 - `GET /platforms/` — list of tracked platforms
 - `GET /certifications/?level=diamond&chart_type=singles` — Diamond/Platinum/Gold awards
 - `GET /news/` — published news articles
-- `POST /ai/analyst/` — grounded generative analyst with conversation history, data tools, forecasts, and chart specifications
+- `POST /ai/analyst/` — currently disabled by default and not used by the public app
 
-The AI Analyst only answers from read-only Ngoma chart tools. Set `OPENAI_API_KEY` on the server to enable generative responses; without it, the frontend uses its bundled local analyst.
+The AI Analyst code is retained for possible future use, but the endpoint returns a disabled response unless `AI_ANALYST_ENABLED=True` is explicitly configured.
 
 ### Admin-only
 - `POST /uploads/` — upload weekly xlsx file (auto-processes)

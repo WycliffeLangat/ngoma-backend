@@ -169,6 +169,12 @@ def ai_analyst(request):
     if request.method != "POST":
         return JsonResponse({"error": "POST request required."}, status=405)
 
+    if os.getenv("AI_ANALYST_ENABLED", "false").lower() not in {"1", "true", "yes", "on"}:
+        return JsonResponse({
+            "error": "AI Analyst is currently disabled.",
+            "disabled": True,
+        }, status=410)
+
     try:
         body = json.loads(request.body.decode("utf-8"))
     except json.JSONDecodeError:

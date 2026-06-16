@@ -43,10 +43,7 @@ git push -u origin main
    | `ALLOWED_HOSTS` | `your-app-name.up.railway.app` (Railway shows you this) |
    | `CORS_ALLOWED_ORIGINS` | `https://ngomacharts.co.ke` (your frontend URL) |
    | `CSRF_TRUSTED_ORIGINS` | `https://your-app-name.up.railway.app` |
-   | `OPENAI_API_KEY` | Your server-side OpenAI project key |
-   | `OPENAI_MODEL` | `gpt-5.5` |
-   | `OPENAI_FALLBACK_MODEL` | `gpt-4o-mini` |
-   | `OPENAI_REASONING_EFFORT` | `medium` |
+   | `AI_ANALYST_ENABLED` | `False` |
 
 6. Wait ~2 minutes for first deploy. The `release` command in Procfile auto-runs migrations.
 
@@ -100,10 +97,7 @@ For when you want more control. You'll provision a droplet, install nginx, gunic
 | `DATABASE_URL` | Yes | Auto-set by Railway/Render |
 | `CORS_ALLOWED_ORIGINS` | Yes | `https://ngomacharts.co.ke` |
 | `CSRF_TRUSTED_ORIGINS` | Yes | `https://api.ngomacharts.co.ke` |
-| `OPENAI_API_KEY` | For generative analyst | Server-side OpenAI project key |
-| `OPENAI_MODEL` | No | `gpt-5.5` |
-| `OPENAI_FALLBACK_MODEL` | No | `gpt-4o-mini` |
-| `OPENAI_REASONING_EFFORT` | No | `medium` |
+| `AI_ANALYST_ENABLED` | No | `False` |
 
 ---
 
