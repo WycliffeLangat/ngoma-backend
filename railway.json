@@ -1,0 +1,9 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "deploy": {
+    "preDeployCommand": [
+      "python manage.py migrate --noinput"
+    ],
+    "startCommand": "gunicorn ngoma_backend.wsgi --log-file -"
+  }
+}
