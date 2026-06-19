@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db.models import Count, Sum, Q
+from django.middleware.csrf import get_token
 from django.utils import timezone
 from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError as DRFValidationError
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -17,6 +19,7 @@ from .cms_utils import audit, parse_chart_file, validate_chart_rows, publish_cha
 
 
 @method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class CmsLoginView(APIView):
     permission_classes = [AllowAny]
 
@@ -37,7 +40,16 @@ class CmsLoginView(APIView):
         login(request, user)
         AdminProfile.objects.get_or_create(user=user, defaults={'role': AdminRole.SUPER_ADMIN if user.is_superuser else AdminRole.VIEWER})
         audit(request, 'login', module='auth', obj=user)
-        return Response({'user': CmsMeSerializer(user).data})
+        return Response({'user': CmsMeSerializer(user).data, 'csrfToken': get_token(request)})
+
+
+class CsrfTokenView(APIView):
+    """Returns the CSRF token for cross-domain CMS frontends that cannot read the cookie directly."""
+    permission_classes = [AllowAny]
+
+    @method_decorator(ensure_csrf_cookie)
+    def get(self, request):
+        return Response({'csrfToken': get_token(request)})
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -264,6 +276,72 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
         chart.save(update_fields=['locked', 'updated_at'])
         audit(request, 'locked_chart', module='charts', obj=chart)
         return Response(CmsMonthlyChartSerializer(chart).data)
+
+
+class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
+    queryset = MonthlyChartEntry.objects.select_related(
+        'chart', 'release', 'release__artist', 'platform'
+    ).all()
+    serializer_class = CmsMonthlyChartEntrySerializer
+    search_fields = ['release__title', 'release__artist__name', 'featured_artists']
+    ordering_fields = ['rank', 'total_points', 'weeks_on_chart']
+    module_name = 'chart_entries'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        chart_id = self.request.query_params.get('chart')
+        platform = self.request.query_params.get('platform')
+        if chart_id:
+            qs = qs.filter(chart_id=chart_id)
+        if platform == 'combined':
+            qs = qs.filter(platform__isnull=True)
+        elif platform:
+            qs = qs.filter(platform_id=platform)
+        return qs.order_by('rank')
+
+    def _check_locked(self, chart):
+        if chart.locked:
+            raise DRFValidationError("This chart is locked and cannot be edited.")
+
+    def perform_create(self, serializer):
+        chart = serializer.validated_data.get('chart')
+        if chart:
+            self._check_locked(chart)
+        super().perform_create(serializer)
+
+    def perform_update(self, serializer):
+        self._check_locked(serializer.instance.chart)
+        super().perform_update(serializer)
+
+    def perform_destroy(self, instance):
+        self._check_locked(instance.chart)
+        audit(self.request, 'deleted', module=self.module_name, obj=instance)
+        instance.delete()
+
+    @action(detail=False, methods=['post'])
+    def reorder(self, request):
+        """Renumber all ranks for a chart/platform sequentially, preserving current order."""
+        chart_id = request.data.get('chart')
+        platform = request.data.get('platform')
+        if not chart_id:
+            return Response({'detail': 'chart is required.'}, status=400)
+        try:
+            chart = MonthlyChart.objects.get(pk=chart_id)
+        except MonthlyChart.DoesNotExist:
+            return Response({'detail': 'Chart not found.'}, status=404)
+        self._check_locked(chart)
+        qs = MonthlyChartEntry.objects.filter(chart=chart)
+        if platform == 'combined':
+            qs = qs.filter(platform__isnull=True)
+        elif platform:
+            qs = qs.filter(platform_id=platform)
+        entries = list(qs.order_by('rank'))
+        for i, entry in enumerate(entries, 1):
+            if entry.rank != i:
+                entry.rank = i
+                entry.save(update_fields=['rank'])
+        audit(request, 'reordered_entries', module=self.module_name, new={'chart_id': chart_id, 'count': len(entries)})
+        return Response({'reordered': len(entries)})
 
 
 class ChartUploadViewSet(CmsBaseViewSet):

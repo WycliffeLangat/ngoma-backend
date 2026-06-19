@@ -9,6 +9,7 @@ router.register('releases', cms_views.CmsReleaseViewSet, basename='cms-releases'
 router.register('countries', cms_views.CmsCountryViewSet, basename='cms-countries')
 router.register('platforms', cms_views.CmsPlatformViewSet, basename='cms-platforms')
 router.register('charts', cms_views.CmsMonthlyChartViewSet, basename='cms-charts')
+router.register('chart-entries', cms_views.CmsMonthlyChartEntryViewSet, basename='cms-chart-entries')
 router.register('chart-uploads', cms_views.ChartUploadViewSet, basename='cms-chart-uploads')
 router.register('news', cms_views.CmsNewsArticleViewSet, basename='cms-news')
 router.register('media', cms_views.CmsMediaAssetViewSet, basename='cms-media')
@@ -28,6 +29,7 @@ urlpatterns = [
     path('auth/login/', cms_views.CmsLoginView.as_view()),
     path('auth/logout/', cms_views.CmsLogoutView.as_view()),
     path('auth/me/', cms_views.CmsMeView.as_view()),
+    path('csrf/', cms_views.CsrfTokenView.as_view()),
     path('dashboard/', cms_views.CmsDashboardView.as_view()),
     path('search/', cms_views.GlobalSearchView.as_view()),
 ] + router.urls
