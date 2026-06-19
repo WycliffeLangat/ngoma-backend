@@ -36,8 +36,8 @@ All endpoints are under `/api/v1/`.
 - `GET /charts/?chart_type=singles` — list all monthly charts
 - `GET /charts/latest/?chart_type=singles&platform=combined` — latest published chart
 - `GET /charts/{id}/?platform=combined` — specific chart with entries
-- `GET /charts/year_end/?year=2024&chart_type=singles` — year-end aggregated
-- `GET /charts/analytics/?chart_type=singles&year=2024` — analytics for charts
+- `GET /charts/year_end/?year=2025&chart_type=singles` — year-end aggregated
+- `GET /charts/analytics/?chart_type=singles&year=2025` — analytics for charts
 
 Platform filter values: `combined` (default), or platform ID (1=Apple Music, 2=Audiomack, etc.)
 

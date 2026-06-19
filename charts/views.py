@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser, IsAuthenticatedOrReadOnly
 from django.db.models import Sum, Min, Count, Avg
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 from .models import *
 from .serializers import *
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
@@ -141,8 +142,12 @@ class MonthlyChartViewSet(viewsets.ReadOnlyModelViewSet):
     @action(detail=False, methods=['get'])
     def year_end(self, request):
         """Year-end chart: aggregate all months in a given year."""
-        year = int(request.query_params.get('year', 2024))
         chart_type = request.query_params.get('chart_type', 'singles')
+        latest_chart = MonthlyChart.objects.filter(
+            chart_type=chart_type, is_published=True
+        ).order_by('-year', '-month').first()
+        default_year = latest_chart.year if latest_chart else timezone.now().year
+        year = int(request.query_params.get('year', default_year))
         entries = MonthlyChartEntry.objects.filter(
             chart__year=year, chart__chart_type=chart_type, platform__isnull=True
         ).values('release__title', 'release__artist__name', 'release_id').annotate(
@@ -160,7 +165,11 @@ class MonthlyChartViewSet(viewsets.ReadOnlyModelViewSet):
     def analytics(self, request):
         """Comprehensive analytics data."""
         chart_type = request.query_params.get('chart_type', 'singles')
-        year = int(request.query_params.get('year', 2024))
+        latest_chart = MonthlyChart.objects.filter(
+            chart_type=chart_type, is_published=True
+        ).order_by('-year', '-month').first()
+        default_year = latest_chart.year if latest_chart else timezone.now().year
+        year = int(request.query_params.get('year', default_year))
         month = request.query_params.get('month')
 
         charts = MonthlyChart.objects.filter(chart_type=chart_type, year=year)
@@ -220,8 +229,12 @@ class WeeklyUploadViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def rebuild_month(self, request):
         chart_type = request.data.get('chart_type', 'singles')
-        year = int(request.data.get('year', 2024))
-        month = int(request.data.get('month', 10))
+        latest_chart = MonthlyChart.objects.filter(chart_type=chart_type).order_by('-year', '-month').first()
+        today = timezone.now()
+        default_year = latest_chart.year if latest_chart else today.year
+        default_month = latest_chart.month if latest_chart else today.month
+        year = int(request.data.get('year', default_year))
+        month = int(request.data.get('month', default_month))
         result = rebuild_monthly_chart(chart_type, year, month)
         return Response(result)
 

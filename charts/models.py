@@ -128,7 +128,7 @@ class MonthlyChart(models.Model):
     year = models.IntegerField()
     month = models.IntegerField()
     chart_type = models.CharField(max_length=10, choices=ChartType.choices)
-    label = models.CharField(max_length=50, help_text="e.g. 'October 2024'")
+    label = models.CharField(max_length=50, help_text="e.g. 'September 2025'")
     status = models.CharField(max_length=30, default='published', choices=[('draft','Draft'),('pending_review','Pending review'),('approved','Approved'),('published','Published'),('rejected','Rejected'),('archived','Archived')])
     is_published = models.BooleanField(default=True)
     locked = models.BooleanField(default=False)
