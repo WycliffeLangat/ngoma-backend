@@ -12,10 +12,12 @@ class ArtistSerializer(serializers.ModelSerializer):
     total_points = serializers.SerializerMethodField()
     peak_rank = serializers.SerializerMethodField()
     months_on_chart = serializers.SerializerMethodField()
+    flag = serializers.ReadOnlyField()
 
     class Meta:
         model = Artist
-        fields = ['id', 'name', 'slug', 'total_points', 'peak_rank', 'months_on_chart']
+        fields = ['id', 'name', 'slug', 'country', 'country_code', 'flag',
+                  'total_points', 'peak_rank', 'months_on_chart']
 
     def get_total_points(self, obj):
         from django.db.models import Sum
@@ -38,11 +40,15 @@ class ArtistSerializer(serializers.ModelSerializer):
 
 class ReleaseSerializer(serializers.ModelSerializer):
     artist_name = serializers.CharField(source='artist.name')
+    country = serializers.CharField(source='artist.country')
+    country_code = serializers.CharField(source='artist.country_code')
+    flag = serializers.ReadOnlyField(source='artist.flag')
     certifications = serializers.SerializerMethodField()
 
     class Meta:
         model = Release
-        fields = ['id', 'title', 'artist_name', 'chart_type', 'certifications']
+        fields = ['id', 'title', 'artist_name', 'country', 'country_code',
+                  'flag', 'chart_type', 'certifications']
 
     def get_certifications(self, obj):
         return list(obj.certifications.values_list('level', flat=True))
@@ -52,6 +58,9 @@ class MonthlyChartEntrySerializer(serializers.ModelSerializer):
     title = serializers.CharField(source='release.title')
     artist = serializers.CharField(source='release.artist.name')
     artist_id = serializers.IntegerField(source='release.artist.id')
+    country = serializers.CharField(source='release.artist.country')
+    country_code = serializers.CharField(source='release.artist.country_code')
+    flag = serializers.ReadOnlyField(source='release.artist.flag')
     release_id = serializers.IntegerField(source='release.id')
     platform_name = serializers.SerializerMethodField()
     movement = serializers.ReadOnlyField()
@@ -60,10 +69,10 @@ class MonthlyChartEntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = MonthlyChartEntry
         fields = [
-            'rank', 'title', 'artist', 'artist_id', 'release_id',
-            'total_points', 'weeks_on_chart', 'platform_count',
-            'peak_rank', 'prev_rank', 'movement', 'platform_name',
-            'certifications'
+            'rank', 'title', 'artist', 'artist_id', 'country', 'country_code',
+            'flag', 'release_id', 'total_points', 'weeks_on_chart',
+            'platform_count', 'peak_rank', 'prev_rank', 'movement',
+            'platform_name', 'certifications'
         ]
 
     def get_platform_name(self, obj):
@@ -110,11 +119,15 @@ class WeeklyUploadSerializer(serializers.ModelSerializer):
 class CertificationSerializer(serializers.ModelSerializer):
     title = serializers.CharField(source='release.title')
     artist = serializers.CharField(source='release.artist.name')
+    country = serializers.CharField(source='release.artist.country')
+    country_code = serializers.CharField(source='release.artist.country_code')
+    flag = serializers.ReadOnlyField(source='release.artist.flag')
     chart_type = serializers.CharField(source='release.chart_type')
 
     class Meta:
         model = Certification
-        fields = ['id', 'title', 'artist', 'chart_type', 'level', 'total_points', 'certified_at']
+        fields = ['id', 'title', 'artist', 'country', 'country_code', 'flag',
+                  'chart_type', 'level', 'total_points', 'certified_at']
 
 
 class NormalizationRuleSerializer(serializers.ModelSerializer):

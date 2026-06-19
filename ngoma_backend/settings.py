@@ -123,6 +123,11 @@ if DEBUG:
         'http://127.0.0.1:5173',
     ]))
 
+# CMS/API session auth across the Vite frontend.
+CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SAMESITE = os.environ.get('SESSION_COOKIE_SAMESITE', 'Lax')
+CSRF_COOKIE_SAMESITE = os.environ.get('CSRF_COOKIE_SAMESITE', 'Lax')
+
 # === REST Framework ===
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],

@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 from .ai_analyst import ai_analyst
@@ -16,6 +16,7 @@ router.register('certifications', views.CertificationViewSet)
 router.register('normalization-rules', views.NormalizationRuleViewSet)
 
 urlpatterns = router.urls + [
+    path('cms/', include('charts.cms_urls')), 
     path('ai/analyst/', ai_analyst),
     path('export/chart-image-data/', chart_image_data),
 ]

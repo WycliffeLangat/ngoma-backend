@@ -38,7 +38,7 @@ class ReleaseAdmin(admin.ModelAdmin):
     def certification_badges(self, obj):
         certs = obj.certifications.all()
         badges = {
-            'ngoma': '🎵', 'gold': '🥇', 'platinum': '🪙', 'diamond': '💎'
+            'gold': '🥇', 'platinum': '🪙', 'diamond': '💎'
         }
         return ' '.join([badges.get(c.level, '') for c in certs])
     certification_badges.short_description = 'Certs'
@@ -164,3 +164,107 @@ class MonthlyChartEntryAdmin(admin.ModelAdmin):
     list_filter = ['chart__chart_type', 'chart__year', 'chart__month', 'platform']
     search_fields = ['release__title', 'release__artist__name']
     raw_id_fields = ['release', 'chart', 'platform']
+
+
+@admin.register(AdminProfile)
+class AdminProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'role', 'is_active_editor', 'last_seen_at']
+    list_filter = ['role', 'is_active_editor']
+    search_fields = ['user__username', 'user__email']
+
+
+@admin.register(Country)
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'code', 'region', 'active', 'display_order']
+    list_editable = ['active', 'display_order']
+    search_fields = ['name', 'code', 'region']
+
+
+@admin.register(SiteSetting)
+class SiteSettingAdmin(admin.ModelAdmin):
+    list_display = ['key', 'group', 'updated_at', 'updated_by']
+    list_filter = ['group']
+    search_fields = ['key', 'description']
+
+
+@admin.register(PageContent)
+class PageContentAdmin(admin.ModelAdmin):
+    list_display = ['page', 'section', 'title', 'is_visible', 'display_order', 'updated_at']
+    list_filter = ['page', 'is_visible']
+    search_fields = ['page', 'section', 'title', 'content']
+
+
+@admin.register(MediaAsset)
+class MediaAssetAdmin(admin.ModelAdmin):
+    list_display = ['title', 'folder', 'uploaded_by', 'uploaded_at', 'is_archived']
+    list_filter = ['folder', 'is_archived']
+    search_fields = ['title', 'alt_text', 'usage_notes']
+
+
+@admin.register(ChartUpload)
+class ChartUploadAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'status', 'row_count', 'uploaded_by', 'approved_by', 'published_by', 'created_at']
+    list_filter = ['chart_type', 'year', 'month', 'status', 'platform']
+    search_fields = ['original_filename', 'notes']
+    readonly_fields = ['rows_data', 'validation_summary', 'row_count', 'uploaded_by', 'approved_by', 'published_by', 'approved_at', 'published_at']
+
+
+@admin.register(AuditLog)
+class AuditLogAdmin(admin.ModelAdmin):
+    list_display = ['created_at', 'user', 'action', 'module', 'object_repr', 'ip_address']
+    list_filter = ['module', 'action', 'created_at']
+    search_fields = ['action', 'module', 'object_repr', 'reason', 'user__username']
+    readonly_fields = [field.name for field in AuditLog._meta.fields]
+
+
+@admin.register(InternalNote)
+class InternalNoteAdmin(admin.ModelAdmin):
+    list_display = ['module', 'object_id', 'created_by', 'created_at', 'is_resolved']
+    list_filter = ['module', 'is_resolved']
+    search_fields = ['note', 'object_id']
+
+
+@admin.register(AdminNotification)
+class AdminNotificationAdmin(admin.ModelAdmin):
+    list_display = ['title', 'level', 'module', 'user', 'is_read', 'created_at']
+    list_filter = ['level', 'module', 'is_read']
+    search_fields = ['title', 'message']
+
+
+@admin.register(BackupRecord)
+class BackupRecordAdmin(admin.ModelAdmin):
+    list_display = ['status', 'file', 'created_by', 'created_at']
+    list_filter = ['status']
+
+
+@admin.register(DataQualityIssue)
+class DataQualityIssueAdmin(admin.ModelAdmin):
+    list_display = ['module', 'issue_type', 'severity', 'status', 'created_at']
+    list_filter = ['module', 'severity', 'status']
+    search_fields = ['issue_type', 'description']
+
+
+@admin.register(CertificationRule)
+class CertificationRuleAdmin(admin.ModelAdmin):
+    list_display = ['level', 'threshold', 'active', 'updated_at']
+    list_editable = ['threshold', 'active']
+
+
+@admin.register(MethodologySetting)
+class MethodologySettingAdmin(admin.ModelAdmin):
+    list_display = ['version', 'name', 'is_active', 'created_at', 'created_by']
+    list_filter = ['is_active']
+    search_fields = ['version', 'name']
+
+
+@admin.register(ArtistMergeLog)
+class ArtistMergeLogAdmin(admin.ModelAdmin):
+    list_display = ['primary_artist', 'merged_artist_name', 'moved_releases', 'merged_by', 'created_at']
+    search_fields = ['primary_artist__name', 'merged_artist_name']
+
+
+@admin.register(PlaceholderModule)
+class PlaceholderModuleAdmin(admin.ModelAdmin):
+    list_display = ['module', 'title', 'status', 'updated_at']
+    list_filter = ['module', 'status']
+    search_fields = ['module', 'title']
