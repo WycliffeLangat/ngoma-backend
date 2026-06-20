@@ -96,18 +96,17 @@ class CmsArtistSerializer(serializers.ModelSerializer):
     total_points = serializers.SerializerMethodField()
     missing_country = serializers.SerializerMethodField()
     flag = serializers.ReadOnlyField()
-    image = serializers.SerializerMethodField()
 
     class Meta:
         model = Artist
         fields = '__all__'
 
-    def get_image(self, obj):
-        if not obj.image:
-            return None
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
         request = self.context.get('request')
-        url = obj.image.url
-        return request.build_absolute_uri(url) if request else url
+        if request and rep.get('image') and not str(rep['image']).startswith('http'):
+            rep['image'] = request.build_absolute_uri(rep['image'])
+        return rep
 
     def get_total_points(self, obj):
         from django.db.models import Sum
@@ -159,14 +158,6 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
     artist_display = serializers.SerializerMethodField()
     primary_artist_ids = serializers.ListField(child=serializers.IntegerField(min_value=1), required=False)
     featured_artist_ids = serializers.ListField(child=serializers.IntegerField(min_value=1), required=False)
-    cover_image = serializers.SerializerMethodField()
-
-    def get_cover_image(self, obj):
-        if not obj.cover_image:
-            return None
-        request = self.context.get('request')
-        url = obj.cover_image.url
-        return request.build_absolute_uri(url) if request else url
     primary_artists = serializers.SerializerMethodField()
     featured_artist_profiles = serializers.SerializerMethodField()
     artist_credit = serializers.SerializerMethodField()
@@ -216,6 +207,13 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
 
     def get_certifications(self, obj):
         return list(obj.certifications.values('level', 'total_points', 'certified_at', 'is_official'))
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        request = self.context.get('request')
+        if request and rep.get('cover_image') and not str(rep['cover_image']).startswith('http'):
+            rep['cover_image'] = request.build_absolute_uri(rep['cover_image'])
+        return rep
 
     def validate(self, attrs):
         primary_ids = list(dict.fromkeys(attrs.get('primary_artist_ids', [])))
