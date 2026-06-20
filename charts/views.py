@@ -2,7 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser, IsAuthenticatedOrReadOnly
-from django.db.models import Sum, Min, Count, Avg
+from django.db.models import Sum, Min, Count, Avg, Q
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from .models import *
@@ -16,7 +16,7 @@ class PlatformViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class ArtistViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Artist.objects.all()
+    queryset = Artist.objects.exclude(status__in=['archived', 'inactive', 'rejected', 'draft'])
     serializer_class = ArtistSerializer
 
     def get_queryset(self):
@@ -69,7 +69,9 @@ class ArtistViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class ReleaseViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Release.objects.select_related('artist').all()
+    queryset = Release.objects.select_related('artist').exclude(
+        status__in=['archived', 'inactive', 'rejected', 'draft']
+    ).exclude(artist__status__in=['archived', 'inactive', 'rejected', 'draft'])
     serializer_class = ReleaseSerializer
 
     def get_queryset(self):
@@ -108,7 +110,7 @@ class ReleaseViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class MonthlyChartViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = MonthlyChart.objects.filter(is_published=True)
+    queryset = MonthlyChart.objects.filter(is_published=True, status='published')
     serializer_class = MonthlyChartSerializer
 
     def get_queryset(self):
@@ -240,7 +242,12 @@ class WeeklyUploadViewSet(viewsets.ModelViewSet):
 
 
 class NewsArticleViewSet(viewsets.ModelViewSet):
-    queryset = NewsArticle.objects.filter(is_published=True)
+    queryset = NewsArticle.objects.filter(
+        is_published=True,
+        status='published',
+    ).filter(Q(scheduled_for__isnull=True) | Q(scheduled_for__lte=timezone.now())).order_by(
+        '-pinned', '-featured', '-published_at'
+    )
     serializer_class = NewsArticleSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
@@ -251,7 +258,11 @@ class NewsArticleViewSet(viewsets.ModelViewSet):
 
 
 class CertificationViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Certification.objects.select_related('release', 'release__artist')
+    queryset = Certification.objects.select_related('release', 'release__artist').filter(
+        is_hidden=False
+    ).exclude(
+        release__status__in=['archived', 'inactive', 'rejected', 'draft']
+    ).exclude(release__artist__status__in=['archived', 'inactive', 'rejected', 'draft'])
     serializer_class = CertificationSerializer
 
     def get_queryset(self):

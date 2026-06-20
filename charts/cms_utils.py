@@ -2,6 +2,9 @@ import csv
 import io
 import re
 from collections import Counter
+from collections.abc import Mapping
+from datetime import date, datetime, time
+from decimal import Decimal
 from django.utils import timezone
 from django.utils.text import slugify
 import openpyxl
@@ -15,6 +18,25 @@ def client_ip(request):
     return request.META.get('REMOTE_ADDR')
 
 
+def json_safe(value):
+    """Recursively normalize serializer/model values before storing an audit JSON snapshot."""
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    if isinstance(value, (date, datetime, time)):
+        return value.isoformat()
+    if isinstance(value, Decimal):
+        return float(value)
+    if isinstance(value, Mapping):
+        return {str(key): json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple, set)):
+        return [json_safe(item) for item in value]
+    if hasattr(value, 'name') and value.__class__.__name__ in {'FieldFile', 'ImageFieldFile'}:
+        return value.name or ''
+    if hasattr(value, 'pk'):
+        return value.pk
+    return str(value)
+
+
 def audit(request, action, module='', obj=None, old=None, new=None, reason=''):
     try:
         AuditLog.objects.create(
@@ -23,8 +45,8 @@ def audit(request, action, module='', obj=None, old=None, new=None, reason=''):
             object_type=obj.__class__.__name__ if obj else '',
             object_id=str(getattr(obj, 'pk', '') or ''),
             object_repr=str(obj)[:255] if obj else '',
-            old_value=old or {},
-            new_value=new or {},
+            old_value=json_safe(old or {}),
+            new_value=json_safe(new or {}),
             reason=reason or '',
             user=request.user if request and request.user.is_authenticated else None,
             ip_address=client_ip(request) if request else None,

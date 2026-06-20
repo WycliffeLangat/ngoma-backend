@@ -5,7 +5,11 @@ from .models import *
 class PlatformSerializer(serializers.ModelSerializer):
     class Meta:
         model = Platform
-        fields = ['id', 'name', 'slug', 'color', 'chart_size', 'points_base']
+        fields = [
+            'id', 'name', 'slug', 'short_name', 'logo', 'color', 'brand_color',
+            'chart_size', 'max_chart_size', 'points_base', 'points_method',
+            'supports_singles', 'supports_albums', 'display_order', 'active',
+        ]
 
 
 class ArtistSerializer(serializers.ModelSerializer):
@@ -16,8 +20,14 @@ class ArtistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Artist
-        fields = ['id', 'name', 'slug', 'country', 'country_code', 'flag',
-                  'total_points', 'peak_rank', 'months_on_chart']
+        fields = [
+            'id', 'name', 'display_name', 'slug', 'aliases', 'country',
+            'country_code', 'flag', 'city_region', 'genre', 'biography', 'image',
+            'spotify_url', 'apple_music_url', 'youtube_url', 'boomplay_url',
+            'audiomack_url', 'tiktok_url', 'instagram_url', 'x_url',
+            'facebook_url', 'website_url', 'artist_type', 'status', 'verified',
+            'updated_at', 'total_points', 'peak_rank', 'months_on_chart',
+        ]
 
     def get_total_points(self, obj):
         from django.db.models import Sum
@@ -39,19 +49,30 @@ class ArtistSerializer(serializers.ModelSerializer):
 
 
 class ReleaseSerializer(serializers.ModelSerializer):
-    artist_name = serializers.CharField(source='artist.name')
-    country = serializers.CharField(source='artist.country')
-    country_code = serializers.CharField(source='artist.country_code')
+    artist_name = serializers.SerializerMethodField()
+    artist_country = serializers.CharField(source='artist.country')
+    artist_country_code = serializers.CharField(source='artist.country_code')
     flag = serializers.ReadOnlyField(source='artist.flag')
     certifications = serializers.SerializerMethodField()
 
     class Meta:
         model = Release
-        fields = ['id', 'title', 'artist_name', 'country', 'country_code',
-                  'flag', 'chart_type', 'certifications']
+        fields = [
+            'id', 'title', 'artist', 'artist_name', 'artist_country',
+            'artist_country_code', 'flag', 'chart_type', 'featured_artists',
+            'credited_artists', 'songwriters', 'producers', 'release_year',
+            'release_date', 'isrc', 'upc', 'number_of_tracks', 'country',
+            'country_code', 'genre', 'label', 'distributor', 'cover_image',
+            'spotify_url', 'apple_music_url', 'boomplay_url', 'audiomack_url',
+            'youtube_url', 'tiktok_url', 'shazam_url', 'radio_info', 'status',
+            'updated_at', 'certifications',
+        ]
+
+    def get_artist_name(self, obj):
+        return obj.artist.display_name or obj.artist.name
 
     def get_certifications(self, obj):
-        return list(obj.certifications.values_list('level', flat=True))
+        return list(obj.certifications.filter(is_hidden=False).values_list('level', flat=True))
 
 
 class MonthlyChartEntrySerializer(serializers.ModelSerializer):
@@ -79,7 +100,7 @@ class MonthlyChartEntrySerializer(serializers.ModelSerializer):
         return obj.platform.name if obj.platform else 'Combined'
 
     def get_certifications(self, obj):
-        return list(obj.release.certifications.values_list('level', flat=True))
+        return list(obj.release.certifications.filter(is_hidden=False).values_list('level', flat=True))
 
 
 class MonthlyChartSerializer(serializers.ModelSerializer):
@@ -91,7 +112,9 @@ class MonthlyChartSerializer(serializers.ModelSerializer):
 
     def get_entries(self, obj):
         platform_id = self.context.get('platform_id')
-        qs = obj.entries.select_related('release', 'release__artist', 'platform')
+        qs = obj.entries.select_related('release', 'release__artist', 'platform').exclude(
+            release__status__in=['archived', 'inactive', 'rejected', 'draft']
+        ).exclude(release__artist__status__in=['archived', 'inactive', 'rejected', 'draft'])
         if platform_id == 'combined':
             qs = qs.filter(platform__isnull=True)
         elif platform_id:
@@ -102,8 +125,12 @@ class MonthlyChartSerializer(serializers.ModelSerializer):
 class NewsArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsArticle
-        fields = ['id', 'title', 'slug', 'category', 'excerpt', 'body', 'emoji',
-                  'published_at', 'related_release', 'related_artist']
+        fields = [
+            'id', 'title', 'slug', 'category', 'excerpt', 'subheadline', 'body',
+            'emoji', 'cover_image', 'gallery', 'tags', 'author', 'source_links',
+            'seo_title', 'seo_description', 'featured', 'pinned', 'breaking',
+            'published_at', 'updated_at', 'related_release', 'related_artist',
+        ]
 
 
 class WeeklyUploadSerializer(serializers.ModelSerializer):
@@ -127,7 +154,8 @@ class CertificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certification
         fields = ['id', 'title', 'artist', 'country', 'country_code', 'flag',
-                  'chart_type', 'level', 'total_points', 'certified_at']
+                  'chart_type', 'level', 'total_points', 'is_official',
+                  'certification_date', 'previous_level', 'notes', 'certified_at']
 
 
 class NormalizationRuleSerializer(serializers.ModelSerializer):

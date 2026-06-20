@@ -617,9 +617,11 @@ def model_to_dict_safe(instance):
     data = {}
     for field in instance._meta.fields:
         value = getattr(instance, field.name, None)
-        if hasattr(value, 'pk'):
+        if field.get_internal_type() in {'FileField', 'ImageField'}:
+            value = getattr(value, 'name', '') or ''
+        elif hasattr(value, 'pk'):
             value = value.pk
-        if hasattr(value, 'isoformat'):
+        elif hasattr(value, 'isoformat'):
             value = value.isoformat()
         data[field.name] = value
     return data

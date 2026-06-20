@@ -48,6 +48,7 @@ def chart_image_data(request):
     chart_query = MonthlyChart.objects.filter(
         chart_type=chart_type,
         is_published=True,
+        status="published",
     )
 
     if year:
@@ -69,7 +70,11 @@ def chart_image_data(request):
             status=404,
         )
 
-    entries_query = MonthlyChartEntry.objects.filter(chart=chart).select_related(
+    entries_query = MonthlyChartEntry.objects.filter(chart=chart).exclude(
+        release__status__in=["archived", "inactive", "rejected", "draft"],
+    ).exclude(
+        release__artist__status__in=["archived", "inactive", "rejected", "draft"],
+    ).select_related(
         "release",
         "release__artist",
         "platform",
@@ -105,7 +110,8 @@ def chart_image_data(request):
         release = entry.release
         artist = release.artist
         featured_artists = (entry.featured_artists or "").strip()
-        credit_members = [artist.name, *[name.strip() for name in featured_artists.split(",") if name.strip()]]
+        artist_name = artist.display_name or artist.name
+        credit_members = [artist_name, *[name.strip() for name in featured_artists.split(",") if name.strip()]]
         if len(credit_members) <= 1:
             display_artist = credit_members[0]
         elif len(credit_members) == 2:
@@ -121,7 +127,7 @@ def chart_image_data(request):
                 "rank": entry.rank,
                 "title": release.title,
                 "artist": display_artist,
-                "primary_artist": artist.name,
+                "primary_artist": artist_name,
                 "featured_artists": featured_artists,
                 "artist_country": artist_country,
                 "artist_country_code": artist_country_code,
@@ -136,6 +142,26 @@ def chart_image_data(request):
                 "peak_rank": entry.peak_rank,
                 "release_year": entry.release_year,
                 "confidence": entry.confidence,
+                "release_id": release.id,
+                "artist_id": artist.id,
+                "release_date": release.release_date,
+                "genre": release.genre,
+                "label": release.label,
+                "distributor": release.distributor,
+                "cover_image": request.build_absolute_uri(release.cover_image.url) if release.cover_image else "",
+                "isrc": release.isrc,
+                "upc": release.upc,
+                "number_of_tracks": release.number_of_tracks,
+                "songwriters": release.songwriters,
+                "producers": release.producers,
+                "spotify_url": release.spotify_url,
+                "apple_music_url": release.apple_music_url,
+                "boomplay_url": release.boomplay_url,
+                "audiomack_url": release.audiomack_url,
+                "youtube_url": release.youtube_url,
+                "tiktok_url": release.tiktok_url,
+                "shazam_url": release.shazam_url,
+                "radio_info": release.radio_info,
                 "chart_type": chart.chart_type,
                 "platform": platform_label,
             }
