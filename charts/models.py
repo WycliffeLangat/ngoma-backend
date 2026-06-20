@@ -122,6 +122,37 @@ class Release(models.Model):
     def __str__(self):
         return f"{self.title} - {self.artist.name}"
 
+    @property
+    def primary_artist_ids(self):
+        ids = [credit.artist_id for credit in self.artist_credits.all() if credit.role == 'primary']
+        return ids or [self.artist_id]
+
+    @property
+    def featured_artist_ids(self):
+        return [credit.artist_id for credit in self.artist_credits.all() if credit.role == 'featured']
+
+
+class ReleaseArtistCredit(models.Model):
+    ROLE_CHOICES = [
+        ('primary', 'Main artist'),
+        ('featured', 'Featured artist'),
+    ]
+
+    release = models.ForeignKey(Release, on_delete=models.CASCADE, related_name='artist_credits')
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='release_credits')
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    position = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['role', 'position', 'id']
+        constraints = [
+            models.UniqueConstraint(fields=['release', 'artist', 'role'], name='unique_release_artist_credit'),
+            models.UniqueConstraint(fields=['release', 'role', 'position'], name='unique_release_credit_position'),
+        ]
+
+    def __str__(self):
+        return f"{self.release} — {self.get_role_display()}: {self.artist}"
+
 
 class MonthlyChart(models.Model):
     """A monthly chart period"""

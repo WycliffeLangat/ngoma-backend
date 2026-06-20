@@ -36,6 +36,18 @@ class PublicAppDataSyncTests(TestCase):
             country="Test Country",
             country_code="TC",
         )
+        self.second_artist = Artist.objects.create(
+            name="Second Artist", slug="second-artist", country="Uganda", country_code="UG"
+        )
+        self.third_artist = Artist.objects.create(
+            name="Third Artist", slug="third-artist", country="Tanzania", country_code="TZ"
+        )
+        self.featured_artist = Artist.objects.create(
+            name="Featured Artist", slug="featured-artist", country="Ghana", country_code="GH"
+        )
+        self.featured_artist_two = Artist.objects.create(
+            name="Guest Two", slug="guest-two", country="Nigeria", country_code="NG"
+        )
         self.release = Release.objects.create(
             title="Original Song",
             artist=self.artist,
@@ -209,3 +221,58 @@ class PublicAppDataSyncTests(TestCase):
             self.page_content.id,
             [item["id"] for item in data["page_content"].get("about", [])],
         )
+
+    def test_multiple_main_and_featured_artists_are_structured_and_formatted(self):
+        response = self.patch_cms(
+            f"/api/v1/cms/releases/{self.release.id}/",
+            {
+                "primary_artist_ids": [self.artist.id, self.second_artist.id, self.third_artist.id],
+                "featured_artist_ids": [self.featured_artist.id, self.featured_artist_two.id],
+                "credited_artists": "Additional vocal credits",
+                "songwriters": "Writer One, Writer Two",
+                "producers": "Producer One",
+                "release_date": "2026-05-15",
+                "release_year": 2026,
+                "isrc": "TEST12345678",
+                "genre": "Afropop",
+                "label": "Test Label",
+                "distributor": "Test Distributor",
+                "radio_info": "Clean radio edit available",
+            },
+        )
+        self.assertEqual(response["artist_credit"], "Original Artist, Second Artist & Third Artist ft. Featured Artist & Guest Two")
+        self.assertEqual(response["primary_artist_ids"], [self.artist.id, self.second_artist.id, self.third_artist.id])
+        self.assertEqual(response["featured_artist_ids"], [self.featured_artist.id, self.featured_artist_two.id])
+
+        data = self.app_data()
+        row = data["full"]["singles"]["combined"]["June 2026"][0]
+        release = next(item for item in data["releases"] if item["id"] == self.release.id)
+        expected_credit = "Original Artist, Second Artist & Third Artist ft. Featured Artist & Guest Two"
+
+        self.assertEqual(row["artist_credit"], expected_credit)
+        self.assertEqual(release["artist_credit"], expected_credit)
+        self.assertEqual([item["public_name"] for item in row["primary_artists"]], [
+            "Original Artist", "Second Artist", "Third Artist"
+        ])
+        self.assertEqual([item["public_name"] for item in row["featured_artist_profiles"]], [
+            "Featured Artist", "Guest Two"
+        ])
+        self.assertEqual(release["songwriters"], "Writer One, Writer Two")
+        self.assertEqual(release["producers"], "Producer One")
+        self.assertEqual(release["distributor"], "Test Distributor")
+        self.assertEqual(release["radio_info"], "Clean radio edit available")
+
+        public_artist_ids = {item["id"] for item in data["artists"]}
+        self.assertTrue({
+            self.artist.id,
+            self.second_artist.id,
+            self.third_artist.id,
+            self.featured_artist.id,
+            self.featured_artist_two.id,
+        }.issubset(public_artist_ids))
+
+        detail_response = self.client.get("/api/v1/app-data/artist/second-artist/")
+        self.assertEqual(detail_response.status_code, 200, detail_response.content)
+        detail = detail_response.json()
+        self.assertIn(self.release.id, [item["id"] for item in detail["releases"]])
+        self.assertIn(self.release.id, [item["release_id"] for item in detail["chart_history"]])

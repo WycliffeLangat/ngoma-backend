@@ -44,6 +44,16 @@ class ReleaseAdmin(admin.ModelAdmin):
     certification_badges.short_description = 'Certs'
 
 
+class ReleaseArtistCreditInline(admin.TabularInline):
+    model = ReleaseArtistCredit
+    extra = 1
+    autocomplete_fields = ['artist']
+    ordering = ['role', 'position']
+
+
+ReleaseAdmin.inlines = [ReleaseArtistCreditInline]
+
+
 class PlatformChartEntryInline(admin.TabularInline):
     model = PlatformChartEntry
     extra = 0

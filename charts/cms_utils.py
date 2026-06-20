@@ -8,7 +8,7 @@ from decimal import Decimal
 from django.utils import timezone
 from django.utils.text import slugify
 import openpyxl
-from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, Platform, ChartType, CertificationRule, Certification
+from .models import AuditLog, Artist, Release, ReleaseArtistCredit, MonthlyChart, MonthlyChartEntry, Platform, ChartType, CertificationRule, Certification
 
 
 def client_ip(request):
@@ -251,6 +251,12 @@ def get_or_create_cms_release(row, artist, chart_type):
             fields.append(attr)
     if fields:
         release.save(update_fields=fields + ['updated_at'])
+    ReleaseArtistCredit.objects.get_or_create(
+        release=release,
+        artist=artist,
+        role='primary',
+        defaults={'position': 0},
+    )
     return release
 
 

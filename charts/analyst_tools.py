@@ -4,6 +4,7 @@ from collections import defaultdict
 from django.db.models import Q
 
 from .models import Certification, MonthlyChart, MonthlyChartEntry, NewsArticle
+from .artist_credits import release_credit_payload
 
 
 PLATFORM_COLORS = {
@@ -18,25 +19,12 @@ PLATFORM_COLORS = {
 
 
 def _credit_members(entry):
-    members = [entry.release.artist.name]
-    members.extend(name.strip() for name in (entry.featured_artists or "").split(",") if name.strip())
-    unique = []
-    seen = set()
-    for member in members:
-        normalized = member.casefold()
-        if normalized not in seen:
-            seen.add(normalized)
-            unique.append(member)
-    return unique
+    credits = release_credit_payload(entry.release, entry_featured=entry.featured_artists)
+    return [*credits['primary_artist_names'], *credits['featured_artist_names']]
 
 
 def _credit(entry):
-    members = _credit_members(entry)
-    if len(members) <= 1:
-        return members[0] if members else "Unknown artist"
-    if len(members) == 2:
-        return " & ".join(members)
-    return f"{', '.join(members[:-1])} & {members[-1]}"
+    return release_credit_payload(entry.release, entry_featured=entry.featured_artists)['artist_credit'] or "Unknown artist"
 
 
 def _entry_dict(entry):
@@ -45,7 +33,7 @@ def _entry_dict(entry):
         "title": entry.release.title,
         "artist": _credit(entry),
         "primary_artist": entry.release.artist.name,
-        "featured_artists": [name for name in _credit_members(entry)[1:]],
+        "featured_artists": release_credit_payload(entry.release, entry_featured=entry.featured_artists)['featured_artist_names'],
         "country": entry.release.artist.country,
         "country_code": entry.release.artist.country_code,
         "points": entry.total_points,
@@ -80,7 +68,7 @@ def _entries_for_chart(chart, platform="Combined", limit=50):
         "release",
         "release__artist",
         "platform",
-    )
+    ).prefetch_related("release__artist_credits__artist")
     if not platform or platform.casefold() == "combined":
         query = query.filter(platform__isnull=True)
     else:
@@ -126,7 +114,7 @@ def _artist_totals(chart_type="singles", through_month=""):
             chart=chart,
             platform__isnull=True,
             rank__lte=50,
-        ).select_related("release", "release__artist")
+        ).select_related("release", "release__artist").prefetch_related("release__artist_credits__artist")
         month_points = defaultdict(int)
         for entry in entries:
             for name in _credit_members(entry):

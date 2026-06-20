@@ -1,0 +1,407 @@
+diff --git a/frontend_original/src/NgomaCharts.jsx b/frontend_work/src/NgomaCharts.jsx
+index 278ceb9..6a2dd5f 100644
+--- a/frontend_original/src/NgomaCharts.jsx
++++ b/frontend_work/src/NgomaCharts.jsx
+@@ -30,6 +30,14 @@ import ReleaseDetailPage from "./pages/ReleaseDetailPage";
+ 
+ const PUBLIC_DATA = typeof window !== "undefined" ? (window.__NGOMA_PUBLIC_DATA__ || {}) : {};
+ const PUBLIC_RELEASES_BY_ID = new Map((PUBLIC_DATA.releases || []).map((release) => [Number(release.id), release]));
++const PUBLIC_ARTISTS_BY_NAME = new Map();
++(PUBLIC_DATA.artists || []).forEach((artist) => {
++  [artist.name, artist.display_name, artist.public_name, ...(artist.aliases || [])].forEach((name) => {
++    const key = String(name || "").trim().toLowerCase();
++    if (key && !PUBLIC_ARTISTS_BY_NAME.has(key)) PUBLIC_ARTISTS_BY_NAME.set(key, artist);
++  });
++});
++const publicArtistForName = (name = "") => PUBLIC_ARTISTS_BY_NAME.get(String(name || "").trim().toLowerCase()) || null;
+ const SITE_SETTINGS = PUBLIC_DATA.settings || {};
+ const settingValue = (key, fallback = {}) => SITE_SETTINGS[key] ?? fallback;
+ const siteNameSetting = settingValue("site_name", {});
+@@ -76,7 +84,7 @@ const buildCertifications = (items = []) => items
+   }))
+   .filter((item) => item.level);
+ const releaseTitle = (item = {}) => item.t || item.title || item.release_title || item.name || "";
+-const releaseArtist = (item = {}) => item.a || item.artist || item.artist_name || item.primary_artist || "";
++const releaseArtist = (item = {}) => item.artist_credit || item.a || item.artist || item.artist_name || item.primary_artist || "";
+ const formatCreditMembers = (members = []) => {
+   const unique = [...new Map(members
+     .map((member) => String(member || "").trim())
+@@ -86,22 +94,35 @@ const formatCreditMembers = (members = []) => {
+   if (unique.length === 2) return unique.join(" & ");
+   return `${unique.slice(0, -1).join(", ")} & ${unique[unique.length - 1]}`;
+ };
++const profileNames = (profiles = []) => profiles
++  .map((artist) => artist?.public_name || artist?.display_name || artist?.name || artist)
++  .map((name) => String(name || "").trim())
++  .filter(Boolean);
++const splitCreditNames = (value = "") => String(value || "")
++  .split(/\s*,\s*|\s*&\s*|\s+ft\.?\s+|\s+feat\.?\s+|\s+featuring\s+/i)
++  .map((name) => name.trim())
++  .filter(Boolean);
+ const artistCreditMembers = (item = {}) => {
+-  const primaryArtist = String(item.primary_artist || item.pa || "").trim();
+-  const featuredArtists = String(item.featured_artists || item.fa || "").trim();
+-  const source = primaryArtist
+-    ? [primaryArtist, ...featuredArtists.split(/\s*,\s*|\s*&\s*/)]
+-    : String(item.artist || item.a || "").split(/\s*,\s*|\s*&\s*/);
++  const structuredPrimary = profileNames(item.primary_artists);
++  const structuredFeatured = profileNames(item.featured_artist_profiles);
++  const primaryArtist = String(item.primary_artist_credit || item.primary_artist || item.pa || "").trim();
++  const featuredArtists = String(item.featured_artist_credit || item.featured_artists || item.fa || "").trim();
++  const source = structuredPrimary.length || structuredFeatured.length
++    ? [...structuredPrimary, ...structuredFeatured]
++    : primaryArtist
++      ? [...splitCreditNames(primaryArtist), ...splitCreditNames(featuredArtists)]
++      : splitCreditNames(item.artist_credit || item.artist || item.a || "");
+   return [...new Map(source
+     .map((member) => String(member || "").trim())
+     .filter(Boolean)
+     .map((member) => [member.toLowerCase(), member])).values()];
+ };
+-const formatArtistCredit = (primaryArtist = "", featuredArtists = "") => {
+-  const members = [primaryArtist, ...String(featuredArtists || "").split(/\s*,\s*|\s*&\s*/)]
+-    .map((member) => String(member || "").trim())
+-    .filter(Boolean);
+-  return formatCreditMembers(members);
++const formatArtistCredit = (primaryArtist = "", featuredArtists = "", primaryArtists = [], featuredProfiles = []) => {
++  const primaryNames = profileNames(primaryArtists).length ? profileNames(primaryArtists) : splitCreditNames(primaryArtist);
++  const featuredNames = profileNames(featuredProfiles).length ? profileNames(featuredProfiles) : splitCreditNames(featuredArtists);
++  const primaryCredit = formatCreditMembers(primaryNames);
++  const featuredCredit = formatCreditMembers(featuredNames.filter((name) => !primaryNames.some((primary) => primary.toLowerCase() === name.toLowerCase())));
++  return featuredCredit ? `${primaryCredit} ft. ${featuredCredit}` : primaryCredit;
+ };
+ const firstFiniteNumber = (...values) => {
+   for (const value of values) {
+@@ -235,17 +256,26 @@ function enrichChartEntries(entries, getRawEntries, currentMonth, totalPlatforms
+       ? Number(String(e.pl).split("/")[0]) || undefined
+       : undefined;
+ 
++    const releaseDetails = PUBLIC_RELEASES_BY_ID.get(Number(e.release_id)) || {};
++    const primaryArtists = e.primary_artists || releaseDetails.primary_artists || [];
++    const featuredProfiles = e.featured_artist_profiles || releaseDetails.featured_artist_profiles || [];
+     const primaryArtist = String(e.pa || e.a || "").trim();
+     const featuredArtists = String(e.fa || "").trim();
++    const artistCredit = e.artist_credit || releaseDetails.artist_credit || formatArtistCredit(
++      primaryArtist, featuredArtists, primaryArtists, featuredProfiles
++    );
+ 
+     return {
+-      ...(PUBLIC_RELEASES_BY_ID.get(Number(e.release_id)) || {}),
++      ...releaseDetails,
+       ...e,
+       rank: e.r,
+       title: e.t,
+-      artist: formatArtistCredit(primaryArtist, featuredArtists),
+-      primary_artist: primaryArtist,
++      artist: artistCredit,
++      artist_credit: artistCredit,
++      primary_artist: e.primary_artist_credit || releaseDetails.primary_artist_credit || primaryArtist,
+       featured_artists: featuredArtists,
++      primary_artists: primaryArtists,
++      featured_artist_profiles: featuredProfiles,
+       pts: e.p,
+       rawPts: e.rp ?? null,
+       plat: e.pl || (platformCount ? `${platformCount}/${totalPlatforms}` : ""),
+@@ -552,6 +582,7 @@ const buildArtistChart = (monthLabel = CURRENT_MONTH, platform = "Combined") =>
+     const stats = history.get(artist.key) || {};
+     const platformHits = platform === "Combined" ? getArtistPlatformHits(artist.n, monthLabel) : [platform];
+     const country = artist.country || getArtistCountry({ artist: artist.n });
++    const artistProfile = publicArtistForName(artist.n) || {};
+     return {
+       rank,
+       title: artist.n,
+@@ -582,6 +613,15 @@ const buildArtistChart = (monthLabel = CURRENT_MONTH, platform = "Combined") =>
+       releases: artist.releases,
+       is_artist_entry: true,
+       type: "artist",
++      artist_profile: artistProfile,
++      image: artistProfile.image || "",
++      aliases: artistProfile.aliases || [],
++      city_region: artistProfile.city_region || "",
++      genre: artistProfile.genre || "",
++      biography: artistProfile.biography || "",
++      artist_type: artistProfile.artist_type || "",
++      verified: Boolean(artistProfile.verified),
++      social_links: artistProfile.social_links || {},
+     };
+   });
+ 
+@@ -1006,8 +1046,9 @@ export default function NgomaCharts(){
+             ...entry,
+             rank: entry.rank,
+             title: entry.title,
+-            artist: formatArtistCredit(entry.primary_artist || entry.artist, entry.featured_artists),
+-            primary_artist: entry.primary_artist || entry.artist,
++            artist: entry.artist_credit || formatArtistCredit(entry.primary_artist || entry.artist, entry.featured_artists, entry.primary_artists, entry.featured_artist_profiles),
++            artist_credit: entry.artist_credit || formatArtistCredit(entry.primary_artist || entry.artist, entry.featured_artists, entry.primary_artists, entry.featured_artist_profiles),
++            primary_artist: entry.primary_artist_credit || entry.primary_artist || entry.artist,
+             featured_artists: entry.featured_artists || "",
+             pts: displayPoints,
+             rawPts: null,
+@@ -1282,7 +1323,7 @@ const top = data[0];
+         return entry ? [platform, { t: entry.title, a: entry.artist, primary_artist: entry.primary_artist, featured_artists: "", p: entry.pts, is_artist_entry: true, type: "artist" }] : null;
+       }
+       const entry = rawPlatform(releaseCt, platform, anMonth)[0];
+-      return entry ? [platform, { t: entry.t, a: formatArtistCredit(entry.a, entry.fa), primary_artist: entry.a, featured_artists: entry.fa || "", p: entry.p }] : null;
++      return entry ? [platform, { t: entry.t, a: entry.artist_credit || formatArtistCredit(entry.a, entry.fa, entry.primary_artists, entry.featured_artist_profiles), primary_artist: entry.primary_artist_credit || entry.a, featured_artists: entry.fa || "", p: entry.p }] : null;
+     })
+     .filter(Boolean) : [];
+ 
+@@ -1332,7 +1373,7 @@ const top = data[0];
+         .filter((entry) => !otherIndexes.some((index) => index?.has(entryKey(entry))))
+         .map((entry) => ({
+           title: entry.t || entry.title,
+-          artist: isArtists ? (entry.artist || "") : formatArtistCredit(entry.a, entry.fa),
++          artist: isArtists ? (entry.artist || "") : (entry.artist_credit || formatArtistCredit(entry.a, entry.fa, entry.primary_artists, entry.featured_artist_profiles)),
+           primary_artist: entry.a || entry.primary_artist || entry.t || entry.title,
+           featured_artists: entry.fa || entry.featured_artists || "",
+           rank: entry.r || entry.rank,
+diff --git a/frontend_original/src/admin/components/FormModal.jsx b/frontend_work/src/admin/components/FormModal.jsx
+index bc353d0..dafdf09 100644
+--- a/frontend_original/src/admin/components/FormModal.jsx
++++ b/frontend_work/src/admin/components/FormModal.jsx
+@@ -1,5 +1,46 @@
+ import { useEffect, useState } from "react";
+ 
++function OrderedMultiSelect({ value = [], options = [], onChange }) {
++  const selected = Array.isArray(value) ? value.map(Number).filter(Boolean) : [];
++  const optionById = new Map(options.map((option) => [Number(option.value), option]));
++  const add = (artistId) => {
++    const id = Number(artistId);
++    if (id && !selected.includes(id)) onChange([...selected, id]);
++  };
++  const move = (index, direction) => {
++    const nextIndex = index + direction;
++    if (nextIndex < 0 || nextIndex >= selected.length) return;
++    const next = [...selected];
++    [next[index], next[nextIndex]] = [next[nextIndex], next[index]];
++    onChange(next);
++  };
++  return (
++    <div className="cms-credit-picker">
++      <select value="" onChange={(event) => add(event.target.value)}>
++        <option value="">Add artist...</option>
++        {options.filter((option) => !selected.includes(Number(option.value))).map((option) => (
++          <option key={option.value} value={option.value}>{option.label}{option.country_code ? ` (${option.country_code})` : ""}</option>
++        ))}
++      </select>
++      <div className="cms-credit-list">
++        {selected.map((artistId, index) => {
++          const option = optionById.get(artistId);
++          return (
++            <div key={artistId} className="cms-credit-item">
++              <b>{index + 1}. {option?.label || `Artist #${artistId}`}</b>
++              <span>
++                <button type="button" onClick={() => move(index, -1)} disabled={index === 0} aria-label="Move artist up">↑</button>
++                <button type="button" onClick={() => move(index, 1)} disabled={index === selected.length - 1} aria-label="Move artist down">↓</button>
++                <button type="button" onClick={() => onChange(selected.filter((id) => id !== artistId))} aria-label="Remove artist">×</button>
++              </span>
++            </div>
++          );
++        })}
++      </div>
++    </div>
++  );
++}
++
+ export default function FormModal({ open, title, fields = [], initial = {}, onSubmit, onClose }) {
+   const [form, setForm] = useState(initial || {});
+   useEffect(() => setForm(initial || {}), [initial, open]);
+@@ -11,7 +52,7 @@ export default function FormModal({ open, title, fields = [], initial = {}, onSu
+         <div className="cms-modal-head"><h3>{title}</h3><button type="button" onClick={onClose}>×</button></div>
+         <div className="cms-form-grid">
+           {fields.map((field) => (
+-            <label key={field.name} className={field.type === "textarea" || field.type === "json" ? "wide" : ""}>
++            <label key={field.name} className={["textarea", "json", "ordered-multiselect"].includes(field.type) ? "wide" : ""}>
+               <span>{field.label}</span>
+               {field.type === "checkbox" ? (
+                 <input type="checkbox" checked={Boolean(form[field.name])} onChange={(e) => set(field.name, e.target.checked)} />
+@@ -22,6 +63,8 @@ export default function FormModal({ open, title, fields = [], initial = {}, onSu
+                   <option value="">Select...</option>
+                   {(field.options || []).map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                 </select>
++              ) : field.type === "ordered-multiselect" ? (
++                <OrderedMultiSelect value={form[field.name]} options={field.options || []} onChange={(value) => set(field.name, value)} />
+               ) : field.type === "json" ? (
+                 <textarea value={typeof form[field.name] === "string" ? form[field.name] : JSON.stringify(form[field.name] || {}, null, 2)} onChange={(e) => {
+                   try { set(field.name, JSON.parse(e.target.value)); } catch { set(field.name, e.target.value); }
+@@ -29,6 +72,7 @@ export default function FormModal({ open, title, fields = [], initial = {}, onSu
+               ) : (
+                 <input type={field.type || "text"} value={form[field.name] ?? ""} onChange={(e) => set(field.name, field.type === "number" ? Number(e.target.value) : e.target.value)} />
+               )}
++              {field.help && <small className="cms-help">{field.help}</small>}
+             </label>
+           ))}
+         </div>
+diff --git a/frontend_original/src/admin/pages/ResourcePage.jsx b/frontend_work/src/admin/pages/ResourcePage.jsx
+index 036665d..6e485af 100644
+--- a/frontend_original/src/admin/pages/ResourcePage.jsx
++++ b/frontend_work/src/admin/pages/ResourcePage.jsx
+@@ -6,8 +6,8 @@ import FormModal from "../components/FormModal";
+ 
+ const configs = {
+   artists: { title: "Artists", endpoint: "/artists/", search: true, fields: ["name", "display_name", "country", "country_code", "genre", "artist_type", "status"], columns: [{key:"name",label:"Artist"},{key:"country_code",label:"Country"},{key:"genre",label:"Genre"},{key:"total_releases",label:"Releases"},{key:"status",label:"Status"}], form: [{name:"name",label:"Artist name"},{name:"display_name",label:"Display name"},{name:"aliases",label:"Aliases JSON",type:"json"},{name:"country",label:"Country"},{name:"country_code",label:"Country code"},{name:"city_region",label:"City/region"},{name:"genre",label:"Genre"},{name:"biography",label:"Biography",type:"textarea"},{name:"artist_type",label:"Artist type"},{name:"verified",label:"Verified",type:"checkbox"},{name:"spotify_url",label:"Spotify URL"},{name:"apple_music_url",label:"Apple Music URL"},{name:"youtube_url",label:"YouTube URL"},{name:"boomplay_url",label:"Boomplay URL"},{name:"audiomack_url",label:"Audiomack URL"},{name:"tiktok_url",label:"TikTok URL"},{name:"instagram_url",label:"Instagram URL"},{name:"x_url",label:"X URL"},{name:"facebook_url",label:"Facebook URL"},{name:"website_url",label:"Website URL"},{name:"status",label:"Status"}] },
+-  songs: { title: "Songs", endpoint: "/releases/", params:{chart_type:"singles"}, fields: [], columns: [{key:"title",label:"Song"},{key:"artist_name",label:"Artist"},{key:"country_code",label:"Country"},{key:"release_year",label:"Year"},{key:"status",label:"Status"}], form: releaseForm("singles") },
+-  albums: { title: "Albums", endpoint: "/releases/", params:{chart_type:"albums"}, columns: [{key:"title",label:"Album"},{key:"artist_name",label:"Artist"},{key:"country_code",label:"Country"},{key:"release_year",label:"Year"},{key:"status",label:"Status"}], form: releaseForm("albums") },
++  songs: { title: "Songs", endpoint: "/releases/", params:{chart_type:"singles"}, fields: [], columns: [{key:"title",label:"Song"},{key:"artist_display",label:"Main artist(s)"},{key:"country_code",label:"Country"},{key:"release_year",label:"Year"},{key:"status",label:"Status"}] },
++  albums: { title: "Albums", endpoint: "/releases/", params:{chart_type:"albums"}, columns: [{key:"title",label:"Album"},{key:"artist_display",label:"Main artist(s)"},{key:"country_code",label:"Country"},{key:"release_year",label:"Year"},{key:"status",label:"Status"}] },
+   countries: { title: "Countries", endpoint: "/countries/", columns: [{key:"name",label:"Country"},{key:"code",label:"Code"},{key:"region",label:"Region"},{key:"active",label:"Active"}], form: [{name:"name",label:"Country"},{name:"code",label:"Code"},{name:"region",label:"Region"},{name:"flag",label:"Flag/Initial"},{name:"display_order",label:"Order",type:"number"},{name:"active",label:"Active",type:"checkbox"}] },
+   platforms: { title: "Platforms", endpoint: "/platforms/", columns: [{key:"name",label:"Platform"},{key:"short_name",label:"Short"},{key:"color",label:"Color"},{key:"max_chart_size",label:"Max"},{key:"active",label:"Active"}], form: [{name:"name",label:"Name"},{name:"slug",label:"Slug"},{name:"short_name",label:"Short name"},{name:"color",label:"Color"},{name:"brand_color",label:"Brand color"},{name:"chart_size",label:"Source chart size",type:"number"},{name:"max_chart_size",label:"Max chart size",type:"number"},{name:"points_base",label:"Points base",type:"number"},{name:"points_method",label:"Points method"},{name:"supports_singles",label:"Supports singles",type:"checkbox"},{name:"supports_albums",label:"Supports albums",type:"checkbox"},{name:"display_order",label:"Display order",type:"number"},{name:"active",label:"Active",type:"checkbox"}] },
+   news: { title: "News CMS", endpoint: "/news/", columns: [{key:"title",label:"Headline"},{key:"category",label:"Category"},{key:"author",label:"Author"},{key:"status",label:"Status"},{key:"updated_at",label:"Updated",render:(r)=>new Date(r.updated_at).toLocaleDateString()}], form: [{name:"title",label:"Headline"},{name:"slug",label:"Slug"},{name:"subheadline",label:"Subheadline"},{name:"category",label:"Category",type:"select",options:["chart_news","milestones","new_releases","industry_news","artist_news","awards","certifications","records","interviews","editorials","artist_spotlight","albums","analytics","announcement"].map(v=>({value:v,label:v.replace(/_/g," ")}))},{name:"author",label:"Author"},{name:"excerpt",label:"Excerpt",type:"textarea"},{name:"body",label:"Body",type:"textarea"},{name:"gallery",label:"Gallery JSON",type:"json"},{name:"tags",label:"Tags JSON",type:"json"},{name:"source_links",label:"Source links JSON",type:"json"},{name:"seo_title",label:"SEO title"},{name:"seo_description",label:"SEO description",type:"textarea"},{name:"featured",label:"Featured",type:"checkbox"},{name:"pinned",label:"Pinned",type:"checkbox"},{name:"breaking",label:"Breaking",type:"checkbox"},{name:"is_published",label:"Published",type:"checkbox"},{name:"status",label:"Status"}] },
+@@ -24,15 +24,18 @@ const configs = {
+   backups: { title: "Backups", endpoint: "/backups/", columns: [{key:"status",label:"Status"},{key:"file",label:"File"},{key:"created_at",label:"Created",render:(r)=>new Date(r.created_at).toLocaleString()}], form: [{name:"status",label:"Status"},{name:"notes",label:"Notes",type:"textarea"}] },
+ };
+ 
+-function releaseForm(chartType){ return [{name:"title",label:"Title"},{name:"artist",label:"Artist ID",type:"number"},{name:"chart_type",label:"Chart type",type:"select",options:[{value:chartType,label:chartType}]},{name:"canonical_title",label:"Canonical title"},{name:"featured_artists",label:"Featured artists"},{name:"credited_artists",label:"Credited artists"},{name:"songwriters",label:"Songwriters",type:"textarea"},{name:"producers",label:"Producers",type:"textarea"},{name:"release_year",label:"Release year",type:"number"},{name:"release_date",label:"Release date",type:"date"},{name:"isrc",label:"ISRC"},{name:"upc",label:"UPC"},{name:"number_of_tracks",label:"Number of tracks",type:"number"},{name:"country",label:"Country"},{name:"country_code",label:"Country code"},{name:"genre",label:"Genre"},{name:"label",label:"Label"},{name:"distributor",label:"Distributor"},{name:"spotify_url",label:"Spotify URL"},{name:"apple_music_url",label:"Apple Music URL"},{name:"boomplay_url",label:"Boomplay URL"},{name:"audiomack_url",label:"Audiomack URL"},{name:"youtube_url",label:"YouTube URL"},{name:"tiktok_url",label:"TikTok URL"},{name:"shazam_url",label:"Shazam URL"},{name:"radio_info",label:"Radio info",type:"textarea"},{name:"status",label:"Status"}]; }
++function releaseForm(chartType, artistOptions){ return [{name:"title",label:"Title"},{name:"primary_artist_ids",label:"Main artists (ordered)",type:"ordered-multiselect",options:artistOptions,help:"The first artist is the lead. Two artists display with &, while three or more use commas and & before the last."},{name:"featured_artist_ids",label:"Featuring (ordered)",type:"ordered-multiselect",options:artistOptions,help:"Featured artists display after ft. and may include more than one artist."},{name:"chart_type",label:"Chart type",type:"select",options:[{value:chartType,label:chartType}]},{name:"canonical_title",label:"Canonical title"},{name:"featured_artists",label:"Unlinked featured names",help:"Fallback for a featured artist who does not yet have an Artist record."},{name:"credited_artists",label:"Other credited artists / notes"},{name:"songwriters",label:"Songwriters",type:"textarea"},{name:"producers",label:"Producers",type:"textarea"},{name:"release_year",label:"Release year",type:"number"},{name:"release_date",label:"Release date",type:"date"},{name:"isrc",label:"ISRC"},{name:"upc",label:"UPC"},{name:"number_of_tracks",label:"Number of tracks",type:"number"},{name:"country",label:"Country"},{name:"country_code",label:"Country code"},{name:"genre",label:"Genre"},{name:"label",label:"Label"},{name:"distributor",label:"Distributor"},{name:"spotify_url",label:"Spotify URL"},{name:"apple_music_url",label:"Apple Music URL"},{name:"boomplay_url",label:"Boomplay URL"},{name:"audiomack_url",label:"Audiomack URL"},{name:"youtube_url",label:"YouTube URL"},{name:"tiktok_url",label:"TikTok URL"},{name:"shazam_url",label:"Shazam URL"},{name:"radio_info",label:"Radio info",type:"textarea"},{name:"status",label:"Status"}]; }
+ 
+ export default function ResourcePage({ type }) {
+   const config = configs[type] || configs.artists;
+   const [rows, setRows] = useState([]), [search, setSearch] = useState(""), [loading, setLoading] = useState(true), [error, setError] = useState(""), [modal, setModal] = useState(false), [editing, setEditing] = useState(null);
++  const [artistOptions, setArtistOptions] = useState([]);
+   const params = useMemo(() => ({ ...(config.params || {}), search }), [config, search]);
++  const formFields = useMemo(() => type === "songs" || type === "albums" ? releaseForm(type === "albums" ? "albums" : "singles", artistOptions) : (config.form || []), [type, config, artistOptions]);
+   async function load(){ setLoading(true); setError(""); try { setRows(getResults(await cmsApi.get(`${config.endpoint}${qs(params)}`))); } catch(e){ setError(e.message); } finally { setLoading(false); }}
+   useEffect(()=>{ load(); }, [type, search]);
++  useEffect(()=>{ if(type !== "songs" && type !== "albums") return; cmsApi.get("/artists/options/").then(setArtistOptions).catch((e)=>setError(e.message)); }, [type]);
+   async function save(form){ try { if(editing?.id) await cmsApi.patch(`${config.endpoint}${editing.id}/`, form); else await cmsApi.post(config.endpoint, form); setModal(false); setEditing(null); load(); } catch(e){ setError(e.message); }}
+-  return <section><div className="cms-page-head"><div><h1>{config.title}</h1><p>Manage {config.title.toLowerCase()} from the CMS.</p></div>{!config.readOnly && <button className="cms-btn" onClick={()=>{setEditing(null);setModal(true);}}>Add new</button>}</div>{error && <div className="cms-alert error">{error}</div>}<div className="cms-toolbar"><SearchBar value={search} onChange={setSearch} placeholder={`Search ${config.title.toLowerCase()}...`} /></div>{loading ? <div className="cms-empty">Loading...</div> : <DataTable columns={config.columns} rows={rows} onRowClick={config.readOnly ? null : (row)=>{setEditing(row);setModal(true);}} />}<FormModal open={modal} title={`${editing ? "Edit" : "Create"} ${config.title}`} fields={config.form || []} initial={editing || defaultInitial(config.form)} onSubmit={save} onClose={()=>setModal(false)} /></section>;
++  return <section><div className="cms-page-head"><div><h1>{config.title}</h1><p>Manage {config.title.toLowerCase()} from the CMS.</p></div>{!config.readOnly && <button className="cms-btn" onClick={()=>{setEditing(null);setModal(true);}}>Add new</button>}</div>{error && <div className="cms-alert error">{error}</div>}<div className="cms-toolbar"><SearchBar value={search} onChange={setSearch} placeholder={`Search ${config.title.toLowerCase()}...`} /></div>{loading ? <div className="cms-empty">Loading...</div> : <DataTable columns={config.columns} rows={rows} onRowClick={config.readOnly ? null : (row)=>{setEditing(row);setModal(true);}} />}<FormModal open={modal} title={`${editing ? "Edit" : "Create"} ${config.title}`} fields={formFields} initial={editing || defaultInitial(formFields)} onSubmit={save} onClose={()=>setModal(false)} /></section>;
+ }
+-function defaultInitial(fields=[]){ return Object.fromEntries(fields.map(f=>[f.name, f.name==='status'?'active':''])); }
++function defaultInitial(fields=[]){ return Object.fromEntries(fields.map(f=>[f.name, f.type==='ordered-multiselect'?[]:(f.name==='status'?'active':'')])); }
+diff --git a/frontend_original/src/admin/styles/admin.css b/frontend_work/src/admin/styles/admin.css
+index aa3bb29..5f0200a 100644
+--- a/frontend_original/src/admin/styles/admin.css
++++ b/frontend_work/src/admin/styles/admin.css
+@@ -3,3 +3,4 @@
+ .cms-login-page{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at top,#fff 0,#f7f5f0 52%,#efe7d6 100%);font-family:Inter,system-ui,sans-serif;padding:24px}.cms-login-card{width:min(430px,100%);background:#fff;border:1px solid var(--cms-line);border-radius:28px;padding:34px;box-shadow:0 20px 70px rgba(50,30,0,.12)}.cms-logo{width:72px;height:72px;border-radius:22px;background:#111;color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1px;margin-bottom:18px}.cms-login-card h1{margin:0;font-size:28px}.cms-login-card p{color:var(--cms-muted);line-height:1.5}.cms-login-card label,.cms-modal label,.cms-upload-form label{display:flex;flex-direction:column;gap:7px;margin:12px 0}.cms-login-card span,.cms-modal span,.cms-upload-form span{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#5e625c}.cms-login-card input,.cms-modal input,.cms-modal select,.cms-modal textarea,.cms-upload-form input,.cms-upload-form select,.cms-global input,.cms-search{border:1px solid var(--cms-line);border-radius:14px;padding:12px 13px;font:inherit;background:#fff;outline:none}.cms-login-card input:focus,.cms-modal input:focus,.cms-modal select:focus,.cms-modal textarea:focus,.cms-upload-form input:focus,.cms-upload-form select:focus,.cms-global input:focus,.cms-search:focus{border-color:var(--cms-gold);box-shadow:0 0 0 3px rgba(184,134,11,.12)}
+ .cms-shell{min-height:100vh;background:var(--cms-bg);display:flex;font-family:Inter,Instrument Sans,system-ui,sans-serif;color:var(--cms-ink)}.cms-sidebar{width:280px;background:#111;color:#fff;position:fixed;inset:0 auto 0 0;padding:18px 14px;overflow:auto;z-index:30}.cms-brand{display:flex;align-items:center;gap:11px;padding:10px 10px 18px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:10px}.cms-brand b{background:var(--cms-gold);color:#111;border-radius:12px;padding:10px 8px;font-size:12px}.cms-brand span{font-size:13px;color:#f6e9c7;font-weight:800}.cms-sidebar nav{display:flex;flex-direction:column;gap:4px}.cms-sidebar button{border:0;background:transparent;color:#d9d6cb;text-align:left;border-radius:13px;padding:11px 12px;font-weight:750;cursor:pointer}.cms-sidebar button:hover,.cms-sidebar button.active{background:#fff;color:#111}.cms-main{margin-left:280px;min-width:0;flex:1}.cms-topbar{height:72px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--cms-line);position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:0 22px}.cms-menu{display:none;border:0;background:#111;color:#fff;border-radius:10px;padding:9px 11px}.cms-global{position:relative;flex:1;max-width:620px}.cms-global input{width:100%;background:#fbfaf7}.cms-search-pop{position:absolute;left:0;right:0;top:48px;background:#fff;border:1px solid var(--cms-line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.12);padding:8px;z-index:40}.cms-search-pop button{display:flex;flex-direction:column;width:100%;border:0;background:transparent;padding:10px;border-radius:12px;text-align:left}.cms-search-pop button:hover{background:#f7f5ef}.cms-search-pop span{color:var(--cms-muted);font-size:12px}.cms-user{display:flex;flex-direction:column;line-height:1.1}.cms-user span{font-weight:850}.cms-user small{font-size:11px;color:var(--cms-muted);text-transform:capitalize}.cms-bell{position:relative;font-size:20px}.cms-bell b{position:absolute;right:-8px;top:-9px;background:var(--cms-danger);color:#fff;border-radius:999px;font-size:10px;padding:2px 5px}.cms-content{padding:26px;max-width:1480px;margin:0 auto}.cms-page-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:22px}.cms-page-head h1{margin:0;font-size:32px;letter-spacing:-.04em}.cms-page-head p{margin:6px 0 0;color:var(--cms-muted)}.cms-card,.cms-stat-card{background:var(--cms-card);border:1px solid var(--cms-line);border-radius:24px;padding:20px;box-shadow:0 8px 28px rgba(50,30,0,.045)}.cms-card h2{margin:0 0 14px;font-size:18px}.cms-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.cms-stat-card{display:flex;flex-direction:column;gap:10px;min-height:110px}.cms-stat-card span{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--cms-muted);font-weight:900}.cms-stat-card strong{font-size:25px;line-height:1.1}.cms-grid{display:grid;gap:18px;margin-bottom:18px}.cms-grid.two{grid-template-columns:1fr 1fr}.cms-toolbar{display:flex;gap:12px;align-items:center;margin-bottom:14px}.cms-search{width:min(430px,100%)}.cms-table-wrap{overflow:auto;border:1px solid var(--cms-line);border-radius:18px;background:#fff}.cms-table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}.cms-table th{text-align:left;background:#FAF8F2;color:#514F49;font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:12px 14px;border-bottom:1px solid var(--cms-line);white-space:nowrap}.cms-table td{padding:12px 14px;border-bottom:1px solid #f0eadf;vertical-align:middle}.cms-table tr:last-child td{border-bottom:0}.cms-table tr.clickable{cursor:pointer}.cms-table tr.clickable:hover td{background:#fffaf0}.cms-table-wrap.compact .cms-table{font-size:13px}.cms-empty{padding:28px;background:#fff;border:1px dashed var(--cms-line);border-radius:18px;color:var(--cms-muted);text-align:center}.cms-btn{border:0;border-radius:14px;padding:11px 15px;background:#111;color:#fff;font-weight:850;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,.1)}.cms-btn:hover{transform:translateY(-1px)}.cms-btn.light{background:#fff;color:#111;border:1px solid var(--cms-line);box-shadow:none}.cms-btn.danger{background:var(--cms-danger)}.cms-btn.full{width:100%;margin-top:8px}.cms-btn.small{padding:8px 11px;border-radius:11px}.cms-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.cms-actions{display:flex;gap:10px;margin-top:16px}.cms-actions.right{justify-content:flex-end}.cms-actions.wrap{flex-wrap:wrap}.cms-alert{border-radius:16px;padding:12px 14px;margin:10px 0;border:1px solid var(--cms-line);background:#fff}.cms-alert.warning{background:#FFF7E5;border-color:#E8C66C}.cms-alert.error{background:#FFF0F0;border-color:#F3B6B6;color:#9A1F1F}.cms-alert.info{background:#EFF6FF;border-color:#B8D6FF}.cms-help{color:var(--cms-muted);font-size:13px;line-height:1.5}.cms-status{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;background:#eee;color:#333}.cms-status-published,.cms-status-approved,.cms-status-returning{background:#EAF7EE;color:var(--cms-green)}.cms-status-draft,.cms-status-new{background:#F3F0E8;color:#675}.cms-status-pending-review,.cms-status-reentry{background:#EAF2FF;color:var(--cms-blue)}.cms-status-rejected,.cms-status-error,.cms-status-archived,.cms-status-rolled-back{background:#FFF0F0;color:var(--cms-danger)}.cms-modal-backdrop{position:fixed;inset:0;background:rgba(17,17,17,.38);display:grid;place-items:center;z-index:80;padding:18px}.cms-modal{width:min(760px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:24px;border:1px solid var(--cms-line);padding:20px;box-shadow:0 30px 90px rgba(0,0,0,.22)}.cms-modal-head{display:flex;align-items:center;justify-content:space-between}.cms-modal-head h3{margin:0}.cms-modal-head button{border:0;background:#f1eee7;border-radius:10px;font-size:22px;width:36px;height:36px}.cms-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}.cms-form-grid .wide{grid-column:1/-1}.cms-upload-form{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.cms-upload-form h2,.cms-upload-form .wide,.cms-upload-form button,.cms-upload-form .cms-help{grid-column:1/-1}.cms-upload-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cms-upload-summary div{border:1px solid var(--cms-line);border-radius:16px;padding:12px;background:#faf8f2}.cms-upload-summary span{display:block;color:var(--cms-muted);font-size:11px;text-transform:uppercase;font-weight:900}.cms-upload-summary strong{font-size:22px}.cms-pill-list{display:flex;flex-wrap:wrap;gap:10px}.cms-pill-list span{background:#f7f2e4;border:1px solid #e5d5a9;border-radius:999px;padding:9px 12px;font-weight:800;color:#6b5312}
+ @media(max-width:1100px){.cms-card-grid{grid-template-columns:repeat(2,1fr)}.cms-grid.two{grid-template-columns:1fr}.cms-sidebar{transform:translateX(-100%);transition:.2s}.cms-sidebar.open{transform:translateX(0)}.cms-main{margin-left:0}.cms-menu{display:block}.cms-topbar{gap:8px;padding:0 12px}.cms-user{display:none}.cms-content{padding:18px}.cms-page-head{align-items:flex-start}.cms-page-head h1{font-size:26px}}@media(max-width:700px){.cms-card-grid{grid-template-columns:1fr}.cms-form-grid,.cms-upload-form,.cms-upload-summary{grid-template-columns:1fr}.cms-table-wrap{border:0;background:transparent}.cms-table,.cms-table thead,.cms-table tbody,.cms-table th,.cms-table td,.cms-table tr{display:block}.cms-table thead{display:none}.cms-table tr{background:#fff;border:1px solid var(--cms-line);border-radius:18px;margin-bottom:10px;overflow:hidden}.cms-table td{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid #f0eadf}.cms-table td:before{content:attr(data-label);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--cms-muted);font-weight:900}.cms-global{max-width:none}.cms-topbar{height:auto;min-height:68px;flex-wrap:wrap;padding:10px}.cms-content{padding:14px}.cms-page-head{flex-direction:column}.cms-login-card{padding:24px;border-radius:22px}}
++.cms-credit-picker{display:grid;gap:9px}.cms-credit-list{display:grid;gap:7px}.cms-credit-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border:1px solid var(--cms-line);border-radius:12px;background:#faf8f2}.cms-credit-item b{font-size:13px}.cms-credit-item span{display:flex;gap:5px}.cms-credit-item button{width:30px;height:28px;border:1px solid var(--cms-line);border-radius:8px;background:#fff;cursor:pointer;font-weight:900}.cms-credit-item button:disabled{opacity:.35;cursor:not-allowed}.cms-modal .cms-help{text-transform:none;letter-spacing:0;font-weight:600}
+diff --git a/frontend_original/src/components/PremiumChartsPage.jsx b/frontend_work/src/components/PremiumChartsPage.jsx
+index 5873558..70df5ca 100644
+--- a/frontend_original/src/components/PremiumChartsPage.jsx
++++ b/frontend_work/src/components/PremiumChartsPage.jsx
+@@ -825,7 +825,7 @@ export default function PremiumChartsPage({
+   }
+ 
+   function ArtistLinks({ item }) {
+-    const tokens = splitArtistTokens(item?.artist || item?.primary_artist || item?.artist_name);
++    const tokens = splitArtistTokens(item?.artist_credit || item?.artist || item?.primary_artist || item?.artist_name);
+     if (!tokens.length) return null;
+ 
+     return (
+@@ -1009,15 +1009,56 @@ export default function PremiumChartsPage({
+     );
+   }
+ 
++  function managedArtistForItem(item) {
++    if (item?.artist_profile) return item.artist_profile;
++    const publicData = typeof window !== "undefined" ? (window.__NGOMA_PUBLIC_DATA__ || {}) : {};
++    const requestedName = String(item?.title || item?.primary_artist || item?.artist || "").trim().toLowerCase();
++    return (publicData.artists || []).find((artist) =>
++      [artist.name, artist.display_name, artist.public_name, ...(artist.aliases || [])]
++        .some((name) => String(name || "").trim().toLowerCase() === requestedName)
++    ) || {};
++  }
++
++  function DetailLinks({ links = {} }) {
++    const entries = [
++      ["Spotify", links.spotify || links.spotify_url],
++      ["Apple Music", links.apple_music || links.apple_music_url],
++      ["YouTube", links.youtube || links.youtube_url],
++      ["Boomplay", links.boomplay || links.boomplay_url],
++      ["Audiomack", links.audiomack || links.audiomack_url],
++      ["TikTok", links.tiktok || links.tiktok_url],
++      ["Shazam", links.shazam || links.shazam_url],
++      ["Instagram", links.instagram || links.instagram_url],
++      ["X", links.x || links.x_url],
++      ["Facebook", links.facebook || links.facebook_url],
++      ["Website", links.website || links.website_url],
++    ].filter(([, url]) => Boolean(url));
++    if (!entries.length) return null;
++    return (
++      <div style={{ display: "flex", flexWrap: "wrap", gap: "7px" }}>
++        {entries.map(([label, url]) => (
++          <a key={`${label}-${url}`} href={url} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()} style={{ color: chartAccent, fontWeight: 850, textDecoration: "none" }}>
++            {label} ↗
++          </a>
++        ))}
++      </div>
++    );
++  }
++
+   function DetailPanel({ item, profile, artistCountry, badge, compact = false }) {
+     const hasCountry = Boolean(artistCountry.country || artistCountry.code);
+     const countryLabel = artistCountry.country
+       ? `${artistCountry.country}${artistCountry.code ? ` (${artistCountry.code})` : ""}`
+       : artistCountry.code || "";
++    const gridStyle = compact ? styles.mobileDetailsGrid : styles.desktopDetailsGrid;
+ 
+     if (isArtistsChart || item?.is_artist_entry) {
++      const artistProfile = managedArtistForItem(item);
++      const aliases = normalizeDetailValue(artistProfile.aliases || item.aliases, "");
++      const artistLinks = artistProfile.social_links || item.social_links || {};
++      const hasArtistLinks = Object.values(artistLinks).some(Boolean);
+       return (
+-        <div style={compact ? styles.mobileDetailsGrid : styles.desktopDetailsGrid}>
++        <div style={gridStyle}>
+           {compact && <DetailCard label="L.M" value={profile.lastMonth} />}
+           {compact && <DetailCard label="Peak" value={profile.peak} />}
+           {hasCountry && <DetailCard label="Country" value={countryLabel} accent={badge.accent} />}
+@@ -1025,19 +1066,51 @@ export default function PremiumChartsPage({
+           {isCombinedChart && <DetailCard label="Points" value={Number(item.pts || 0).toLocaleString()} />}
+           {isCombinedChart && <DetailCard label="Entries" value={item.entries_count || "—"} />}
+           <DetailCard label="Months" value={item.months_on_chart || "—"} />
++          {(artistProfile.city_region || item.city_region) && <DetailCard label="City / Region" value={artistProfile.city_region || item.city_region} />}
++          {(artistProfile.genre || item.genre) && <DetailCard label="Genre" value={artistProfile.genre || item.genre} />}
++          {(artistProfile.artist_type || item.artist_type) && <DetailCard label="Artist type" value={artistProfile.artist_type || item.artist_type} />}
++          {(artistProfile.verified || item.verified) && <DetailCard label="Verification" value="Verified artist" accent={badge.accent} />}
++          {aliases && <DetailCard label="Aliases" value={aliases} wide />}
++          {(artistProfile.biography || item.biography) && <DetailCard label="Biography" value={artistProfile.biography || item.biography} wide />}
++          {hasArtistLinks && <DetailCard label="Artist links" value={<DetailLinks links={artistLinks} />} wide />}
+         </div>
+       );
+     }
+ 
++    const primaryCredit = firstDetailValue(item, ["primary_artist_credit"], "");
++    const featuredCredit = firstDetailValue(item, ["featured_artist_credit"], "");
++    const releaseLinks = {
++      spotify_url: item.spotify_url,
++      apple_music_url: item.apple_music_url,
++      youtube_url: item.youtube_url,
++      boomplay_url: item.boomplay_url,
++      audiomack_url: item.audiomack_url,
++      tiktok_url: item.tiktok_url,
++      shazam_url: item.shazam_url,
++    };
++    const hasReleaseLinks = Object.values(releaseLinks).some(Boolean);
+     return (
+-      <div style={compact ? styles.mobileDetailsGrid : styles.desktopDetailsGrid}>
++      <div style={gridStyle}>
+         {compact && <DetailCard label="L.M" value={profile.lastMonth} />}
+         {compact && <DetailCard label="Peak" value={profile.peak} />}
+         {hasCountry && <DetailCard label="Country" value={countryLabel} accent={badge.accent} />}
+         <DetailCard label="Platforms" value={getPlatformDetails(item)} />
+         <DetailCard label="Year" value={getReleaseYear(item)} />
+-        <DetailCard label="Producer(s)" value={getProducerDetails(item)} wide />
+-        <DetailCard label="Songwriter(s)" value={getSongwriterDetails(item)} wide />
++        {primaryCredit && <DetailCard label="Main artist(s)" value={primaryCredit} wide />}
++        {featuredCredit && <DetailCard label="Featuring" value={featuredCredit} wide />}
++        {item.credited_artists && <DetailCard label="Other credits" value={item.credited_artists} wide />}
++        {item.release_date && <DetailCard label="Release date" value={item.release_date} />}
++        {item.genre && <DetailCard label="Genre" value={item.genre} />}
++        {item.label && <DetailCard label="Label" value={item.label} />}
++        {item.distributor && <DetailCard label="Distributor" value={item.distributor} />}
++        {item.number_of_tracks && <DetailCard label="Tracks" value={item.number_of_tracks} />}
++        {item.isrc && <DetailCard label="ISRC" value={item.isrc} />}
++        {item.upc && <DetailCard label="UPC" value={item.upc} />}
++        {item.confidence && <DetailCard label="Confidence" value={item.confidence} />}
++        {getProducerDetails(item) !== "—" && <DetailCard label="Producer(s)" value={getProducerDetails(item)} wide />}
++        {getSongwriterDetails(item) !== "—" && <DetailCard label="Songwriter(s)" value={getSongwriterDetails(item)} wide />}
++        {item.radio_info && <DetailCard label="Radio information" value={item.radio_info} wide />}
++        {hasReleaseLinks && <DetailCard label="Listen / View" value={<DetailLinks links={releaseLinks} />} wide />}
+       </div>
+     );
+   }

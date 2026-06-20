@@ -1,5 +1,18 @@
 from rest_framework import serializers
 from .models import *
+from .artist_credits import release_credit_payload
+
+
+def artist_credit_summary(artist):
+    return {
+        'id': artist.id,
+        'name': artist.name,
+        'display_name': artist.display_name,
+        'public_name': artist.display_name or artist.name,
+        'slug': artist.slug,
+        'country': artist.country,
+        'country_code': artist.country_code,
+    }
 
 
 class PlatformSerializer(serializers.ModelSerializer):
@@ -54,6 +67,9 @@ class ReleaseSerializer(serializers.ModelSerializer):
     artist_country_code = serializers.CharField(source='artist.country_code')
     flag = serializers.ReadOnlyField(source='artist.flag')
     certifications = serializers.SerializerMethodField()
+    artist_credit = serializers.SerializerMethodField()
+    primary_artists = serializers.SerializerMethodField()
+    featured_artist_profiles = serializers.SerializerMethodField()
 
     class Meta:
         model = Release
@@ -65,7 +81,8 @@ class ReleaseSerializer(serializers.ModelSerializer):
             'country_code', 'genre', 'label', 'distributor', 'cover_image',
             'spotify_url', 'apple_music_url', 'boomplay_url', 'audiomack_url',
             'youtube_url', 'tiktok_url', 'shazam_url', 'radio_info', 'status',
-            'updated_at', 'certifications',
+            'updated_at', 'certifications', 'artist_credit', 'primary_artists',
+            'featured_artist_profiles',
         ]
 
     def get_artist_name(self, obj):
@@ -73,6 +90,15 @@ class ReleaseSerializer(serializers.ModelSerializer):
 
     def get_certifications(self, obj):
         return list(obj.certifications.filter(is_hidden=False).values_list('level', flat=True))
+
+    def get_artist_credit(self, obj):
+        return release_credit_payload(obj)['artist_credit']
+
+    def get_primary_artists(self, obj):
+        return [artist_credit_summary(artist) for artist in release_credit_payload(obj)['primary_artists']]
+
+    def get_featured_artist_profiles(self, obj):
+        return [artist_credit_summary(artist) for artist in release_credit_payload(obj)['featured_artists']]
 
 
 class MonthlyChartEntrySerializer(serializers.ModelSerializer):
@@ -86,6 +112,9 @@ class MonthlyChartEntrySerializer(serializers.ModelSerializer):
     platform_name = serializers.SerializerMethodField()
     movement = serializers.ReadOnlyField()
     certifications = serializers.SerializerMethodField()
+    artist_credit = serializers.SerializerMethodField()
+    primary_artists = serializers.SerializerMethodField()
+    featured_artist_profiles = serializers.SerializerMethodField()
 
     class Meta:
         model = MonthlyChartEntry
@@ -93,7 +122,8 @@ class MonthlyChartEntrySerializer(serializers.ModelSerializer):
             'rank', 'title', 'artist', 'artist_id', 'country', 'country_code',
             'flag', 'release_id', 'total_points', 'weeks_on_chart',
             'platform_count', 'peak_rank', 'prev_rank', 'movement',
-            'platform_name', 'certifications'
+            'platform_name', 'certifications', 'artist_credit',
+            'primary_artists', 'featured_artist_profiles',
         ]
 
     def get_platform_name(self, obj):
@@ -101,6 +131,15 @@ class MonthlyChartEntrySerializer(serializers.ModelSerializer):
 
     def get_certifications(self, obj):
         return list(obj.release.certifications.filter(is_hidden=False).values_list('level', flat=True))
+
+    def get_artist_credit(self, obj):
+        return release_credit_payload(obj.release, entry_featured=obj.featured_artists)['artist_credit']
+
+    def get_primary_artists(self, obj):
+        return [artist_credit_summary(artist) for artist in release_credit_payload(obj.release)['primary_artists']]
+
+    def get_featured_artist_profiles(self, obj):
+        return [artist_credit_summary(artist) for artist in release_credit_payload(obj.release, entry_featured=obj.featured_artists)['featured_artists']]
 
 
 class MonthlyChartSerializer(serializers.ModelSerializer):
@@ -112,7 +151,7 @@ class MonthlyChartSerializer(serializers.ModelSerializer):
 
     def get_entries(self, obj):
         platform_id = self.context.get('platform_id')
-        qs = obj.entries.select_related('release', 'release__artist', 'platform').exclude(
+        qs = obj.entries.select_related('release', 'release__artist', 'platform').prefetch_related('release__artist_credits__artist').exclude(
             release__status__in=['archived', 'inactive', 'rejected', 'draft']
         ).exclude(release__artist__status__in=['archived', 'inactive', 'rejected', 'draft'])
         if platform_id == 'combined':
@@ -145,7 +184,7 @@ class WeeklyUploadSerializer(serializers.ModelSerializer):
 
 class CertificationSerializer(serializers.ModelSerializer):
     title = serializers.CharField(source='release.title')
-    artist = serializers.CharField(source='release.artist.name')
+    artist = serializers.SerializerMethodField()
     country = serializers.CharField(source='release.artist.country')
     country_code = serializers.CharField(source='release.artist.country_code')
     flag = serializers.ReadOnlyField(source='release.artist.flag')
@@ -156,6 +195,9 @@ class CertificationSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'artist', 'country', 'country_code', 'flag',
                   'chart_type', 'level', 'total_points', 'is_official',
                   'certification_date', 'previous_level', 'notes', 'certified_at']
+
+    def get_artist(self, obj):
+        return release_credit_payload(obj.release)['artist_credit']
 
 
 class NormalizationRuleSerializer(serializers.ModelSerializer):

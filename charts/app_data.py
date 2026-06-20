@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 from django.core.cache import cache
-from django.db.models import Max, Min, Prefetch, Sum
+from django.db.models import Max, Min, Prefetch, Q, Sum
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -24,6 +24,7 @@ from .models import (
     Release,
     SiteSetting,
 )
+from .artist_credits import release_credit_payload
 
 
 HIDDEN_STATUSES = {"archived", "inactive", "rejected", "draft"}
@@ -97,6 +98,40 @@ def _is_public_status(value):
     return (value or "active").lower() not in HIDDEN_STATUSES
 
 
+def _artist_payload(request, artist):
+    return _compact({
+        "id": artist.id,
+        "name": artist.name,
+        "slug": artist.slug,
+        "display_name": artist.display_name,
+        "public_name": artist.display_name or artist.name,
+        "aliases": artist.aliases,
+        "country": artist.country,
+        "country_code": artist.country_code,
+        "flag": artist.flag,
+        "city_region": artist.city_region,
+        "genre": artist.genre,
+        "biography": artist.biography,
+        "image": _file_url(request, artist.image),
+        "artist_type": artist.artist_type,
+        "verified": artist.verified,
+        "status": artist.status,
+        "social_links": _compact({
+            "spotify": artist.spotify_url,
+            "apple_music": artist.apple_music_url,
+            "youtube": artist.youtube_url,
+            "boomplay": artist.boomplay_url,
+            "audiomack": artist.audiomack_url,
+            "tiktok": artist.tiktok_url,
+            "instagram": artist.instagram_url,
+            "x": artist.x_url,
+            "facebook": artist.facebook_url,
+            "website": artist.website_url,
+        }),
+        "updated_at": artist.updated_at,
+    })
+
+
 def _compact(payload):
     return {
         key: value
@@ -107,6 +142,7 @@ def _compact(payload):
 
 def _release_payload(request, release):
     artist = release.artist
+    credits = release_credit_payload(release)
     # Use artist country as the authoritative source for display country on releases.
     display_country = artist.country or release.country
     display_country_code = artist.country_code or release.country_code
@@ -117,6 +153,13 @@ def _release_payload(request, release):
         "artist_id": release.artist_id,
         "artist_slug": artist.slug,
         "artist": artist.display_name or artist.name,
+        "artist_credit": credits["artist_credit"],
+        "primary_artist_credit": credits["primary_artist_credit"],
+        "featured_artist_credit": credits["featured_artist_credit"],
+        "primary_artist_ids": [item.id for item in credits["primary_artists"]],
+        "featured_artist_ids": [item.id for item in credits["featured_artists"]],
+        "primary_artists": [_artist_payload(request, item) for item in credits["primary_artists"]],
+        "featured_artist_profiles": [_artist_payload(request, item) for item in credits["featured_artists"]],
         "flag": artist.flag,
         "featured_artists": release.featured_artists,
         "credited_artists": release.credited_artists,
@@ -149,8 +192,9 @@ def _release_payload(request, release):
 def _entry_payload(request, entry):
     release = entry.release
     artist = release.artist
-    artist_name = artist.display_name or artist.name
     featured_artists = release.featured_artists or entry.featured_artists
+    credits = release_credit_payload(release, entry_featured=featured_artists)
+    artist_name = artist.display_name or artist.name
     # Artist country is authoritative — release.country may be stale if set from
     # a previous artist country at import time and the artist was later updated.
     display_country = artist.country or release.country
@@ -165,6 +209,14 @@ def _entry_payload(request, entry):
         "a": artist_name,
         "pa": artist_name,
         "fa": featured_artists,
+        "artist_credit": credits["artist_credit"],
+        "primary_artist_credit": credits["primary_artist_credit"],
+        "featured_artist_credit": credits["featured_artist_credit"],
+        "primary_artist_ids": [item.id for item in credits["primary_artists"]],
+        "featured_artist_ids": [item.id for item in credits["featured_artists"]],
+        "primary_artists": [_artist_payload(request, item) for item in credits["primary_artists"]],
+        "featured_artist_profiles": [_artist_payload(request, item) for item in credits["featured_artists"]],
+        "credited_artists": release.credited_artists,
         "p": entry.total_points,
         "rp": entry.raw_total_points,
         "pl": f"{entry.platform_count}/{entry.platform_max}" if entry.platform_count else "",
@@ -243,7 +295,7 @@ class PublicAppDataView(APIView):
 
         public_entries = MonthlyChartEntry.objects.select_related(
             "release", "release__artist", "platform"
-        ).order_by("rank")
+        ).prefetch_related("release__artist_credits__artist").order_by("rank")
         charts = list(
             MonthlyChart.objects.filter(is_published=True, status="published")
             .prefetch_related(Prefetch("entries", queryset=public_entries, to_attr="public_entries"))
@@ -264,45 +316,22 @@ class PublicAppDataView(APIView):
             for entry in chart.public_entries
             if entry.release_id in public_release_ids
         }
+        for chart in charts:
+            for entry in chart.public_entries:
+                if entry.release_id not in public_release_ids:
+                    continue
+                credits = release_credit_payload(entry.release, entry_featured=entry.featured_artists)
+                public_artist_ids.update(artist.id for artist in credits["primary_artists"])
+                public_artist_ids.update(artist.id for artist in credits["featured_artists"])
 
         artists = [
-            _compact({
-                "id": artist.id,
-                "name": artist.name,
-                "slug": artist.slug,
-                "display_name": artist.display_name,
-                "public_name": artist.display_name or artist.name,
-                "aliases": artist.aliases,
-                "country": artist.country,
-                "country_code": artist.country_code,
-                "flag": artist.flag,
-                "city_region": artist.city_region,
-                "genre": artist.genre,
-                "biography": artist.biography,
-                "image": _file_url(request, artist.image),
-                "artist_type": artist.artist_type,
-                "verified": artist.verified,
-                "status": artist.status,
-                "social_links": _compact({
-                    "spotify": artist.spotify_url,
-                    "apple_music": artist.apple_music_url,
-                    "youtube": artist.youtube_url,
-                    "boomplay": artist.boomplay_url,
-                    "audiomack": artist.audiomack_url,
-                    "tiktok": artist.tiktok_url,
-                    "instagram": artist.instagram_url,
-                    "x": artist.x_url,
-                    "facebook": artist.facebook_url,
-                    "website": artist.website_url,
-                }),
-                "updated_at": artist.updated_at,
-            })
+            _artist_payload(request, artist)
             for artist in Artist.objects.filter(id__in=public_artist_ids)
             if _is_public_status(artist.status)
         ]
         releases = [
             _release_payload(request, release)
-            for release in Release.objects.select_related("artist").filter(id__in=public_release_ids)
+            for release in Release.objects.select_related("artist").prefetch_related("artist_credits__artist").filter(id__in=public_release_ids)
             if _is_public_status(release.status) and _is_public_status(release.artist.status)
         ]
         platforms = list(
@@ -342,9 +371,9 @@ class PublicAppDataView(APIView):
         )
         news = news.distinct().order_by("-pinned", "-featured", "-published_at")
 
-        certifications = Certification.objects.select_related("release", "release__artist").filter(
-            is_hidden=False
-        )
+        certifications = Certification.objects.select_related("release", "release__artist").prefetch_related(
+            "release__artist_credits__artist"
+        ).filter(is_hidden=False)
 
         payload = {
             "revision": revision,
@@ -389,7 +418,7 @@ class PublicAppDataView(APIView):
                     "id": item.id,
                     "release_id": item.release_id,
                     "title": item.release.title,
-                    "artist": item.release.artist.display_name or item.release.artist.name,
+                    "artist": release_credit_payload(item.release)["artist_credit"],
                     "country": item.release.artist.country or item.release.country,
                     "country_code": item.release.artist.country_code or item.release.country_code,
                     "chart_type": item.release.chart_type,
@@ -454,43 +483,15 @@ class PublicArtistDetailView(APIView):
         if not _is_public_status(artist.status):
             return Response({"detail": "Not found."}, status=404)
 
-        profile = _compact({
-            "id": artist.id,
-            "name": artist.name,
-            "slug": artist.slug,
-            "display_name": artist.display_name,
-            "public_name": artist.display_name or artist.name,
-            "aliases": artist.aliases,
-            "country": artist.country,
-            "country_code": artist.country_code,
-            "flag": artist.flag,
-            "city_region": artist.city_region,
-            "genre": artist.genre,
-            "biography": artist.biography,
-            "image": _file_url(request, artist.image),
-            "artist_type": artist.artist_type,
-            "verified": artist.verified,
-            "status": artist.status,
-            "social_links": _compact({
-                "spotify": artist.spotify_url,
-                "apple_music": artist.apple_music_url,
-                "youtube": artist.youtube_url,
-                "boomplay": artist.boomplay_url,
-                "audiomack": artist.audiomack_url,
-                "tiktok": artist.tiktok_url,
-                "instagram": artist.instagram_url,
-                "x": artist.x_url,
-                "facebook": artist.facebook_url,
-                "website": artist.website_url,
-            }),
-            "updated_at": artist.updated_at,
-        })
+        profile = _artist_payload(request, artist)
 
         # Combined-chart history across all published months (no platform breakdown).
         entries = (
             MonthlyChartEntry.objects
-            .filter(release__artist=artist, platform__isnull=True)
-            .select_related("chart", "release")
+            .filter(Q(release__artist=artist) | Q(release__artist_credits__artist=artist), platform__isnull=True)
+            .select_related("chart", "release", "release__artist")
+            .prefetch_related("release__artist_credits__artist")
+            .distinct()
             .order_by("-chart__year", "-chart__month", "rank")
         )
         history = []
@@ -504,6 +505,7 @@ class PublicArtistDetailView(APIView):
                 "month_num": entry.chart.month,
                 "release_id": entry.release_id,
                 "title": entry.release.title,
+                "artist_credit": release_credit_payload(entry.release, entry_featured=entry.featured_artists)["artist_credit"],
                 "rank": entry.rank,
                 "total_points": entry.total_points,
                 "weeks_on_chart": entry.weeks_on_chart,
@@ -517,7 +519,8 @@ class PublicArtistDetailView(APIView):
         def _chart_stats(chart_type):
             agg = (
                 MonthlyChartEntry.objects
-                .filter(release__artist=artist, platform__isnull=True, release__chart_type=chart_type)
+                .filter(Q(release__artist=artist) | Q(release__artist_credits__artist=artist), platform__isnull=True, release__chart_type=chart_type)
+                .distinct()
                 .aggregate(total_pts=Sum("total_points"), peak=Min("rank"))
             )
             return {
@@ -527,7 +530,9 @@ class PublicArtistDetailView(APIView):
 
         releases = [
             _release_payload(request, release)
-            for release in Release.objects.select_related("artist").filter(artist=artist)
+            for release in Release.objects.select_related("artist").prefetch_related("artist_credits__artist").filter(
+                Q(artist=artist) | Q(artist_credits__artist=artist)
+            ).distinct()
             if _is_public_status(release.status)
         ]
 

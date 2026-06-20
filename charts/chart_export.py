@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.views.decorators.http import require_GET
 
 from .models import MonthlyChart, MonthlyChartEntry, Platform
+from .artist_credits import release_credit_payload
 
 
 def format_movement(entry):
@@ -78,7 +79,7 @@ def chart_image_data(request):
         "release",
         "release__artist",
         "platform",
-    )
+    ).prefetch_related("release__artist_credits__artist")
 
     if platform_slug == "combined":
         entries_query = entries_query.filter(platform__isnull=True)
@@ -109,15 +110,10 @@ def chart_image_data(request):
     for entry in entries_query.order_by("rank"):
         release = entry.release
         artist = release.artist
-        featured_artists = (entry.featured_artists or "").strip()
+        featured_artists = (release.featured_artists or entry.featured_artists or "").strip()
         artist_name = artist.display_name or artist.name
-        credit_members = [artist_name, *[name.strip() for name in featured_artists.split(",") if name.strip()]]
-        if len(credit_members) <= 1:
-            display_artist = credit_members[0]
-        elif len(credit_members) == 2:
-            display_artist = " & ".join(credit_members)
-        else:
-            display_artist = f"{', '.join(credit_members[:-1])} & {credit_members[-1]}"
+        credits = release_credit_payload(release, entry_featured=featured_artists)
+        display_artist = credits["artist_credit"]
         artist_country_code = (artist.country_code or "").strip().upper()
         artist_country = artist.country or ""
 
@@ -129,6 +125,17 @@ def chart_image_data(request):
                 "artist": display_artist,
                 "primary_artist": artist_name,
                 "featured_artists": featured_artists,
+                "artist_credit": credits["artist_credit"],
+                "primary_artist_credit": credits["primary_artist_credit"],
+                "featured_artist_credit": credits["featured_artist_credit"],
+                "primary_artists": [
+                    {"id": item.id, "name": item.display_name or item.name, "slug": item.slug}
+                    for item in credits["primary_artists"]
+                ],
+                "featured_artist_profiles": [
+                    {"id": item.id, "name": item.display_name or item.name, "slug": item.slug}
+                    for item in credits["featured_artists"]
+                ],
                 "artist_country": artist_country,
                 "artist_country_code": artist_country_code,
                 "artist_flag": country_code_to_flag(artist_country_code),

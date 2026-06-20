@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from django.db import transaction
+
 from .models import *
+from .artist_credits import release_credit_payload
 
 
 class AdminProfileSerializer(serializers.ModelSerializer):
@@ -143,8 +146,14 @@ class CmsArtistSerializer(serializers.ModelSerializer):
 
 
 class CmsReleaseSerializer(serializers.ModelSerializer):
+    artist = serializers.PrimaryKeyRelatedField(queryset=Artist.objects.all(), required=False)
     artist_name = serializers.CharField(source='artist.name', read_only=True)
     artist_display = serializers.SerializerMethodField()
+    primary_artist_ids = serializers.ListField(child=serializers.IntegerField(min_value=1), required=False)
+    featured_artist_ids = serializers.ListField(child=serializers.IntegerField(min_value=1), required=False)
+    primary_artists = serializers.SerializerMethodField()
+    featured_artist_profiles = serializers.SerializerMethodField()
+    artist_credit = serializers.SerializerMethodField()
     total_points = serializers.SerializerMethodField()
     peak_rank = serializers.SerializerMethodField()
     months_on_chart = serializers.SerializerMethodField()
@@ -155,7 +164,28 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_artist_display(self, obj):
-        return obj.artist.display_name or obj.artist.name
+        return release_credit_payload(obj)['primary_artist_credit']
+
+    @staticmethod
+    def _artist_summary(artist):
+        return {
+            'id': artist.id,
+            'name': artist.name,
+            'display_name': artist.display_name,
+            'public_name': artist.display_name or artist.name,
+            'slug': artist.slug,
+            'country': artist.country,
+            'country_code': artist.country_code,
+        }
+
+    def get_primary_artists(self, obj):
+        return [self._artist_summary(artist) for artist in release_credit_payload(obj)['primary_artists']]
+
+    def get_featured_artist_profiles(self, obj):
+        return [self._artist_summary(artist) for artist in release_credit_payload(obj)['featured_artists']]
+
+    def get_artist_credit(self, obj):
+        return release_credit_payload(obj)['artist_credit']
 
     def get_total_points(self, obj):
         from django.db.models import Sum
@@ -172,6 +202,41 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
         return list(obj.certifications.values('level', 'total_points', 'certified_at', 'is_official'))
 
     def validate(self, attrs):
+        primary_ids = list(dict.fromkeys(attrs.get('primary_artist_ids', [])))
+        featured_ids = list(dict.fromkeys(attrs.get('featured_artist_ids', [])))
+        if 'primary_artist_ids' not in attrs and attrs.get('artist') and self.instance is not None:
+            existing_ids = [artist_id for artist_id in self.instance.primary_artist_ids if artist_id != attrs['artist'].id]
+            primary_ids = [attrs['artist'].id, *existing_ids]
+            attrs['primary_artist_ids'] = primary_ids
+        if 'primary_artist_ids' in attrs:
+            if not primary_ids:
+                raise serializers.ValidationError({'primary_artist_ids': 'Choose at least one main artist.'})
+            found_ids = set(Artist.objects.filter(id__in=primary_ids).values_list('id', flat=True))
+            missing_ids = [artist_id for artist_id in primary_ids if artist_id not in found_ids]
+            if missing_ids:
+                raise serializers.ValidationError({'primary_artist_ids': f'Unknown artist ID(s): {missing_ids}'})
+            attrs['primary_artist_ids'] = primary_ids
+            attrs['artist'] = Artist.objects.get(pk=primary_ids[0])
+        elif self.instance is None and not attrs.get('artist'):
+            raise serializers.ValidationError({'artist': 'Choose at least one main artist.'})
+
+        if 'featured_artist_ids' in attrs:
+            found_ids = set(Artist.objects.filter(id__in=featured_ids).values_list('id', flat=True))
+            missing_ids = [artist_id for artist_id in featured_ids if artist_id not in found_ids]
+            if missing_ids:
+                raise serializers.ValidationError({'featured_artist_ids': f'Unknown artist ID(s): {missing_ids}'})
+            attrs['featured_artist_ids'] = featured_ids
+
+        effective_primary_ids = primary_ids if 'primary_artist_ids' in attrs else (
+            self.instance.primary_artist_ids if self.instance else [attrs['artist'].id]
+        )
+        effective_featured_ids = featured_ids if 'featured_artist_ids' in attrs else (
+            self.instance.featured_artist_ids if self.instance else []
+        )
+        overlap = sorted(set(effective_primary_ids) & set(effective_featured_ids))
+        if overlap:
+            raise serializers.ValidationError({'featured_artist_ids': 'An artist cannot be both a main and featured artist on the same release.'})
+
         incoming_country = attrs.get('country')
         incoming_code = attrs.get('country_code')
 
@@ -204,6 +269,48 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
                 attrs['country'] = name
 
         return attrs
+
+    @transaction.atomic
+    def create(self, validated_data):
+        primary_ids = validated_data.pop('primary_artist_ids', None)
+        featured_ids = validated_data.pop('featured_artist_ids', None)
+        instance = super().create(validated_data)
+        self._sync_artist_credits(instance, primary_ids, featured_ids)
+        return instance
+
+    @transaction.atomic
+    def update(self, instance, validated_data):
+        primary_ids = validated_data.pop('primary_artist_ids', None)
+        featured_ids = validated_data.pop('featured_artist_ids', None)
+        instance = super().update(instance, validated_data)
+        self._sync_artist_credits(instance, primary_ids, featured_ids)
+        return instance
+
+    def _sync_artist_credits(self, instance, primary_ids, featured_ids):
+        if primary_ids is None and not instance.artist_credits.filter(role='primary').exists():
+            primary_ids = [instance.artist_id]
+        if primary_ids is not None:
+            instance.artist_credits.filter(role='primary').delete()
+            ReleaseArtistCredit.objects.bulk_create([
+                ReleaseArtistCredit(release=instance, artist_id=artist_id, role='primary', position=position)
+                for position, artist_id in enumerate(primary_ids)
+            ])
+            if instance.artist_id != primary_ids[0]:
+                instance.artist_id = primary_ids[0]
+                instance.save(update_fields=['artist', 'updated_at'])
+        if featured_ids is not None:
+            instance.artist_credits.filter(role='featured').delete()
+            ReleaseArtistCredit.objects.bulk_create([
+                ReleaseArtistCredit(release=instance, artist_id=artist_id, role='featured', position=position)
+                for position, artist_id in enumerate(featured_ids)
+            ])
+            names = [
+                artist.display_name or artist.name
+                for artist in sorted(Artist.objects.filter(id__in=featured_ids), key=lambda artist: featured_ids.index(artist.id))
+            ]
+            instance.featured_artists = ', '.join(names)
+            instance.save(update_fields=['featured_artists', 'updated_at'])
+        instance._prefetched_objects_cache = {}
 
 
 class CmsMonthlyChartEntrySerializer(serializers.ModelSerializer):

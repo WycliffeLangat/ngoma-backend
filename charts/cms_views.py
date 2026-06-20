@@ -16,6 +16,7 @@ from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
 from .cms_utils import audit, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications
+from .cms_alerts import build_dashboard_alerts, summarize_alerts
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -80,6 +81,9 @@ class CmsDashboardView(APIView):
         missing_artist_countries = Artist.objects.filter(Q(country='') & Q(country_code='')).count()
         duplicate_groups = duplicate_artist_groups(limit=50)
         pending_uploads = ChartUpload.objects.filter(status__in=['draft', 'pending_review']).count()
+        alerts = build_dashboard_alerts(request.user)
+        alert_summary = summarize_alerts(alerts)
+        system_health = 'ACTION_REQUIRED' if alert_summary['error'] else ('NEEDS_ATTENTION' if alert_summary['warning'] else 'OK')
         data = {
             'cards': {
                 'total_songs': Release.objects.filter(chart_type=ChartType.SINGLES).count(),
@@ -92,18 +96,15 @@ class CmsDashboardView(APIView):
                 'latest_news_posts': NewsArticle.objects.count(),
                 'recently_edited_data': AuditLog.objects.count(),
                 'errors_warnings': DataQualityIssue.objects.filter(status='open').count(),
-                'system_health': 'OK',
+                'system_health': system_health,
                 'last_backup_date': BackupRecord.objects.order_by('-created_at').values_list('created_at', flat=True).first(),
                 'editors_admins': AdminProfile.objects.exclude(role=AdminRole.VIEWER).count(),
                 'unpublished_chart_months': MonthlyChart.objects.filter(is_published=False).count(),
                 'certifications_unofficial': Certification.objects.filter(is_official=False, is_hidden=False).count(),
                 'uploads_awaiting_review': pending_uploads,
             },
-            'alerts': [
-                {'level': 'warning', 'title': 'Missing countries', 'message': f'{missing_artist_countries} artists/releases need country review.'},
-                {'level': 'warning', 'title': 'Duplicate artists', 'message': f'{len(duplicate_groups)} possible duplicate artist groups detected.'},
-                {'level': 'info', 'title': 'Uploads awaiting review', 'message': f'{pending_uploads} chart uploads are not published yet.'},
-            ],
+            'alerts': alerts,
+            'alert_summary': alert_summary,
             'top_performing': list(MonthlyChartEntry.objects.filter(platform__isnull=True).values('release__title', 'release__artist__name').annotate(points=Sum('total_points')).order_by('-points')[:10]),
             'recent_activity': AuditLogSerializer(AuditLog.objects.select_related('user')[:12], many=True).data,
             'duplicate_artist_groups': duplicate_groups[:10],
@@ -192,6 +193,21 @@ class CmsArtistViewSet(CmsBaseViewSet):
     def duplicates(self, request):
         return Response({'groups': duplicate_artist_groups(limit=200)})
 
+    @action(detail=False, methods=['get'])
+    def options(self, request):
+        """Lightweight complete artist list used by ordered release-credit selectors."""
+        artists = Artist.objects.exclude(status='archived').order_by('name').values(
+            'id', 'name', 'display_name', 'country_code'
+        )
+        return Response([
+            {
+                'value': artist['id'],
+                'label': artist['display_name'] or artist['name'],
+                'country_code': artist['country_code'],
+            }
+            for artist in artists
+        ])
+
     @action(detail=True, methods=['post'])
     def merge(self, request, pk=None):
         primary = self.get_object()
@@ -231,7 +247,7 @@ class CmsArtistViewSet(CmsBaseViewSet):
 
 
 class CmsReleaseViewSet(CmsBaseViewSet):
-    queryset = Release.objects.select_related('artist').all()
+    queryset = Release.objects.select_related('artist').prefetch_related('artist_credits__artist').all()
     serializer_class = CmsReleaseSerializer
     search_fields = ['title', 'artist__name', 'featured_artists', 'isrc', 'upc', 'country', 'country_code', 'genre', 'label']
     ordering_fields = ['title', 'chart_type', 'release_year', 'updated_at']
