@@ -103,6 +103,7 @@ class PublicAppDataSyncTests(TestCase):
         return response.json()
 
     def test_all_public_facing_cms_saves_feed_the_app_payload(self):
+        initial_revision = self.app_data()["revision"]
         self.patch_cms(
             f"/api/v1/cms/artists/{self.artist.id}/",
             {
@@ -154,6 +155,11 @@ class PublicAppDataSyncTests(TestCase):
         )
 
         data = self.app_data()
+        self.assertNotEqual(data["revision"], initial_revision)
+        revision_response = self.client.get("/api/v1/app-data/revision/")
+        self.assertEqual(revision_response.status_code, 200)
+        self.assertEqual(revision_response.json()["revision"], data["revision"])
+        self.assertIn("no-store", revision_response["Cache-Control"])
         row = data["full"]["singles"]["combined"]["June 2026"][0]
         self.assertEqual(row["t"], "Updated Song")
         self.assertEqual(row["a"], "Updated Artist")

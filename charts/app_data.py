@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import (
+    AuditLog,
     Artist,
     Certification,
     CertificationRule,
@@ -25,6 +26,45 @@ from .models import (
 
 
 HIDDEN_STATUSES = {"archived", "inactive", "rejected", "draft"}
+
+# Every CMS module that can alter something rendered by the public app.  Audit
+# rows give us one generic revision signal, including bulk/custom CMS actions
+# that update several models at once.
+PUBLIC_DATA_AUDIT_MODULES = {
+    "artists",
+    "releases",
+    "countries",
+    "platforms",
+    "charts",
+    "chart_entries",
+    "chart_uploads",
+    "uploads",
+    "news",
+    "media",
+    "settings",
+    "page_content",
+    "certifications",
+    "certification_rules",
+    "methodology",
+}
+
+
+def _public_data_revision():
+    latest = (
+        AuditLog.objects.filter(module__in=PUBLIC_DATA_AUDIT_MODULES)
+        .values("id", "created_at")
+        .first()
+    )
+    if not latest:
+        return "0"
+    return f"{latest['id']}:{latest['created_at'].isoformat()}"
+
+
+def _disable_response_cache(response):
+    response["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    response["Pragma"] = "no-cache"
+    response["Expires"] = "0"
+    return response
 
 
 def _file_url(request, field):
@@ -281,6 +321,7 @@ class PublicAppDataView(APIView):
 
         response = Response(
             {
+                "revision": _public_data_revision(),
                 "generated_at": timezone.now(),
                 "months": months,
                 "full": full,
@@ -323,8 +364,8 @@ class PublicAppDataView(APIView):
                         "release_id": item.release_id,
                         "title": item.release.title,
                         "artist": item.release.artist.display_name or item.release.artist.name,
-                        "country": item.release.country or item.release.artist.country,
-                        "country_code": item.release.country_code or item.release.artist.country_code,
+                        "country": item.release.artist.country or item.release.country,
+                        "country_code": item.release.artist.country_code or item.release.country_code,
                         "chart_type": item.release.chart_type,
                         "level": item.level,
                         "total_points": item.total_points,
@@ -350,7 +391,15 @@ class PublicAppDataView(APIView):
                 ),
             }
         )
-        response["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
-        response["Pragma"] = "no-cache"
-        response["Expires"] = "0"
-        return response
+        return _disable_response_cache(response)
+
+
+@method_decorator(never_cache, name="dispatch")
+class PublicAppRevisionView(APIView):
+    """Lightweight change signal used by an open public app to detect CMS saves."""
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        return _disable_response_cache(Response({"revision": _public_data_revision()}))
