@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+from django.core.cache import cache
 from django.db.models import Max, Min, Prefetch, Sum
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -229,7 +230,17 @@ class PublicAppDataView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = []
 
+    # Keep the cache alive for 10 minutes.  Any CMS save changes the revision
+    # hash so the next request builds a fresh payload automatically.
+    _CACHE_TTL = 600
+
     def get(self, request):
+        revision = _public_data_revision()
+        cache_key = f"pub_app_data:{revision}"
+        cached_payload = cache.get(cache_key)
+        if cached_payload is not None:
+            return _disable_response_cache(Response(cached_payload))
+
         public_entries = MonthlyChartEntry.objects.select_related(
             "release", "release__artist", "platform"
         ).order_by("rank")
@@ -335,79 +346,78 @@ class PublicAppDataView(APIView):
             is_hidden=False
         )
 
-        response = Response(
-            {
-                "revision": _public_data_revision(),
-                "generated_at": timezone.now(),
-                "months": months,
-                "full": full,
-                "artists": artists,
-                "releases": releases,
-                "platforms": platforms,
-                "countries": countries,
-                "settings": settings,
-                "page_content": dict(page_content),
-                "news": [
-                    {
-                        "id": item.id,
-                        "title": item.title,
-                        "slug": item.slug,
-                        "category": item.category,
-                        "excerpt": item.excerpt,
-                        "subheadline": item.subheadline,
-                        "body": item.body,
-                        "emoji": item.emoji,
-                        "cover_image": _file_url(request, item.cover_image),
-                        "gallery": item.gallery,
-                        "tags": item.tags,
-                        "author": item.author,
-                        "source_links": item.source_links,
-                        "seo_title": item.seo_title,
-                        "seo_description": item.seo_description,
-                        "featured": item.featured,
-                        "pinned": item.pinned,
-                        "breaking": item.breaking,
-                        "published_at": item.published_at,
-                        "updated_at": item.updated_at,
-                        "related_release": item.related_release_id,
-                        "related_artist": item.related_artist_id,
-                    }
-                    for item in news
-                ],
-                "certifications": [
-                    {
-                        "id": item.id,
-                        "release_id": item.release_id,
-                        "title": item.release.title,
-                        "artist": item.release.artist.display_name or item.release.artist.name,
-                        "country": item.release.artist.country or item.release.country,
-                        "country_code": item.release.artist.country_code or item.release.country_code,
-                        "chart_type": item.release.chart_type,
-                        "level": item.level,
-                        "total_points": item.total_points,
-                        "is_official": item.is_official,
-                        "certification_date": item.certification_date,
-                        "certified_at": item.certified_at,
-                        "previous_level": item.previous_level,
-                        "notes": item.notes,
-                    }
-                    for item in certifications
-                    if _is_public_status(item.release.status)
-                    and _is_public_status(item.release.artist.status)
-                ],
-                "certification_rules": list(
-                    CertificationRule.objects.filter(active=True).values(
-                        "level", "threshold", "active", "updated_at"
-                    )
-                ),
-                "methodology": list(
-                    MethodologySetting.objects.filter(is_active=True).values(
-                        "id", "version", "name", "config", "is_active", "created_at"
-                    )
-                ),
-            }
-        )
-        return _disable_response_cache(response)
+        payload = {
+            "revision": revision,
+            "generated_at": timezone.now(),
+            "months": months,
+            "full": full,
+            "artists": artists,
+            "releases": releases,
+            "platforms": platforms,
+            "countries": countries,
+            "settings": settings,
+            "page_content": dict(page_content),
+            "news": [
+                {
+                    "id": item.id,
+                    "title": item.title,
+                    "slug": item.slug,
+                    "category": item.category,
+                    "excerpt": item.excerpt,
+                    "subheadline": item.subheadline,
+                    "body": item.body,
+                    "emoji": item.emoji,
+                    "cover_image": _file_url(request, item.cover_image),
+                    "gallery": item.gallery,
+                    "tags": item.tags,
+                    "author": item.author,
+                    "source_links": item.source_links,
+                    "seo_title": item.seo_title,
+                    "seo_description": item.seo_description,
+                    "featured": item.featured,
+                    "pinned": item.pinned,
+                    "breaking": item.breaking,
+                    "published_at": item.published_at,
+                    "updated_at": item.updated_at,
+                    "related_release": item.related_release_id,
+                    "related_artist": item.related_artist_id,
+                }
+                for item in news
+            ],
+            "certifications": [
+                {
+                    "id": item.id,
+                    "release_id": item.release_id,
+                    "title": item.release.title,
+                    "artist": item.release.artist.display_name or item.release.artist.name,
+                    "country": item.release.artist.country or item.release.country,
+                    "country_code": item.release.artist.country_code or item.release.country_code,
+                    "chart_type": item.release.chart_type,
+                    "level": item.level,
+                    "total_points": item.total_points,
+                    "is_official": item.is_official,
+                    "certification_date": item.certification_date,
+                    "certified_at": item.certified_at,
+                    "previous_level": item.previous_level,
+                    "notes": item.notes,
+                }
+                for item in certifications
+                if _is_public_status(item.release.status)
+                and _is_public_status(item.release.artist.status)
+            ],
+            "certification_rules": list(
+                CertificationRule.objects.filter(active=True).values(
+                    "level", "threshold", "active", "updated_at"
+                )
+            ),
+            "methodology": list(
+                MethodologySetting.objects.filter(is_active=True).values(
+                    "id", "version", "name", "config", "is_active", "created_at"
+                )
+            ),
+        }
+        cache.set(cache_key, payload, self._CACHE_TTL)
+        return _disable_response_cache(Response(payload))
 
 
 @method_decorator(never_cache, name="dispatch")
