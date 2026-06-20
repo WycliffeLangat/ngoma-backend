@@ -105,7 +105,12 @@ class PublicAppDataSyncTests(TestCase):
     def test_all_public_facing_cms_saves_feed_the_app_payload(self):
         self.patch_cms(
             f"/api/v1/cms/artists/{self.artist.id}/",
-            {"display_name": "Updated Artist", "genre": "Afropop"},
+            {
+                "display_name": "Updated Artist",
+                "genre": "Afropop",
+                "country": "Kenya",
+                "country_code": "KE",
+            },
         )
         self.patch_cms(
             f"/api/v1/cms/releases/{self.release.id}/",
@@ -154,8 +159,16 @@ class PublicAppDataSyncTests(TestCase):
         self.assertEqual(row["a"], "Updated Artist")
         self.assertEqual(row["p"], 77)
         self.assertEqual(row["fa"], "Featured Artist")
+        self.assertEqual(row["co"], "Kenya")
+        self.assertEqual(row["cc"], "KE")
         self.assertEqual(row["genre"], "Afrobeats")
         self.assertEqual(row["label"], "Updated Label")
+        artist = next(item for item in data["artists"] if item["id"] == self.artist.id)
+        release = next(item for item in data["releases"] if item["id"] == self.release.id)
+        self.assertEqual(artist["country"], "Kenya")
+        self.assertEqual(artist["country_code"], "KE")
+        self.assertEqual(release["country"], "Kenya")
+        self.assertEqual(release["country_code"], "KE")
         platform = next(item for item in data["platforms"] if item["id"] == self.platform.id)
         country = next(item for item in data["countries"] if item["id"] == self.country.id)
         article = next(item for item in data["news"] if item["id"] == self.news.id)

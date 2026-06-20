@@ -49,12 +49,18 @@ def _compact(payload):
 
 
 def _release_payload(request, release):
+    artist = release.artist
+    # Use artist country as the authoritative source for display country on releases.
+    display_country = artist.country or release.country
+    display_country_code = artist.country_code or release.country_code
     return _compact({
         "id": release.id,
         "title": release.title,
         "chart_type": release.chart_type,
         "artist_id": release.artist_id,
-        "artist": release.artist.display_name or release.artist.name,
+        "artist_slug": artist.slug,
+        "artist": artist.display_name or artist.name,
+        "flag": artist.flag,
         "featured_artists": release.featured_artists,
         "credited_artists": release.credited_artists,
         "songwriters": release.songwriters,
@@ -64,8 +70,8 @@ def _release_payload(request, release):
         "isrc": release.isrc,
         "upc": release.upc,
         "number_of_tracks": release.number_of_tracks,
-        "country": release.country,
-        "country_code": release.country_code,
+        "country": display_country,
+        "country_code": display_country_code,
         "genre": release.genre,
         "label": release.label,
         "distributor": release.distributor,
@@ -87,9 +93,11 @@ def _entry_payload(request, entry):
     release = entry.release
     artist = release.artist
     artist_name = artist.display_name or artist.name
-    featured_artists = entry.featured_artists or release.featured_artists
-    release_country = release.country or artist.country
-    release_country_code = release.country_code or artist.country_code
+    featured_artists = release.featured_artists or entry.featured_artists
+    # Artist country is authoritative — release.country may be stale if set from
+    # a previous artist country at import time and the artist was later updated.
+    display_country = artist.country or release.country
+    display_country_code = artist.country_code or release.country_code
 
     return {
         "id": entry.id,
@@ -104,10 +112,32 @@ def _entry_payload(request, entry):
         "rp": entry.raw_total_points,
         "pl": f"{entry.platform_count}/{entry.platform_max}" if entry.platform_count else "",
         "w": entry.weeks_on_chart,
-        "y": entry.release_year or release.release_year,
+        "y": release.release_year or entry.release_year,
         "c": entry.confidence,
-        "co": release_country,
-        "cc": release_country_code,
+        "co": display_country,
+        "cc": display_country_code,
+        "fl": artist.flag,
+        # Include the editable release fields on every chart row.  The public
+        # app can therefore render a CMS edit immediately without having to
+        # join against the bundled/static release dataset.
+        "genre": release.genre,
+        "label": release.label,
+        "distributor": release.distributor,
+        "release_date": release.release_date,
+        "isrc": release.isrc,
+        "upc": release.upc,
+        "number_of_tracks": release.number_of_tracks,
+        "songwriters": release.songwriters,
+        "producers": release.producers,
+        "cover_image": _file_url(request, release.cover_image),
+        "spotify_url": release.spotify_url,
+        "apple_music_url": release.apple_music_url,
+        "boomplay_url": release.boomplay_url,
+        "audiomack_url": release.audiomack_url,
+        "youtube_url": release.youtube_url,
+        "tiktok_url": release.tiktok_url,
+        "shazam_url": release.shazam_url,
+        "radio_info": release.radio_info,
     }
 
 
@@ -172,11 +202,13 @@ class PublicAppDataView(APIView):
             _compact({
                 "id": artist.id,
                 "name": artist.name,
+                "slug": artist.slug,
                 "display_name": artist.display_name,
                 "public_name": artist.display_name or artist.name,
                 "aliases": artist.aliases,
                 "country": artist.country,
                 "country_code": artist.country_code,
+                "flag": artist.flag,
                 "city_region": artist.city_region,
                 "genre": artist.genre,
                 "biography": artist.biography,

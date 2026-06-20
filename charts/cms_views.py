@@ -160,6 +160,23 @@ class CmsArtistViewSet(CmsBaseViewSet):
             qs = qs.filter(Q(country='') & Q(country_code=''))
         return qs
 
+    def perform_update(self, serializer):
+        old_country = serializer.instance.country
+        old_country_code = serializer.instance.country_code
+        old = model_to_dict_safe(serializer.instance)
+        obj = serializer.save()
+        # Cascade country changes to releases that still carry the old artist country
+        # (releases that had an explicitly different country are left untouched).
+        new_country = obj.country
+        new_country_code = obj.country_code
+        if new_country != old_country or new_country_code != old_country_code:
+            Release.objects.filter(
+                artist=obj,
+                country=old_country,
+                country_code=old_country_code,
+            ).update(country=new_country, country_code=new_country_code, updated_at=timezone.now())
+        audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new=serializer.data)
+
     @action(detail=False, methods=['get'])
     def missing_countries(self, request):
         qs = self.get_queryset().filter(Q(country='') & Q(country_code=''))[:250]
@@ -195,6 +212,13 @@ class CmsArtistViewSet(CmsBaseViewSet):
         ids = request.data.get('artist_ids') or []
         country = request.data.get('country', '')
         country_code = (request.data.get('country_code') or '')[:2].upper()
+        # Cascade to releases: update releases where country matched the artist's old country.
+        for artist in Artist.objects.filter(id__in=ids).only('id', 'country', 'country_code'):
+            Release.objects.filter(
+                artist=artist,
+                country=artist.country,
+                country_code=artist.country_code,
+            ).update(country=country, country_code=country_code, updated_at=timezone.now())
         updated = Artist.objects.filter(id__in=ids).update(country=country, country_code=country_code, updated_at=timezone.now())
         audit(request, 'bulk_country_update', module='artists', new={'updated': updated, 'country': country, 'country_code': country_code})
         return Response({'updated': updated})
