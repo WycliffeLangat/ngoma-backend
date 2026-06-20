@@ -170,11 +170,17 @@ class CmsArtistViewSet(CmsBaseViewSet):
         new_country = obj.country
         new_country_code = obj.country_code
         if new_country != old_country or new_country_code != old_country_code:
+            # Match releases by exact old country values, plus releases that have the
+            # old country name but a missing code (those were never fully populated).
+            code_filter = Q(country_code=old_country_code)
+            if old_country and old_country_code:
+                code_filter |= Q(country_code='')
             Release.objects.filter(
                 artist=obj,
                 country=old_country,
-                country_code=old_country_code,
-            ).update(country=new_country, country_code=new_country_code, updated_at=timezone.now())
+            ).filter(code_filter).update(
+                country=new_country, country_code=new_country_code, updated_at=timezone.now()
+            )
         audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new=serializer.data)
 
     @action(detail=False, methods=['get'])

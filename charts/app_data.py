@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from django.db.models import Prefetch
+from django.db.models import Max, Min, Prefetch, Sum
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -50,14 +50,30 @@ PUBLIC_DATA_AUDIT_MODULES = {
 
 
 def _public_data_revision():
-    latest = (
+    latest_log = (
         AuditLog.objects.filter(module__in=PUBLIC_DATA_AUDIT_MODULES)
         .values("id", "created_at")
         .first()
     )
-    if not latest:
-        return "0"
-    return f"{latest['id']}:{latest['created_at'].isoformat()}"
+
+    # Pull the most-recently-touched timestamps directly from the data models.
+    # This guarantees the revision changes on every CMS save even if the audit
+    # log write fails silently (its body is wrapped in try/except).
+    latest_artist = Artist.objects.aggregate(m=Max("updated_at"))["m"]
+    latest_release = Release.objects.aggregate(m=Max("updated_at"))["m"]
+    latest_chart = MonthlyChart.objects.aggregate(m=Max("updated_at"))["m"]
+
+    parts = []
+    if latest_log:
+        parts.append(f"log:{latest_log['id']}")
+    if latest_artist:
+        parts.append(f"a:{latest_artist.isoformat()}")
+    if latest_release:
+        parts.append(f"r:{latest_release.isoformat()}")
+    if latest_chart:
+        parts.append(f"c:{latest_chart.isoformat()}")
+
+    return "|".join(parts) if parts else "0"
 
 
 def _disable_response_cache(response):
@@ -403,3 +419,112 @@ class PublicAppRevisionView(APIView):
 
     def get(self, request):
         return _disable_response_cache(Response({"revision": _public_data_revision()}))
+
+
+@method_decorator(never_cache, name="dispatch")
+class PublicArtistDetailView(APIView):
+    """Per-artist detail endpoint for the main app's artist profile page.
+
+    Always fetches live from the database so any CMS edit to an artist's
+    biography, image, social links, etc. is immediately visible the next
+    time the artist detail page is loaded.
+
+    URL: /api/app-data/artist/<slug>/
+    """
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request, slug):
+        try:
+            artist = Artist.objects.get(slug=slug)
+        except Artist.DoesNotExist:
+            return Response({"detail": "Not found."}, status=404)
+
+        if not _is_public_status(artist.status):
+            return Response({"detail": "Not found."}, status=404)
+
+        profile = _compact({
+            "id": artist.id,
+            "name": artist.name,
+            "slug": artist.slug,
+            "display_name": artist.display_name,
+            "public_name": artist.display_name or artist.name,
+            "aliases": artist.aliases,
+            "country": artist.country,
+            "country_code": artist.country_code,
+            "flag": artist.flag,
+            "city_region": artist.city_region,
+            "genre": artist.genre,
+            "biography": artist.biography,
+            "image": _file_url(request, artist.image),
+            "artist_type": artist.artist_type,
+            "verified": artist.verified,
+            "status": artist.status,
+            "social_links": _compact({
+                "spotify": artist.spotify_url,
+                "apple_music": artist.apple_music_url,
+                "youtube": artist.youtube_url,
+                "boomplay": artist.boomplay_url,
+                "audiomack": artist.audiomack_url,
+                "tiktok": artist.tiktok_url,
+                "instagram": artist.instagram_url,
+                "x": artist.x_url,
+                "facebook": artist.facebook_url,
+                "website": artist.website_url,
+            }),
+            "updated_at": artist.updated_at,
+        })
+
+        # Combined-chart history across all published months (no platform breakdown).
+        entries = (
+            MonthlyChartEntry.objects
+            .filter(release__artist=artist, platform__isnull=True)
+            .select_related("chart", "release")
+            .order_by("-chart__year", "-chart__month", "rank")
+        )
+        history = []
+        for entry in entries:
+            if not _is_public_status(entry.release.status):
+                continue
+            history.append({
+                "chart_type": entry.release.chart_type,
+                "month": entry.chart.label,
+                "year": entry.chart.year,
+                "month_num": entry.chart.month,
+                "release_id": entry.release_id,
+                "title": entry.release.title,
+                "rank": entry.rank,
+                "total_points": entry.total_points,
+                "weeks_on_chart": entry.weeks_on_chart,
+                "peak_rank": entry.peak_rank,
+                "prev_rank": entry.prev_rank,
+                "movement": entry.movement,
+                "cover_image": _file_url(request, entry.release.cover_image),
+            })
+
+        # Aggregate stats per chart type.
+        def _chart_stats(chart_type):
+            agg = (
+                MonthlyChartEntry.objects
+                .filter(release__artist=artist, platform__isnull=True, release__chart_type=chart_type)
+                .aggregate(total_pts=Sum("total_points"), peak=Min("rank"))
+            )
+            return {
+                "total_points": agg["total_pts"] or 0,
+                "peak_rank": agg["peak"],
+            }
+
+        releases = [
+            _release_payload(request, release)
+            for release in Release.objects.select_related("artist").filter(artist=artist)
+            if _is_public_status(release.status)
+        ]
+
+        return _disable_response_cache(Response({
+            "artist": profile,
+            "singles_stats": _chart_stats("singles"),
+            "albums_stats": _chart_stats("albums"),
+            "chart_history": history,
+            "releases": releases,
+        }))

@@ -105,6 +105,42 @@ class CmsArtistSerializer(serializers.ModelSerializer):
     def get_missing_country(self, obj):
         return not bool(obj.country or obj.country_code)
 
+    def validate(self, attrs):
+        incoming_country = attrs.get('country')
+        incoming_code = attrs.get('country_code')
+
+        # Country name changed but code not included in this request → auto-derive it.
+        if incoming_country and incoming_code is None:
+            code = (
+                Country.objects.filter(name__iexact=incoming_country.strip(), active=True)
+                .values_list('code', flat=True)
+                .first()
+            ) or (
+                Artist.objects.filter(country__iexact=incoming_country.strip())
+                .exclude(country_code='')
+                .values_list('country_code', flat=True)
+                .first()
+            )
+            if code:
+                attrs['country_code'] = code.upper()
+
+        # Country code changed but name not included in this request → auto-derive it.
+        elif incoming_code and incoming_country is None:
+            name = (
+                Country.objects.filter(code__iexact=incoming_code.strip(), active=True)
+                .values_list('name', flat=True)
+                .first()
+            ) or (
+                Artist.objects.filter(country_code__iexact=incoming_code.strip())
+                .exclude(country='')
+                .values_list('country', flat=True)
+                .first()
+            )
+            if name:
+                attrs['country'] = name
+
+        return attrs
+
 
 class CmsReleaseSerializer(serializers.ModelSerializer):
     artist_name = serializers.CharField(source='artist.name', read_only=True)
@@ -134,6 +170,40 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
 
     def get_certifications(self, obj):
         return list(obj.certifications.values('level', 'total_points', 'certified_at', 'is_official'))
+
+    def validate(self, attrs):
+        incoming_country = attrs.get('country')
+        incoming_code = attrs.get('country_code')
+
+        if incoming_country and incoming_code is None:
+            code = (
+                Country.objects.filter(name__iexact=incoming_country.strip(), active=True)
+                .values_list('code', flat=True)
+                .first()
+            ) or (
+                Release.objects.filter(country__iexact=incoming_country.strip())
+                .exclude(country_code='')
+                .values_list('country_code', flat=True)
+                .first()
+            )
+            if code:
+                attrs['country_code'] = code.upper()
+
+        elif incoming_code and incoming_country is None:
+            name = (
+                Country.objects.filter(code__iexact=incoming_code.strip(), active=True)
+                .values_list('name', flat=True)
+                .first()
+            ) or (
+                Release.objects.filter(country_code__iexact=incoming_code.strip())
+                .exclude(country='')
+                .values_list('country', flat=True)
+                .first()
+            )
+            if name:
+                attrs['country'] = name
+
+        return attrs
 
 
 class CmsMonthlyChartEntrySerializer(serializers.ModelSerializer):
