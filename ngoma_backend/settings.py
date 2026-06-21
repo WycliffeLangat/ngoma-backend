@@ -110,7 +110,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL', '')
 if CLOUDINARY_URL:
     import cloudinary
-    cloudinary.config(cloudinary_url=CLOUDINARY_URL)
+    from urllib.parse import urlparse as _urlparse
+    _cu = _urlparse(CLOUDINARY_URL)
+    cloudinary.config(
+        cloud_name=_cu.hostname,
+        api_key=_cu.username,
+        api_secret=_cu.password,
+        secure=True,
+    )
     DEFAULT_FILE_STORAGE = 'ngoma_backend.storage.CloudinaryMediaStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

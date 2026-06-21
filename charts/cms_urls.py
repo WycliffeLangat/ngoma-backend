@@ -32,4 +32,5 @@ urlpatterns = [
     path('csrf/', cms_views.CsrfTokenView.as_view()),
     path('dashboard/', cms_views.CmsDashboardView.as_view()),
     path('search/', cms_views.GlobalSearchView.as_view()),
+    path('debug/storage/', cms_views.StorageDebugView.as_view()),
 ] + router.urls

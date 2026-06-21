@@ -44,6 +44,23 @@ class CmsLoginView(APIView):
         return Response({'user': CmsMeSerializer(user).data, 'csrfToken': get_token(request)})
 
 
+class StorageDebugView(APIView):
+    """Returns storage/Cloudinary configuration status — for diagnosing image upload issues."""
+    permission_classes = [IsCmsUser]
+
+    def get(self, request):
+        from django.conf import settings as dj_settings
+        import cloudinary
+        cfg = cloudinary.config()
+        return Response({
+            'DEFAULT_FILE_STORAGE': dj_settings.DEFAULT_FILE_STORAGE if hasattr(dj_settings, 'DEFAULT_FILE_STORAGE') else 'django.core.files.storage.FileSystemStorage (default)',
+            'CLOUDINARY_URL_SET': bool(getattr(dj_settings, 'CLOUDINARY_URL', '')),
+            'cloudinary_cloud_name': getattr(cfg, 'cloud_name', None),
+            'cloudinary_api_key_set': bool(getattr(cfg, 'api_key', None)),
+            'cloudinary_api_secret_set': bool(getattr(cfg, 'api_secret', None)),
+        })
+
+
 class CsrfTokenView(APIView):
     """Returns the CSRF token for cross-domain CMS frontends that cannot read the cookie directly."""
     permission_classes = [AllowAny]
@@ -150,6 +167,7 @@ class CmsUserViewSet(CmsBaseViewSet):
 class CmsArtistViewSet(CmsBaseViewSet):
     queryset = Artist.objects.all()
     serializer_class = CmsArtistSerializer
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
     search_fields = ['name', 'display_name', 'aliases', 'country', 'country_code', 'genre']
     ordering_fields = ['name', 'country', 'created_at', 'updated_at']
     module_name = 'artists'
@@ -249,6 +267,7 @@ class CmsArtistViewSet(CmsBaseViewSet):
 class CmsReleaseViewSet(CmsBaseViewSet):
     queryset = Release.objects.select_related('artist').prefetch_related('artist_credits__artist').all()
     serializer_class = CmsReleaseSerializer
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
     search_fields = ['title', 'artist__name', 'featured_artists', 'isrc', 'upc', 'country', 'country_code', 'genre', 'label']
     ordering_fields = ['title', 'chart_type', 'release_year', 'updated_at']
     module_name = 'releases'

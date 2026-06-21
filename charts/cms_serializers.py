@@ -96,6 +96,7 @@ class CmsArtistSerializer(serializers.ModelSerializer):
     total_points = serializers.SerializerMethodField()
     missing_country = serializers.SerializerMethodField()
     flag = serializers.ReadOnlyField()
+    image = serializers.ImageField(required=False, allow_null=True)
 
     class Meta:
         model = Artist
@@ -158,6 +159,7 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
     artist_display = serializers.SerializerMethodField()
     primary_artist_ids = serializers.ListField(child=serializers.IntegerField(min_value=1), required=False)
     featured_artist_ids = serializers.ListField(child=serializers.IntegerField(min_value=1), required=False)
+    cover_image = serializers.ImageField(required=False, allow_null=True)
     primary_artists = serializers.SerializerMethodField()
     featured_artist_profiles = serializers.SerializerMethodField()
     artist_credit = serializers.SerializerMethodField()
