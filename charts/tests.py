@@ -1,4 +1,8 @@
+import base64
+import tempfile
+
 from django.contrib.auth.models import User
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from rest_framework.test import APIClient
 
@@ -113,6 +117,43 @@ class PublicAppDataSyncTests(TestCase):
         self.assertEqual(response.status_code, 200, response.content)
         self.client.force_authenticate(user=None)
         return response.json()
+
+    def test_cms_multipart_image_uploads_are_persisted(self):
+        image_bytes = base64.b64decode(
+            "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+        )
+
+        with tempfile.TemporaryDirectory() as media_root, self.settings(MEDIA_ROOT=media_root):
+            self.client.force_authenticate(self.admin)
+
+            release_response = self.client.patch(
+                f"/api/v1/cms/releases/{self.release.id}/",
+                {
+                    "cover_image": SimpleUploadedFile(
+                        "cover.png", image_bytes, content_type="image/png"
+                    )
+                },
+                format="multipart",
+            )
+            self.assertEqual(release_response.status_code, 200, release_response.content)
+            self.release.refresh_from_db()
+            self.assertTrue(self.release.cover_image.name.startswith("covers/"))
+            self.assertIn("/media/covers/", release_response.json()["cover_image"])
+
+            artist_response = self.client.patch(
+                f"/api/v1/cms/artists/{self.artist.id}/",
+                {
+                    "image": SimpleUploadedFile(
+                        "artist.png", image_bytes, content_type="image/png"
+                    )
+                },
+                format="multipart",
+            )
+            self.assertEqual(artist_response.status_code, 200, artist_response.content)
+            self.artist.refresh_from_db()
+            self.assertTrue(self.artist.image.name.startswith("artists/"))
+            self.assertIn("/media/artists/", artist_response.json()["image"])
+            self.client.force_authenticate(user=None)
 
     def test_all_public_facing_cms_saves_feed_the_app_payload(self):
         initial_revision = self.app_data()["revision"]
