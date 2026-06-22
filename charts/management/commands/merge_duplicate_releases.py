@@ -104,6 +104,42 @@ def _load_merge_plan(filepath):
     return merge_pairs, protected_ids
 
 
+def _find_release_by_title(title, artist_str, chart_type):
+    """
+    Fallback lookup when a release ID is not found.
+    Tries canonical_title + each artist name listed in artist_str.
+    """
+    canonical = title.strip().lower()
+    # artist_str may contain multiple names separated by commas, &, or |
+    import re as _re
+    names = [n.strip() for n in _re.split(r"[,&|]", artist_str) if n.strip()]
+    for name in names:
+        from django.db.models import Q
+        artist = (
+            Release.objects.filter(
+                canonical_title=canonical,
+                chart_type=chart_type,
+                artist__name__iexact=name,
+            ).first()
+        )
+        if artist:
+            return artist
+    return None
+
+
+def _resolve_release(release_id, title, artist_str, chart_type):
+    """
+    Try to find a Release by primary key first.
+    Falls back to title+artist+chart_type when the ID is absent from the DB
+    (production DB IDs may differ from the development DB used to build the workbook).
+    """
+    try:
+        return Release.objects.get(pk=release_id)
+    except Release.DoesNotExist:
+        pass
+    return _find_release_by_title(title, artist_str, chart_type)
+
+
 def _merge_chart_entries(dup, keeper, dry_run):
     """
     Reassign MonthlyChartEntry records from dup to keeper.
@@ -253,16 +289,16 @@ class Command(BaseCommand):
             required=True,
             help="Path to the merge workbook (e.g. Data/ngoma_duplicate_releases_final_merge_ready.xlsx)",
         )
-        group = parser.add_mutually_exclusive_group(required=True)
+        group = parser.add_mutually_exclusive_group(required=False)
         group.add_argument("--dry-run", action="store_true", help="Preview changes without modifying the database")
-        group.add_argument("--apply", action="store_true", help="Apply all approved merges")
+        group.add_argument("--apply", action="store_true", help="Apply all approved merges (default)")
 
     def handle(self, *args, **options):
         filepath = Path(options["file"])
         if not filepath.exists():
             raise CommandError(f"File not found: {filepath}")
 
-        dry_run = options["dry_run"]
+        dry_run = options["dry_run"]  # --apply is the default if neither flag is given
         mode_label = "DRY RUN" if dry_run else "APPLY"
         self.stdout.write(self.style.WARNING(f"\n[{mode_label}] Loading merge plan from: {filepath}\n"))
 
@@ -284,16 +320,14 @@ class Command(BaseCommand):
                 skipped.append((pair, issues))
                 continue
 
-            try:
-                dup = Release.objects.get(pk=dup_id)
-            except Release.DoesNotExist:
-                skipped.append((pair, [f"Duplicate release {dup_id} not found in DB (already merged or deleted)"]))
+            dup = _resolve_release(dup_id, pair["title"], pair["artist"], pair["chart_type"])
+            if dup is None:
+                skipped.append((pair, [f"Duplicate release {dup_id} not found by ID or title+artist"]))
                 continue
 
-            try:
-                keeper = Release.objects.get(pk=keep_id)
-            except Release.DoesNotExist:
-                skipped.append((pair, [f"Keeper release {keep_id} not found in DB"]))
+            keeper = _resolve_release(keep_id, pair["title"], pair["artist"], pair["chart_type"])
+            if keeper is None:
+                skipped.append((pair, [f"Keeper release {keep_id} not found by ID or title+artist"]))
                 continue
 
             if dup.status == "archived":
