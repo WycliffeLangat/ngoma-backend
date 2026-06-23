@@ -157,6 +157,18 @@ class CmsBaseViewSet(viewsets.ModelViewSet):
             audit(self.request, 'deleted', module=getattr(self, 'module_name', ''), obj=instance)
             instance.delete()
 
+    @action(detail=True, methods=['delete'], url_path='hard_delete')
+    def hard_delete(self, request, pk=None):
+        obj = self.get_object()
+        obj_repr = str(obj)
+        obj_id = obj.pk
+        with transaction.atomic():
+            obj.delete()
+        audit(request, 'hard_deleted', module=getattr(self, 'module_name', ''), new={
+            'id': obj_id, 'repr': obj_repr,
+        })
+        return Response({'deleted': True}, status=200)
+
 
 class CmsUserViewSet(CmsBaseViewSet):
     queryset = User.objects.select_related('cms_profile').all().order_by('username')
@@ -212,6 +224,24 @@ class CmsArtistViewSet(CmsBaseViewSet):
     @action(detail=False, methods=['get'])
     def duplicates(self, request):
         return Response({'groups': duplicate_artist_groups(limit=200)})
+
+    @action(detail=True, methods=['delete'], url_path='hard_delete')
+    def hard_delete(self, request, pk=None):
+        artist = self.get_object()
+        active_count = Release.objects.filter(artist=artist).exclude(status='archived').count()
+        if active_count > 0:
+            return Response({
+                'detail': (
+                    f'Cannot delete: this artist has {active_count} active release(s). '
+                    'Merge the artist first so their releases are reassigned.'
+                ),
+                'release_count': active_count,
+            }, status=400)
+        artist_repr = str(artist)
+        artist_id = artist.pk
+        artist.delete()
+        audit(request, 'hard_deleted', module='artists', new={'id': artist_id, 'repr': artist_repr})
+        return Response({'deleted': True}, status=200)
 
     @action(detail=False, methods=['get'])
     def options(self, request):
@@ -286,40 +316,58 @@ class CmsReleaseViewSet(CmsBaseViewSet):
 
     @action(detail=False, methods=['get'])
     def duplicates(self, request):
-        """Return groups of 2+ active releases sharing the same lower(title)+chart_type+artist."""
+        """
+        Return groups of 2+ releases that are likely duplicates.
+        Uses simplified title matching (strips feat., punctuation, case) so near-matches
+        like 'BackBencher' / 'Backbencher (feat. X)' land in the same group.
+        Does NOT require the same artist_id — catches releases that drifted to different
+        artist records after artist-alias cleanup.
+        """
+        import re, unicodedata
         chart_type = request.query_params.get('chart_type')
         qs = Release.objects.exclude(status='archived').select_related('artist')
         if chart_type:
             qs = qs.filter(chart_type=chart_type)
 
+        def simplify(title):
+            s = unicodedata.normalize('NFKD', str(title or '')).encode('ascii', 'ignore').decode('ascii')
+            s = s.lower()
+            s = re.sub(r'\s*[\(\[]\s*(feat|ft|featuring|remix|remaster|remastered|live|acoustic|radio\s*edit|version)[^\)\]]*[\)\]]', '', s)
+            s = re.sub(r'\s+(feat|ft|featuring)\b.*', '', s)
+            s = re.sub(r'[^a-z0-9]', '', s)
+            return s
+
         from collections import defaultdict
         groups = defaultdict(list)
         for r in qs.order_by('id'):
-            key = (r.title.strip().lower(), r.chart_type, r.artist_id)
+            key = (simplify(r.title), r.chart_type)
             groups[key].append(r)
+
+        entry_counts_cache = {}
+        def entry_count(r):
+            if r.id not in entry_counts_cache:
+                entry_counts_cache[r.id] = MonthlyChartEntry.objects.filter(release=r).count()
+            return entry_counts_cache[r.id]
 
         result = []
         for releases in groups.values():
             if len(releases) < 2:
                 continue
-            entry_counts = {
-                r.id: MonthlyChartEntry.objects.filter(release=r).count()
-                for r in releases
-            }
             result.append([
                 {
                     'id': r.id,
                     'title': r.title,
                     'artist_display': r.artist.name,
+                    'artist_id': r.artist_id,
                     'chart_type': r.chart_type,
                     'status': r.status,
                     'cover_image': r.cover_image.url if r.cover_image else None,
-                    'entry_count': entry_counts[r.id],
+                    'entry_count': entry_count(r),
                 }
-                for r in sorted(releases, key=lambda x: (-bool(x.cover_image), -entry_counts[x.id], x.id))
+                for r in sorted(releases, key=lambda x: (-bool(x.cover_image), -entry_count(x), x.id))
             ])
 
-        result.sort(key=lambda g: g[0]['title'])
+        result.sort(key=lambda g: g[0]['title'].lower())
         return Response({'groups': result, 'total': len(result)})
 
     @action(detail=True, methods=['post'])
@@ -799,13 +847,65 @@ class GlobalSearchView(APIView):
 
 
 def duplicate_artist_groups(limit=100):
-    artists = Artist.objects.all().only('id', 'name', 'country', 'country_code', 'aliases')
+    import unicodedata, re as _re
+    artists = list(Artist.objects.exclude(status='archived').only(
+        'id', 'name', 'display_name', 'country', 'country_code', 'aliases'
+    ))
+    release_counts = {
+        row['artist_id']: row['cnt']
+        for row in Release.objects.exclude(status='archived')
+            .values('artist_id').annotate(cnt=Count('id'))
+    }
+
+    def key(name):
+        s = unicodedata.normalize('NFKD', name or '').encode('ascii', 'ignore').decode('ascii')
+        return _re.sub(r'[^a-z0-9]+', '', s.lower())
+
+    # Primary bucket: normalized name
     buckets = {}
     for artist in artists:
-        key = normalize_artist_key(artist.name)
-        buckets.setdefault(key, []).append({'id': artist.id, 'name': artist.name, 'country': artist.country, 'country_code': artist.country_code})
-    groups = [items for items in buckets.values() if len(items) > 1]
-    groups.sort(key=len, reverse=True)
+        k = key(artist.name)
+        if k:
+            buckets.setdefault(k, []).append(artist)
+
+    # Secondary: if any artist's name appears as an alias of another, merge their buckets
+    alias_to_key = {}
+    for artist in artists:
+        for alias in (artist.aliases or []):
+            ak = key(alias)
+            if ak:
+                alias_to_key[ak] = key(artist.name)
+
+    merged_buckets = {}
+    for k, members in buckets.items():
+        canonical = alias_to_key.get(k, k)
+        merged_buckets.setdefault(canonical, set()).update(a.id for a in members)
+
+    # Resolve sets back to artist objects
+    id_to_artist = {a.id: a for a in artists}
+    groups = []
+    seen_ids = set()
+    for member_ids in merged_buckets.values():
+        unseen = [aid for aid in member_ids if aid not in seen_ids]
+        if len(unseen) < 2:
+            continue
+        group_artists = [id_to_artist[aid] for aid in unseen if aid in id_to_artist]
+        if len(group_artists) < 2:
+            continue
+        seen_ids.update(unseen)
+        groups.append(sorted([
+            {
+                'id': a.id,
+                'name': a.name,
+                'display_name': a.display_name or a.name,
+                'country': a.country,
+                'country_code': a.country_code,
+                'release_count': release_counts.get(a.id, 0),
+            }
+            for a in group_artists
+        ], key=lambda x: (-x['release_count'], x['id'])))
+
+    groups.sort(key=lambda g: (-len(g), -g[0]['release_count']))
     return groups[:limit]
 
 
@@ -813,7 +913,6 @@ def normalize_artist_key(name):
     import unicodedata, re
     value = unicodedata.normalize('NFKD', name or '').encode('ascii', 'ignore').decode('ascii')
     value = re.sub(r'[^a-z0-9]+', '', value.lower())
-    value = value.replace('aime', 'aime')
     return value
 
 
