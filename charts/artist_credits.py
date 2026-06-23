@@ -36,6 +36,12 @@ def _credit_rows(release, role):
     return sorted((row for row in rows if row.role == role), key=lambda row: (row.position, row.pk))
 
 
+def _clean_display_name(name):
+    # Pipe is used internally as an alias separator (e.g. "Toxic Lyrikali|Countree Hype")
+    # but must never appear in user-facing credits — keep only the canonical name.
+    return str(name or '').split('|')[0].strip()
+
+
 def release_credit_artists(release, entry_featured=''):
     primary_artists = [row.artist for row in _credit_rows(release, 'primary')]
     if not primary_artists:
@@ -43,11 +49,14 @@ def release_credit_artists(release, entry_featured=''):
 
     featured_artists = [row.artist for row in _credit_rows(release, 'featured')]
     featured_names = unique_names([
-        *(artist.display_name or artist.name for artist in featured_artists),
+        *(_clean_display_name(artist.display_name or artist.name) for artist in featured_artists),
         *split_artist_names(release.featured_artists),
         *split_artist_names(entry_featured),
     ])
-    primary_names = unique_names(artist.display_name or artist.name for artist in primary_artists)
+    primary_names = unique_names(
+        _clean_display_name(artist.display_name or artist.name)
+        for artist in primary_artists
+    )
     primary_keys = {name.casefold() for name in primary_names}
     featured_names = [name for name in featured_names if name.casefold() not in primary_keys]
     return primary_artists, featured_artists, primary_names, featured_names
