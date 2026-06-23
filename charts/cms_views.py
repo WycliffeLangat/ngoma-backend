@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.db import transaction
 from django.db.models import Count, Sum, Q
 from django.middleware.csrf import get_token
 from django.utils import timezone
@@ -16,6 +17,7 @@ from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
 from .cms_utils import audit, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications
+from .models import PlatformChartEntry, ReleaseArtistCredit
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
 
 
@@ -281,6 +283,143 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         if status_param:
             qs = qs.filter(status=status_param)
         return qs
+
+    @action(detail=False, methods=['get'])
+    def duplicates(self, request):
+        """Return groups of 2+ active releases sharing the same lower(title)+chart_type+artist."""
+        chart_type = request.query_params.get('chart_type')
+        qs = Release.objects.exclude(status='archived').select_related('artist')
+        if chart_type:
+            qs = qs.filter(chart_type=chart_type)
+
+        from collections import defaultdict
+        groups = defaultdict(list)
+        for r in qs.order_by('id'):
+            key = (r.title.strip().lower(), r.chart_type, r.artist_id)
+            groups[key].append(r)
+
+        result = []
+        for releases in groups.values():
+            if len(releases) < 2:
+                continue
+            entry_counts = {
+                r.id: MonthlyChartEntry.objects.filter(release=r).count()
+                for r in releases
+            }
+            result.append([
+                {
+                    'id': r.id,
+                    'title': r.title,
+                    'artist_display': r.artist.name,
+                    'chart_type': r.chart_type,
+                    'status': r.status,
+                    'cover_image': r.cover_image.url if r.cover_image else None,
+                    'entry_count': entry_counts[r.id],
+                }
+                for r in sorted(releases, key=lambda x: (-bool(x.cover_image), -entry_counts[x.id], x.id))
+            ])
+
+        result.sort(key=lambda g: g[0]['title'])
+        return Response({'groups': result, 'total': len(result)})
+
+    @action(detail=True, methods=['post'])
+    def merge(self, request, pk=None):
+        """
+        Merge this release (the duplicate) into another (the keeper).
+        Body: { "into_id": <keeper_release_id> }
+        Chart entries are moved to the keeper; conflicts are dropped (no point summing).
+        The duplicate is permanently deleted.
+        """
+        duplicate = self.get_object()
+        into_id = request.data.get('into_id')
+        if not into_id:
+            return Response({'detail': 'into_id is required.'}, status=400)
+        try:
+            keeper = Release.objects.get(pk=into_id)
+        except Release.DoesNotExist:
+            return Response({'detail': f'Release {into_id} not found.'}, status=404)
+        if keeper.pk == duplicate.pk:
+            return Response({'detail': 'Cannot merge a release into itself.'}, status=400)
+
+        with transaction.atomic():
+            mce_moved = mce_dropped = 0
+            for entry in list(MonthlyChartEntry.objects.filter(release=duplicate)):
+                conflict = MonthlyChartEntry.objects.filter(
+                    chart_id=entry.chart_id,
+                    platform_id=entry.platform_id,
+                    release=keeper,
+                ).exists()
+                if conflict:
+                    mce_dropped += 1
+                    entry.delete()
+                else:
+                    mce_moved += 1
+                    entry.release = keeper
+                    entry.save(update_fields=['release'])
+
+            pce_moved = PlatformChartEntry.objects.filter(release=duplicate).update(release=keeper)
+
+            existing_credits = set(
+                ReleaseArtistCredit.objects.filter(release=keeper)
+                .values_list('artist_id', 'role')
+            )
+            for credit in ReleaseArtistCredit.objects.filter(release=duplicate):
+                if (credit.artist_id, credit.role) not in existing_credits:
+                    ReleaseArtistCredit.objects.create(
+                        release=keeper,
+                        artist_id=credit.artist_id,
+                        role=credit.role,
+                        position=ReleaseArtistCredit.objects.filter(release=keeper, role=credit.role).count(),
+                    )
+                    existing_credits.add((credit.artist_id, credit.role))
+
+            _META = ['cover_image','genre','label','distributor','isrc','upc','release_year',
+                     'release_date','featured_artists','credited_artists','songwriters','producers',
+                     'spotify_url','apple_music_url','youtube_url','boomplay_url','audiomack_url',
+                     'tiktok_url','shazam_url','radio_info']
+            updates = []
+            for f in _META:
+                if getattr(duplicate, f) and not getattr(keeper, f):
+                    setattr(keeper, f, getattr(duplicate, f))
+                    updates.append(f)
+            if updates:
+                keeper.save(update_fields=updates + ['updated_at'])
+
+            Certification.objects.filter(release=duplicate).delete()
+            dup_repr = str(duplicate)
+            duplicate.delete()
+
+        recalculate_certifications(release=keeper)
+        audit(request, 'merged_release', module='releases', obj=keeper, new={
+            'merged_id': duplicate.pk, 'merged_repr': dup_repr,
+            'mce_moved': mce_moved, 'mce_dropped': mce_dropped, 'pce_moved': pce_moved,
+        })
+        return Response({
+            'keeper': CmsReleaseSerializer(keeper).data,
+            'mce_moved': mce_moved, 'mce_dropped': mce_dropped, 'pce_moved': pce_moved,
+        })
+
+    @action(detail=True, methods=['delete'], url_path='hard_delete')
+    def hard_delete(self, request, pk=None):
+        """
+        Permanently delete this release and all its chart entries.
+        This cannot be undone.
+        """
+        release = self.get_object()
+        entry_count = MonthlyChartEntry.objects.filter(release=release).count()
+        release_repr = str(release)
+        release_id = release.pk
+
+        with transaction.atomic():
+            MonthlyChartEntry.objects.filter(release=release).delete()
+            PlatformChartEntry.objects.filter(release=release).delete()
+            Certification.objects.filter(release=release).delete()
+            release.delete()
+
+        audit(request, 'hard_deleted_release', module='releases', new={
+            'id': release_id, 'repr': release_repr, 'entries_deleted': entry_count,
+        })
+        return Response({'deleted': True, 'entries_deleted': entry_count}, status=200)
 
 
 class CmsCountryViewSet(CmsBaseViewSet):
