@@ -1,0 +1,84 @@
+name: Finalize Month Charts
+
+# ─── How to run ──────────────────────────────────────────────────────────────
+# Go to: GitHub → ngoma-backend → Actions → "Finalize Month Charts" → Run workflow
+# Enter the year and month number, then click "Run workflow".
+#
+# What it does:
+#   1. Connects to the production Railway DB
+#   2. Runs `finalize_month` — appends the completed month to the master workbook
+#      and updates MONTHS in master_dataset.py
+#   3. Commits and pushes the two changed files back to main
+#   4. Calls the Netlify build hook so the frontend rebuilds with fresh data
+#
+# Required secrets (set in GitHub → ngoma-backend → Settings → Secrets):
+#   DATABASE_URL        — Railway PostgreSQL connection string (copy from Railway dashboard)
+#   SECRET_KEY          — Django SECRET_KEY (copy from Railway env vars)
+#   NETLIFY_BUILD_HOOK  — Netlify deploy hook URL (Netlify → Site → Deploys → Build hooks)
+# ─────────────────────────────────────────────────────────────────────────────
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Year (e.g. 2026)"
+        required: true
+        type: number
+      month:
+        description: "Month number (1–12, e.g. 6 for June)"
+        required: true
+        type: number
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Use the default GITHUB_TOKEN — has write access to this repo.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run finalize_month
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SECRET_KEY:   ${{ secrets.SECRET_KEY }}
+          DEBUG:        "False"
+          ALLOWED_HOSTS: "localhost"
+        run: |
+          python manage.py finalize_month \
+            --year  ${{ inputs.year }} \
+            --month ${{ inputs.month }}
+
+      - name: Commit updated workbook and MONTHS
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add charts/seed_data/Ngoma_Charts_MASTER.xlsx charts/master_dataset.py
+          # Only commit if something actually changed.
+          git diff --cached --quiet \
+            && echo "Nothing changed — month may already be present." \
+            || git commit -m "chore: finalize ${{ inputs.year }}-$(printf '%02d' ${{ inputs.month }}) charts"
+          git push
+
+      - name: Trigger Netlify rebuild
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK" ]; then
+            echo "NETLIFY_BUILD_HOOK secret not set — skipping frontend rebuild trigger."
+            echo "Add it in GitHub → Settings → Secrets to automate this step."
+          else
+            curl --fail -s -X POST "$NETLIFY_BUILD_HOOK"
+            echo "Netlify rebuild triggered."
+          fi

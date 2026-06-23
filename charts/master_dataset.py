@@ -11,6 +11,127 @@ from openpyxl import load_workbook
 from charts.artist_metadata import artist_country
 
 
+# ---------------------------------------------------------------------------
+# Merge-workbook utilities
+# Shared by import_master_workbook() (DB seed) and export_frontend_data.py
+# (static JS export) so the same canonicalization runs at both entry points.
+# ---------------------------------------------------------------------------
+
+def _broad_normalize(text):
+    """
+    Broad ASCII normalization used to fuzzy-match merge-workbook entries
+    against raw master data.  Strips accents, lowercases, removes punctuation
+    and common stop words so minor spelling variants resolve to the same key.
+    """
+    if not text:
+        return ""
+    s = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode()
+    s = s.lower()
+    s = re.sub(r"[^a-z0-9 ]", " ", s)
+    s = re.sub(r"\b(ft|feat|featuring|and|the|a|an|of|in|on|by)\b", " ", s)
+    return " ".join(s.split())
+
+
+def load_merge_pairs(merge_workbook_path):
+    """
+    Read approved merge pairs from the duplicate-release merge workbook.
+
+    Returns a dict:
+        {(broad_title, broad_artist, chart_type): (canonical_title, canonical_artist)}
+
+    Both the duplicate and the keeper share the same Title/Artist(s)/Type in the
+    "Apply Merges" sheet — those are the canonical display strings to use everywhere.
+    """
+    wb = load_workbook(merge_workbook_path, read_only=True, data_only=True)
+    if "Apply Merges" not in wb.sheetnames:
+        wb.close()
+        return {}
+    ws = wb["Apply Merges"]
+    rows = list(ws.iter_rows(values_only=True))
+    wb.close()
+    if not rows:
+        return {}
+    headers = [str(v).strip() if v is not None else "" for v in rows[0]]
+    pairs = {}
+    for row in rows[1:]:
+        if not any(v is not None for v in row):
+            continue
+        r = dict(zip(headers, row))
+        # Honour an explicit Action column if present; otherwise treat every row
+        # in "Apply Merges" as a merge (that is the purpose of the sheet).
+        action = str(r.get("Action") or "merge").strip().lower()
+        if "merge" not in action:
+            continue
+        title = str(r.get("Title") or "").strip()
+        artist = str(r.get("Artist(s)") or "").strip()
+        chart_type = str(r.get("Type") or "").strip()
+        if title and artist and chart_type:
+            broad_key = (_broad_normalize(title), _broad_normalize(artist), chart_type)
+            existing = pairs.get(broad_key)
+            if existing and existing != (title, artist):
+                # Two rows in Apply Merges share the same broad key but have
+                # different canonical forms — keep the first and warn so the
+                # workbook can be corrected rather than silently dropping one.
+                import warnings
+                warnings.warn(
+                    f"Merge workbook collision: broad key {broad_key!r} maps to both "
+                    f"{existing!r} and {(title, artist)!r}. Keeping the first.",
+                    stacklevel=2,
+                )
+            else:
+                pairs[broad_key] = (title, artist)
+    return pairs
+
+
+def apply_merge_canonicalization(data, merge_pairs):
+    """
+    Re-canonicalize titles and primary-artist credits for every entry whose
+    broad-normalized (title, artist, chart_type) matches a pair in the merge
+    workbook.
+
+    This ensures the same song uses one consistent title+artist string across
+    all months and platforms, which in turn causes import_master_workbook() to
+    create a single Release record for it instead of separate duplicates.
+    """
+    if not merge_pairs:
+        return data
+
+    def _remap_combined(row, chart_type):
+        key = (
+            _broad_normalize(row["Title"]),
+            _broad_normalize(str(row.get("Primary_Artist") or "")),
+            chart_type,
+        )
+        if key in merge_pairs:
+            canonical_title, canonical_artist = merge_pairs[key]
+            row = dict(row)
+            row["Title"] = canonical_title
+            row["Primary_Artist"] = canonical_artist
+        return row
+
+    def _remap_platform(row, chart_type):
+        primary = str(row.get("Primary_Artist") or row.get("Artist") or "")
+        key = (_broad_normalize(row["Title"]), _broad_normalize(primary), chart_type)
+        if key in merge_pairs:
+            canonical_title, canonical_artist = merge_pairs[key]
+            row = dict(row)
+            row["Title"] = canonical_title
+            if "Primary_Artist" in row:
+                row["Primary_Artist"] = canonical_artist
+            else:
+                row["Artist"] = canonical_artist
+        return row
+
+    for chart_type in ("singles", "albums"):
+        data[chart_type]["combined"] = [
+            _remap_combined(row, chart_type) for row in data[chart_type]["combined"]
+        ]
+        data[chart_type]["platforms"] = [
+            _remap_platform(row, chart_type) for row in data[chart_type]["platforms"]
+        ]
+    return data
+
+
 MONTHS = [
     "September 2025",
     "October 2025",
@@ -268,9 +389,16 @@ def _canonicalize_master_data(data):
                     "Source_Rank": int(row["Rank"]),
                 }
             else:
-                existing["Points"] += int(row["Points"])
+                # Duplicate entry for the same song in the same month+platform.
+                # A song can only occupy one rank on a chart — keep the better
+                # rank (lower number = higher points) and discard the other.
+                # Summing would artificially inflate the score for a data error.
+                incoming_rank = int(row["Rank"])
+                if incoming_rank < existing["Source_Rank"]:
+                    existing["Points"] = int(row["Points"])
+                    existing["Rank"] = incoming_rank
+                    existing["Source_Rank"] = incoming_rank
                 existing["Weeks"] = max(existing["Weeks"], int(row["Weeks"]))
-                existing["Source_Rank"] = min(existing["Source_Rank"], int(row["Rank"]))
                 existing["Featured_Artists"] = _merge_featured_artists(
                     existing["Primary_Artist"], existing["Featured_Artists"], featured
                 )
@@ -450,9 +578,20 @@ def _safe_slug(name, used):
     return candidate
 
 
-def import_master_workbook(app_registry, workbook_path, clear=True, write_line=None):
+def import_master_workbook(app_registry, workbook_path, clear=True, write_line=None, merge_workbook_path=None):
     data = load_master_workbook(workbook_path)
     write_line = write_line or (lambda _message: None)
+
+    # Apply merge-workbook canonicalization before any DB writes so duplicate
+    # songs resolve to one canonical title+artist and are never inserted as
+    # separate Release records in the first place.
+    if merge_workbook_path:
+        merge_path = Path(merge_workbook_path)
+        if merge_path.exists():
+            merge_pairs = load_merge_pairs(merge_path)
+            if merge_pairs:
+                data = apply_merge_canonicalization(data, merge_pairs)
+                write_line(f"Merge canonicalization: applied {len(merge_pairs)} pairs from {merge_path.name}")
 
     Platform = app_registry.get_model("charts", "Platform")
     Artist = app_registry.get_model("charts", "Artist")

@@ -3,12 +3,18 @@ import json
 import sys
 from pathlib import Path
 
-
 BACKEND_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND_ROOT))
 
 from charts.artist_metadata import artist_country
-from charts.master_dataset import MONTHS, load_master_workbook
+from charts.master_dataset import (
+    MONTHS,
+    apply_merge_canonicalization,
+    load_master_workbook,
+    load_merge_pairs,
+)
+
+DEFAULT_MERGE_WORKBOOK = BACKEND_ROOT / "Data" / "ngoma_duplicate_releases_final_merge_ready.xlsx"
 
 
 def compact_country(artist_name):
@@ -66,18 +72,59 @@ def build_frontend_data(data):
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("workbook", type=Path)
-    parser.add_argument("output", type=Path)
+    parser = argparse.ArgumentParser(
+        description=(
+            "Export chartData.js from the master workbook. "
+            "Automatically applies the duplicate-release merge workbook when present."
+        )
+    )
+    parser.add_argument("workbook", type=Path, help="Path to Ngoma_Charts_MASTER.xlsx")
+    parser.add_argument("output", type=Path, help="Destination chartData.js path")
+    parser.add_argument(
+        "--merge-workbook",
+        type=Path,
+        default=DEFAULT_MERGE_WORKBOOK,
+        metavar="XLSX",
+        help=(
+            "Path to the duplicate-release merge workbook "
+            f"(default: {DEFAULT_MERGE_WORKBOOK.relative_to(BACKEND_ROOT)}). "
+            "Auto-applied when the file exists."
+        ),
+    )
+    parser.add_argument(
+        "--no-merge",
+        action="store_true",
+        help="Skip merge-workbook canonicalization.",
+    )
     args = parser.parse_args()
 
     data = load_master_workbook(args.workbook)
+
+    merge_applied = False
+    if not args.no_merge:
+        merge_path = Path(args.merge_workbook)
+        if merge_path.exists():
+            merge_pairs = load_merge_pairs(merge_path)
+            if merge_pairs:
+                data = apply_merge_canonicalization(data, merge_pairs)
+                print(f"Applied {len(merge_pairs)} merge pairs from {merge_path.name}")
+                merge_applied = True
+        else:
+            print(f"Merge workbook not found at {merge_path}, skipping canonicalization.")
+
+    header_comment = (
+        "// Generated from Ngoma_Charts_MASTER.xlsx + duplicate-release merge workbook."
+        if merge_applied
+        else "// Generated from Ngoma_Charts_MASTER.xlsx."
+    )
+    header_comment += " Do not edit chart rows by hand.\n"
+
     full = build_frontend_data(data)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
-        "// Generated from Ngoma_Charts_MASTER.xlsx. Do not edit chart rows by hand.\n"
-        f"export const MONTHS = {json.dumps(MONTHS, ensure_ascii=False)};\n"
-        f"export const FULL = {json.dumps(full, ensure_ascii=False, separators=(',', ':'))};\n",
+        header_comment
+        + f"export const MONTHS = {json.dumps(MONTHS, ensure_ascii=False)};\n"
+        + f"export const FULL = {json.dumps(full, ensure_ascii=False, separators=(',', ':'))};\n",
         encoding="utf-8",
     )
     print(f"Wrote {args.output} from {args.workbook}")
