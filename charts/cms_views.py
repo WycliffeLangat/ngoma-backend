@@ -266,16 +266,78 @@ class CmsArtistViewSet(CmsBaseViewSet):
         ids = request.data.get('artist_ids') or []
         aliases = set(primary.aliases or [])
         moved = 0
-        for artist in Artist.objects.filter(id__in=ids).exclude(id=primary.id):
-            aliases.add(artist.name)
-            for alias in artist.aliases or []:
-                aliases.add(alias)
-            moved += artist.releases.update(artist=primary)
-            ArtistMergeLog.objects.create(primary_artist=primary, merged_artist_name=artist.name, merged_artist_id=artist.id, moved_releases=moved, aliases_added=list(aliases), merged_by=request.user)
-            artist.status = 'archived'
-            artist.name = f'{artist.name} (merged {artist.id})'
-            artist.slug = f'{artist.slug}-merged-{artist.id}'[:50]
-            artist.save(update_fields=['name', 'slug', 'status', 'updated_at'])
+        with transaction.atomic():
+            for artist in Artist.objects.filter(id__in=ids).exclude(id=primary.id):
+                aliases.add(artist.name)
+                for alias in artist.aliases or []:
+                    aliases.add(alias)
+
+                # Release.unique_together = ['canonical_title', 'artist', 'chart_type']
+                # A bulk .update(artist=primary) would IntegrityError if primary already
+                # has a release with the same (canonical_title, chart_type).
+                # Resolve conflicts first: merge those releases' chart entries into the
+                # primary's copy, then delete the dup release.
+                primary_canonical = {
+                    (r.canonical_title, r.chart_type): r
+                    for r in primary.releases.only('id', 'canonical_title', 'chart_type')
+                }
+                safe_ids = []
+                for dup_rel in artist.releases.only('id', 'canonical_title', 'chart_type'):
+                    key = (dup_rel.canonical_title, dup_rel.chart_type)
+                    if key in primary_canonical:
+                        keeper_rel = primary_canonical[key]
+                        # Move/sum MCE entries
+                        for entry in list(MonthlyChartEntry.objects.filter(release=dup_rel)):
+                            ke = MonthlyChartEntry.objects.filter(
+                                chart_id=entry.chart_id, platform_id=entry.platform_id, release=keeper_rel,
+                            ).first()
+                            if ke:
+                                ke.total_points += entry.total_points
+                                if entry.raw_total_points is not None:
+                                    ke.raw_total_points = (ke.raw_total_points or 0) + entry.raw_total_points
+                                ke.weeks_on_chart += entry.weeks_on_chart
+                                ke.peak_rank = min(ke.peak_rank, entry.peak_rank)
+                                ke.platform_count = max(ke.platform_count, entry.platform_count)
+                                ke.platform_max = max(ke.platform_max, entry.platform_max)
+                                ke.save(update_fields=[
+                                    'total_points', 'raw_total_points', 'weeks_on_chart',
+                                    'peak_rank', 'platform_count', 'platform_max',
+                                ])
+                                entry.delete()
+                            else:
+                                entry.release = keeper_rel
+                                entry.save(update_fields=['release'])
+                        # PCE: drop same-week+platform conflicts, move the rest
+                        keeper_pce_pairs = set(
+                            PlatformChartEntry.objects.filter(release=keeper_rel)
+                            .values_list('upload_id', 'platform_id')
+                        )
+                        for pce in list(PlatformChartEntry.objects.filter(release=dup_rel)):
+                            if (pce.upload_id, pce.platform_id) in keeper_pce_pairs:
+                                pce.delete()
+                            else:
+                                pce.release = keeper_rel
+                                pce.save(update_fields=['release'])
+                        Certification.objects.filter(release=dup_rel).delete()
+                        dup_rel.delete()
+                        recalculate_certifications(release=keeper_rel)
+                        moved += 1
+                    else:
+                        safe_ids.append(dup_rel.id)
+
+                # Bulk-move releases that don't conflict
+                if safe_ids:
+                    moved += Release.objects.filter(pk__in=safe_ids).update(artist=primary)
+
+                ArtistMergeLog.objects.create(
+                    primary_artist=primary, merged_artist_name=artist.name,
+                    merged_artist_id=artist.id, moved_releases=moved,
+                    aliases_added=list(aliases), merged_by=request.user,
+                )
+                artist.status = 'archived'
+                artist.name = f'{artist.name} (merged {artist.id})'
+                artist.slug = f'merged-{artist.id}'
+                artist.save(update_fields=['name', 'slug', 'status', 'updated_at'])
         primary.aliases = sorted(aliases)
         primary.save(update_fields=['aliases', 'updated_at'])
         audit(request, 'merged_artists', module='artists', obj=primary, new={'merged_ids': ids})
@@ -378,8 +440,9 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         """
         Merge this release (the duplicate) into another (the keeper).
         Body: { "into_id": <keeper_release_id> }
-        Chart entries are moved to the keeper; conflicts are dropped (no point summing).
-        The duplicate is permanently deleted.
+        MCE conflicts (same month + platform): points are SUMMED into keeper's entry.
+        PCE conflicts (same week + platform): dup's entry is dropped (a song can only
+        appear once per weekly chart per platform).
         """
         duplicate = self.get_object()
         into_id = request.data.get('into_id')
@@ -393,22 +456,47 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             return Response({'detail': 'Cannot merge a release into itself.'}, status=400)
 
         with transaction.atomic():
-            mce_moved = mce_dropped = 0
+            mce_moved = mce_summed = 0
             for entry in list(MonthlyChartEntry.objects.filter(release=duplicate)):
-                conflict = MonthlyChartEntry.objects.filter(
+                keeper_entry = MonthlyChartEntry.objects.filter(
                     chart_id=entry.chart_id,
                     platform_id=entry.platform_id,
                     release=keeper,
-                ).exists()
-                if conflict:
-                    mce_dropped += 1
+                ).first()
+                if keeper_entry:
+                    # Same month + platform: sum the points instead of discarding
+                    keeper_entry.total_points += entry.total_points
+                    if entry.raw_total_points is not None:
+                        keeper_entry.raw_total_points = (keeper_entry.raw_total_points or 0) + entry.raw_total_points
+                    keeper_entry.weeks_on_chart += entry.weeks_on_chart
+                    keeper_entry.peak_rank = min(keeper_entry.peak_rank, entry.peak_rank)
+                    keeper_entry.platform_count = max(keeper_entry.platform_count, entry.platform_count)
+                    keeper_entry.platform_max = max(keeper_entry.platform_max, entry.platform_max)
+                    keeper_entry.save(update_fields=[
+                        'total_points', 'raw_total_points', 'weeks_on_chart',
+                        'peak_rank', 'platform_count', 'platform_max',
+                    ])
                     entry.delete()
+                    mce_summed += 1
                 else:
                     mce_moved += 1
                     entry.release = keeper
                     entry.save(update_fields=['release'])
 
-            pce_moved = PlatformChartEntry.objects.filter(release=duplicate).update(release=keeper)
+            # PCE: drop same-week + same-platform conflicts; move the rest.
+            # A song should appear at most once per weekly chart per platform.
+            keeper_pce_pairs = set(
+                PlatformChartEntry.objects.filter(release=keeper).values_list('upload_id', 'platform_id')
+            )
+            pce_moved = pce_dropped = 0
+            for pce in list(PlatformChartEntry.objects.filter(release=duplicate)):
+                if (pce.upload_id, pce.platform_id) in keeper_pce_pairs:
+                    pce.delete()
+                    pce_dropped += 1
+                else:
+                    pce.release = keeper
+                    pce.save(update_fields=['release'])
+                    pce_moved += 1
 
             existing_credits = set(
                 ReleaseArtistCredit.objects.filter(release=keeper)
@@ -438,17 +526,18 @@ class CmsReleaseViewSet(CmsBaseViewSet):
 
             Certification.objects.filter(release=duplicate).delete()
             dup_repr = str(duplicate)
+            dup_id = duplicate.pk
             duplicate.delete()
 
         recalculate_certifications(release=keeper)
         audit(request, 'merged_release', module='releases', obj=keeper, new={
-            'merged_id': duplicate.pk, 'merged_repr': dup_repr,
-            'mce_moved': mce_moved, 'mce_dropped': mce_dropped, 'pce_moved': pce_moved,
+            'merged_id': dup_id, 'merged_repr': dup_repr,
+            'mce_moved': mce_moved, 'mce_summed': mce_summed, 'pce_moved': pce_moved, 'pce_dropped': pce_dropped,
         })
         bump_public_revision()
         return Response({
             'keeper': CmsReleaseSerializer(keeper).data,
-            'mce_moved': mce_moved, 'mce_dropped': mce_dropped, 'pce_moved': pce_moved,
+            'mce_moved': mce_moved, 'mce_summed': mce_summed, 'pce_moved': pce_moved, 'pce_dropped': pce_dropped,
         })
 
     @action(detail=True, methods=['delete'], url_path='hard_delete')

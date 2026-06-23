@@ -56,6 +56,27 @@ def audit(request, action, module='', obj=None, old=None, new=None, reason=''):
         pass
 
 
+def cms_exception_handler(exc, context):
+    """
+    Custom DRF exception handler.  Wraps the default handler so that any
+    exception — not just APIException subclasses — always returns a JSON
+    response instead of letting Django's 500 handler return HTML.
+    """
+    import logging
+    from rest_framework.views import exception_handler
+    from rest_framework.response import Response
+
+    response = exception_handler(exc, context)
+    if response is not None:
+        return response
+
+    logger = logging.getLogger('django.request')
+    logger.exception('Unhandled exception in CMS view: %s', exc)
+
+    detail = str(exc) if str(exc) else type(exc).__name__
+    return Response({'detail': detail}, status=500)
+
+
 def bump_public_revision():
     """
     Guarantee that _public_data_revision() returns a different string after
