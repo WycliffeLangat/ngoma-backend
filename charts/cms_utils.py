@@ -8,7 +8,7 @@ from decimal import Decimal
 from django.utils import timezone
 from django.utils.text import slugify
 import openpyxl
-from .models import AuditLog, Artist, Release, ReleaseArtistCredit, MonthlyChart, MonthlyChartEntry, Platform, ChartType, CertificationRule, Certification
+from .models import AuditLog, Artist, Release, ReleaseArtistCredit, MonthlyChart, MonthlyChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting
 
 
 def client_ip(request):
@@ -51,6 +51,23 @@ def audit(request, action, module='', obj=None, old=None, new=None, reason=''):
             user=request.user if request and request.user.is_authenticated else None,
             ip_address=client_ip(request) if request else None,
             user_agent=(request.META.get('HTTP_USER_AGENT', '') if request else '')[:2000],
+        )
+    except Exception:
+        pass
+
+
+def bump_public_revision():
+    """
+    Guarantee that _public_data_revision() returns a different string after
+    any merge or hard-delete, even if audit() silently failed and no model's
+    updated_at changed (e.g. the deleted record wasn't the most recently
+    touched one).  Writes a timestamp to a dedicated SiteSetting row that
+    app_data._public_data_revision() includes in its hash.
+    """
+    try:
+        SiteSetting.objects.update_or_create(
+            key='_cms_action_revision',
+            defaults={'value': {'ts': timezone.now().isoformat()}},
         )
     except Exception:
         pass

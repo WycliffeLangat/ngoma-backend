@@ -65,6 +65,15 @@ def _public_data_revision():
     latest_release = Release.objects.aggregate(m=Max("updated_at"))["m"]
     latest_chart = MonthlyChart.objects.aggregate(m=Max("updated_at"))["m"]
 
+    # Explicit bump written by merge/hard_delete actions — guarantees a revision
+    # change even when audit() fails AND the deleted record wasn't the most
+    # recently updated model (so Max("updated_at") stays the same).
+    action_rev = (
+        SiteSetting.objects.filter(key='_cms_action_revision')
+        .values_list('value', flat=True)
+        .first()
+    )
+
     parts = []
     if latest_log:
         parts.append(f"log:{latest_log['id']}")
@@ -74,6 +83,8 @@ def _public_data_revision():
         parts.append(f"r:{latest_release.isoformat()}")
     if latest_chart:
         parts.append(f"c:{latest_chart.isoformat()}")
+    if action_rev and isinstance(action_rev, dict):
+        parts.append(f"x:{action_rev.get('ts', '')}")
 
     return "|".join(parts) if parts else "0"
 

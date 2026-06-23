@@ -16,7 +16,7 @@ from rest_framework.views import APIView
 from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
-from .cms_utils import audit, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications
+from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications
 from .models import PlatformChartEntry, ReleaseArtistCredit
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
 
@@ -167,6 +167,7 @@ class CmsBaseViewSet(viewsets.ModelViewSet):
         audit(request, 'hard_deleted', module=getattr(self, 'module_name', ''), new={
             'id': obj_id, 'repr': obj_repr,
         })
+        bump_public_revision()
         return Response({'deleted': True}, status=200)
 
 
@@ -241,6 +242,7 @@ class CmsArtistViewSet(CmsBaseViewSet):
         artist_id = artist.pk
         artist.delete()
         audit(request, 'hard_deleted', module='artists', new={'id': artist_id, 'repr': artist_repr})
+        bump_public_revision()
         return Response({'deleted': True}, status=200)
 
     @action(detail=False, methods=['get'])
@@ -277,6 +279,7 @@ class CmsArtistViewSet(CmsBaseViewSet):
         primary.aliases = sorted(aliases)
         primary.save(update_fields=['aliases', 'updated_at'])
         audit(request, 'merged_artists', module='artists', obj=primary, new={'merged_ids': ids})
+        bump_public_revision()
         return Response(CmsArtistSerializer(primary).data)
 
     @action(detail=False, methods=['post'])
@@ -442,6 +445,7 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             'merged_id': duplicate.pk, 'merged_repr': dup_repr,
             'mce_moved': mce_moved, 'mce_dropped': mce_dropped, 'pce_moved': pce_moved,
         })
+        bump_public_revision()
         return Response({
             'keeper': CmsReleaseSerializer(keeper).data,
             'mce_moved': mce_moved, 'mce_dropped': mce_dropped, 'pce_moved': pce_moved,
@@ -467,6 +471,7 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         audit(request, 'hard_deleted_release', module='releases', new={
             'id': release_id, 'repr': release_repr, 'entries_deleted': entry_count,
         })
+        bump_public_revision()
         return Response({'deleted': True, 'entries_deleted': entry_count}, status=200)
 
 
