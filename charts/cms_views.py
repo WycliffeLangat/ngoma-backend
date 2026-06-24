@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError as DRFValidationError
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -131,8 +132,15 @@ class CmsDashboardView(APIView):
         return Response(data)
 
 
+class CmsPagination(PageNumberPagination):
+    page_size = 500
+    page_size_query_param = 'page_size'
+    max_page_size = 2000
+
+
 class CmsBaseViewSet(viewsets.ModelViewSet):
     permission_classes = [CmsRolePermission]
+    pagination_class = CmsPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
 
     def get_queryset(self):
