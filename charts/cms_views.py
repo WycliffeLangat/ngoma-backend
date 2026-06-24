@@ -929,14 +929,89 @@ class GlobalSearchView(APIView):
         if not q:
             return Response({'results': []})
         results = []
-        for artist in Artist.objects.filter(Q(name__icontains=q) | Q(display_name__icontains=q))[:8]:
-            results.append({'type': 'artist', 'id': artist.id, 'title': artist.name, 'subtitle': artist.country})
-        for release in Release.objects.select_related('artist').filter(Q(title__icontains=q) | Q(artist__name__icontains=q))[:8]:
-            results.append({'type': release.chart_type, 'id': release.id, 'title': release.title, 'subtitle': release.artist.name})
-        for article in NewsArticle.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))[:8]:
-            results.append({'type': 'news', 'id': article.id, 'title': article.title, 'subtitle': article.category})
-        for cert in Certification.objects.select_related('release', 'release__artist').filter(Q(release__title__icontains=q) | Q(release__artist__name__icontains=q))[:8]:
-            results.append({'type': 'certification', 'id': cert.id, 'title': f'{cert.release.title} — {cert.level}', 'subtitle': cert.release.artist.name})
+
+        # Artists — all name/identity/profile fields
+        artist_qs = Artist.objects.exclude(status='archived').filter(
+            Q(name__icontains=q) |
+            Q(display_name__icontains=q) |
+            Q(aliases__icontains=q) |
+            Q(country__icontains=q) |
+            Q(country_code__iexact=q) |
+            Q(city_region__icontains=q) |
+            Q(genre__icontains=q) |
+            Q(biography__icontains=q) |
+            Q(artist_type__icontains=q)
+        )[:10]
+        for a in artist_qs:
+            parts = [p for p in [a.display_name, a.genre, a.country] if p]
+            results.append({
+                'type': 'artist', 'id': a.id,
+                'title': a.name,
+                'subtitle': ' · '.join(parts[:2]),
+                'meta': a.country_code or '',
+            })
+
+        # Releases — title, canonical title, artist, featured artists, credits, ISRC, UPC, label, distributor
+        release_qs = Release.objects.select_related('artist').exclude(status='archived').filter(
+            Q(title__icontains=q) |
+            Q(canonical_title__icontains=q) |
+            Q(artist__name__icontains=q) |
+            Q(artist__display_name__icontains=q) |
+            Q(featured_artists__icontains=q) |
+            Q(credited_artists__icontains=q) |
+            Q(songwriters__icontains=q) |
+            Q(producers__icontains=q) |
+            Q(isrc__icontains=q) |
+            Q(upc__icontains=q) |
+            Q(label__icontains=q) |
+            Q(distributor__icontains=q) |
+            Q(country_code__icontains=q)
+        )[:12]
+        for r in release_qs:
+            year_str = str(r.release_year) if r.release_year else ''
+            meta_parts = [p for p in [r.isrc, r.upc, year_str] if p]
+            results.append({
+                'type': r.chart_type,
+                'id': r.id,
+                'title': r.title,
+                'subtitle': r.artist.name,
+                'meta': ' · '.join(meta_parts[:2]),
+            })
+
+        # News — title, headline, excerpt, body, category, tags, author
+        news_qs = NewsArticle.objects.filter(
+            Q(title__icontains=q) |
+            Q(subheadline__icontains=q) |
+            Q(excerpt__icontains=q) |
+            Q(body__icontains=q) |
+            Q(category__icontains=q) |
+            Q(tags__icontains=q) |
+            Q(author__icontains=q)
+        )[:6]
+        for article in news_qs:
+            results.append({
+                'type': 'news', 'id': article.id,
+                'title': article.title,
+                'subtitle': article.excerpt[:80] if article.excerpt else (article.category or ''),
+                'meta': article.author or '',
+            })
+
+        # Certifications — release title, artist, level, notes
+        cert_qs = Certification.objects.select_related('release', 'release__artist').filter(
+            Q(release__title__icontains=q) |
+            Q(release__artist__name__icontains=q) |
+            Q(release__artist__display_name__icontains=q) |
+            Q(level__icontains=q) |
+            Q(notes__icontains=q)
+        )[:6]
+        for cert in cert_qs:
+            results.append({
+                'type': 'certification', 'id': cert.id,
+                'title': cert.release.title,
+                'subtitle': f'{cert.release.artist.name} · {cert.level.title()}',
+                'meta': f'{int(cert.total_points or 0):,} pts · {cert.release.chart_type}',
+            })
+
         return Response({'results': results})
 
 
