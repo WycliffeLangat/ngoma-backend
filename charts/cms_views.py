@@ -296,16 +296,15 @@ class CmsArtistViewSet(CmsBaseViewSet):
                     aliases.add(alias)
 
                 # Release.unique_together = ['canonical_title', 'artist', 'chart_type']
-                # A bulk .update(artist=primary) would IntegrityError if primary already
-                # has a release with the same (canonical_title, chart_type).
-                # Resolve conflicts first: merge those releases' chart entries into the
-                # primary's copy, then delete the dup release.
+                # Rebuild primary_canonical each iteration so releases moved from
+                # previous dup artists are visible and avoid IntegrityErrors on
+                # bulk FK update.
                 primary_canonical = {
                     (r.canonical_title, r.chart_type): r
-                    for r in primary.releases.only('id', 'canonical_title', 'chart_type')
+                    for r in Release.objects.filter(artist=primary).only('id', 'canonical_title', 'chart_type')
                 }
                 safe_ids = []
-                for dup_rel in artist.releases.only('id', 'canonical_title', 'chart_type'):
+                for dup_rel in list(artist.releases.only('id', 'canonical_title', 'chart_type')):
                     key = (dup_rel.canonical_title, dup_rel.chart_type)
                     if key in primary_canonical:
                         keeper_rel = primary_canonical[key]
@@ -352,20 +351,27 @@ class CmsArtistViewSet(CmsBaseViewSet):
                 if safe_ids:
                     moved += Release.objects.filter(pk__in=safe_ids).update(artist=primary)
 
+                artist_moved = Release.objects.filter(artist=primary).exclude(
+                    id__in=list(primary_canonical.values())
+                ).count()
                 ArtistMergeLog.objects.create(
                     primary_artist=primary, merged_artist_name=artist.name,
-                    merged_artist_id=artist.id, moved_releases=moved,
+                    merged_artist_id=artist.id, moved_releases=len(safe_ids) + moved,
                     aliases_added=list(aliases), merged_by=request.user,
                 )
                 artist.status = 'archived'
                 artist.name = f'{artist.name} (merged {artist.id})'
                 artist.slug = f'merged-{artist.id}'
                 artist.save(update_fields=['name', 'slug', 'status', 'updated_at'])
-        primary.aliases = sorted(aliases)
-        primary.save(update_fields=['aliases', 'updated_at'])
+
+            # Update aliases inside the transaction so it's atomic with archiving.
+            primary.aliases = sorted(aliases)
+            primary.save(update_fields=['aliases', 'updated_at'])
+
         audit(request, 'merged_artists', module='artists', obj=primary, new={'merged_ids': ids})
         bump_public_revision()
-        return Response(CmsArtistSerializer(primary).data)
+        primary.refresh_from_db()
+        return Response(CmsArtistSerializer(primary, context={'request': request}).data)
 
     @action(detail=False, methods=['post'])
     def bulk_country_update(self, request):
@@ -544,8 +550,9 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             'mce_moved': mce_moved, 'mce_summed': mce_summed, 'pce_moved': pce_moved, 'pce_dropped': pce_dropped,
         })
         bump_public_revision()
+        keeper.refresh_from_db()
         return Response({
-            'keeper': CmsReleaseSerializer(keeper).data,
+            'keeper': CmsReleaseSerializer(keeper, context={'request': request}).data,
             'mce_moved': mce_moved, 'mce_summed': mce_summed, 'pce_moved': pce_moved, 'pce_dropped': pce_dropped,
         })
 
