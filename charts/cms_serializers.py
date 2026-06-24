@@ -94,6 +94,9 @@ class CmsCountrySerializer(serializers.ModelSerializer):
 class CmsArtistSerializer(serializers.ModelSerializer):
     total_releases = serializers.IntegerField(source='releases.count', read_only=True)
     total_points = serializers.SerializerMethodField()
+    peak_rank = serializers.SerializerMethodField()
+    months_on_chart = serializers.SerializerMethodField()
+    entry_count = serializers.SerializerMethodField()
     missing_country = serializers.SerializerMethodField()
     flag = serializers.ReadOnlyField()
     image = serializers.ImageField(required=False, allow_null=True)
@@ -112,6 +115,20 @@ class CmsArtistSerializer(serializers.ModelSerializer):
     def get_total_points(self, obj):
         from django.db.models import Sum
         return MonthlyChartEntry.objects.filter(release__artist=obj).aggregate(total=Sum('total_points'))['total'] or 0
+
+    def get_peak_rank(self, obj):
+        from django.db.models import Min
+        return MonthlyChartEntry.objects.filter(
+            release__artist=obj, platform__isnull=True
+        ).aggregate(p=Min('rank'))['p']
+
+    def get_months_on_chart(self, obj):
+        return MonthlyChartEntry.objects.filter(
+            release__artist=obj, platform__isnull=True
+        ).values('chart').distinct().count()
+
+    def get_entry_count(self, obj):
+        return MonthlyChartEntry.objects.filter(release__artist=obj).count()
 
     def get_missing_country(self, obj):
         return not bool(obj.country or obj.country_code)
@@ -166,6 +183,7 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
     total_points = serializers.SerializerMethodField()
     peak_rank = serializers.SerializerMethodField()
     months_on_chart = serializers.SerializerMethodField()
+    entry_count = serializers.SerializerMethodField()
     certifications = serializers.SerializerMethodField()
 
     class Meta:
@@ -206,6 +224,9 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
 
     def get_months_on_chart(self, obj):
         return MonthlyChartEntry.objects.filter(release=obj, platform__isnull=True).values('chart').distinct().count()
+
+    def get_entry_count(self, obj):
+        return MonthlyChartEntry.objects.filter(release=obj).count()
 
     def get_certifications(self, obj):
         return list(obj.certifications.values('level', 'total_points', 'certified_at', 'is_official'))
