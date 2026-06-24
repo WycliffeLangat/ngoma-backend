@@ -135,6 +135,21 @@ class CmsBaseViewSet(viewsets.ModelViewSet):
     permission_classes = [CmsRolePermission]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        starts_with = self.request.query_params.get('starts_with', '').strip()
+        if starts_with and len(starts_with) == 1 and starts_with.isalpha():
+            # Use explicit starts_with_field, or the first search field without relation traversal
+            sw_field = getattr(self, 'starts_with_field', None)
+            if not sw_field:
+                for f in getattr(self, 'search_fields', []):
+                    if '__' not in f:
+                        sw_field = f
+                        break
+            if sw_field:
+                qs = qs.filter(**{f'{sw_field}__istartswith': starts_with})
+        return qs
+
     def perform_create(self, serializer):
         obj = serializer.save()
         audit(self.request, 'created', module=getattr(self, 'module_name', ''), obj=obj, new=serializer.data)
