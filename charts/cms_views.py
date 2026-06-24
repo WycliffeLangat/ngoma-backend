@@ -17,7 +17,7 @@ from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
 from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications
-from .models import PlatformChartEntry, ReleaseArtistCredit
+from .models import PlatformChartEntry
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
 
 
@@ -498,22 +498,8 @@ class CmsReleaseViewSet(CmsBaseViewSet):
                     pce.save(update_fields=['release'])
                     pce_moved += 1
 
-            existing_credits = set(
-                ReleaseArtistCredit.objects.filter(release=keeper)
-                .values_list('artist_id', 'role')
-            )
-            for credit in ReleaseArtistCredit.objects.filter(release=duplicate):
-                if (credit.artist_id, credit.role) not in existing_credits:
-                    ReleaseArtistCredit.objects.create(
-                        release=keeper,
-                        artist_id=credit.artist_id,
-                        role=credit.role,
-                        position=ReleaseArtistCredit.objects.filter(release=keeper, role=credit.role).count(),
-                    )
-                    existing_credits.add((credit.artist_id, credit.role))
-
             _META = ['cover_image','genre','label','distributor','isrc','upc','release_year',
-                     'release_date','featured_artists','credited_artists','songwriters','producers',
+                     'release_date','songwriters','producers',
                      'spotify_url','apple_music_url','youtube_url','boomplay_url','audiomack_url',
                      'tiktok_url','shazam_url','radio_info']
             updates = []
