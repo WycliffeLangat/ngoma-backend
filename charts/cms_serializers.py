@@ -353,6 +353,8 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
 class CmsMonthlyChartEntrySerializer(serializers.ModelSerializer):
     title = serializers.CharField(source='release.title', read_only=True)
     artist = serializers.CharField(source='release.artist.name', read_only=True)
+    artist_display = serializers.CharField(source='release.artist_display', read_only=True, default='')
+    cover_image = serializers.SerializerMethodField()
     platform_name = serializers.SerializerMethodField()
     movement = serializers.ReadOnlyField()
 
@@ -362,6 +364,18 @@ class CmsMonthlyChartEntrySerializer(serializers.ModelSerializer):
 
     def get_platform_name(self, obj):
         return obj.platform.name if obj.platform else 'Combined'
+
+    def get_cover_image(self, obj):
+        if not obj.release_id:
+            return None
+        img = obj.release.cover_image
+        if not img:
+            return None
+        request = self.context.get('request')
+        url = img.url
+        if request and not url.startswith('http'):
+            return request.build_absolute_uri(url)
+        return url
 
 
 class CmsMonthlyChartSerializer(serializers.ModelSerializer):
