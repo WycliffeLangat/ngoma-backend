@@ -351,9 +351,6 @@ class CmsArtistViewSet(CmsBaseViewSet):
                 if safe_ids:
                     moved += Release.objects.filter(pk__in=safe_ids).update(artist=primary)
 
-                artist_moved = Release.objects.filter(artist=primary).exclude(
-                    id__in=list(primary_canonical.values())
-                ).count()
                 ArtistMergeLog.objects.create(
                     primary_artist=primary, merged_artist_name=artist.name,
                     merged_artist_id=artist.id, moved_releases=len(safe_ids) + moved,
