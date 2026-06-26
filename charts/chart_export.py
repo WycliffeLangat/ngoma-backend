@@ -3,9 +3,18 @@ import calendar
 from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.http import require_GET
+from django.views.decorators.cache import never_cache
 
 from .models import MonthlyChart, MonthlyChartEntry, Platform
 from .artist_credits import release_credit_payload
+
+
+def _no_cache_json(payload, status=200):
+    response = JsonResponse(payload, status=status)
+    response["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    response["Pragma"] = "no-cache"
+    response["Expires"] = "0"
+    return response
 
 
 def format_movement(entry):
@@ -39,6 +48,7 @@ def country_code_to_flag(country_code):
     return "".join(chr(127397 + ord(char)) for char in code)
 
 
+@never_cache
 @require_GET
 def chart_image_data(request):
     chart_type = request.GET.get("type", "singles").lower()
@@ -61,7 +71,7 @@ def chart_image_data(request):
     chart = chart_query.order_by("-year", "-month").first()
 
     if not chart:
-        return JsonResponse(
+        return _no_cache_json(
             {
                 "error": "No published chart found for the selected filters.",
                 "chart_type": chart_type,
@@ -89,7 +99,7 @@ def chart_image_data(request):
         platform = Platform.objects.filter(slug=platform_slug).first()
 
         if not platform:
-            return JsonResponse(
+            return _no_cache_json(
                 {"error": f"Platform '{platform_slug}' was not found."},
                 status=404,
             )
@@ -174,7 +184,7 @@ def chart_image_data(request):
             }
         )
 
-    return JsonResponse(
+    return _no_cache_json(
         {
             "chart_id": chart.id,
             "chart_type": chart.chart_type,

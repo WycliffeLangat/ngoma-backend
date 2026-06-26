@@ -64,6 +64,10 @@ def _public_data_revision():
     latest_artist = Artist.objects.aggregate(m=Max("updated_at"))["m"]
     latest_release = Release.objects.aggregate(m=Max("updated_at"))["m"]
     latest_chart = MonthlyChart.objects.aggregate(m=Max("updated_at"))["m"]
+    latest_news = NewsArticle.objects.aggregate(m=Max("updated_at"))["m"]
+    latest_certification = Certification.objects.aggregate(m=Max("certified_at"))["m"]
+    latest_page_content = PageContent.objects.aggregate(m=Max("updated_at"))["m"]
+    latest_setting = SiteSetting.objects.exclude(key__startswith="_").aggregate(m=Max("updated_at"))["m"]
 
     # Explicit bump written by merge/hard_delete actions — guarantees a revision
     # change even when audit() fails AND the deleted record wasn't the most
@@ -83,6 +87,14 @@ def _public_data_revision():
         parts.append(f"r:{latest_release.isoformat()}")
     if latest_chart:
         parts.append(f"c:{latest_chart.isoformat()}")
+    if latest_news:
+        parts.append(f"n:{latest_news.isoformat()}")
+    if latest_certification:
+        parts.append(f"cert:{latest_certification.isoformat()}")
+    if latest_page_content:
+        parts.append(f"pc:{latest_page_content.isoformat()}")
+    if latest_setting:
+        parts.append(f"s:{latest_setting.isoformat()}")
     if action_rev and isinstance(action_rev, dict):
         parts.append(f"x:{action_rev.get('ts', '')}")
 
@@ -357,7 +369,10 @@ class PublicAppDataView(APIView):
                 "id", "name", "code", "region", "flag", "display_order", "active"
             )
         )
-        settings = {item.key: item.value for item in SiteSetting.objects.all()}
+        settings = {
+            item.key: item.value
+            for item in SiteSetting.objects.exclude(key__startswith="_")
+        }
         page_content = defaultdict(list)
         for item in PageContent.objects.filter(is_visible=True):
             page_content[item.page].append(

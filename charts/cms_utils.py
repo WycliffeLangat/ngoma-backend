@@ -11,6 +11,25 @@ import openpyxl
 from .models import AuditLog, Artist, Release, ReleaseArtistCredit, MonthlyChart, MonthlyChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting
 
 
+PUBLIC_DATA_AUDIT_MODULES = {
+    "artists",
+    "releases",
+    "countries",
+    "platforms",
+    "charts",
+    "chart_entries",
+    "chart_uploads",
+    "uploads",
+    "news",
+    "media",
+    "settings",
+    "page_content",
+    "certifications",
+    "certification_rules",
+    "methodology",
+}
+
+
 def client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -54,6 +73,13 @@ def audit(request, action, module='', obj=None, old=None, new=None, reason=''):
         )
     except Exception:
         pass
+
+    # Any CMS action that can affect the public website must move the public
+    # revision forward. The public frontend watches this lightweight revision
+    # and reloads/refetches, so CMS edits become visible without rebuilding
+    # the frontend or regenerating static chart-data files.
+    if module in PUBLIC_DATA_AUDIT_MODULES:
+        bump_public_revision()
 
 
 def cms_exception_handler(exc, context):
