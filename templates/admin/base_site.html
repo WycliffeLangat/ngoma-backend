@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | Ngoma Charts Admin{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'admin/css/ngoma_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <a class="ngoma-admin-brand" href="{% url 'admin:index' %}">
+    <span class="ngoma-admin-mark">N</span>
+    <span>
+      <strong>Ngoma Charts</strong>
+      <small>Technical administration</small>
+    </span>
+  </a>
+{% endblock %}
+
+{% block nav-global %}
+  <a class="ngoma-cms-link" href="/admin/">
+    Open editorial CMS
+    <span aria-hidden="true">↗</span>
+  </a>
