@@ -104,11 +104,12 @@ def normalize_entry(title, artist, artist_rules, title_rules, is_album=False):
 
 def get_or_create_artist(name):
     from django.utils.text import slugify
-    slug = slugify(name)[:50]
-    base_slug = slug
+    base_slug = slugify(name)[:50]
+    slug = base_slug
     i = 1
     while Artist.objects.filter(slug=slug).exclude(name=name).exists():
-        slug = f"{base_slug}-{i}"
+        suffix = f"-{i}"
+        slug = f"{base_slug[:50 - len(suffix)]}{suffix}"
         i += 1
     artist, _ = Artist.objects.get_or_create(name=name, defaults={'slug': slug})
     return artist
