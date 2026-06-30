@@ -126,7 +126,7 @@ def get_or_create_release(title, artist_obj, chart_type):
 
 
 @transaction.atomic
-def process_weekly_upload(upload: WeeklyUpload) -> dict:
+def process_weekly_upload(upload: WeeklyUpload, file_obj=None) -> dict:
     """
     Process a weekly xlsx upload:
     1. Parse the file
@@ -138,9 +138,26 @@ def process_weekly_upload(upload: WeeklyUpload) -> dict:
     is_album = upload.chart_type == ChartType.ALBUMS
     artist_rules, title_rules = get_norm_rules()
 
-    wb = openpyxl.load_workbook(upload.file.path, read_only=True)
-    ws = wb.active
-    rows = list(ws.iter_rows(values_only=True))
+    source = file_obj
+    close_source = False
+    if source is None:
+        try:
+            source = upload.file.open('rb')
+            close_source = True
+        except (NotImplementedError, FileNotFoundError, ValueError, OSError) as exc:
+            raise ValueError('The original weekly workbook is unavailable. Upload the file again.') from exc
+    if hasattr(source, 'seek'):
+        source.seek(0)
+    wb = openpyxl.load_workbook(source, read_only=True, data_only=True)
+    try:
+        ws = wb.active
+        rows = list(ws.iter_rows(values_only=True))
+    finally:
+        wb.close()
+        if close_source:
+            upload.file.close()
+    if not rows:
+        raise ValueError('The workbook is empty.')
     headers = [str(h).strip() if h else '' for h in rows[0]]
     data_rows = rows[1:]
 
@@ -152,6 +169,13 @@ def process_weekly_upload(upload: WeeklyUpload) -> dict:
 
     platforms = {p.name: p for p in Platform.objects.filter(name__in=platform_names)}
     platform_col = {h: i for i, h in enumerate(headers)}
+    recognized = [name for name in platform_names if name in platform_col]
+    if not recognized:
+        expected = ', '.join(platform_names)
+        raise ValueError(f'No supported platform columns found. Expected one or more of: {expected}.')
+    configured = [name for name in recognized if name in platforms]
+    if not configured:
+        raise ValueError('The workbook columns are valid, but the matching platforms are not configured.')
 
     # Clear existing entries for this upload
     PlatformChartEntry.objects.filter(upload=upload).delete()
@@ -169,7 +193,7 @@ def process_weekly_upload(upload: WeeklyUpload) -> dict:
         week_entries = []
         pos = 0
         for row in data_rows:
-            cell = row[col_i]
+            cell = row[col_i] if col_i < len(row) else None
             if cell and str(cell).strip():
                 pos += 1
                 raw = str(cell).strip()
@@ -249,6 +273,7 @@ def rebuild_monthly_chart(chart_type: str, year: int, month: int) -> dict:
 
     for upload in uploads:
         entries = PlatformChartEntry.objects.filter(upload=upload).select_related('release', 'platform')
+        releases_seen_this_week = set()
         for e in entries:
             pn = e.platform.name
             rid = e.release.id
@@ -260,6 +285,9 @@ def rebuild_monthly_chart(chart_type: str, year: int, month: int) -> dict:
             combined_agg[rid]['plats'].add(pn)
             if e.position < combined_agg[rid]['peak']:
                 combined_agg[rid]['peak'] = e.position
+            if rid not in releases_seen_this_week:
+                combined_agg[rid]['wks'] += 1
+                releases_seen_this_week.add(rid)
 
     # Get prev month for movement calculation
     prev_year, prev_month = (year, month - 1) if month > 1 else (year - 1, 12)

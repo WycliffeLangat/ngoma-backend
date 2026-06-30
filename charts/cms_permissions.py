@@ -16,6 +16,29 @@ ADMIN_ROLES = {AdminRole.SUPER_ADMIN, AdminRole.ADMIN}
 NEWS_ROLES = {AdminRole.SUPER_ADMIN, AdminRole.ADMIN, AdminRole.EDITOR, AdminRole.NEWS_EDITOR, AdminRole.REVIEWER}
 DATA_ROLES = {AdminRole.SUPER_ADMIN, AdminRole.ADMIN, AdminRole.EDITOR, AdminRole.DATA_EDITOR, AdminRole.REVIEWER}
 
+NEWS_MODULES = {'news'}
+DATA_MODULES = {
+    'artists', 'releases', 'countries', 'platforms', 'charts', 'chart_entries',
+    'chart_uploads', 'uploads', 'certifications', 'certification_rules',
+    'methodology', 'reports',
+}
+EDITORIAL_MODULES = {'media', 'page_content', 'notes', 'notifications'}
+ADMIN_MODULES = {'users', 'settings', 'backups', 'future_modules'}
+
+# These actions alter public state, historical data, or access control and must
+# never be available merely because a user can edit ordinary records.
+PUBLISH_ACTIONS = {
+    'publish', 'unpublish', 'approve', 'reject', 'rollback', 'recalculate',
+    'bulk_publish', 'lock', 'unlock',
+}
+ADMIN_ACTIONS = {
+    'destroy', 'hard_delete', 'create_user', 'set_role',
+}
+
+
+def _module_name(view):
+    return getattr(view, 'module_name', '') or ''
+
 
 def get_user_role(user):
     if not user or not user.is_authenticated:
@@ -32,7 +55,13 @@ class IsCmsUser(BasePermission):
 
 
 class CmsRolePermission(BasePermission):
-    """General CMS permission: viewers can read; editors/admins can write."""
+    """Role and module-aware CMS permission policy.
+
+    Viewers are read-only. Specialist editors can only mutate their own
+    modules, reviewers can publish, and destructive operations remain admin
+    only. The backend is authoritative; hiding a button in React is not a
+    security boundary.
+    """
     def has_permission(self, request, view):
         role = get_user_role(request.user)
         if not role:
@@ -40,11 +69,20 @@ class CmsRolePermission(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         action = getattr(view, 'action', '')
-        if action in {'publish', 'approve', 'reject', 'rollback', 'recalculate', 'bulk_publish'}:
+        if action in PUBLISH_ACTIONS:
             return role in PUBLISH_ROLES
-        if action in {'destroy', 'create_user', 'set_role'}:
+        if action in ADMIN_ACTIONS:
             return role in ADMIN_ROLES
-        return ROLE_ORDER.get(role, 0) >= 1
+        module = _module_name(view)
+        if module in ADMIN_MODULES:
+            return role in ADMIN_ROLES
+        if module in NEWS_MODULES:
+            return role in NEWS_ROLES
+        if module in DATA_MODULES:
+            return role in DATA_ROLES
+        if module in EDITORIAL_MODULES:
+            return role in (NEWS_ROLES | DATA_ROLES)
+        return role in {AdminRole.SUPER_ADMIN, AdminRole.ADMIN, AdminRole.EDITOR, AdminRole.REVIEWER}
 
 
 class CmsAdminOnly(BasePermission):

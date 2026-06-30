@@ -55,6 +55,7 @@ class Command(BaseCommand):
         self.stdout.write(
             self.style.SUCCESS(
                 f"Import complete: {report['combined_rows']} Combined rows, "
-                f"{report['platform_rows']} platform rows, current month May 2026"
+                f"{report['platform_rows']} platform rows, "
+                f"current month {report['months'][-1]}"
             )
         )

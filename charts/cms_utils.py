@@ -2,6 +2,7 @@ import csv
 import io
 import re
 from collections import Counter
+from django.db.models import Q
 from collections.abc import Mapping
 from datetime import date, datetime, time
 from decimal import Decimal
@@ -28,6 +29,28 @@ PUBLIC_DATA_AUDIT_MODULES = {
     "certification_rules",
     "methodology",
 }
+
+
+def published_top50_entries():
+    """Canonical queryset for public statistics and historical records.
+
+    Every aggregate must use this foundation so drafts, rejected charts,
+    platform rows and ranks below the published Top 50 cannot silently alter
+    public totals.
+    """
+    return MonthlyChartEntry.objects.filter(
+        chart__is_published=True,
+        chart__status='published',
+        platform__isnull=True,
+        rank__gte=1,
+        rank__lte=50,
+    )
+
+
+def published_artist_entries(artist):
+    return published_top50_entries().filter(
+        Q(release__artist=artist) | Q(release__artist_credits__artist=artist)
+    ).distinct()
 
 
 def client_ip(request):
@@ -403,7 +426,7 @@ def recalculate_certifications(chart_type=None, release=None):
     thresholds = certification_thresholds()
     updated = 0
     for rel in qs:
-        total = MonthlyChartEntry.objects.filter(release=rel, platform__isnull=True).aggregate(total=Sum('total_points'))['total'] or 0
+        total = published_top50_entries().filter(release=rel).aggregate(total=Sum('total_points'))['total'] or 0
         for level, threshold in sorted(thresholds.items(), key=lambda item: item[1]):
             if total >= threshold:
                 Certification.objects.update_or_create(release=rel, level=level, defaults={'total_points': total})

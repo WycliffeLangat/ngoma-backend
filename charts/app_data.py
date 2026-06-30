@@ -1,7 +1,9 @@
 from collections import defaultdict
+import hashlib
 
 from django.core.cache import cache
 from django.db.models import Max, Min, Prefetch, Q, Sum
+from django.db.models.functions import Coalesce
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -61,13 +63,22 @@ def _public_data_revision():
     # Pull the most-recently-touched timestamps directly from the data models.
     # This guarantees the revision changes on every CMS save even if the audit
     # log write fails silently (its body is wrapped in try/except).
-    latest_artist = Artist.objects.aggregate(m=Max("updated_at"))["m"]
-    latest_release = Release.objects.aggregate(m=Max("updated_at"))["m"]
-    latest_chart = MonthlyChart.objects.aggregate(m=Max("updated_at"))["m"]
-    latest_news = NewsArticle.objects.aggregate(m=Max("updated_at"))["m"]
-    latest_certification = Certification.objects.aggregate(m=Max("certified_at"))["m"]
-    latest_page_content = PageContent.objects.aggregate(m=Max("updated_at"))["m"]
-    latest_setting = SiteSetting.objects.exclude(key__startswith="_").aggregate(m=Max("updated_at"))["m"]
+    aggregates = {
+        "artist": Artist.objects.aggregate(m=Max("updated_at"))["m"],
+        "release": Release.objects.aggregate(m=Max("updated_at"))["m"],
+        "chart": MonthlyChart.objects.aggregate(m=Max("updated_at"))["m"],
+        "news": NewsArticle.objects.aggregate(m=Max("updated_at"))["m"],
+        "certification": Certification.objects.aggregate(m=Max("certified_at"))["m"],
+        "page_content": PageContent.objects.aggregate(m=Max("updated_at"))["m"],
+        "setting": SiteSetting.objects.exclude(key__startswith="_").aggregate(m=Max("updated_at"))["m"],
+    }
+    latest_artist = aggregates["artist"]
+    latest_release = aggregates["release"]
+    latest_chart = aggregates["chart"]
+    latest_news = aggregates["news"]
+    latest_certification = aggregates["certification"]
+    latest_page_content = aggregates["page_content"]
+    latest_setting = aggregates["setting"]
 
     # Explicit bump written by merge/hard_delete actions — guarantees a revision
     # change even when audit() fails AND the deleted record wasn't the most
@@ -311,20 +322,45 @@ class PublicAppDataView(APIView):
 
     def get(self, request):
         revision = _public_data_revision()
-        cache_key = f"pub_app_data:{revision}"
+        revision_key = hashlib.sha256(revision.encode("utf-8")).hexdigest()[:24]
+        cache_key = f"pub_app_data:{revision_key}"
         cached_payload = cache.get(cache_key)
         if cached_payload is not None:
             return _disable_response_cache(Response(cached_payload))
 
         public_entries = MonthlyChartEntry.objects.select_related(
             "release", "release__artist", "platform"
-        ).prefetch_related("release__artist_credits__artist").order_by("rank")
+        ).prefetch_related(
+            "release__artist_credits__artist"
+        ).filter(rank__gte=1, rank__lte=50).order_by("rank")
         charts = list(
             MonthlyChart.objects.filter(is_published=True, status="published")
             .prefetch_related(Prefetch("entries", queryset=public_entries, to_attr="public_entries"))
             .order_by("year", "month", "chart_type")
         )
         months, full = _chart_data(request, charts)
+        periods = {}
+        latest_by_chart_type = {}
+        for chart in charts:
+            key = (chart.year, chart.month)
+            period = periods.setdefault(
+                key,
+                {
+                    "label": chart.label,
+                    "year": chart.year,
+                    "month": chart.month,
+                    "chart_types": [],
+                },
+            )
+            if chart.chart_type not in period["chart_types"]:
+                period["chart_types"].append(chart.chart_type)
+            latest_by_chart_type[chart.chart_type] = {
+                "label": chart.label,
+                "year": chart.year,
+                "month": chart.month,
+            }
+        month_options = [periods[key] for key in sorted(periods)]
+        latest_published_month = month_options[-1] if month_options else None
 
         public_release_ids = {
             entry.release_id
@@ -349,12 +385,24 @@ class PublicAppDataView(APIView):
 
         artists = [
             _artist_payload(request, artist)
-            for artist in Artist.objects.filter(id__in=public_artist_ids)
+            for artist in Artist.objects.filter(id__in=public_artist_ids).only(
+                "id", "name", "slug", "display_name", "aliases", "country", "country_code",
+                "city_region", "genre", "biography", "image", "artist_type", "verified",
+                "status", "spotify_url", "apple_music_url", "youtube_url", "boomplay_url",
+                "audiomack_url", "tiktok_url", "instagram_url", "x_url", "facebook_url",
+                "website_url", "updated_at"
+            )
             if _is_public_status(artist.status)
         ]
         releases = [
             _release_payload(request, release)
-            for release in Release.objects.select_related("artist").prefetch_related("artist_credits__artist").filter(id__in=public_release_ids)
+            for release in Release.objects.select_related("artist").prefetch_related("artist_credits__artist").filter(id__in=public_release_ids).only(
+                "id", "title", "chart_type", "artist_id", "featured_artists", "credited_artists",
+                "songwriters", "producers", "release_year", "release_date", "isrc", "upc",
+                "number_of_tracks", "country", "country_code", "genre", "label", "distributor",
+                "cover_image", "spotify_url", "apple_music_url", "boomplay_url", "audiomack_url",
+                "youtube_url", "tiktok_url", "shazam_url", "radio_info", "status", "updated_at"
+            )
             if _is_public_status(release.status) and _is_public_status(release.artist.status)
         ]
         platforms = list(
@@ -405,6 +453,9 @@ class PublicAppDataView(APIView):
             "revision": revision,
             "generated_at": timezone.now(),
             "months": months,
+            "month_options": month_options,
+            "latest_published_month": latest_published_month,
+            "latest_published_by_chart_type": latest_by_chart_type,
             "full": full,
             "artists": artists,
             "releases": releases,
@@ -514,7 +565,14 @@ class PublicArtistDetailView(APIView):
         # Combined-chart history across all published months (no platform breakdown).
         entries = (
             MonthlyChartEntry.objects
-            .filter(Q(release__artist=artist) | Q(release__artist_credits__artist=artist), platform__isnull=True)
+            .filter(
+                Q(release__artist=artist) | Q(release__artist_credits__artist=artist),
+                chart__is_published=True,
+                chart__status="published",
+                platform__isnull=True,
+                rank__gte=1,
+                rank__lte=50,
+            )
             .select_related("chart", "release", "release__artist")
             .prefetch_related("release__artist_credits__artist")
             .distinct()
@@ -545,7 +603,15 @@ class PublicArtistDetailView(APIView):
         def _chart_stats(chart_type):
             agg = (
                 MonthlyChartEntry.objects
-                .filter(Q(release__artist=artist) | Q(release__artist_credits__artist=artist), platform__isnull=True, release__chart_type=chart_type)
+                .filter(
+                    Q(release__artist=artist) | Q(release__artist_credits__artist=artist),
+                    chart__is_published=True,
+                    chart__status="published",
+                    platform__isnull=True,
+                    rank__gte=1,
+                    rank__lte=50,
+                    release__chart_type=chart_type,
+                )
                 .distinct()
                 .aggregate(total_pts=Sum("total_points"), peak=Min("rank"))
             )

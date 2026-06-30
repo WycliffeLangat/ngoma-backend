@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.test import TestCase
 from rest_framework.test import APIClient
 
@@ -23,6 +24,7 @@ from .models import (
 
 class CmsDashboardAlertTests(TestCase):
     def setUp(self):
+        cache.clear()
         self.client = APIClient()
         self.admin = User.objects.create_superuser('alert-admin', 'alerts@example.com', 'password')
         self.client.force_authenticate(self.admin)
@@ -53,9 +55,13 @@ class CmsDashboardAlertTests(TestCase):
         BackupRecord.objects.create(status='created', created_by=self.admin)
 
     def dashboard(self):
-        response = self.client.get('/api/v1/cms/dashboard/')
-        self.assertEqual(response.status_code, 200, response.content)
-        return response.json()
+        cards_response = self.client.get('/api/v1/cms/dashboard/')
+        self.assertEqual(cards_response.status_code, 200, cards_response.content)
+        insights_response = self.client.get('/api/v1/cms/dashboard/insights/')
+        self.assertEqual(insights_response.status_code, 200, insights_response.content)
+        data = insights_response.json()
+        data['cards'] = {**cards_response.json()['cards'], **data['cards']}
+        return data
 
     def test_dashboard_alerts_include_actionable_details_and_live_summary(self):
         Artist.objects.create(name='Countryless Artist', slug='countryless-artist')

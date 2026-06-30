@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.db import transaction
-from django.db.models import Count, Sum, Q
+from django.db.models import Count, Min, Sum, Q
+from django.db.models.functions import Coalesce
 from django.middleware.csrf import get_token
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -17,9 +19,10 @@ from rest_framework.views import APIView
 from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
-from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications
+from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, published_top50_entries
 from .models import PlatformChartEntry
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
+from .pipeline import process_weekly_upload, rebuild_monthly_chart
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -49,7 +52,7 @@ class CmsLoginView(APIView):
 
 class StorageDebugView(APIView):
     """Returns storage/Cloudinary configuration status — for diagnosing image upload issues."""
-    permission_classes = [IsCmsUser]
+    permission_classes = [CmsAdminOnly]
 
     def get(self, request):
         from django.conf import settings as dj_settings
@@ -97,45 +100,82 @@ class CmsDashboardView(APIView):
     permission_classes = [IsCmsUser]
 
     def get(self, request):
+        revision = AuditLog.objects.exclude(module='auth').values_list('id', flat=True).first() or 0
+        cache_key = f'cms_dashboard_summary:{revision}'
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return Response(cached)
+
         latest_chart = MonthlyChart.objects.order_by('-year', '-month').first()
-        missing_artist_countries = Artist.objects.filter(Q(country='') & Q(country_code='')).count()
-        duplicate_groups = duplicate_artist_groups(limit=50)
-        pending_uploads = ChartUpload.objects.filter(status__in=['draft', 'pending_review']).count()
-        alerts = build_dashboard_alerts(request.user)
-        alert_summary = summarize_alerts(alerts)
-        system_health = 'ACTION_REQUIRED' if alert_summary['error'] else ('NEEDS_ATTENTION' if alert_summary['warning'] else 'OK')
+        release_counts = {
+            row['chart_type']: row['count']
+            for row in Release.objects.values('chart_type').annotate(count=Count('id'))
+        }
         data = {
             'cards': {
-                'total_songs': Release.objects.filter(chart_type=ChartType.SINGLES).count(),
-                'total_albums': Release.objects.filter(chart_type=ChartType.ALBUMS).count(),
+                'total_songs': release_counts.get(ChartType.SINGLES, 0),
+                'total_albums': release_counts.get(ChartType.ALBUMS, 0),
                 'total_artists': Artist.objects.count(),
                 'latest_uploaded_chart_month': latest_chart.label if latest_chart else 'None',
                 'pending_approvals': ChartUpload.objects.filter(status='pending_review').count() + NewsArticle.objects.filter(status='pending_review').count(),
-                'missing_artist_countries': missing_artist_countries,
-                'duplicate_artists_detected': len(duplicate_groups),
+                'errors_warnings': DataQualityIssue.objects.filter(status='open').count(),
+                'unpublished_chart_months': MonthlyChart.objects.filter(is_published=False).count(),
+            },
+        }
+        cache.set(cache_key, data, 60)
+        return Response(data)
+
+
+class CmsDashboardInsightsView(APIView):
+    permission_classes = [IsCmsUser]
+
+    def get(self, request):
+        revision = AuditLog.objects.exclude(module='auth').values_list('id', flat=True).first() or 0
+        cache_key = f'cms_dashboard_insights:{get_user_role(request.user)}:{revision}'
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return Response(cached)
+        alerts = build_dashboard_alerts(request.user)
+        alert_summary = summarize_alerts(alerts)
+        duplicate_count = next(
+            (a['count'] for a in alerts if a['id'] == 'possible-duplicate-artists'), 0
+        )
+        system_health = (
+            'ACTION_REQUIRED' if alert_summary['error']
+            else ('NEEDS_ATTENTION' if alert_summary['warning'] else 'OK')
+        )
+        data = {
+            'alerts': alerts,
+            'alert_summary': alert_summary,
+            'cards': {
+                'missing_artist_countries': Artist.objects.filter(Q(country='') & Q(country_code='')).count(),
+                'duplicate_artists_detected': duplicate_count,
                 'latest_news_posts': NewsArticle.objects.count(),
                 'recently_edited_data': AuditLog.objects.count(),
-                'errors_warnings': DataQualityIssue.objects.filter(status='open').count(),
                 'system_health': system_health,
                 'last_backup_date': BackupRecord.objects.order_by('-created_at').values_list('created_at', flat=True).first(),
                 'editors_admins': AdminProfile.objects.exclude(role=AdminRole.VIEWER).count(),
-                'unpublished_chart_months': MonthlyChart.objects.filter(is_published=False).count(),
                 'certifications_unofficial': Certification.objects.filter(is_official=False, is_hidden=False).count(),
-                'uploads_awaiting_review': pending_uploads,
+                'uploads_awaiting_review': ChartUpload.objects.filter(status__in=['draft', 'pending_review']).count(),
             },
-            'alerts': alerts,
-            'alert_summary': alert_summary,
-            'top_performing': list(MonthlyChartEntry.objects.filter(platform__isnull=True).values('release__title', 'release__artist__name').annotate(points=Sum('total_points')).order_by('-points')[:10]),
-            'recent_activity': AuditLogSerializer(AuditLog.objects.select_related('user')[:12], many=True).data,
-            'duplicate_artist_groups': duplicate_groups[:10],
+            'top_performing': list(
+                published_top50_entries()
+                .values('release__title', 'release__artist__name')
+                .annotate(points=Sum('total_points'))
+                .order_by('-points')[:10]
+            ),
+            'recent_activity': AuditLogSerializer(
+                AuditLog.objects.select_related('user')[:12], many=True
+            ).data,
         }
+        cache.set(cache_key, data, 120)
         return Response(data)
 
 
 class CmsPagination(PageNumberPagination):
-    page_size = 500
+    page_size = 50
     page_size_query_param = 'page_size'
-    max_page_size = 2000
+    max_page_size = 500
 
 
 class CmsBaseViewSet(viewsets.ModelViewSet):
@@ -203,7 +243,19 @@ class CmsUserViewSet(CmsBaseViewSet):
 
 
 class CmsArtistViewSet(CmsBaseViewSet):
-    queryset = Artist.objects.all()
+    _public_credit_filter = Q(
+        release_credits__release__monthlychartentry__chart__is_published=True,
+        release_credits__release__monthlychartentry__chart__status='published',
+        release_credits__release__monthlychartentry__platform__isnull=True,
+        release_credits__release__monthlychartentry__rank__range=(1, 50),
+    )
+    queryset = Artist.objects.annotate(
+        cms_total_releases=Count('release_credits__release', distinct=True),
+        cms_total_points=Coalesce(Sum('release_credits__release__monthlychartentry__total_points', filter=_public_credit_filter), 0),
+        cms_peak_rank=Min('release_credits__release__monthlychartentry__rank', filter=_public_credit_filter),
+        cms_months_on_chart=Count('release_credits__release__monthlychartentry__chart', filter=_public_credit_filter, distinct=True),
+        cms_entry_count=Count('release_credits__release__monthlychartentry', filter=_public_credit_filter, distinct=True),
+    ).order_by('name')
     serializer_class = CmsArtistSerializer
     parser_classes = [MultiPartParser, FormParser, JSONParser]
     search_fields = ['name', 'display_name', 'aliases', 'country', 'country_code', 'genre']
@@ -388,7 +440,20 @@ class CmsArtistViewSet(CmsBaseViewSet):
 
 
 class CmsReleaseViewSet(CmsBaseViewSet):
-    queryset = Release.objects.select_related('artist').prefetch_related('artist_credits__artist').all()
+    _public_entry_filter = Q(
+        monthlychartentry__chart__is_published=True,
+        monthlychartentry__chart__status='published',
+        monthlychartentry__platform__isnull=True,
+        monthlychartentry__rank__range=(1, 50),
+    )
+    queryset = Release.objects.select_related('artist').prefetch_related(
+        'artist_credits__artist', 'certifications'
+    ).annotate(
+        cms_total_points=Coalesce(Sum('monthlychartentry__total_points', filter=_public_entry_filter), 0),
+        cms_peak_rank=Min('monthlychartentry__rank', filter=_public_entry_filter),
+        cms_months_on_chart=Count('monthlychartentry__chart', filter=_public_entry_filter, distinct=True),
+        cms_entry_count=Count('monthlychartentry', filter=_public_entry_filter, distinct=True),
+    ).order_by('title')
     serializer_class = CmsReleaseSerializer
     parser_classes = [MultiPartParser, FormParser, JSONParser]
     search_fields = ['title', 'artist__name', 'featured_artists', 'isrc', 'upc', 'country', 'country_code', 'genre', 'label']
@@ -592,10 +657,48 @@ class CmsPlatformViewSet(CmsBaseViewSet):
 
 
 class CmsMonthlyChartViewSet(CmsBaseViewSet):
-    queryset = MonthlyChart.objects.all()
+    queryset = MonthlyChart.objects.annotate(
+        cms_entries_count=Count('entries', distinct=True),
+        cms_combined_entries_count=Count(
+            'entries', filter=Q(entries__platform__isnull=True), distinct=True
+        ),
+    ).order_by('-year', '-month')
     serializer_class = CmsMonthlyChartSerializer
-    search_fields = ['label', 'chart_type', 'status']
+    search_fields = ['label', 'chart_type', 'status', 'year']
+    ordering_fields = ['year', 'month', 'chart_type', 'status', 'updated_at']
     module_name = 'charts'
+
+    def perform_update(self, serializer):
+        if serializer.instance.locked:
+            raise DRFValidationError('This chart is locked. Unlock it before editing.')
+        super().perform_update(serializer)
+
+    def perform_destroy(self, instance):
+        if instance.locked:
+            raise DRFValidationError('This chart is locked and cannot be archived.')
+        super().perform_destroy(instance)
+
+    @staticmethod
+    def _validate_for_publication(chart):
+        combined = chart.entries.filter(platform__isnull=True)
+        count = combined.count()
+        if count == 0:
+            raise DRFValidationError({
+                'entries': 'Add and review at least one Combined chart entry before publishing.'
+            })
+        invalid_ranks = list(
+            combined.exclude(rank__range=(1, 50)).values_list('rank', flat=True)[:10]
+        )
+        if invalid_ranks:
+            raise DRFValidationError({
+                'entries': f'Combined chart ranks must be within the Top 50. Invalid ranks: {invalid_ranks}'
+            })
+        ranks = list(combined.order_by('rank').values_list('rank', flat=True))
+        expected = list(range(1, len(ranks) + 1))
+        if ranks != expected:
+            raise DRFValidationError({
+                'entries': 'Combined chart ranks must be consecutive, starting at 1. Use Re-rank before publishing.'
+            })
 
     @action(detail=True, methods=['get'])
     def entries(self, request, pk=None):
@@ -611,20 +714,32 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
     @action(detail=True, methods=['post'])
     def publish(self, request, pk=None):
         chart = self.get_object()
+        self._validate_for_publication(chart)
         chart.is_published = True
         chart.status = 'published'
+        chart.locked = True
         chart.published_by = request.user
         chart.published_at = timezone.now()
-        chart.save(update_fields=['is_published', 'status', 'published_by', 'published_at', 'updated_at'])
+        chart.save(update_fields=['is_published', 'status', 'locked', 'published_by', 'published_at', 'updated_at'])
         audit(request, 'published_chart', module='charts', obj=chart)
         return Response(CmsMonthlyChartSerializer(chart).data)
+
+    @action(detail=False, methods=['get'])
+    def options(self, request):
+        rows = MonthlyChart.objects.order_by('-year', '-month').values(
+            'id', 'year', 'month', 'label', 'chart_type', 'status',
+            'is_published', 'locked',
+        )[:240]
+        return Response(list(rows))
 
     @action(detail=True, methods=['post'])
     def unpublish(self, request, pk=None):
         chart = self.get_object()
         chart.is_published = False
         chart.status = 'draft'
-        chart.save(update_fields=['is_published', 'status', 'updated_at'])
+        chart.locked = False
+        chart.published_at = None
+        chart.save(update_fields=['is_published', 'status', 'locked', 'published_at', 'updated_at'])
         audit(request, 'unpublished_chart', module='charts', obj=chart)
         return Response(CmsMonthlyChartSerializer(chart).data)
 
@@ -634,6 +749,14 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
         chart.locked = True
         chart.save(update_fields=['locked', 'updated_at'])
         audit(request, 'locked_chart', module='charts', obj=chart)
+        return Response(CmsMonthlyChartSerializer(chart).data)
+
+    @action(detail=True, methods=['post'])
+    def unlock(self, request, pk=None):
+        chart = self.get_object()
+        chart.locked = False
+        chart.save(update_fields=['locked', 'updated_at'])
+        audit(request, 'unlocked_chart', module='charts', obj=chart)
         return Response(CmsMonthlyChartSerializer(chart).data)
 
 
@@ -703,6 +826,57 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         return Response({'reordered': len(entries)})
 
 
+class CmsWeeklyUploadViewSet(CmsBaseViewSet):
+    queryset = WeeklyUpload.objects.select_related('uploaded_by').all()
+    serializer_class = CmsWeeklyUploadSerializer
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
+    search_fields = ['chart_type', 'processing_notes']
+    module_name = 'uploads'
+
+    def perform_create(self, serializer):
+        incoming_file = self.request.FILES.get('file')
+        if not incoming_file:
+            raise DRFValidationError({'file': 'Select an XLSX weekly chart workbook.'})
+        original_filename = str(getattr(incoming_file, 'name', '') or 'weekly-chart.xlsx')
+        # Raw chart workbooks are transient processing inputs. Saving them with
+        # the global Cloudinary image backend makes valid XLSX ZIP containers
+        # fail as "Unsupported ZIP file", so retain the filename and normalized
+        # database rows instead of uploading the workbook as an image.
+        upload = serializer.save(
+            uploaded_by=self.request.user,
+            file=original_filename,
+        )
+        try:
+            result = process_weekly_upload(upload, file_obj=incoming_file)
+        except Exception as exc:
+            upload.processing_notes = f'Error: {exc}'
+            upload.save(update_fields=['processing_notes'])
+            raise DRFValidationError({'file': f'Could not process this workbook: {exc}'}) from exc
+        upload.processing_notes = str(result)
+        upload.save(update_fields=['processing_notes'])
+        audit(
+            self.request,
+            'processed_weekly_chart',
+            module='uploads',
+            obj=upload,
+            new=result,
+        )
+
+    @action(detail=False, methods=['post'])
+    def rebuild_month(self, request):
+        chart_type = request.data.get('chart_type', ChartType.SINGLES)
+        year = int(request.data.get('year', timezone.now().year))
+        month = int(request.data.get('month', timezone.now().month))
+        result = rebuild_monthly_chart(chart_type, year, month)
+        audit(
+            request,
+            'rebuilt_monthly_chart',
+            module='uploads',
+            new={'chart_type': chart_type, 'year': year, 'month': month, **result},
+        )
+        return Response(result)
+
+
 class ChartUploadViewSet(CmsBaseViewSet):
     queryset = ChartUpload.objects.select_related('platform', 'uploaded_by', 'approved_by', 'published_by').all()
     serializer_class = ChartUploadSerializer
@@ -711,15 +885,29 @@ class ChartUploadViewSet(CmsBaseViewSet):
     module_name = 'chart_uploads'
 
     def perform_create(self, serializer):
-        upload = serializer.save(uploaded_by=self.request.user, original_filename=getattr(self.request.FILES.get('file'), 'name', ''))
-        self._parse_and_validate(upload)
+        incoming_file = self.request.FILES.get('file')
+        original_filename = getattr(incoming_file, 'name', '')
+        # Parse workbook bytes directly. The global production storage handles
+        # image media and must not receive XLSX/ZIP chart workbooks.
+        upload = serializer.save(
+            uploaded_by=self.request.user,
+            original_filename=original_filename,
+            file=None,
+        )
+        self._parse_and_validate(upload, file_obj=incoming_file)
         audit(self.request, 'uploaded_chart_file', module='uploads', obj=upload, new={'rows': upload.row_count, 'summary': upload.validation_summary})
 
-    def _parse_and_validate(self, upload):
-        if upload.file:
+    def _parse_and_validate(self, upload, file_obj=None):
+        if file_obj:
+            if hasattr(file_obj, 'seek'):
+                file_obj.seek(0)
+            rows = parse_chart_file(file_obj)
+        elif upload.file:
             upload.file.open('rb')
-            rows = parse_chart_file(upload.file)
-            upload.file.close()
+            try:
+                rows = parse_chart_file(upload.file)
+            finally:
+                upload.file.close()
         else:
             rows = upload.rows_data or []
         summary = validate_chart_rows(rows, chart_type=upload.chart_type, platform=upload.platform, year=upload.year, month=upload.month)

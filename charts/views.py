@@ -31,10 +31,12 @@ class ArtistViewSet(viewsets.ReadOnlyModelViewSet):
         artist = self.get_object()
         chart_type = request.query_params.get('chart_type', 'singles')
         entries = MonthlyChartEntry.objects.filter(
-            release__artist=artist,
+            Q(release__artist=artist) | Q(release__artist_credits__artist=artist),
             release__chart_type=chart_type,
             platform__isnull=True
-        ).select_related('chart', 'release').order_by('chart__year', 'chart__month', 'rank')
+            , chart__is_published=True, chart__status='published',
+            rank__range=(1, 50)
+        ).select_related('chart', 'release').distinct().order_by('chart__year', 'chart__month', 'rank')
 
         data = [{
             'month': e.chart.label,
@@ -52,8 +54,11 @@ class ArtistViewSet(viewsets.ReadOnlyModelViewSet):
         artist = self.get_object()
         chart_type = request.query_params.get('chart_type', 'singles')
         entries = MonthlyChartEntry.objects.filter(
-            release__artist=artist, release__chart_type=chart_type, platform__isnull=True
-        )
+            Q(release__artist=artist) | Q(release__artist_credits__artist=artist),
+            release__chart_type=chart_type,
+            platform__isnull=True, chart__is_published=True,
+            chart__status='published', rank__range=(1, 50)
+        ).distinct()
         agg = entries.aggregate(
             total_pts=Sum('total_points'), peak=Min('rank'),
             months=Count('chart', distinct=True)
@@ -89,7 +94,10 @@ class ReleaseViewSet(viewsets.ReadOnlyModelViewSet):
         """Full chart journey for a release across all months and platforms."""
         release = self.get_object()
         entries = MonthlyChartEntry.objects.filter(
-            release=release
+            release=release,
+            chart__is_published=True,
+            chart__status='published',
+            rank__range=(1, 50),
         ).select_related('chart', 'platform').order_by('chart__year', 'chart__month', 'rank')
 
         data = []
@@ -133,7 +141,7 @@ class MonthlyChartViewSet(viewsets.ReadOnlyModelViewSet):
     def latest(self, request):
         chart_type = request.query_params.get('chart_type', 'singles')
         chart = MonthlyChart.objects.filter(
-            chart_type=chart_type, is_published=True
+            chart_type=chart_type, is_published=True, status='published'
         ).order_by('-year', '-month').first()
         if not chart:
             return Response({'error': 'No charts found'}, status=404)
@@ -146,12 +154,14 @@ class MonthlyChartViewSet(viewsets.ReadOnlyModelViewSet):
         """Year-end chart: aggregate all months in a given year."""
         chart_type = request.query_params.get('chart_type', 'singles')
         latest_chart = MonthlyChart.objects.filter(
-            chart_type=chart_type, is_published=True
+            chart_type=chart_type, is_published=True, status='published'
         ).order_by('-year', '-month').first()
         default_year = latest_chart.year if latest_chart else timezone.now().year
         year = int(request.query_params.get('year', default_year))
         entries = MonthlyChartEntry.objects.filter(
-            chart__year=year, chart__chart_type=chart_type, platform__isnull=True
+            chart__year=year, chart__chart_type=chart_type,
+            chart__is_published=True, chart__status='published',
+            platform__isnull=True, rank__range=(1, 50)
         ).values('release__title', 'release__artist__name', 'release_id').annotate(
             total_pts=Sum('total_points'),
             months=Count('chart', distinct=True),
@@ -168,20 +178,22 @@ class MonthlyChartViewSet(viewsets.ReadOnlyModelViewSet):
         """Comprehensive analytics data."""
         chart_type = request.query_params.get('chart_type', 'singles')
         latest_chart = MonthlyChart.objects.filter(
-            chart_type=chart_type, is_published=True
+            chart_type=chart_type, is_published=True, status='published'
         ).order_by('-year', '-month').first()
         default_year = latest_chart.year if latest_chart else timezone.now().year
         year = int(request.query_params.get('year', default_year))
         month = request.query_params.get('month')
 
-        charts = MonthlyChart.objects.filter(chart_type=chart_type, year=year)
+        charts = MonthlyChart.objects.filter(
+            chart_type=chart_type, year=year, is_published=True, status='published'
+        )
         if month:
             charts = charts.filter(month=int(month))
 
         result = {}
         for chart in charts:
-            entries = MonthlyChartEntry.objects.filter(chart=chart, platform__isnull=True)
-            plat_entries = MonthlyChartEntry.objects.filter(chart=chart, platform__isnull=False)
+            entries = MonthlyChartEntry.objects.filter(chart=chart, platform__isnull=True, rank__range=(1, 50))
+            plat_entries = MonthlyChartEntry.objects.filter(chart=chart, platform__isnull=False, rank__range=(1, 50))
             result[chart.label] = {
                 'total_songs': entries.count(),
                 'new_entries': entries.filter(prev_rank__isnull=True).count(),

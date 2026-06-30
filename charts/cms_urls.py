@@ -11,6 +11,7 @@ router.register('platforms', cms_views.CmsPlatformViewSet, basename='cms-platfor
 router.register('charts', cms_views.CmsMonthlyChartViewSet, basename='cms-charts')
 router.register('chart-entries', cms_views.CmsMonthlyChartEntryViewSet, basename='cms-chart-entries')
 router.register('chart-uploads', cms_views.ChartUploadViewSet, basename='cms-chart-uploads')
+router.register('weekly-uploads', cms_views.CmsWeeklyUploadViewSet, basename='cms-weekly-uploads')
 router.register('news', cms_views.CmsNewsArticleViewSet, basename='cms-news')
 router.register('media', cms_views.CmsMediaAssetViewSet, basename='cms-media')
 router.register('settings', cms_views.CmsSiteSettingViewSet, basename='cms-settings')
@@ -30,6 +31,7 @@ urlpatterns = [
     path('auth/logout/', cms_views.CmsLogoutView.as_view()),
     path('auth/me/', cms_views.CmsMeView.as_view()),
     path('csrf/', cms_views.CsrfTokenView.as_view()),
+    path('dashboard/insights/', cms_views.CmsDashboardInsightsView.as_view()),
     path('dashboard/', cms_views.CmsDashboardView.as_view()),
     path('search/', cms_views.GlobalSearchView.as_view()),
     path('debug/storage/', cms_views.StorageDebugView.as_view()),

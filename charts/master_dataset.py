@@ -142,6 +142,7 @@ MONTHS = [
     "March 2026",
     "April 2026",
     "May 2026",
+    "June 2026",
 ]
 
 COMBINED_HEADERS = [
@@ -558,8 +559,8 @@ def validate_master_data(data):
                 if int(row["Platforms_Max"]) != expected_max:
                     raise ValueError(f"Invalid Platforms_Max at {chart_type} {month} rank {rank}")
 
-    if combined_total != 900:
-        raise ValueError("The two Combined sheets must contain exactly 900 rows")
+    if combined_total != 50 * 2 * len(MONTHS):
+        raise ValueError(f"The two Combined sheets must contain exactly {50 * 2 * len(MONTHS)} rows")
 
 
 def _month_parts(label):

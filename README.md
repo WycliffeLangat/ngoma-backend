@@ -32,6 +32,15 @@ See **[DEPLOYMENT.md](DEPLOYMENT.md)** for step-by-step Railway/Render deploymen
 
 All endpoints are under `/api/v1/`.
 
+### Public app bootstrap
+
+- `GET /app-data/` — the frontend's single source of truth for all published chart periods, singles, albums, platform charts, artists, releases, news, certifications and site settings
+- `GET /app-data/revision/` — lightweight revision check used to detect CMS publications and edits
+
+The `/app-data/` payload includes numeric `month_options`, `latest_published_month`,
+and `latest_published_by_chart_type` metadata. The React frontend sorts periods by
+`year` and `month` and never bundles or falls back to local chart records.
+
 ### Charts
 - `GET /charts/?chart_type=singles` — list all monthly charts
 - `GET /charts/latest/?chart_type=singles&platform=combined` — latest published chart

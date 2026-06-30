@@ -1,9 +1,26 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from django.db import transaction
+from django.db.models import Min, Q, Sum
 
 from .models import *
 from .artist_credits import release_credit_payload
+from .cms_utils import published_artist_entries, published_top50_entries
+
+ALLOWED_IMAGE_TYPES = {'image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml'}
+
+
+def validate_upload(file_value, max_megabytes, allowed_types=None, label='file'):
+    if not file_value:
+        return file_value
+    max_bytes = max_megabytes * 1024 * 1024
+    if getattr(file_value, 'size', 0) > max_bytes:
+        raise serializers.ValidationError(f'The {label} must be {max_megabytes} MB or smaller.')
+    content_type = (getattr(file_value, 'content_type', '') or '').lower()
+    if allowed_types and content_type and content_type not in allowed_types:
+        readable = ', '.join(sorted(item.split('/')[-1].upper() for item in allowed_types))
+        raise serializers.ValidationError(f'Unsupported {label} type. Use one of: {readable}.')
+    return file_value
 
 
 class AdminProfileSerializer(serializers.ModelSerializer):
@@ -92,7 +109,7 @@ class CmsCountrySerializer(serializers.ModelSerializer):
 
 
 class CmsArtistSerializer(serializers.ModelSerializer):
-    total_releases = serializers.IntegerField(source='releases.count', read_only=True)
+    total_releases = serializers.SerializerMethodField()
     total_points = serializers.SerializerMethodField()
     peak_rank = serializers.SerializerMethodField()
     months_on_chart = serializers.SerializerMethodField()
@@ -112,26 +129,40 @@ class CmsArtistSerializer(serializers.ModelSerializer):
             rep['image'] = request.build_absolute_uri(rep['image'])
         return rep
 
+    def get_total_releases(self, obj):
+        annotated = getattr(obj, 'cms_total_releases', None)
+        if annotated is not None:
+            return annotated
+        return Release.objects.filter(
+            Q(artist=obj) | Q(artist_credits__artist=obj)
+        ).distinct().count()
+
     def get_total_points(self, obj):
-        from django.db.models import Sum
-        return MonthlyChartEntry.objects.filter(release__artist=obj).aggregate(total=Sum('total_points'))['total'] or 0
+        annotated = getattr(obj, 'cms_total_points', None)
+        if annotated is not None:
+            return annotated
+        return published_artist_entries(obj).aggregate(total=Sum('total_points'))['total'] or 0
 
     def get_peak_rank(self, obj):
-        from django.db.models import Min
-        return MonthlyChartEntry.objects.filter(
-            release__artist=obj, platform__isnull=True
-        ).aggregate(p=Min('rank'))['p']
+        if hasattr(obj, 'cms_peak_rank'):
+            return obj.cms_peak_rank
+        return published_artist_entries(obj).aggregate(p=Min('rank'))['p']
 
     def get_months_on_chart(self, obj):
-        return MonthlyChartEntry.objects.filter(
-            release__artist=obj, platform__isnull=True
-        ).values('chart').distinct().count()
+        if hasattr(obj, 'cms_months_on_chart'):
+            return obj.cms_months_on_chart
+        return published_artist_entries(obj).values('chart').distinct().count()
 
     def get_entry_count(self, obj):
-        return MonthlyChartEntry.objects.filter(release__artist=obj).count()
+        if hasattr(obj, 'cms_entry_count'):
+            return obj.cms_entry_count
+        return published_artist_entries(obj).count()
 
     def get_missing_country(self, obj):
         return not bool(obj.country or obj.country_code)
+
+    def validate_image(self, value):
+        return validate_upload(value, 2, ALLOWED_IMAGE_TYPES - {'image/svg+xml'}, 'artist image')
 
     def validate(self, attrs):
         incoming_country = attrs.get('country')
@@ -215,21 +246,31 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
         return release_credit_payload(obj)['artist_credit']
 
     def get_total_points(self, obj):
-        from django.db.models import Sum
-        return MonthlyChartEntry.objects.filter(release=obj, platform__isnull=True).aggregate(total=Sum('total_points'))['total'] or 0
+        annotated = getattr(obj, 'cms_total_points', None)
+        if annotated is not None:
+            return annotated
+        return published_top50_entries().filter(release=obj).aggregate(total=Sum('total_points'))['total'] or 0
 
     def get_peak_rank(self, obj):
-        from django.db.models import Min
-        return MonthlyChartEntry.objects.filter(release=obj, platform__isnull=True).aggregate(peak=Min('rank'))['peak']
+        if hasattr(obj, 'cms_peak_rank'):
+            return obj.cms_peak_rank
+        return published_top50_entries().filter(release=obj).aggregate(peak=Min('rank'))['peak']
 
     def get_months_on_chart(self, obj):
-        return MonthlyChartEntry.objects.filter(release=obj, platform__isnull=True).values('chart').distinct().count()
+        if hasattr(obj, 'cms_months_on_chart'):
+            return obj.cms_months_on_chart
+        return published_top50_entries().filter(release=obj).values('chart').distinct().count()
 
     def get_entry_count(self, obj):
-        return MonthlyChartEntry.objects.filter(release=obj).count()
+        if hasattr(obj, 'cms_entry_count'):
+            return obj.cms_entry_count
+        return published_top50_entries().filter(release=obj).count()
 
     def get_certifications(self, obj):
-        return list(obj.certifications.values('level', 'total_points', 'certified_at', 'is_official'))
+        return [
+            {'level': item.level, 'total_points': item.total_points, 'certified_at': item.certified_at, 'is_official': item.is_official}
+            for item in obj.certifications.all()
+        ]
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
@@ -237,6 +278,9 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
         if request and rep.get('cover_image') and not str(rep['cover_image']).startswith('http'):
             rep['cover_image'] = request.build_absolute_uri(rep['cover_image'])
         return rep
+
+    def validate_cover_image(self, value):
+        return validate_upload(value, 2, ALLOWED_IMAGE_TYPES - {'image/svg+xml'}, 'cover image')
 
     def validate(self, attrs):
         primary_ids = list(dict.fromkeys(attrs.get('primary_artist_ids', [])))
@@ -386,10 +430,47 @@ class CmsMonthlyChartSerializer(serializers.ModelSerializer):
         model = MonthlyChart
         fields = '__all__'
 
+    def validate(self, attrs):
+        year = attrs.get('year', getattr(self.instance, 'year', None))
+        month = attrs.get('month', getattr(self.instance, 'month', None))
+        status_value = attrs.get('status', getattr(self.instance, 'status', 'draft'))
+        is_published = attrs.get('is_published', getattr(self.instance, 'is_published', False))
+
+        if year is not None and not 1900 <= year <= 2200:
+            raise serializers.ValidationError({'year': 'Enter a year between 1900 and 2200.'})
+        if month is not None and not 1 <= month <= 12:
+            raise serializers.ValidationError({'month': 'Enter a month from 1 to 12.'})
+        if is_published and status_value != 'published':
+            raise serializers.ValidationError({
+                'status': 'A public chart must have Published status. Use the Publish action when review is complete.'
+            })
+        if status_value == 'published' and not is_published:
+            raise serializers.ValidationError({
+                'is_published': 'Published status requires the chart to be public.'
+            })
+
+        if self.instance and self.instance.locked:
+            protected = {'year', 'month', 'chart_type', 'status', 'is_published'}
+            changed = [
+                field for field in protected
+                if field in attrs and attrs[field] != getattr(self.instance, field)
+            ]
+            if changed:
+                raise serializers.ValidationError({
+                    'detail': 'This published chart is locked. Unlock it before changing its period or publication state.'
+                })
+        return attrs
+
     def get_entries_count(self, obj):
+        annotated = getattr(obj, 'cms_entries_count', None)
+        if annotated is not None:
+            return annotated
         return obj.entries.count()
 
     def get_combined_entries_count(self, obj):
+        annotated = getattr(obj, 'cms_combined_entries_count', None)
+        if annotated is not None:
+            return annotated
         return obj.entries.filter(platform__isnull=True).count()
 
 
@@ -397,6 +478,9 @@ class CmsNewsArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsArticle
         fields = '__all__'
+
+    def validate_cover_image(self, value):
+        return validate_upload(value, 5, ALLOWED_IMAGE_TYPES - {'image/svg+xml'}, 'news image')
 
 
 class CmsCertificationSerializer(serializers.ModelSerializer):
@@ -449,6 +533,9 @@ class MediaAssetSerializer(serializers.ModelSerializer):
             return obj.file.url
         return ''
 
+    def validate_file(self, value):
+        return validate_upload(value, 5, ALLOWED_IMAGE_TYPES, 'media file')
+
 
 class ChartUploadSerializer(serializers.ModelSerializer):
     platform_name = serializers.CharField(source='platform.name', read_only=True)
@@ -462,6 +549,45 @@ class ChartUploadSerializer(serializers.ModelSerializer):
 
     def get_can_publish(self, obj):
         return bool(obj.validation_summary.get('can_publish')) if obj.validation_summary else False
+
+    def validate_file(self, value):
+        validated = validate_upload(
+            value, 20,
+            {'text/csv', 'application/csv', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'},
+            'chart file',
+        )
+        extension = str(getattr(value, 'name', '')).lower().rsplit('.', 1)[-1]
+        if extension not in {'csv', 'xlsx', 'xlsm'}:
+            raise serializers.ValidationError('Chart files must be CSV, XLSX or XLSM.')
+        return validated
+
+
+class CmsWeeklyUploadSerializer(serializers.ModelSerializer):
+    file = serializers.FileField(write_only=True, required=True)
+    original_filename = serializers.SerializerMethodField()
+
+    class Meta:
+        model = WeeklyUpload
+        fields = [
+            'id', 'chart_type', 'year', 'month', 'week', 'file',
+            'original_filename', 'processed', 'processing_notes',
+            'duplicates_dropped', 'entries_processed', 'uploaded_at',
+        ]
+        read_only_fields = [
+            'original_filename', 'processed', 'processing_notes',
+            'duplicates_dropped', 'entries_processed', 'uploaded_at',
+        ]
+
+    def get_original_filename(self, obj):
+        name = str(getattr(obj.file, 'name', '') or '')
+        return name.replace('\\', '/').rsplit('/', 1)[-1]
+
+    def validate_file(self, value):
+        validated = validate_upload(value, 20, label='weekly chart file')
+        extension = str(getattr(value, 'name', '')).lower().rsplit('.', 1)[-1]
+        if extension not in {'xlsx', 'xlsm'}:
+            raise serializers.ValidationError('Raw weekly chart files must be XLSX or XLSM.')
+        return validated
 
 
 class AuditLogSerializer(serializers.ModelSerializer):

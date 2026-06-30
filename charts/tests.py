@@ -3,10 +3,14 @@ import tempfile
 
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.db import connection
 from django.test import TestCase
+from django.test.utils import CaptureQueriesContext
 from rest_framework.test import APIClient
 
 from .models import (
+    AdminProfile,
+    AdminRole,
     Artist,
     Certification,
     CertificationRule,
@@ -60,7 +64,7 @@ class PublicAppDataSyncTests(TestCase):
         )
         self.chart = MonthlyChart.objects.create(
             year=2026,
-            month=6,
+            month=7,
             chart_type="singles",
             label="ignored",
             status="published",
@@ -110,6 +114,20 @@ class PublicAppDataSyncTests(TestCase):
         self.assertEqual(response.status_code, 200, response.content)
         self.assertIn("no-store", response["Cache-Control"])
         return response.json()
+
+    def test_app_data_exposes_sorted_latest_published_month_metadata(self):
+        data = self.app_data()
+        month_options = data["month_options"]
+
+        self.assertEqual(
+            [(item["year"], item["month"]) for item in month_options],
+            sorted((item["year"], item["month"]) for item in month_options),
+        )
+        self.assertEqual(data["months"], [item["label"] for item in month_options])
+        self.assertEqual(data["latest_published_month"]["label"], "July 2026")
+        self.assertEqual(data["latest_published_month"]["year"], 2026)
+        self.assertEqual(data["latest_published_month"]["month"], 7)
+        self.assertEqual(data["latest_published_by_chart_type"]["singles"]["label"], "July 2026")
 
     def patch_cms(self, path, payload):
         self.client.force_authenticate(self.admin)
@@ -213,7 +231,7 @@ class PublicAppDataSyncTests(TestCase):
         self.assertEqual(revision_response.status_code, 200)
         self.assertEqual(revision_response.json()["revision"], data["revision"])
         self.assertIn("no-store", revision_response["Cache-Control"])
-        row = data["full"]["singles"]["combined"]["June 2026"][0]
+        row = data["full"]["singles"]["combined"]["July 2026"][0]
         self.assertEqual(row["t"], "Updated Song")
         self.assertEqual(row["a"], "Updated Artist")
         self.assertEqual(row["p"], 77)
@@ -263,6 +281,128 @@ class PublicAppDataSyncTests(TestCase):
             [item["id"] for item in data["page_content"].get("about", [])],
         )
 
+    def test_cms_summary_loads_before_cached_detailed_insights(self):
+        self.client.force_authenticate(self.admin)
+        with CaptureQueriesContext(connection) as summary_queries:
+            summary = self.client.get("/api/v1/cms/dashboard/")
+        self.assertEqual(summary.status_code, 200, summary.content)
+        self.assertIn("total_songs", summary.json()["cards"])
+        self.assertNotIn("alerts", summary.json())
+        self.assertLessEqual(len(summary_queries), 12)
+
+        insights = self.client.get("/api/v1/cms/dashboard/insights/")
+        self.assertEqual(insights.status_code, 200, insights.content)
+        self.assertIn("alerts", insights.json())
+        self.assertIn("top_performing", insights.json())
+
+    def test_cms_large_lists_use_bounded_query_counts(self):
+        self.client.force_authenticate(self.admin)
+        targets = [
+            ("/api/v1/cms/artists/?page_size=10", 12),
+            ("/api/v1/cms/releases/?chart_type=singles&page_size=10", 15),
+            ("/api/v1/cms/charts/?page_size=10", 8),
+        ]
+        for url, maximum in targets:
+            with self.subTest(url=url):
+                with CaptureQueriesContext(connection) as queries:
+                    response = self.client.get(url)
+                self.assertEqual(response.status_code, 200, response.content)
+                self.assertLessEqual(
+                    len(queries),
+                    maximum,
+                    f"{url} used {len(queries)} queries; expected no more than {maximum}",
+                )
+
+    def test_chart_options_endpoint_is_small_and_unpaginated(self):
+        self.client.force_authenticate(self.admin)
+        with CaptureQueriesContext(connection) as queries:
+            response = self.client.get("/api/v1/cms/charts/options/")
+        self.assertEqual(response.status_code, 200, response.content)
+        self.assertIsInstance(response.json(), list)
+        self.assertLessEqual(len(queries), 4)
+        if response.json():
+            self.assertEqual(
+                set(response.json()[0]),
+                {"id", "year", "month", "label", "chart_type", "status", "is_published", "locked"},
+            )
+
+    def test_draft_chart_entries_do_not_change_public_artist_history_or_stats(self):
+        draft_chart = MonthlyChart.objects.create(
+            year=2026, month=8, chart_type="singles", status="draft", is_published=False
+        )
+        MonthlyChartEntry.objects.create(
+            chart=draft_chart,
+            release=self.release,
+            rank=1,
+            total_points=9999,
+        )
+
+        response = self.client.get(f"/api/v1/app-data/artist/{self.artist.slug}/")
+        self.assertEqual(response.status_code, 200, response.content)
+        data = response.json()
+        self.assertEqual(data["singles_stats"]["total_points"], 50)
+        self.assertEqual(len(data["chart_history"]), 1)
+        self.assertEqual(data["chart_history"][0]["month"], "July 2026")
+
+    def test_public_year_end_and_analytics_ignore_draft_charts(self):
+        draft_chart = MonthlyChart.objects.create(
+            year=2026, month=8, chart_type="singles", status="draft", is_published=False
+        )
+        MonthlyChartEntry.objects.create(
+            chart=draft_chart, release=self.release, rank=1, total_points=9999
+        )
+
+        year_end = self.client.get("/api/v1/charts/year_end/?chart_type=singles&year=2026")
+        self.assertEqual(year_end.status_code, 200, year_end.content)
+        release_result = next(
+            entry for entry in year_end.json()["entries"]
+            if entry["title"] == self.release.title and entry["artist"] == self.artist.name
+        )
+        self.assertEqual(release_result["total_points"], 50)
+
+        analytics = self.client.get("/api/v1/charts/analytics/?chart_type=singles&year=2026")
+        self.assertEqual(analytics.status_code, 200, analytics.content)
+        self.assertNotIn("August 2026", analytics.json())
+
+    def test_publish_validates_ranks_and_locks_historical_chart(self):
+        self.client.force_authenticate(self.admin)
+        response = self.client.post(f"/api/v1/cms/charts/{self.chart.id}/publish/", {}, format="json")
+        self.assertEqual(response.status_code, 200, response.content)
+        self.assertTrue(response.json()["locked"])
+
+        edit_response = self.client.patch(
+            f"/api/v1/cms/chart-entries/{self.combined_entry.id}/",
+            {"total_points": 999},
+            format="json",
+        )
+        self.assertEqual(edit_response.status_code, 400)
+        self.client.force_authenticate(user=None)
+
+    def test_data_editor_cannot_publish_or_hard_delete(self):
+        editor = User.objects.create_user("data-editor", password="password", is_staff=True)
+        AdminProfile.objects.create(user=editor, role=AdminRole.DATA_EDITOR)
+        self.client.force_authenticate(editor)
+
+        publish_response = self.client.post(
+            f"/api/v1/cms/charts/{self.chart.id}/publish/", {}, format="json"
+        )
+        self.assertEqual(publish_response.status_code, 403)
+        delete_response = self.client.delete(
+            f"/api/v1/cms/artists/{self.artist.id}/hard_delete/"
+        )
+        self.assertEqual(delete_response.status_code, 403)
+
+    def test_news_editor_cannot_mutate_chart_data(self):
+        editor = User.objects.create_user("news-editor", password="password", is_staff=True)
+        AdminProfile.objects.create(user=editor, role=AdminRole.NEWS_EDITOR)
+        self.client.force_authenticate(editor)
+        response = self.client.patch(
+            f"/api/v1/cms/chart-entries/{self.combined_entry.id}/",
+            {"total_points": 999},
+            format="json",
+        )
+        self.assertEqual(response.status_code, 403)
+
     def test_multiple_main_and_featured_artists_are_structured_and_formatted(self):
         response = self.patch_cms(
             f"/api/v1/cms/releases/{self.release.id}/",
@@ -286,7 +426,7 @@ class PublicAppDataSyncTests(TestCase):
         self.assertEqual(response["featured_artist_ids"], [self.featured_artist.id, self.featured_artist_two.id])
 
         data = self.app_data()
-        row = data["full"]["singles"]["combined"]["June 2026"][0]
+        row = data["full"]["singles"]["combined"]["July 2026"][0]
         release = next(item for item in data["releases"] if item["id"] == self.release.id)
         expected_credit = "Original Artist, Second Artist & Third Artist ft. Featured Artist & Guest Two"
 

@@ -241,10 +241,10 @@ class Command(BaseCommand):
             return
 
         old_block = match.group(1)
-        # Strip trailing whitespace/newline then closing bracket, add new entry
-        new_block = old_block.rstrip()[:-1].rstrip() + f',\n    "{month_label}",\n]'
+        # Remove the closing bracket and any existing trailing comma before appending.
+        new_block = old_block.rstrip()[:-1].rstrip().rstrip(",") + f',\n    "{month_label}",\n]'
         dataset_path.write_text(text.replace(old_block, new_block), encoding="utf-8")
-        self.stdout.write(f"Updated MONTHS in master_dataset.py → added '{month_label}'")
+        self.stdout.write(f"Updated MONTHS in master_dataset.py: added '{month_label}'")
 
     def _update_validate_check(self):
         """
@@ -274,5 +274,5 @@ class Command(BaseCommand):
             "\nNext step — regenerate chartData.js:\n"
             "  python scripts/export_frontend_data.py \\\n"
             f"    {wb_path} \\\n"
-            "    ../ngoma_charts_frontend/ngoma_deploy/src/data/chartData.js"
+            "    ../../ngoma_charts_frontend/ngoma_deploy/src/data/chartData.js"
         )

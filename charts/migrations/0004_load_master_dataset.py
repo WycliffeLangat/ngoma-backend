@@ -9,8 +9,9 @@ from charts.master_dataset import import_master_workbook
 def load_master_dataset(apps, schema_editor):
     workbook = Path(settings.BASE_DIR) / "charts" / "seed_data" / "Ngoma_Charts_MASTER.xlsx"
     report = import_master_workbook(apps, workbook, clear=True)
-    if report["combined_rows"] != 900:
-        raise RuntimeError("Master dataset migration did not import exactly 900 Combined rows")
+    expected = 50 * 2 * len(report["months"])
+    if report["combined_rows"] != expected:
+        raise RuntimeError(f"Master dataset migration did not import exactly {expected} Combined rows")
 
 
 class Migration(migrations.Migration):

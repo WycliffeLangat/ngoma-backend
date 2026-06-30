@@ -19,21 +19,35 @@ except ImportError:
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-only-change-in-production-2024')
 DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS_STR = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,*.railway.app,*.onrender.com')
-ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS_STR.split(',') if h.strip()]
+
+def _parse_csv(value):
+    return [item.strip() for item in value.split(',') if item.strip()]
+
+
+def _dedupe(items):
+    return list(dict.fromkeys(items))
+
+
+DEFAULT_ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'web-production-0f6b5.up.railway.app',
+    'candid-taffy-ccdbd5.netlify.app',
+]
+ALLOWED_HOSTS_STR = os.environ.get('ALLOWED_HOSTS', ','.join(DEFAULT_ALLOWED_HOSTS))
+ALLOWED_HOSTS = _dedupe(_parse_csv(ALLOWED_HOSTS_STR))
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 
 # CSRF — needed for the Django admin to work over HTTPS in production
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.railway.app',
-    'https://*.onrender.com',
-    'https://*.vercel.app',
-    'https://*.netlify.app',
+DEFAULT_CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-0f6b5.up.railway.app',
+    'https://candid-taffy-ccdbd5.netlify.app',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
 ]
 extra_csrf = os.environ.get('CSRF_TRUSTED_ORIGINS', '')
-if extra_csrf:
-    CSRF_TRUSTED_ORIGINS.extend([o.strip() for o in extra_csrf.split(',') if o.strip()])
+CSRF_TRUSTED_ORIGINS = _dedupe([*DEFAULT_CSRF_TRUSTED_ORIGINS, *_parse_csv(extra_csrf)])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -123,23 +137,35 @@ if CLOUDINARY_URL:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # === CORS ===
-# Allow your frontend domain to call the API
+# Allow your frontend domain to call the API.
+DEFAULT_CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'https://candid-taffy-ccdbd5.netlify.app',
+    'https://web-production-0f6b5.up.railway.app',
+]
 CORS_ALLOWED_ORIGINS_STR = os.environ.get('CORS_ALLOWED_ORIGINS', '')
-if CORS_ALLOWED_ORIGINS_STR:
-    CORS_ALLOWED_ORIGINS = [o.strip() for o in CORS_ALLOWED_ORIGINS_STR.split(',') if o.strip()]
-else:
-    CORS_ALLOW_ALL_ORIGINS = True if DEBUG else False
-    CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.vercel\.app$", r"^https://.*\.netlify\.app$"]
+CORS_ALLOWED_ORIGINS = _dedupe([*DEFAULT_CORS_ALLOWED_ORIGINS, *_parse_csv(CORS_ALLOWED_ORIGINS_STR)])
 
 if DEBUG:
-    CORS_ALLOWED_ORIGINS = list(dict.fromkeys([
-        *globals().get('CORS_ALLOWED_ORIGINS', []),
-        'http://localhost:5173',
-        'http://127.0.0.1:5173',
-    ]))
+    CORS_ALLOWED_ORIGINS = _dedupe([*CORS_ALLOWED_ORIGINS, 'http://localhost:5173', 'http://127.0.0.1:5173'])
+CORS_ALLOW_ALL_ORIGINS = False
 
 # CMS/API session auth across the Vite frontend.
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'cache-control',
+    'content-type',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+CORS_PREFLIGHT_MAX_AGE = 600
 COOKIE_SAMESITE_DEFAULT = 'Lax' if DEBUG else 'None'
 SESSION_COOKIE_SAMESITE = os.environ.get('SESSION_COOKIE_SAMESITE', COOKIE_SAMESITE_DEFAULT)
 CSRF_COOKIE_SAMESITE = os.environ.get('CSRF_COOKIE_SAMESITE', COOKIE_SAMESITE_DEFAULT)

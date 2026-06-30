@@ -63,6 +63,10 @@ class Artist(models.Model):
 
     class Meta:
         ordering = ['name']
+        indexes = [
+            models.Index(fields=['status', 'name'], name='artist_status_name_idx'),
+            models.Index(fields=['country_code'], name='artist_country_code_idx'),
+        ]
 
     def __str__(self):
         return self.name
@@ -118,6 +122,10 @@ class Release(models.Model):
     class Meta:
         unique_together = ['canonical_title', 'artist', 'chart_type']
         ordering = ['title']
+        indexes = [
+            models.Index(fields=['chart_type', 'status', 'title'], name='release_type_status_idx'),
+            models.Index(fields=['artist', 'status'], name='release_artist_status_idx'),
+        ]
 
     def __str__(self):
         return f"{self.title} - {self.artist.name}"
@@ -160,8 +168,8 @@ class MonthlyChart(models.Model):
     month = models.IntegerField()
     chart_type = models.CharField(max_length=10, choices=ChartType.choices)
     label = models.CharField(max_length=50, help_text="e.g. 'September 2025'")
-    status = models.CharField(max_length=30, default='published', choices=[('draft','Draft'),('pending_review','Pending review'),('approved','Approved'),('published','Published'),('rejected','Rejected'),('archived','Archived')])
-    is_published = models.BooleanField(default=True)
+    status = models.CharField(max_length=30, default='draft', choices=[('draft','Draft'),('pending_review','Pending review'),('approved','Approved'),('published','Published'),('rejected','Rejected'),('archived','Archived')])
+    is_published = models.BooleanField(default=False)
     locked = models.BooleanField(default=False)
     published_at = models.DateTimeField(blank=True, null=True)
     published_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='published_charts')
@@ -172,6 +180,9 @@ class MonthlyChart(models.Model):
         unique_together = ['year', 'month', 'chart_type']
         ordering = ['-year', '-month']
 
+        indexes = [
+            models.Index(fields=['is_published', 'status', '-year', '-month'], name='chart_public_period_idx'),
+        ]
     def __str__(self):
         return f"{self.label} ({self.chart_type})"
 
@@ -264,6 +275,10 @@ class MonthlyChartEntry(models.Model):
         unique_together = ['chart', 'platform', 'rank']
         ordering = ['rank']
 
+        indexes = [
+            models.Index(fields=['release', 'chart'], name='entry_release_chart_idx'),
+            models.Index(fields=['chart', 'platform', 'rank'], name='entry_chart_rank_idx'),
+        ]
     def __str__(self):
         plat = self.platform.name if self.platform else "Combined"
         return f"#{self.rank} {self.release} ({plat})"
@@ -479,6 +494,9 @@ class ChartUpload(models.Model):
 
     class Meta:
         ordering = ['-year', '-month', '-created_at']
+        indexes = [
+            models.Index(fields=['status', '-created_at'], name='upload_status_created_idx'),
+        ]
 
     def __str__(self):
         target = self.platform.name if self.platform else 'Combined'
@@ -501,6 +519,9 @@ class AuditLog(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['module', '-created_at'], name='audit_module_created_idx'),
+        ]
 
     def __str__(self):
         who = self.user.get_username() if self.user else 'System'
@@ -558,6 +579,9 @@ class DataQualityIssue(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['status', 'severity'], name='quality_status_sev_idx'),
+        ]
 
 
 class CertificationRule(models.Model):
