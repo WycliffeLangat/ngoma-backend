@@ -825,6 +825,25 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         audit(request, 'reordered_entries', module=self.module_name, new={'chart_id': chart_id, 'count': len(entries)})
         return Response({'reordered': len(entries)})
 
+    @action(detail=False, methods=['post'])
+    def trim_to_top(self, request):
+        """Drop every entry ranked below the cutoff (default 50) for a chart,
+        across every platform context plus Combined. Used after a weekly-upload
+        rebuild, which keeps every charting release, to bring a chart down to
+        the published Top 50 before the publish-validation rank check."""
+        chart_id = request.data.get('chart')
+        if not chart_id:
+            return Response({'detail': 'chart is required.'}, status=400)
+        try:
+            chart = MonthlyChart.objects.get(pk=chart_id)
+        except MonthlyChart.DoesNotExist:
+            return Response({'detail': 'Chart not found.'}, status=404)
+        self._check_locked(chart)
+        cutoff = int(request.data.get('cutoff', 50))
+        deleted, _ = MonthlyChartEntry.objects.filter(chart=chart, rank__gt=cutoff).delete()
+        audit(request, 'trimmed_chart_entries', module=self.module_name, obj=chart, new={'cutoff': cutoff, 'deleted': deleted})
+        return Response({'deleted': deleted})
+
 
 class CmsWeeklyUploadViewSet(CmsBaseViewSet):
     queryset = WeeklyUpload.objects.select_related('uploaded_by').all()
