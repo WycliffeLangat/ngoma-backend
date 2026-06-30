@@ -827,10 +827,11 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
 
     @action(detail=False, methods=['post'])
     def trim_to_top(self, request):
-        """Drop every entry ranked below the cutoff (default 50) for a chart,
-        across every platform context plus Combined. Used after a weekly-upload
-        rebuild, which keeps every charting release, to bring a chart down to
-        the published Top 50 before the publish-validation rank check."""
+        """Drop Combined-context entries ranked below the cutoff (default 50)
+        for a chart. Used after a weekly-upload rebuild, which keeps every
+        charting release in the Combined context, to bring it down to the
+        published Top 50 before the publish-validation rank check. Per-platform
+        contexts are left untouched, matching every other published month."""
         chart_id = request.data.get('chart')
         if not chart_id:
             return Response({'detail': 'chart is required.'}, status=400)
@@ -840,7 +841,7 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
             return Response({'detail': 'Chart not found.'}, status=404)
         self._check_locked(chart)
         cutoff = int(request.data.get('cutoff', 50))
-        deleted, _ = MonthlyChartEntry.objects.filter(chart=chart, rank__gt=cutoff).delete()
+        deleted, _ = MonthlyChartEntry.objects.filter(chart=chart, platform__isnull=True, rank__gt=cutoff).delete()
         audit(request, 'trimmed_chart_entries', module=self.module_name, obj=chart, new={'cutoff': cutoff, 'deleted': deleted})
         return Response({'deleted': deleted})
 
