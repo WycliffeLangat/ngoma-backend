@@ -27,15 +27,21 @@ def _credit(entry):
     return release_credit_payload(entry.release, entry_featured=entry.featured_artists)['artist_credit'] or "Unknown artist"
 
 
+def _lead_artist(entry):
+    credits = release_credit_payload(entry.release, entry_featured=entry.featured_artists)
+    return credits['primary_artists'][0] if credits['primary_artists'] else entry.release.artist
+
+
 def _entry_dict(entry):
+    lead_artist = _lead_artist(entry)
     return {
         "rank": entry.rank,
         "title": entry.release.title,
         "artist": _credit(entry),
-        "primary_artist": entry.release.artist.name,
+        "primary_artist": lead_artist.display_name or lead_artist.name,
         "featured_artists": release_credit_payload(entry.release, entry_featured=entry.featured_artists)['featured_artist_names'],
-        "country": entry.release.artist.country,
-        "country_code": entry.release.artist.country_code,
+        "country": lead_artist.country,
+        "country_code": lead_artist.country_code,
         "points": entry.total_points,
         "raw_points": entry.raw_total_points,
         "previous_rank": entry.prev_rank,
@@ -51,11 +57,16 @@ def _latest_chart(chart_type="singles"):
     return MonthlyChart.objects.filter(
         chart_type=chart_type,
         is_published=True,
+        status="published",
     ).order_by("-year", "-month").first()
 
 
 def _resolve_chart(chart_type="singles", month=""):
-    query = MonthlyChart.objects.filter(chart_type=chart_type, is_published=True)
+    query = MonthlyChart.objects.filter(
+        chart_type=chart_type,
+        is_published=True,
+        status="published",
+    )
     if month:
         query = query.filter(label__iexact=month.strip())
     return query.order_by("-year", "-month").first()
@@ -78,7 +89,11 @@ def _entries_for_chart(chart, platform="Combined", limit=50):
 
 def _charts_through(chart_type="singles", through_month=""):
     cutoff = _resolve_chart(chart_type, through_month)
-    query = MonthlyChart.objects.filter(chart_type=chart_type, is_published=True)
+    query = MonthlyChart.objects.filter(
+        chart_type=chart_type,
+        is_published=True,
+        status="published",
+    )
     if cutoff:
         query = query.filter(Q(year__lt=cutoff.year) | Q(year=cutoff.year, month__lte=cutoff.month))
     return list(query.order_by("year", "month"))
@@ -93,7 +108,7 @@ def get_chart(chart_type="singles", month="", platform="Combined", limit=50):
         "platform": platform or "Combined",
         "entry_count": len(entries),
         "entries": [_entry_dict(entry) for entry in entries],
-        "note": "Combined points are Display Points. Individual platform points use their original platform scale.",
+        "note": "All public chart points use the Top 50 scale: #1 earns 50 and #50 earns 1.",
     }
 
 
@@ -126,9 +141,13 @@ def _artist_totals(chart_type="singles", through_month=""):
                 if entry.rank < row["best_rank"]:
                     row["best_rank"] = entry.rank
                     row["best_release"] = entry.release.title
-                if name.casefold() == entry.release.artist.name.casefold():
-                    row["country"] = entry.release.artist.country
-                    row["country_code"] = entry.release.artist.country_code
+                lead_artist = _lead_artist(entry)
+                if name.casefold() in {
+                    lead_artist.name.casefold(),
+                    (lead_artist.display_name or '').casefold(),
+                }:
+                    row["country"] = lead_artist.country
+                    row["country_code"] = lead_artist.country_code
         for name, points in month_points.items():
             totals[name]["history"].append({"month": chart.label, "points": points})
     ranked = sorted(totals.items(), key=lambda item: (-item[1]["points"], item[0].casefold()))
@@ -173,6 +192,7 @@ def get_release_profile(title, chart_type="singles"):
     entries = list(MonthlyChartEntry.objects.filter(
         chart__chart_type=chart_type,
         chart__is_published=True,
+        chart__status="published",
         platform__isnull=True,
         rank__lte=50,
         release__title__iexact=title.strip(),
@@ -188,6 +208,8 @@ def get_release_profile(title, chart_type="singles"):
     platforms = defaultdict(list)
     platform_entries = MonthlyChartEntry.objects.filter(
         chart__chart_type=chart_type,
+        chart__is_published=True,
+        chart__status="published",
         release_id=latest.release_id,
         platform__isnull=False,
         rank__lte=50,
@@ -203,7 +225,7 @@ def get_release_profile(title, chart_type="singles"):
         "found": True,
         "title": latest.release.title,
         "artist": _credit(latest),
-        "primary_artist": latest.release.artist.name,
+        "primary_artist": _lead_artist(latest).display_name or _lead_artist(latest).name,
         "chart_type": chart_type,
         "total_display_points": total_points,
         "certification": "Diamond" if total_points >= 600 else "Platinum" if total_points >= 400 else "Gold" if total_points >= 200 else "Not certified",
@@ -266,6 +288,7 @@ def predict_next_month(chart_type="singles", title="", artist="", count=10):
         history = list(MonthlyChartEntry.objects.filter(
             chart__chart_type=chart_type,
             chart__is_published=True,
+            chart__status="published",
             platform__isnull=True,
             release_id=current.release_id,
             rank__lte=50,
@@ -322,7 +345,7 @@ def get_app_overview(chart_type="singles", through_month=""):
             row["title"] = entry.release.title
             row["artist"] = _credit(entry)
             row["peak"] = min(row["peak"], entry.rank)
-            country_totals[entry.release.artist.country_code or "Unknown"] += 1
+            country_totals[_lead_artist(entry).country_code or "Unknown"] += 1
     top_releases = sorted(release_totals.values(), key=lambda row: (-row["points"], row["peak"]))[:10]
     certifications = Certification.objects.filter(release__chart_type=chart_type)
     news = list(NewsArticle.objects.filter(is_published=True).values("title", "category", "published_at")[:20])

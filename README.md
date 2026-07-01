@@ -93,9 +93,49 @@ The AI Analyst code is retained for possible future use, but the endpoint return
 `charts/pipeline.py` handles all data processing:
 - `process_weekly_upload(upload)` — parse xlsx, normalize, dedupe, save entries
 - `rebuild_monthly_chart(chart_type, year, month)` — recompute aggregates
-- `award_certifications(chart_type)` — auto-award based on cumulative points
+- `award_certifications(chart_type)` — compatibility wrapper for canonical certification recalculation
 
 The pipeline runs automatically when you upload a weekly file via the admin.
+
+### Canonical scoring methodology
+
+- Weekly source charts are fixed Top 100 charts for both singles and albums.
+  Rank 1 earns 100 raw points and rank 100 earns 1 (`101 - rank`). Rows below
+  rank 100 are never processed.
+- Monthly platform rankings sum those weekly raw points. Combined rankings sum
+  the monthly raw platform totals.
+- `MonthlyChartEntry.raw_total_points` is the raw score used only for ranking.
+  `MonthlyChartEntry.total_points` is the public Top 50 score (`51 - rank`);
+  rank 51 or worse stores zero public points.
+- Combined entries use platform coverage of 6 for singles and 2 for albums.
+- Certifications, public analytics, history, and artist points use published
+  Combined Top 50 public points only.
+- The Combined Artist Chart uses Combined Singles Top 50 plus Combined Albums
+  Top 50. Platform artist charts use only that platform's supported Top 50
+  singles/albums rows. Every credited artist receives full points.
+
+The formulas and supported-platform lists live in `charts/methodology.py`;
+editable platform metadata cannot change scoring.
+
+### Rebuild after a methodology deployment
+
+Preview the complete historical repair:
+
+```bash
+python manage.py rebuild_chart_methodology --all --dry-run
+```
+
+Apply it after reviewing the summary:
+
+```bash
+python manage.py rebuild_chart_methodology --all
+```
+
+Periods with weekly source entries are recalculated exactly. Monthly-only
+periods preserve their stored ordering score in `raw_total_points`, then
+recalculate public points, coverage, history, artist credits, and
+certifications. That is the safest available reconstruction when source
+weekly workbooks are unavailable.
 
 ## Certification Thresholds
 

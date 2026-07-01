@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from .methodology import CERTIFICATION_THRESHOLDS
 
 
 class Platform(models.Model):
@@ -10,9 +11,9 @@ class Platform(models.Model):
     logo = models.ImageField(upload_to='platforms/', blank=True, null=True)
     color = models.CharField(max_length=7, default='#888888')
     brand_color = models.CharField(max_length=7, blank=True, default='')
-    chart_size = models.IntegerField(default=100, help_text="TopN chart size e.g. 100 or 200")
+    chart_size = models.IntegerField(default=100, help_text="Source charts use the fixed Top 100 methodology")
     max_chart_size = models.IntegerField(default=50, help_text="Maximum chart rows shown/imported in CMS")
-    points_base = models.IntegerField(default=101, help_text="Points = base - position")
+    points_base = models.IntegerField(default=101, help_text="Legacy metadata; weekly scoring is fixed at 101 - rank")
     points_method = models.CharField(max_length=100, blank=True, default='rank_descending')
     supports_singles = models.BooleanField(default=True)
     supports_albums = models.BooleanField(default=False)
@@ -243,6 +244,16 @@ class PlatformChartEntry(models.Model):
     class Meta:
         unique_together = ['upload', 'platform', 'position']
         ordering = ['position']
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(position__gte=1, position__lte=100),
+                name='weekly_position_top_100',
+            ),
+            models.CheckConstraint(
+                check=models.Q(points__gte=1, points__lte=100),
+                name='weekly_points_positive_top_100',
+            ),
+        ]
 
     def __str__(self):
         return f"{self.platform} #{self.position} {self.release}"
@@ -286,7 +297,24 @@ class MonthlyChartEntry(models.Model):
     @property
     def movement(self):
         if self.prev_rank is None:
-            return 'new'
+            if not self.pk or not self.chart_id or not self.release_id:
+                return 'new'
+            appeared_before = MonthlyChartEntry.objects.filter(
+                chart__chart_type=self.chart.chart_type,
+                chart__is_published=True,
+                chart__status='published',
+                platform_id=self.platform_id,
+                release_id=self.release_id,
+                rank__gte=1,
+                rank__lte=50,
+            ).filter(
+                models.Q(chart__year__lt=self.chart.year)
+                | models.Q(
+                    chart__year=self.chart.year,
+                    chart__month__lt=self.chart.month,
+                )
+            ).exists()
+            return 're-entry' if appeared_before else 'new'
         d = self.prev_rank - self.rank
         if d > 0:
             return f'+{d}'
@@ -354,7 +382,7 @@ class Certification(models.Model):
     ]
 
     # Current Ngoma Charts certification thresholds; labels intentionally avoid the word "Ngoma".
-    THRESHOLDS = {'gold': 5000, 'platinum': 10000, 'diamond': 20000}
+    THRESHOLDS = CERTIFICATION_THRESHOLDS
 
     release = models.ForeignKey(Release, on_delete=models.CASCADE, related_name='certifications')
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES)

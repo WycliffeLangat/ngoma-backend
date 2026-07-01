@@ -234,7 +234,7 @@ class PublicAppDataSyncTests(TestCase):
         row = data["full"]["singles"]["combined"]["July 2026"][0]
         self.assertEqual(row["t"], "Updated Song")
         self.assertEqual(row["a"], "Updated Artist")
-        self.assertEqual(row["p"], 77)
+        self.assertEqual(row["p"], 50)
         self.assertEqual(row["fa"], "Featured Artist")
         self.assertEqual(row["co"], "Kenya")
         self.assertEqual(row["cc"], "KE")
@@ -261,7 +261,9 @@ class PublicAppDataSyncTests(TestCase):
             "Updated title",
         )
         self.assertEqual(article["title"], "Updated headline")
-        self.assertEqual(certification["total_points"], 7777)
+        # Certification totals are derived from the published chart history;
+        # changing a rule harmonizes the manual value back to the live total.
+        self.assertEqual(certification["total_points"], 50)
         self.assertEqual(rule["threshold"], 7000)
         self.assertEqual(methodology["name"], "Updated method")
 
@@ -457,3 +459,122 @@ class PublicAppDataSyncTests(TestCase):
         detail = detail_response.json()
         self.assertIn(self.release.id, [item["id"] for item in detail["releases"]])
         self.assertIn(self.release.id, [item["release_id"] for item in detail["chart_history"]])
+
+
+class ChartHistoryHarmonizationTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.admin = User.objects.create_superuser(
+            "harmonize-admin",
+            "harmonize@example.com",
+            "password",
+        )
+        self.artist = Artist.objects.create(
+            name="History Artist",
+            slug="history-artist",
+        )
+        self.release_a = Release.objects.create(
+            title="Release A",
+            canonical_title="release a",
+            artist=self.artist,
+            chart_type="singles",
+        )
+        self.release_b = Release.objects.create(
+            title="Release B",
+            canonical_title="release b",
+            artist=self.artist,
+            chart_type="singles",
+        )
+        self.january = MonthlyChart.objects.create(
+            year=2099,
+            month=1,
+            chart_type="singles",
+            label="January 2099",
+            status="published",
+            is_published=True,
+        )
+        self.february = MonthlyChart.objects.create(
+            year=2099,
+            month=2,
+            chart_type="singles",
+            label="February 2099",
+            status="published",
+            is_published=True,
+        )
+        MonthlyChartEntry.objects.create(
+            chart=self.january,
+            release=self.release_a,
+            rank=1,
+            total_points=100,
+            peak_rank=99,
+        )
+        MonthlyChartEntry.objects.create(
+            chart=self.january,
+            release=self.release_b,
+            rank=2,
+            total_points=50,
+            peak_rank=99,
+        )
+        self.february_a = MonthlyChartEntry.objects.create(
+            chart=self.february,
+            release=self.release_a,
+            rank=2,
+            total_points=40,
+            prev_rank=None,
+            peak_rank=99,
+        )
+        MonthlyChartEntry.objects.create(
+            chart=self.february,
+            release=self.release_b,
+            rank=1,
+            total_points=60,
+            prev_rank=None,
+            peak_rank=99,
+        )
+        CertificationRule.objects.update_or_create(
+            level="gold",
+            defaults={"threshold": 100, "active": True},
+        )
+
+    def test_entry_edit_harmonizes_all_dependent_surfaces(self):
+        self.client.force_authenticate(self.admin)
+        response = self.client.patch(
+            f"/api/v1/cms/chart-entries/{self.february_a.id}/",
+            {"total_points": 80},
+            format="json",
+        )
+        self.assertEqual(response.status_code, 200, response.content)
+
+        january_a = MonthlyChartEntry.objects.get(
+            chart=self.january,
+            release=self.release_a,
+        )
+        february_a = MonthlyChartEntry.objects.get(
+            chart=self.february,
+            release=self.release_a,
+        )
+        february_b = MonthlyChartEntry.objects.get(
+            chart=self.february,
+            release=self.release_b,
+        )
+        self.assertEqual((february_a.rank, february_b.rank), (1, 2))
+        self.assertEqual(february_a.prev_rank, 1)
+        self.assertEqual(february_b.prev_rank, 2)
+        self.assertEqual(january_a.peak_rank, 1)
+        self.assertEqual(february_a.peak_rank, 1)
+
+        certification = Certification.objects.get(
+            release=self.release_a,
+            level="gold",
+        )
+        self.assertEqual(certification.total_points, 100)
+
+        public = self.client.get("/api/v1/app-data/").json()
+        row = next(
+            item
+            for item in public["full"]["singles"]["combined"]["February 2099"]
+            if item["release_id"] == self.release_a.id
+        )
+        self.assertEqual(row["r"], 1)
+        self.assertEqual(row["last_month"], 1)
+        self.assertEqual(row["peak_rank"], 1)

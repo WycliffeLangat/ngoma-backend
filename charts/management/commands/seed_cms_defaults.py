@@ -1,13 +1,14 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from charts.models import CertificationRule, MethodologySetting, SiteSetting, PlaceholderModule, Country, Platform
+from charts.methodology import CERTIFICATION_THRESHOLDS
 
 
 class Command(BaseCommand):
     help = 'Seed Ngoma CMS defaults: certification thresholds, methodology, settings, countries, platforms and future module placeholders.'
 
     def handle(self, *args, **options):
-        for level, threshold in [('gold', 5000), ('platinum', 10000), ('diamond', 20000)]:
+        for level, threshold in CERTIFICATION_THRESHOLDS.items():
             CertificationRule.objects.update_or_create(level=level, defaults={'threshold': threshold, 'active': True})
 
         MethodologySetting.objects.update_or_create(
@@ -16,8 +17,10 @@ class Command(BaseCommand):
                 'name': 'Current Ngoma Charts methodology',
                 'is_active': True,
                 'config': {
-                    'certification_thresholds': {'gold': 5000, 'platinum': 10000, 'diamond': 20000},
-                    'artist_points_source': 'Top 50 platform charts for both singles and albums',
+                    'weekly_points': {'limit': 100, 'formula': '101 - rank'},
+                    'public_points': {'limit': 50, 'formula': '51 - rank'},
+                    'certification_thresholds': CERTIFICATION_THRESHOLDS,
+                    'artist_points_source': 'Combined Singles Top 50 + Combined Albums Top 50',
                     'artist_platform_points': {'rank_1': 50, 'rank_50': 1},
                     'artist_entries': 'unique entries',
                     'cross_platform_hit_minimum': {'singles': 2, 'albums': 2},
@@ -63,7 +66,19 @@ class Command(BaseCommand):
         for order, (name, slug, short, color, singles, albums, size) in enumerate(platforms):
             Platform.objects.update_or_create(
                 slug=slug,
-                defaults={'name': name, 'short_name': short, 'color': color, 'brand_color': color, 'supports_singles': singles, 'supports_albums': albums, 'max_chart_size': size, 'display_order': order, 'active': True},
+                defaults={
+                    'name': name,
+                    'short_name': short,
+                    'color': color,
+                    'brand_color': color,
+                    'chart_size': 100,
+                    'points_base': 101,
+                    'supports_singles': singles,
+                    'supports_albums': albums,
+                    'max_chart_size': size,
+                    'display_order': order,
+                    'active': name not in {'TikTok', 'Radio'},
+                },
             )
 
         for module in ['submissions', 'newsletter', 'awards', 'ads_sponsors', 'ai_assistant', 'advanced_analytics', 'social_cards', 'records', 'year_end', 'backups']:

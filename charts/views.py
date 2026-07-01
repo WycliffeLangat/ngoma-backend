@@ -7,7 +7,9 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from .models import *
 from .serializers import *
+from .artist_credits import release_credit_payload
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
+from .cms_utils import published_artist_entries, published_top50_entries
 
 
 class PlatformViewSet(viewsets.ReadOnlyModelViewSet):
@@ -30,13 +32,11 @@ class ArtistViewSet(viewsets.ReadOnlyModelViewSet):
     def chart_history(self, request, pk=None):
         artist = self.get_object()
         chart_type = request.query_params.get('chart_type', 'singles')
-        entries = MonthlyChartEntry.objects.filter(
-            Q(release__artist=artist) | Q(release__artist_credits__artist=artist),
+        entries = published_artist_entries(artist).filter(
             release__chart_type=chart_type,
-            platform__isnull=True
-            , chart__is_published=True, chart__status='published',
-            rank__range=(1, 50)
-        ).select_related('chart', 'release').distinct().order_by('chart__year', 'chart__month', 'rank')
+        ).select_related('chart', 'release').order_by(
+            'chart__year', 'chart__month', 'rank'
+        )
 
         data = [{
             'month': e.chart.label,
@@ -53,12 +53,9 @@ class ArtistViewSet(viewsets.ReadOnlyModelViewSet):
     def stats(self, request, pk=None):
         artist = self.get_object()
         chart_type = request.query_params.get('chart_type', 'singles')
-        entries = MonthlyChartEntry.objects.filter(
-            Q(release__artist=artist) | Q(release__artist_credits__artist=artist),
+        entries = published_artist_entries(artist).filter(
             release__chart_type=chart_type,
-            platform__isnull=True, chart__is_published=True,
-            chart__status='published', rank__range=(1, 50)
-        ).distinct()
+        )
         agg = entries.aggregate(
             total_pts=Sum('total_points'), peak=Min('rank'),
             months=Count('chart', distinct=True)
@@ -158,19 +155,32 @@ class MonthlyChartViewSet(viewsets.ReadOnlyModelViewSet):
         ).order_by('-year', '-month').first()
         default_year = latest_chart.year if latest_chart else timezone.now().year
         year = int(request.query_params.get('year', default_year))
-        entries = MonthlyChartEntry.objects.filter(
-            chart__year=year, chart__chart_type=chart_type,
-            chart__is_published=True, chart__status='published',
-            platform__isnull=True, rank__range=(1, 50)
-        ).values('release__title', 'release__artist__name', 'release_id').annotate(
+        entries = published_top50_entries().filter(
+            chart__year=year,
+            chart__chart_type=chart_type,
+        ).values('release__title', 'release_id').annotate(
             total_pts=Sum('total_points'),
             months=Count('chart', distinct=True),
             best_rank=Min('rank')
         ).order_by('-total_pts')
 
-        data = [{'rank': i+1, 'title': e['release__title'], 'artist': e['release__artist__name'],
-                 'total_points': e['total_pts'], 'months_on_chart': e['months'],
-                 'best_rank': e['best_rank']} for i, e in enumerate(entries)]
+        entry_rows = list(entries)
+        releases = {
+            release.id: release
+            for release in Release.objects.filter(
+                id__in=[entry['release_id'] for entry in entry_rows]
+            ).select_related('artist').prefetch_related('artist_credits__artist')
+        }
+        data = [{
+            'rank': index + 1,
+            'title': entry['release__title'],
+            'artist': release_credit_payload(
+                releases[entry['release_id']]
+            )['artist_credit'],
+            'total_points': entry['total_pts'],
+            'months_on_chart': entry['months'],
+            'best_rank': entry['best_rank'],
+        } for index, entry in enumerate(entry_rows)]
         return Response({'year': year, 'chart_type': chart_type, 'entries': data})
 
     @action(detail=False, methods=['get'])

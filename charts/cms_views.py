@@ -19,7 +19,7 @@ from rest_framework.views import APIView
 from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
-from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, published_top50_entries
+from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, harmonize_chart_history, published_top50_entries
 from .models import PlatformChartEntry
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
@@ -606,7 +606,7 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             dup_id = duplicate.pk
             duplicate.delete()
 
-        recalculate_certifications(release=keeper)
+        harmonize_chart_history(chart_type=keeper.chart_type)
         audit(request, 'merged_release', module='releases', obj=keeper, new={
             'merged_id': dup_id, 'merged_repr': dup_repr,
             'mce_moved': mce_moved, 'mce_summed': mce_summed, 'pce_moved': pce_moved, 'pce_dropped': pce_dropped,
@@ -628,6 +628,7 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         entry_count = MonthlyChartEntry.objects.filter(release=release).count()
         release_repr = str(release)
         release_id = release.pk
+        chart_type = release.chart_type
 
         with transaction.atomic():
             MonthlyChartEntry.objects.filter(release=release).delete()
@@ -635,6 +636,7 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             Certification.objects.filter(release=release).delete()
             release.delete()
 
+        harmonize_chart_history(chart_type=chart_type)
         audit(request, 'hard_deleted_release', module='releases', new={
             'id': release_id, 'repr': release_repr, 'entries_deleted': entry_count,
         })
@@ -789,16 +791,60 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         chart = serializer.validated_data.get('chart')
         if chart:
             self._check_locked(chart)
-        super().perform_create(serializer)
+        if (
+            'total_points' in serializer.validated_data
+            and 'raw_total_points' not in serializer.validated_data
+        ):
+            serializer.validated_data['raw_total_points'] = max(
+                int(serializer.validated_data['total_points'] or 0),
+                0,
+            )
+        obj = serializer.save()
+        result = harmonize_chart_history(chart_type=obj.chart.chart_type)
+        obj.refresh_from_db()
+        audit(self.request, 'created', module=self.module_name, obj=obj, new={
+            **serializer.data,
+            'harmonization': result,
+        })
 
     def perform_update(self, serializer):
         self._check_locked(serializer.instance.chart)
-        super().perform_update(serializer)
+        old = model_to_dict_safe(serializer.instance)
+        # Rank is derived from points. Ignoring a directly supplied rank also
+        # avoids transient unique-rank collisions; harmonization installs the
+        # authoritative ordering immediately after the save.
+        serializer.validated_data.pop('rank', None)
+        if (
+            'total_points' in serializer.validated_data
+            and 'raw_total_points' not in serializer.validated_data
+        ):
+            serializer.validated_data['raw_total_points'] = max(
+                int(serializer.validated_data['total_points'] or 0),
+                0,
+            )
+        obj = serializer.save()
+        result = harmonize_chart_history(chart_type=obj.chart.chart_type)
+        obj.refresh_from_db()
+        audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new={
+            **serializer.data,
+            'harmonization': result,
+        })
 
     def perform_destroy(self, instance):
         self._check_locked(instance.chart)
+        chart_type = instance.chart.chart_type
         audit(self.request, 'deleted', module=self.module_name, obj=instance)
         instance.delete()
+        harmonize_chart_history(chart_type=chart_type)
+
+    @action(detail=False, methods=['post'])
+    def harmonize(self, request):
+        result = harmonize_chart_history(
+            chart_type=request.data.get('chart_type'),
+            chart_ids=request.data.get('chart_ids') or [],
+        )
+        audit(request, 'harmonized_chart_history', module=self.module_name, new=result)
+        return Response(result)
 
     @action(detail=False, methods=['post'])
     def reorder(self, request):
@@ -812,18 +858,12 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         except MonthlyChart.DoesNotExist:
             return Response({'detail': 'Chart not found.'}, status=404)
         self._check_locked(chart)
-        qs = MonthlyChartEntry.objects.filter(chart=chart)
-        if platform == 'combined':
-            qs = qs.filter(platform__isnull=True)
-        elif platform:
-            qs = qs.filter(platform_id=platform)
-        entries = list(qs.order_by('rank'))
-        for i, entry in enumerate(entries, 1):
-            if entry.rank != i:
-                entry.rank = i
-                entry.save(update_fields=['rank'])
-        audit(request, 'reordered_entries', module=self.module_name, new={'chart_id': chart_id, 'count': len(entries)})
-        return Response({'reordered': len(entries)})
+        result = harmonize_chart_history(chart_ids=[chart.id])
+        audit(request, 'reordered_entries', module=self.module_name, new={
+            'chart_id': chart_id,
+            **result,
+        })
+        return Response(result)
 
     @action(detail=False, methods=['post'])
     def trim_to_top(self, request):
@@ -1078,6 +1118,18 @@ class CertificationRuleViewSet(CmsBaseViewSet):
     queryset = CertificationRule.objects.all()
     serializer_class = CertificationRuleSerializer
     module_name = 'certification_rules'
+
+    def perform_create(self, serializer):
+        super().perform_create(serializer)
+        recalculate_certifications()
+
+    def perform_update(self, serializer):
+        super().perform_update(serializer)
+        recalculate_certifications()
+
+    def perform_destroy(self, instance):
+        super().perform_destroy(instance)
+        recalculate_certifications()
 
 
 class MethodologySettingViewSet(CmsBaseViewSet):

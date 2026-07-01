@@ -9,6 +9,10 @@ from django.db.models import Sum
 from openpyxl import load_workbook
 
 from charts.artist_metadata import artist_country
+from charts.methodology import (
+    CERTIFICATION_THRESHOLDS,
+    public_points,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -163,19 +167,13 @@ COMBINED_HEADERS = [
 PLATFORM_HEADERS = ["Month", "Platform", "Rank", "Title", "Artist", "Points", "Weeks"]
 
 PLATFORM_DATA = [
-    ("Apple Music", "apple-music", "#FC3C44", 200, 101),
-    ("Audiomack", "audiomack", "#F68B1F", 200, 101),
+    ("Apple Music", "apple-music", "#FC3C44", 100, 101),
+    ("Audiomack", "audiomack", "#F68B1F", 100, 101),
     ("Boomplay", "boomplay", "#00FFFF", 100, 101),
-    ("Spotify", "spotify", "#1DB954", 50, 101),
+    ("Spotify", "spotify", "#1DB954", 100, 101),
     ("YouTube", "youtube", "#FF0000", 100, 101),
     ("Shazam", "shazam", "#0088FF", 100, 101),
 ]
-
-CERTIFICATION_THRESHOLDS = {
-    "gold": 200,
-    "platinum": 400,
-    "diamond": 600,
-}
 
 ARTIST_SEPARATOR_RE = re.compile(
     r"\s*(?:&|,|\bfeat(?:uring)?\.?(?=\s)|\bft\.?(?=\s)|\band\b)\s*",
@@ -763,8 +761,8 @@ def import_master_workbook(app_registry, workbook_path, clear=True, write_line=N
                             platform=platform,
                             release=release,
                             rank=rank,
-                            total_points=int(row["Points"]),
-                            raw_total_points=None,
+                            total_points=public_points(rank),
+                            raw_total_points=max(int(row["Points"]), 0),
                             weeks_on_chart=int(row["Weeks"]),
                             platform_count=1,
                             platform_max=1,

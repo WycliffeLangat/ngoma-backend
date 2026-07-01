@@ -44,21 +44,18 @@ class ArtistSerializer(serializers.ModelSerializer):
 
     def get_total_points(self, obj):
         from django.db.models import Sum
-        return MonthlyChartEntry.objects.filter(
-            release__artist=obj, platform__isnull=True
-        ).aggregate(t=Sum('total_points'))['t'] or 0
+        from .cms_utils import published_artist_entries
+        return published_artist_entries(obj).aggregate(t=Sum('total_points'))['t'] or 0
 
     def get_peak_rank(self, obj):
         from django.db.models import Min
-        result = MonthlyChartEntry.objects.filter(
-            release__artist=obj, platform__isnull=True
-        ).aggregate(p=Min('rank'))['p']
+        from .cms_utils import published_artist_entries
+        result = published_artist_entries(obj).aggregate(p=Min('rank'))['p']
         return result
 
     def get_months_on_chart(self, obj):
-        return MonthlyChartEntry.objects.filter(
-            release__artist=obj, platform__isnull=True
-        ).values('chart').distinct().count()
+        from .cms_utils import published_artist_entries
+        return published_artist_entries(obj).values('chart').distinct().count()
 
 
 class ReleaseSerializer(serializers.ModelSerializer):
@@ -103,11 +100,11 @@ class ReleaseSerializer(serializers.ModelSerializer):
 
 class MonthlyChartEntrySerializer(serializers.ModelSerializer):
     title = serializers.CharField(source='release.title')
-    artist = serializers.CharField(source='release.artist.name')
-    artist_id = serializers.IntegerField(source='release.artist.id')
-    country = serializers.CharField(source='release.artist.country')
-    country_code = serializers.CharField(source='release.artist.country_code')
-    flag = serializers.ReadOnlyField(source='release.artist.flag')
+    artist = serializers.SerializerMethodField()
+    artist_id = serializers.SerializerMethodField()
+    country = serializers.SerializerMethodField()
+    country_code = serializers.SerializerMethodField()
+    flag = serializers.SerializerMethodField()
     release_id = serializers.IntegerField(source='release.id')
     platform_name = serializers.SerializerMethodField()
     movement = serializers.ReadOnlyField()
@@ -120,14 +117,37 @@ class MonthlyChartEntrySerializer(serializers.ModelSerializer):
         model = MonthlyChartEntry
         fields = [
             'rank', 'title', 'artist', 'artist_id', 'country', 'country_code',
-            'flag', 'release_id', 'total_points', 'weeks_on_chart',
-            'platform_count', 'peak_rank', 'prev_rank', 'movement',
+            'flag', 'release_id', 'total_points', 'raw_total_points',
+            'weeks_on_chart', 'platform_count', 'platform_max',
+            'peak_rank', 'prev_rank', 'movement',
             'platform_name', 'certifications', 'artist_credit',
             'primary_artists', 'featured_artist_profiles',
         ]
 
     def get_platform_name(self, obj):
         return obj.platform.name if obj.platform else 'Combined'
+
+    def _lead_artist(self, obj):
+        credits = release_credit_payload(obj.release, entry_featured=obj.featured_artists)
+        return credits['primary_artists'][0] if credits['primary_artists'] else obj.release.artist
+
+    def get_artist(self, obj):
+        return release_credit_payload(
+            obj.release,
+            entry_featured=obj.featured_artists,
+        )['primary_artist_credit']
+
+    def get_artist_id(self, obj):
+        return self._lead_artist(obj).id
+
+    def get_country(self, obj):
+        return self._lead_artist(obj).country
+
+    def get_country_code(self, obj):
+        return self._lead_artist(obj).country_code
+
+    def get_flag(self, obj):
+        return self._lead_artist(obj).flag
 
     def get_certifications(self, obj):
         return list(obj.release.certifications.filter(is_hidden=False).values_list('level', flat=True))
@@ -158,7 +178,10 @@ class MonthlyChartSerializer(serializers.ModelSerializer):
             qs = qs.filter(platform__isnull=True)
         elif platform_id:
             qs = qs.filter(platform_id=platform_id)
-        return MonthlyChartEntrySerializer(qs.order_by('rank'), many=True).data
+        return MonthlyChartEntrySerializer(
+            qs.filter(rank__gte=1, rank__lte=50).order_by('rank'),
+            many=True,
+        ).data
 
 
 class NewsArticleSerializer(serializers.ModelSerializer):

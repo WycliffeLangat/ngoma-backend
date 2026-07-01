@@ -1,7 +1,8 @@
 import csv
 import io
 import re
-from collections import Counter
+from collections import Counter, defaultdict
+from django.db import transaction
 from django.db.models import Q
 from collections.abc import Mapping
 from datetime import date, datetime, time
@@ -9,7 +10,13 @@ from decimal import Decimal
 from django.utils import timezone
 from django.utils.text import slugify
 import openpyxl
-from .models import AuditLog, Artist, Release, ReleaseArtistCredit, MonthlyChart, MonthlyChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting
+from .artist_credits import format_artist_list, parse_artist_credit, split_artist_names
+from .methodology import (
+    PUBLIC_CHART_LIMIT,
+    platform_max_for,
+    public_points,
+)
+from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting
 
 
 PUBLIC_DATA_AUDIT_MODULES = {
@@ -49,7 +56,8 @@ def published_top50_entries():
 
 def published_artist_entries(artist):
     return published_top50_entries().filter(
-        Q(release__artist=artist) | Q(release__artist_credits__artist=artist)
+        Q(release__artist_credits__artist=artist)
+        | Q(release__artist=artist, release__artist_credits__isnull=True)
     ).distinct()
 
 
@@ -323,6 +331,31 @@ def get_or_create_cms_artist(name, country='', country_code=''):
 
 
 def get_or_create_cms_release(row, artist, chart_type):
+    preserve_name = bool(
+        artist
+        and artist.name.casefold() == normalize_name(row.get('artist')).casefold()
+        and artist.artist_type in {'group', 'band', 'duo'}
+    )
+    primary_names, parsed_featured_names = parse_artist_credit(
+        row.get('artist'),
+        preserve_name=preserve_name,
+    )
+    primary_names = primary_names or [artist.name]
+    explicit_featured = split_artist_names(row.get('featured_artists'))
+    featured_names = []
+    seen_featured = set()
+    primary_keys = {name.casefold() for name in primary_names}
+    for name in [*parsed_featured_names, *explicit_featured]:
+        key = name.casefold()
+        if key not in primary_keys and key not in seen_featured:
+            featured_names.append(name)
+            seen_featured.add(key)
+
+    artist = get_or_create_cms_artist(
+        primary_names[0],
+        row.get('country'),
+        row.get('country_code'),
+    )
     canonical = normalize_name(row.get('title')).lower()
     release, created = Release.objects.get_or_create(
         canonical_title=canonical,
@@ -338,19 +371,41 @@ def get_or_create_cms_release(row, artist, chart_type):
             fields.append(attr)
     if fields:
         release.save(update_fields=fields + ['updated_at'])
-    ReleaseArtistCredit.objects.get_or_create(
-        release=release,
-        artist=artist,
-        role='primary',
-        defaults={'position': 0},
+    primary_artists = [
+        get_or_create_cms_artist(
+            name,
+            row.get('country') if position == 0 else '',
+            row.get('country_code') if position == 0 else '',
+        )
+        for position, name in enumerate(primary_names)
+    ]
+    featured_artists = [get_or_create_cms_artist(name) for name in featured_names]
+    from .pipeline import _sync_release_credits
+    _sync_release_credits(
+        release,
+        [credit_artist.name for credit_artist in primary_artists],
+        [credit_artist.name for credit_artist in featured_artists],
     )
+    featured_credit = format_artist_list(
+        credit_artist.display_name or credit_artist.name
+        for credit_artist in featured_artists
+    )
+    if featured_credit and release.featured_artists != featured_credit:
+        release.featured_artists = featured_credit
+        release.save(update_fields=['featured_artists', 'updated_at'])
     return release
 
 
 def detect_entry_status(row, chart_type, platform, year, month):
     if not (year and month and row.get('title') and row.get('artist')):
         return 'unknown'
-    artist = find_artist_by_name(row.get('artist'))
+    raw_artist = normalize_name(row.get('artist'))
+    exact_artist = find_artist_by_name(raw_artist)
+    preserve_name = bool(
+        exact_artist and exact_artist.artist_type in {'group', 'band', 'duo'}
+    )
+    primary_names, _ = parse_artist_credit(raw_artist, preserve_name=preserve_name)
+    artist = find_artist_by_name(primary_names[0] if primary_names else raw_artist)
     if not artist:
         return 'new'
     release = Release.objects.filter(canonical_title=normalize_name(row.get('title')).lower(), artist=artist, chart_type=chart_type).first()
@@ -378,20 +433,33 @@ def publish_chart_upload(upload, user=None):
     MonthlyChartEntry.objects.filter(chart=chart, platform=platform).delete()
     entries = []
     for row in sorted(upload.rows_data or [], key=lambda r: int(r.get('rank') or 9999)):
-        artist = get_or_create_cms_artist(row.get('artist'), row.get('country'), row.get('country_code'))
+        raw_artist = normalize_name(row.get('artist'))
+        existing_artist = find_artist_by_name(raw_artist)
+        preserve_name = bool(
+            existing_artist
+            and existing_artist.artist_type in {'group', 'band', 'duo'}
+        )
+        primary_names, _ = parse_artist_credit(raw_artist, preserve_name=preserve_name)
+        artist = get_or_create_cms_artist(
+            primary_names[0] if primary_names else raw_artist,
+            row.get('country'),
+            row.get('country_code'),
+        )
         release = get_or_create_cms_release(row, artist, upload.chart_type)
-        max_size = platform.max_chart_size if platform else 50
-        points = row.get('total_points')
-        if points is None:
-            points = max(max_size - int(row.get('rank') or 0) + 1, 0)
+        rank = int(row.get('rank') or len(entries) + 1)
+        raw_points = row.get('total_points')
+        if raw_points is None:
+            raw_points = public_points(rank)
         entries.append(MonthlyChartEntry(
             chart=chart,
             platform=platform,
             release=release,
-            rank=int(row.get('rank') or len(entries) + 1),
-            total_points=int(points or 0),
+            rank=rank,
+            total_points=public_points(rank),
+            raw_total_points=max(int(raw_points or 0), 0),
             weeks_on_chart=int(row.get('weeks_on_chart') or 1),
             platform_count=int(row.get('platform_count') or (1 if platform else 0)),
+            platform_max=1 if platform else platform_max_for(upload.chart_type),
             peak_rank=int(row.get('peak_rank') or row.get('rank') or 1),
             prev_rank=row.get('prev_rank') or None,
         ))
@@ -405,7 +473,7 @@ def publish_chart_upload(upload, user=None):
     upload.published_by = user
     upload.published_at = timezone.now()
     upload.save(update_fields=['status', 'published_by', 'published_at', 'updated_at'])
-    recalculate_certifications(chart_type=upload.chart_type)
+    harmonize_chart_history(chart_type=upload.chart_type)
     return chart, len(entries)
 
 
@@ -418,17 +486,244 @@ def certification_thresholds():
 
 def recalculate_certifications(chart_type=None, release=None):
     from django.db.models import Sum
+
     qs = Release.objects.all()
     if chart_type:
         qs = qs.filter(chart_type=chart_type)
     if release:
         qs = qs.filter(pk=release.pk)
     thresholds = certification_thresholds()
+    release_ids = list(qs.values_list('id', flat=True))
+    totals = {
+        row['release_id']: row['total']
+        for row in (
+            published_top50_entries()
+            .filter(release_id__in=release_ids)
+            .values('release_id')
+            .annotate(total=Sum('total_points'))
+        )
+    }
+    certifications_by_release = defaultdict(dict)
+    for item in Certification.objects.filter(release_id__in=release_ids):
+        certifications_by_release[item.release_id][item.level] = item
+
     updated = 0
-    for rel in qs:
-        total = published_top50_entries().filter(release=rel).aggregate(total=Sum('total_points'))['total'] or 0
-        for level, threshold in sorted(thresholds.items(), key=lambda item: item[1]):
-            if total >= threshold:
-                Certification.objects.update_or_create(release=rel, level=level, defaults={'total_points': total})
+    for release_id in release_ids:
+        total = totals.get(release_id, 0) or 0
+        achieved = {
+            level
+            for level, threshold in thresholds.items()
+            if total >= threshold
+        }
+        existing = certifications_by_release[release_id]
+
+        # Official awards are historical editorial records and are never
+        # silently removed. Their points still follow the live chart totals.
+        # Non-official, automatically-created awards are removed when a chart
+        # correction takes the release back below the applicable threshold.
+        for level, item in existing.items():
+            if level not in achieved and not item.is_official:
+                item.delete()
+                updated += 1
+                continue
+            if item.total_points != total:
+                item.total_points = total
+                item.save(update_fields=['total_points'])
+                updated += 1
+
+        for level in achieved:
+            if level not in existing:
+                Certification.objects.create(
+                    release_id=release_id,
+                    level=level,
+                    total_points=total,
+                )
                 updated += 1
     return updated
+
+
+def _previous_period(year, month):
+    return (year, month - 1) if month > 1 else (year - 1, 12)
+
+
+@transaction.atomic
+def harmonize_chart_history(chart_type=None, chart_ids=None):
+    """Rebuild every derived chart field from the canonical database rows.
+
+    A chart edit can affect much more than the row being edited: ranking,
+    movement, last-month rank, historical peak, analytics, certifications,
+    and year-end totals all share the same monthly history. This routine is
+    deliberately backend-owned so CMS, scripts, and future clients cannot
+    leave those surfaces out of sync.
+    """
+    chart_ids = [int(value) for value in (chart_ids or []) if value]
+    chart_types = set()
+    if chart_type:
+        chart_types.add(str(chart_type))
+    if chart_ids:
+        chart_types.update(
+            MonthlyChart.objects.filter(id__in=chart_ids)
+            .values_list('chart_type', flat=True)
+        )
+    charts_qs = MonthlyChart.objects.all()
+    if chart_types:
+        charts_qs = charts_qs.filter(chart_type__in=chart_types)
+    charts = list(charts_qs.order_by('chart_type', 'year', 'month', 'id'))
+    if not charts:
+        return {
+            'chart_types': sorted(chart_types),
+            'charts': 0,
+            'rank_changes': 0,
+            'scoring_changes': 0,
+            'history_changes': 0,
+            'certifications_changed': 0,
+        }
+
+    entries = list(
+        MonthlyChartEntry.objects.filter(chart_id__in=[chart.id for chart in charts])
+        .select_related('chart')
+    )
+    by_scope = defaultdict(list)
+    for entry in entries:
+        by_scope[(entry.chart_id, entry.platform_id)].append(entry)
+
+    rank_changes = 0
+    scoring_changes = 0
+    for scope_entries in by_scope.values():
+        backfilled_raw_ids = set()
+        for entry in scope_entries:
+            if entry.raw_total_points is None:
+                # Historical monthly-only rows cannot recover their original
+                # raw score, so preserve the stored ordering score. Periods
+                # with weekly sources are rebuilt exactly by the pipeline.
+                entry.raw_total_points = max(int(entry.total_points or 0), 0)
+                backfilled_raw_ids.add(entry.id)
+        ordered = sorted(
+            scope_entries,
+            key=lambda item: (
+                -int(item.raw_total_points or 0),
+                -int(item.platform_count or 0) if item.platform_id is None else 0,
+                int(item.rank or 0),
+                item.id,
+            ),
+        )
+        changed = []
+        for rank, entry in enumerate(ordered, 1):
+            expected_points = public_points(rank)
+            expected_platform_max = (
+                1 if entry.platform_id else platform_max_for(entry.chart.chart_type)
+            )
+            if (
+                entry.rank != rank
+                or entry.total_points != expected_points
+                or entry.platform_max != expected_platform_max
+                or entry.id in backfilled_raw_ids
+            ):
+                changed.append(entry)
+            if entry.total_points != expected_points:
+                scoring_changes += 1
+            entry.total_points = expected_points
+            entry.platform_max = expected_platform_max
+
+        rank_changed = [
+            entry
+            for rank, entry in enumerate(ordered, 1)
+            if entry.rank != rank
+        ]
+        if rank_changed:
+            # Ranks are unique inside a chart/platform scope. Move every
+            # affected row to a unique temporary value so swaps never collide.
+            for entry in rank_changed:
+                entry.rank = -(1_000_000 + entry.id)
+            MonthlyChartEntry.objects.bulk_update(rank_changed, ['rank'])
+            rank_changes += len(rank_changed)
+
+        if not changed:
+            continue
+        for rank, entry in enumerate(ordered, 1):
+            entry.rank = rank
+        MonthlyChartEntry.objects.bulk_update(
+            changed,
+            ['rank', 'total_points', 'raw_total_points', 'platform_max'],
+        )
+
+    # Refresh the in-memory ranks before rebuilding cross-month history.
+    entries = list(
+        MonthlyChartEntry.objects.filter(chart_id__in=[chart.id for chart in charts])
+        .select_related('chart')
+        .order_by('chart__chart_type', 'chart__year', 'chart__month', 'id')
+    )
+    public_entries = [
+        entry for entry in entries
+        if (
+            entry.chart.is_published
+            and entry.chart.status == 'published'
+            and 1 <= entry.rank <= PUBLIC_CHART_LIMIT
+        )
+    ]
+    rank_lookup = {
+        (
+            entry.chart.chart_type,
+            entry.chart.year,
+            entry.chart.month,
+            entry.platform_id,
+            entry.release_id,
+        ): entry.rank
+        for entry in public_entries
+    }
+    historical_peaks = {}
+    history_changed = []
+    for entry in entries:
+        history_key = (
+            entry.chart.chart_type,
+            entry.platform_id,
+            entry.release_id,
+        )
+        previous_year, previous_month = _previous_period(
+            entry.chart.year,
+            entry.chart.month,
+        )
+        previous_rank = rank_lookup.get((
+            entry.chart.chart_type,
+            previous_year,
+            previous_month,
+            entry.platform_id,
+            entry.release_id,
+        ))
+        if (
+            entry.chart.is_published
+            and entry.chart.status == 'published'
+            and entry.rank <= PUBLIC_CHART_LIMIT
+        ):
+            peak_rank = min(
+                historical_peaks.get(history_key, entry.rank),
+                entry.rank,
+            )
+            historical_peaks[history_key] = peak_rank
+        else:
+            previous_rank = None
+            peak_rank = entry.rank
+        if entry.prev_rank != previous_rank or entry.peak_rank != peak_rank:
+            entry.prev_rank = previous_rank
+            entry.peak_rank = peak_rank
+            history_changed.append(entry)
+    if history_changed:
+        MonthlyChartEntry.objects.bulk_update(
+            history_changed,
+            ['prev_rank', 'peak_rank'],
+        )
+
+    affected_types = sorted({chart.chart_type for chart in charts})
+    certifications_changed = sum(
+        recalculate_certifications(chart_type=affected_type)
+        for affected_type in affected_types
+    )
+    bump_public_revision()
+    return {
+        'chart_types': affected_types,
+        'charts': len(charts),
+        'rank_changes': rank_changes,
+        'scoring_changes': scoring_changes,
+        'history_changes': len(history_changed),
+        'certifications_changed': certifications_changed,
+    }

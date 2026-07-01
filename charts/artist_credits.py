@@ -1,7 +1,31 @@
 import re
 
 
-ARTIST_SEPARATOR_RE = re.compile(r'\s*(?:,|&|\b(?:feat|featuring|ft)\b\.?)\s*', re.IGNORECASE)
+ARTIST_SEPARATOR_RE = re.compile(
+    r'\s*(?:,|&|\b(?:and|x|with|feat|featuring|ft)\b\.?)\s*',
+    re.IGNORECASE,
+)
+FEATURE_SEPARATOR_RE = re.compile(
+    r'\s*\b(?:feat|featuring|ft)\b\.?\s*',
+    re.IGNORECASE,
+)
+PRIMARY_SEPARATOR_RE = re.compile(
+    r'\s*(?:,|&|\b(?:and|x|with)\b)\s*',
+    re.IGNORECASE,
+)
+
+# Separators are part of these canonical act names, not collaboration syntax.
+# An editorially managed Artist marked as a group/band/duo is also protected.
+NON_COLLABORATION_ARTIST_NAMES = {
+    'earth, wind & fire',
+    'florence & the machine',
+    'mumford & sons',
+    'papi clever & dorcas',
+    'simon & garfunkel',
+    'stanley & the turbines',
+    'tyler, the creator',
+    'years & years',
+}
 
 
 def unique_names(names):
@@ -16,8 +40,32 @@ def unique_names(names):
     return result
 
 
-def split_artist_names(value):
-    return unique_names(ARTIST_SEPARATOR_RE.split(str(value or '').strip()))
+def split_artist_names(value, preserve_name=False):
+    value = str(value or '').strip()
+    if preserve_name or value.casefold() in NON_COLLABORATION_ARTIST_NAMES:
+        return unique_names([value])
+    return unique_names(ARTIST_SEPARATOR_RE.split(value))
+
+
+def parse_artist_credit(value, preserve_name=False):
+    """Return ordered primary and featured names from one artist credit.
+
+    ``ft.``, ``feat.`` and ``featuring`` start featured credits. Ampersands,
+    commas, ``and``, ``x`` and ``with`` describe equal primary credits. Every
+    returned artist receives the release's full public chart points.
+    """
+    value = str(value or '').strip()
+    if not value:
+        return [], []
+    if preserve_name or value.casefold() in NON_COLLABORATION_ARTIST_NAMES:
+        return [value], []
+
+    parts = FEATURE_SEPARATOR_RE.split(value, maxsplit=1)
+    primary = unique_names(PRIMARY_SEPARATOR_RE.split(parts[0]))
+    featured = split_artist_names(parts[1]) if len(parts) > 1 else []
+    primary_keys = {name.casefold() for name in primary}
+    featured = [name for name in featured if name.casefold() not in primary_keys]
+    return primary, featured
 
 
 def format_artist_list(names):

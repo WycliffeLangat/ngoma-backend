@@ -41,12 +41,14 @@ def compact_combined(row):
 
 def compact_platform(row):
     primary_artist = str(row.get("Primary_Artist") or row["Artist"])
+    rank = int(row["Rank"])
     result = {
-        "r": int(row["Rank"]),
+        "r": rank,
         "t": str(row["Title"]),
         "a": primary_artist,
         "fa": str(row.get("Featured_Artists") or ""),
-        "p": int(row["Points"]),
+        "p": 51 - rank if 1 <= rank <= 50 else 0,
+        "rp": int(row["Points"]),
         "w": int(row["Weeks"]),
     }
     result.update(compact_country(primary_artist))

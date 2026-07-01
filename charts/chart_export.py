@@ -94,7 +94,11 @@ def chart_image_data(request):
     if platform_slug == "combined":
         entries_query = entries_query.filter(platform__isnull=True)
         platform_label = "Combined"
-        prior_entries = MonthlyChartEntry.objects.filter(platform__isnull=True)
+        prior_entries = MonthlyChartEntry.objects.filter(
+            platform__isnull=True,
+            chart__is_published=True,
+            chart__status="published",
+        )
     else:
         platform = Platform.objects.filter(slug=platform_slug).first()
 
@@ -106,7 +110,11 @@ def chart_image_data(request):
 
         entries_query = entries_query.filter(platform=platform)
         platform_label = platform.name
-        prior_entries = MonthlyChartEntry.objects.filter(platform=platform)
+        prior_entries = MonthlyChartEntry.objects.filter(
+            platform=platform,
+            chart__is_published=True,
+            chart__status="published",
+        )
 
     prior_release_ids = set(
         prior_entries.filter(chart__chart_type=chart.chart_type, rank__lte=50)
@@ -119,10 +127,10 @@ def chart_image_data(request):
 
     for entry in entries_query.order_by("rank"):
         release = entry.release
-        artist = release.artist
         featured_artists = (release.featured_artists or entry.featured_artists or "").strip()
-        artist_name = artist.display_name or artist.name
         credits = release_credit_payload(release, entry_featured=featured_artists)
+        artist = credits["primary_artists"][0] if credits["primary_artists"] else release.artist
+        artist_name = credits["primary_artist_credit"] or artist.display_name or artist.name
         display_artist = credits["artist_credit"]
         artist_country_code = (artist.country_code or "").strip().upper()
         artist_country = artist.country or ""
@@ -150,6 +158,7 @@ def chart_image_data(request):
                 "artist_country_code": artist_country_code,
                 "artist_flag": country_code_to_flag(artist_country_code),
                 "total_points": entry.total_points,
+                "raw_total_points": entry.raw_total_points,
                 "movement": "RE" if entry.prev_rank is None and entry.release_id in prior_release_ids else format_movement(entry),
                 "last_month": format_last_month(entry),
                 "prev_rank": entry.prev_rank,

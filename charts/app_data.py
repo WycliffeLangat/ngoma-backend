@@ -27,6 +27,7 @@ from .models import (
     SiteSetting,
 )
 from .artist_credits import release_credit_payload
+from .cms_utils import published_artist_entries
 
 
 HIDDEN_STATUSES = {"archived", "inactive", "rejected", "draft"}
@@ -175,8 +176,8 @@ def _compact(payload):
 
 
 def _release_payload(request, release):
-    artist = release.artist
     credits = release_credit_payload(release)
+    artist = credits["primary_artists"][0] if credits["primary_artists"] else release.artist
     # Use artist country as the authoritative source for display country on releases.
     display_country = artist.country or release.country
     display_country_code = artist.country_code or release.country_code
@@ -184,7 +185,7 @@ def _release_payload(request, release):
         "id": release.id,
         "title": release.title,
         "chart_type": release.chart_type,
-        "artist_id": release.artist_id,
+        "artist_id": artist.id,
         "artist_slug": artist.slug,
         "artist": artist.display_name or artist.name,
         "artist_credit": credits["artist_credit"],
@@ -225,9 +226,9 @@ def _release_payload(request, release):
 
 def _entry_payload(request, entry):
     release = entry.release
-    artist = release.artist
     featured_artists = release.featured_artists or entry.featured_artists
     credits = release_credit_payload(release, entry_featured=featured_artists)
+    artist = credits["primary_artists"][0] if credits["primary_artists"] else release.artist
     artist_name = artist.display_name or artist.name
     # Artist country is authoritative — release.country may be stale if set from
     # a previous artist country at import time and the artist was later updated.
@@ -240,8 +241,8 @@ def _entry_payload(request, entry):
         "artist_id": artist.id,
         "r": entry.rank,
         "t": release.title,
-        "a": artist_name,
-        "pa": artist_name,
+        "a": credits["primary_artist_credit"] or artist_name,
+        "pa": credits["primary_artist_credit"] or artist_name,
         "fa": featured_artists,
         "artist_credit": credits["artist_credit"],
         "primary_artist_credit": credits["primary_artist_credit"],
@@ -260,6 +261,10 @@ def _entry_payload(request, entry):
         "co": display_country,
         "cc": display_country_code,
         "fl": artist.flag,
+        "prev_rank": entry.prev_rank,
+        "last_month": entry.prev_rank if entry.prev_rank is not None else "—",
+        "peak_rank": entry.peak_rank,
+        "movement": entry.movement,
         # Include the editable release fields on every chart row.  The public
         # app can therefore render a CMS edit immediately without having to
         # join against the bundled/static release dataset.
@@ -369,12 +374,7 @@ class PublicAppDataView(APIView):
             if _is_public_status(entry.release.status)
             and _is_public_status(entry.release.artist.status)
         }
-        public_artist_ids = {
-            entry.release.artist_id
-            for chart in charts
-            for entry in chart.public_entries
-            if entry.release_id in public_release_ids
-        }
+        public_artist_ids = set()
         for chart in charts:
             for entry in chart.public_entries:
                 if entry.release_id not in public_release_ids:
@@ -564,15 +564,7 @@ class PublicArtistDetailView(APIView):
 
         # Combined-chart history across all published months (no platform breakdown).
         entries = (
-            MonthlyChartEntry.objects
-            .filter(
-                Q(release__artist=artist) | Q(release__artist_credits__artist=artist),
-                chart__is_published=True,
-                chart__status="published",
-                platform__isnull=True,
-                rank__gte=1,
-                rank__lte=50,
-            )
+            published_artist_entries(artist)
             .select_related("chart", "release", "release__artist")
             .prefetch_related("release__artist_credits__artist")
             .distinct()
@@ -602,14 +594,8 @@ class PublicArtistDetailView(APIView):
         # Aggregate stats per chart type.
         def _chart_stats(chart_type):
             agg = (
-                MonthlyChartEntry.objects
+                published_artist_entries(artist)
                 .filter(
-                    Q(release__artist=artist) | Q(release__artist_credits__artist=artist),
-                    chart__is_published=True,
-                    chart__status="published",
-                    platform__isnull=True,
-                    rank__gte=1,
-                    rank__lte=50,
                     release__chart_type=chart_type,
                 )
                 .distinct()
@@ -623,7 +609,8 @@ class PublicArtistDetailView(APIView):
         releases = [
             _release_payload(request, release)
             for release in Release.objects.select_related("artist").prefetch_related("artist_credits__artist").filter(
-                Q(artist=artist) | Q(artist_credits__artist=artist)
+                Q(artist_credits__artist=artist)
+                | Q(artist=artist, artist_credits__isnull=True)
             ).distinct()
             if _is_public_status(release.status)
         ]

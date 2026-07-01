@@ -47,6 +47,16 @@ git push -u origin main
 
 6. Wait ~2 minutes for first deploy. The `release` command in Procfile auto-runs migrations.
 
+For the Top 100 raw / Top 50 public methodology release, run this once in the
+production shell after migrations:
+
+```bash
+python manage.py rebuild_chart_methodology --all --dry-run
+python manage.py rebuild_chart_methodology --all
+```
+
+The dry run rolls back every write and reports the expected recalculation.
+
 ### 4. Seed the data and create admin user
 
 In Railway, click your app → three-dot menu → **Open Shell**:

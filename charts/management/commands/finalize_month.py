@@ -210,7 +210,7 @@ class Command(BaseCommand):
                     entry.rank,
                     release.title,
                     credits["artist_credit"],
-                    entry.total_points,
+                    entry.raw_total_points if entry.raw_total_points is not None else entry.total_points,
                     entry.weeks_on_chart or 1,
                 ])
 

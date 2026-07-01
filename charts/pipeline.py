@@ -6,10 +6,19 @@ import re
 import openpyxl
 from collections import defaultdict, Counter
 from django.db import transaction
+from .artist_credits import format_artist_list, parse_artist_credit
+from .methodology import (
+    PUBLIC_CHART_LIMIT,
+    WEEKLY_CHART_LIMIT,
+    platform_max_for,
+    platforms_for,
+    public_points,
+    weekly_points,
+)
 from .models import (
     Platform, Artist, Release, WeeklyUpload, MonthlyChart,
     PlatformChartEntry, MonthlyChartEntry, NormalizationRule,
-    ChartType, Certification
+    ReleaseArtistCredit, ChartType
 )
 
 
@@ -115,15 +124,97 @@ def get_or_create_artist(name):
     return artist
 
 
-def get_or_create_release(title, artist_obj, chart_type):
+def _preserve_artist_name(name):
+    artist = Artist.objects.filter(name__iexact=name).first()
+    return bool(artist and artist.artist_type in {'group', 'band', 'duo'})
+
+
+def parsed_artist_names(artist_credit):
+    return parse_artist_credit(
+        artist_credit,
+        preserve_name=_preserve_artist_name(artist_credit),
+    )
+
+
+def _sync_release_credits(release, primary_names, featured_names):
+    desired_primary = [get_or_create_artist(name) for name in primary_names]
+    desired_featured = [get_or_create_artist(name) for name in featured_names]
+    existing = list(release.artist_credits.select_related('artist'))
+
+    primary_artists = list(desired_primary)
+    desired_primary_ids = {artist.id for artist in desired_primary}
+    parsed_collaboration = len(desired_primary) > 1 or bool(desired_featured)
+    for credit in existing:
+        if credit.role != 'primary' or credit.artist_id in desired_primary_ids:
+            continue
+        # Migration 0009 may have stored the entire collaboration string as
+        # one pseudo-artist. Replace that generated row with real members.
+        if parsed_collaboration and credit.artist_id == release.artist_id:
+            continue
+        primary_artists.append(credit.artist)
+
+    primary_ids = {artist.id for artist in primary_artists}
+    featured_artists = [
+        artist for artist in desired_featured
+        if artist.id not in primary_ids
+    ]
+    featured_ids = {artist.id for artist in featured_artists}
+    for credit in existing:
+        if (
+            credit.role == 'featured'
+            and credit.artist_id not in primary_ids
+            and credit.artist_id not in featured_ids
+        ):
+            featured_artists.append(credit.artist)
+            featured_ids.add(credit.artist_id)
+
+    release.artist_credits.all().delete()
+    ReleaseArtistCredit.objects.bulk_create([
+        *[
+            ReleaseArtistCredit(
+                release=release,
+                artist=artist,
+                role='primary',
+                position=position,
+            )
+            for position, artist in enumerate(primary_artists)
+        ],
+        *[
+            ReleaseArtistCredit(
+                release=release,
+                artist=artist,
+                role='featured',
+                position=position,
+            )
+            for position, artist in enumerate(featured_artists)
+        ],
+    ])
+
+    featured_credit = format_artist_list(artist.name for artist in featured_artists)
+    if featured_credit and release.featured_artists != featured_credit:
+        release.featured_artists = featured_credit
+        release.save(update_fields=['featured_artists', 'updated_at'])
+
+
+def get_or_create_release(title, artist_credit, chart_type):
+    primary_names, featured_names = parsed_artist_names(artist_credit)
+    if not primary_names:
+        primary_names = [artist_credit or 'Unknown Artist']
+    artist_obj = get_or_create_artist(primary_names[0])
     canonical = title.lower().strip()
     try:
-        return Release.objects.get(canonical_title=canonical, artist=artist_obj, chart_type=chart_type)
+        release = Release.objects.get(
+            canonical_title=canonical,
+            artist=artist_obj,
+            chart_type=chart_type,
+        )
     except Release.DoesNotExist:
-        return Release.objects.create(
+        release = Release.objects.create(
             title=title, artist=artist_obj, chart_type=chart_type,
             canonical_title=canonical
         )
+    _sync_release_credits(release, primary_names, featured_names)
+    return release
 
 
 @transaction.atomic
@@ -163,10 +254,7 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None) -> dict:
     data_rows = rows[1:]
 
     # Get active platforms for this chart type
-    if is_album:
-        platform_names = ['Apple Music', 'Audiomack']
-    else:
-        platform_names = ['Apple Music', 'Audiomack', 'Boomplay', 'Spotify', 'YouTube', 'Shazam']
+    platform_names = platforms_for(upload.chart_type)
 
     platforms = {p.name: p for p in Platform.objects.filter(name__in=platform_names)}
     platform_col = {h: i for i, h in enumerate(headers)}
@@ -189,21 +277,26 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None) -> dict:
             continue
         plat = platforms[plat_name]
         col_i = platform_col[plat_name]
-        pts_base = plat.points_base
 
         week_entries = []
-        pos = 0
-        for row in data_rows:
+        for pos, row in enumerate(data_rows[:WEEKLY_CHART_LIMIT], start=1):
             cell = row[col_i] if col_i < len(row) else None
             if cell and str(cell).strip():
-                pos += 1
                 raw = str(cell).strip()
                 title_raw, artist_raw = split_song_artist(raw, is_album)
-                points = pts_base - pos
+                points = weekly_points(pos)
                 canon_title, canon_artist, key = normalize_entry(
                     title_raw, artist_raw, artist_rules, title_rules, is_album
                 )
-                week_entries.append((key, canon_title, canon_artist, points, pos, title_raw, artist_raw))
+                primary_names, featured_names = parsed_artist_names(canon_artist)
+                credit_key = tuple(sorted(
+                    name.casefold() for name in [*primary_names, *featured_names]
+                ))
+                canonical_key = (key[0], credit_key or (key[1],))
+                week_entries.append((
+                    canonical_key, canon_title, canon_artist, points,
+                    pos, title_raw, artist_raw,
+                ))
 
         # Deduplicate: keep highest position (lowest pos number)
         seen = {}
@@ -218,8 +311,7 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None) -> dict:
 
         # Save entries
         for key, (ct, ca, pts, pos, rt, ra) in seen.items():
-            artist_obj = get_or_create_artist(ca)
-            release_obj = get_or_create_release(ct, artist_obj, upload.chart_type)
+            release_obj = get_or_create_release(ct, ca, upload.chart_type)
             PlatformChartEntry.objects.create(
                 upload=upload, platform=plat, release=release_obj,
                 position=pos, points=pts, raw_title=rt, raw_artist=ra
@@ -239,7 +331,13 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None) -> dict:
 
 
 @transaction.atomic
-def rebuild_monthly_chart(chart_type: str, year: int, month: int) -> dict:
+def rebuild_monthly_chart(
+    chart_type: str,
+    year: int,
+    month: int,
+    *,
+    harmonize=True,
+) -> dict:
     """
     Aggregate all weekly uploads for a month into MonthlyChartEntry records.
     """
@@ -250,11 +348,7 @@ def rebuild_monthly_chart(chart_type: str, year: int, month: int) -> dict:
     if not uploads.exists():
         return {'error': 'No processed uploads for this period'}
 
-    is_album = chart_type == ChartType.ALBUMS
-    if is_album:
-        platform_names = ['Apple Music', 'Audiomack']
-    else:
-        platform_names = ['Apple Music', 'Audiomack', 'Boomplay', 'Spotify', 'YouTube', 'Shazam']
+    platform_names = platforms_for(chart_type)
 
     platforms = {p.name: p for p in Platform.objects.filter(name__in=platform_names)}
 
@@ -273,16 +367,25 @@ def rebuild_monthly_chart(chart_type: str, year: int, month: int) -> dict:
     combined_agg = defaultdict(lambda: {'pts': 0, 'plats': set(), 'wks': 0, 'peak': 999})
 
     for upload in uploads:
-        entries = PlatformChartEntry.objects.filter(upload=upload).select_related('release', 'platform')
+        entries = PlatformChartEntry.objects.filter(
+            upload=upload,
+            position__gte=1,
+            position__lte=WEEKLY_CHART_LIMIT,
+        ).select_related('release', 'platform')
         releases_seen_this_week = set()
         for e in entries:
             pn = e.platform.name
+            if pn not in platform_agg:
+                continue
             rid = e.release.id
-            platform_agg[pn][rid]['pts'] += e.points
+            points = weekly_points(e.position)
+            if not points:
+                continue
+            platform_agg[pn][rid]['pts'] += points
             platform_agg[pn][rid]['wks'] += 1
             if e.position < platform_agg[pn][rid]['peak']:
                 platform_agg[pn][rid]['peak'] = e.position
-            combined_agg[rid]['pts'] += e.points
+            combined_agg[rid]['pts'] += points
             combined_agg[rid]['plats'].add(pn)
             if e.position < combined_agg[rid]['peak']:
                 combined_agg[rid]['peak'] = e.position
@@ -290,74 +393,60 @@ def rebuild_monthly_chart(chart_type: str, year: int, month: int) -> dict:
                 combined_agg[rid]['wks'] += 1
                 releases_seen_this_week.add(rid)
 
-    # Get prev month for movement calculation
-    prev_year, prev_month = (year, month - 1) if month > 1 else (year - 1, 12)
-    try:
-        prev_chart = MonthlyChart.objects.get(year=prev_year, month=prev_month, chart_type=chart_type)
-    except MonthlyChart.DoesNotExist:
-        prev_chart = None
-
-    def get_prev_rank(release_id, platform=None):
-        if not prev_chart:
-            return None
-        try:
-            e = MonthlyChartEntry.objects.get(chart=prev_chart, release_id=release_id, platform=platform)
-            return e.rank
-        except MonthlyChartEntry.DoesNotExist:
-            return None
-
     entries_to_create = []
 
     # Create platform entries
     for pn, plat in platforms.items():
-        ranked = sorted(platform_agg[pn].items(), key=lambda x: x[1]['pts'], reverse=True)
+        ranked = sorted(
+            platform_agg[pn].items(),
+            key=lambda item: (-item[1]['pts'], item[0]),
+        )
         for rank, (rid, data) in enumerate(ranked, 1):
-            prev = get_prev_rank(rid, plat)
             entries_to_create.append(MonthlyChartEntry(
                 chart=chart, platform=plat, release_id=rid,
-                rank=rank, total_points=data['pts'],
+                rank=rank,
+                total_points=public_points(rank),
+                raw_total_points=data['pts'],
                 weeks_on_chart=data['wks'], platform_count=1,
-                peak_rank=data['peak'], prev_rank=prev
+                platform_max=1,
+                peak_rank=min(rank, PUBLIC_CHART_LIMIT),
             ))
 
     # Create combined entries
-    ranked_combined = sorted(combined_agg.items(), key=lambda x: x[1]['pts'], reverse=True)
+    ranked_combined = sorted(
+        combined_agg.items(),
+        key=lambda item: (-item[1]['pts'], -len(item[1]['plats']), item[0]),
+    )
     for rank, (rid, data) in enumerate(ranked_combined, 1):
-        prev = get_prev_rank(rid, None)
         entries_to_create.append(MonthlyChartEntry(
             chart=chart, platform=None, release_id=rid,
-            rank=rank, total_points=data['pts'],
+            rank=rank,
+            total_points=public_points(rank),
+            raw_total_points=data['pts'],
             weeks_on_chart=data['wks'],
             platform_count=len(data['plats']),
-            peak_rank=data['peak'], prev_rank=prev
+            platform_max=platform_max_for(chart_type),
+            peak_rank=min(rank, PUBLIC_CHART_LIMIT),
         ))
 
     MonthlyChartEntry.objects.bulk_create(entries_to_create, batch_size=500)
 
-    # Auto-certify releases
-    award_certifications(chart_type)
+    # Rebuild every dependent field, including downstream months whose
+    # movement/peak values depend on this month.
+    harmonization = None
+    if harmonize:
+        from .cms_utils import harmonize_chart_history
+        harmonization = harmonize_chart_history(chart_type=chart_type)
 
     return {
         'chart': str(chart),
         'platform_entries': sum(len(platform_agg[p]) for p in platform_names),
         'combined_entries': len(ranked_combined),
+        'harmonization': harmonization,
     }
 
 
 def award_certifications(chart_type: str):
-    """Award Ngoma certifications based on cumulative points."""
-    from django.db.models import Sum
-    thresholds = Certification.THRESHOLDS
-
-    releases = Release.objects.filter(chart_type=chart_type)
-    for release in releases:
-        total = MonthlyChartEntry.objects.filter(
-            release=release, platform__isnull=True
-        ).aggregate(total=Sum('total_points'))['total'] or 0
-
-        for level, threshold in sorted(thresholds.items(), key=lambda x: x[1]):
-            if total >= threshold:
-                Certification.objects.get_or_create(
-                    release=release, level=level,
-                    defaults={'total_points': total}
-                )
+    """Compatibility wrapper for canonical published Top 50 certification."""
+    from .cms_utils import recalculate_certifications
+    return recalculate_certifications(chart_type=chart_type)
