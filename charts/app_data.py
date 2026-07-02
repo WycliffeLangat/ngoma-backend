@@ -29,6 +29,7 @@ from .models import (
 )
 from .artist_credits import release_credit_payload
 from .cms_utils import published_artist_entries
+from .methodology import public_points
 
 
 HIDDEN_STATUSES = {"archived", "inactive", "rejected", "draft"}
@@ -304,10 +305,103 @@ def _entry_payload(request, entry, movement=None):
     }
 
 
+def _regional_artist_charts(request, charts):
+    """Build independent regional artist charts from every regional release
+    candidate, before either release chart is trimmed to its public Top 50."""
+    aggregates = defaultdict(dict)
+    period_order = {}
+
+    for chart in charts:
+        period_order[chart.label] = (chart.year, chart.month)
+        for entry in chart.regional_candidate_entries:
+            if not _is_public_status(entry.release.status) or not _is_public_status(entry.release.artist.status):
+                continue
+            credits = release_credit_payload(
+                entry.release,
+                entry_featured=entry.release.featured_artists or entry.featured_artists,
+            )
+            seen_artist_ids = set()
+            for artist in credits["primary_artists"] + credits["featured_artists"]:
+                if artist.id in seen_artist_ids:
+                    continue
+                seen_artist_ids.add(artist.id)
+                if not _is_public_status(artist.status):
+                    continue
+                if (artist.country_code or "").strip().upper() != entry.region:
+                    continue
+
+                scope = aggregates[(chart.label, entry.region)]
+                current = scope.setdefault(artist.id, {
+                    "artist": artist,
+                    "raw_points": 0,
+                    "releases": set(),
+                })
+                current["raw_points"] += max(int(entry.raw_total_points or 0), 0)
+                current["releases"].add((chart.chart_type, entry.release_id))
+
+    ranked_scopes = {}
+    for scope_key, artists in aggregates.items():
+        ranked_scopes[scope_key] = sorted(
+            artists.values(),
+            key=lambda item: (
+                -item["raw_points"],
+                -len(item["releases"]),
+                (item["artist"].display_name or item["artist"].name).lower(),
+                item["artist"].id,
+            ),
+        )
+
+    result = defaultdict(dict)
+    previous_ranks = defaultdict(dict)
+    historical_peaks = {}
+    ordered_scopes = sorted(
+        ranked_scopes,
+        key=lambda item: (period_order[item[0]], item[1]),
+    )
+    for label, region in ordered_scopes:
+        current_ranks = {}
+        rows = []
+        for rank, item in enumerate(ranked_scopes[(label, region)][:50], 1):
+            artist = item["artist"]
+            previous_rank = previous_ranks[region].get(artist.id)
+            history_key = (region, artist.id)
+            appeared_before = history_key in historical_peaks
+            peak_rank = min(historical_peaks.get(history_key, rank), rank)
+            historical_peaks[history_key] = peak_rank
+            current_ranks[artist.id] = rank
+            profile = _artist_payload(request, artist)
+            artist_name = artist.display_name or artist.name
+            rows.append({
+                "id": artist.id,
+                "artist_id": artist.id,
+                "r": rank,
+                "t": artist_name,
+                "a": "",
+                "pa": artist_name,
+                "p": public_points(rank),
+                "rp": item["raw_points"],
+                "entries_count": len(item["releases"]),
+                "co": artist.country,
+                "cc": artist.country_code,
+                "fl": artist.flag,
+                "prev_rank": previous_rank,
+                "last_month": previous_rank if previous_rank is not None else "—",
+                "peak_rank": peak_rank,
+                "movement": _movement_value(previous_rank, rank, appeared_before),
+                "primary_artists": [profile],
+                "featured_artist_profiles": [],
+                "is_artist_entry": True,
+            })
+        previous_ranks[region] = current_ranks
+        result[region][label] = rows
+    return {region: dict(months) for region, months in result.items()}
+
+
 def _chart_data(request, charts):
     full = {
         "singles": {"combined": {}, "platforms": {}, "regions": {}},
         "albums": {"combined": {}, "platforms": {}, "regions": {}},
+        "artists": {"combined": {}, "platforms": {}, "regions": {}},
     }
     months = []
 
@@ -330,7 +424,9 @@ def _chart_data(request, charts):
     for chart in charts:
         if chart.label not in months:
             months.append(chart.label)
-        chart_bucket = full.setdefault(chart.chart_type, {"combined": {}, "platforms": {}, "regions": {}})
+        chart_bucket = full.setdefault(
+            chart.chart_type, {"combined": {}, "platforms": {}, "regions": {}}
+        )
         period = (chart.year, chart.month)
         for entry in chart.public_entries:
             if not _is_public_status(entry.release.status) or not _is_public_status(entry.release.artist.status):
@@ -357,6 +453,7 @@ def _chart_data(request, charts):
             region_bucket = chart_bucket["regions"].setdefault(entry.region, {})
             region_bucket.setdefault(chart.label, []).append(row)
 
+    full["artists"]["regions"] = _regional_artist_charts(request, charts)
     return months, full
 
 
@@ -389,11 +486,17 @@ class PublicAppDataView(APIView):
         ).prefetch_related(
             "release__artist_credits__artist"
         ).filter(rank__gte=1, rank__lte=50).order_by("rank")
+        regional_candidate_entries = RegionalChartEntry.objects.select_related(
+            "release", "release__artist"
+        ).prefetch_related(
+            "release__artist_credits__artist"
+        ).order_by("rank")
         charts = list(
             MonthlyChart.objects.filter(is_published=True, status="published")
             .prefetch_related(
                 Prefetch("entries", queryset=public_entries, to_attr="public_entries"),
                 Prefetch("regional_entries", queryset=public_regional_entries, to_attr="public_regional_entries"),
+                Prefetch("regional_entries", queryset=regional_candidate_entries, to_attr="regional_candidate_entries"),
             )
             .order_by("year", "month", "chart_type")
         )

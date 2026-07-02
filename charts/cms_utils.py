@@ -560,26 +560,52 @@ def resolve_release_country_code(release):
 
 
 def sync_regional_chart_entries(charts):
-    """Rebuild RegionalChartEntry rows for `charts` from their current
-    combined (platform IS NULL) MonthlyChartEntry rows.
+    """Rebuild RegionalChartEntry rows from full per-platform monthly rows.
 
-    Combined entries exist for every release with points that month (never
-    truncated to 50 — see rebuild_monthly_chart in pipeline.py), so this is
-    the full candidate pool a region chart can be ranked from. Creates rows
-    for newly-eligible releases, deletes rows for releases that are no
-    longer eligible (e.g. a country change), and keeps raw_total_points and
-    friends in sync with the combined entry. Rank assignment happens
-    afterward in harmonize_regional_chart_entries.
+    Country-scoped charts are independent aggregates, just like Combined:
+    their raw score and candidate pool come from all per-platform rows, never
+    from the already-ranked global Combined Top 50.
+
+    Creates rows for newly-eligible releases, deletes rows for releases that
+    are no longer eligible, and keeps raw points and display metadata
+    synchronized. Rank assignment happens afterward.
     """
     if not REGIONAL_CHART_CODES:
         return {'created': 0, 'updated': 0, 'removed': 0}
 
     chart_ids = [chart.id for chart in charts]
-    combined_entries = list(
-        MonthlyChartEntry.objects.filter(chart_id__in=chart_ids, platform__isnull=True)
-        .select_related('release', 'release__artist')
+    platform_candidates = {}
+    platform_entries = (
+        MonthlyChartEntry.objects.filter(
+            chart_id__in=chart_ids, platform__isnull=False
+        )
+        .select_related('chart', 'release', 'release__artist')
         .prefetch_related('release__artist_credits__artist')
     )
+    for entry in platform_entries:
+        key = (entry.chart_id, entry.release_id)
+        candidate = platform_candidates.setdefault(key, {
+            'source': entry,
+            'raw_total_points': 0,
+            'platform_ids': set(),
+            'weeks_on_chart': 0,
+        })
+        candidate['raw_total_points'] += max(int(entry.raw_total_points or 0), 0)
+        candidate['platform_ids'].add(entry.platform_id)
+        candidate['weeks_on_chart'] = max(
+            candidate['weeks_on_chart'],
+            int(entry.weeks_on_chart or 0),
+        )
+
+    candidate_entries = []
+    for candidate in platform_candidates.values():
+        source = candidate['source']
+        source.raw_total_points = candidate['raw_total_points']
+        source.platform_count = len(candidate['platform_ids'])
+        source.platform_max = platform_max_for(source.chart.chart_type)
+        source.weeks_on_chart = candidate['weeks_on_chart']
+        candidate_entries.append(source)
+
     existing = {
         (entry.chart_id, entry.region, entry.release_id): entry
         for entry in RegionalChartEntry.objects.filter(
@@ -594,7 +620,7 @@ def sync_regional_chart_entries(charts):
         'raw_total_points', 'weeks_on_chart', 'platform_count',
         'platform_max', 'release_year', 'confidence', 'featured_artists',
     )
-    for entry in combined_entries:
+    for entry in candidate_entries:
         code = resolve_release_country_code(entry.release)
         if code not in REGIONAL_CHART_CODES:
             continue

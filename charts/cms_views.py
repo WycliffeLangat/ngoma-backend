@@ -26,12 +26,16 @@ from .pipeline import process_weekly_upload, rebuild_monthly_chart
 
 
 def _chart_ids_for_artists(artist_ids):
-    """Charts containing a combined entry for a release credited (primary or
-    featured) to any of `artist_ids`. Used to scope harmonize_chart_history
-    after a country change so region charts (e.g. Kenya) get resynced."""
+    """Charts containing any monthly entry for a release credited (primary
+    or featured) to any of `artist_ids`.
+
+    Platform-only releases must be included because country-scoped charts can
+    contain candidates outside the global Combined Top 50.
+    """
     return list(
-        MonthlyChartEntry.objects.filter(platform__isnull=True)
-        .filter(Q(release__artist__in=artist_ids) | Q(release__artist_credits__artist__in=artist_ids))
+        MonthlyChartEntry.objects.filter(
+            Q(release__artist__in=artist_ids) | Q(release__artist_credits__artist__in=artist_ids)
+        )
         .values_list('chart_id', flat=True).distinct()
     )
 
@@ -498,7 +502,7 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         obj = serializer.save()
         if obj.country != old_country or obj.country_code != old_country_code:
             chart_ids = list(
-                MonthlyChartEntry.objects.filter(platform__isnull=True, release=obj)
+                MonthlyChartEntry.objects.filter(release=obj)
                 .values_list('chart_id', flat=True).distinct()
             )
             if chart_ids:
