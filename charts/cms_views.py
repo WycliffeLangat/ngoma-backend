@@ -721,24 +721,26 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
 
     @staticmethod
     def _validate_for_publication(chart):
+        """Validate only the public-facing Top 50 subset.
+
+        The Combined scope is allowed to (and, for a full weekly-upload
+        rebuild, normally does) hold more than 50 releases — everything that
+        actually charted that month. Publish only requires that ranks 1-50
+        exist and are consecutive; entries ranked below that are never
+        deleted, they're simply outside what the public API serves.
+        """
         combined = chart.entries.filter(platform__isnull=True)
-        count = combined.count()
-        if count == 0:
-            raise DRFValidationError({
-                'entries': 'Add and review at least one Combined chart entry before publishing.'
-            })
-        invalid_ranks = list(
-            combined.exclude(rank__range=(1, 50)).values_list('rank', flat=True)[:10]
+        top_ranks = list(
+            combined.filter(rank__range=(1, 50)).order_by('rank').values_list('rank', flat=True)
         )
-        if invalid_ranks:
+        if not top_ranks:
             raise DRFValidationError({
-                'entries': f'Combined chart ranks must be within the Top 50. Invalid ranks: {invalid_ranks}'
+                'entries': 'Add and review at least one Combined chart entry in the Top 50 before publishing.'
             })
-        ranks = list(combined.order_by('rank').values_list('rank', flat=True))
-        expected = list(range(1, len(ranks) + 1))
-        if ranks != expected:
+        expected = list(range(1, len(top_ranks) + 1))
+        if top_ranks != expected:
             raise DRFValidationError({
-                'entries': 'Combined chart ranks must be consecutive, starting at 1. Use Re-rank before publishing.'
+                'entries': 'Combined chart Top 50 ranks must be consecutive, starting at 1, with no gaps or duplicates. Use Re-rank before publishing.'
             })
 
     @action(detail=True, methods=['get'])
@@ -904,25 +906,6 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         })
         return Response(result)
 
-    @action(detail=False, methods=['post'])
-    def trim_to_top(self, request):
-        """Drop Combined-context entries ranked below the cutoff (default 50)
-        for a chart. Used after a weekly-upload rebuild, which keeps every
-        charting release in the Combined context, to bring it down to the
-        published Top 50 before the publish-validation rank check. Per-platform
-        contexts are left untouched, matching every other published month."""
-        chart_id = request.data.get('chart')
-        if not chart_id:
-            return Response({'detail': 'chart is required.'}, status=400)
-        try:
-            chart = MonthlyChart.objects.get(pk=chart_id)
-        except MonthlyChart.DoesNotExist:
-            return Response({'detail': 'Chart not found.'}, status=404)
-        self._check_locked(chart)
-        cutoff = int(request.data.get('cutoff', 50))
-        deleted, _ = MonthlyChartEntry.objects.filter(chart=chart, platform__isnull=True, rank__gt=cutoff).delete()
-        audit(request, 'trimmed_chart_entries', module=self.module_name, obj=chart, new={'cutoff': cutoff, 'deleted': deleted})
-        return Response({'deleted': deleted})
 
 
 class CmsWeeklyUploadViewSet(CmsBaseViewSet):

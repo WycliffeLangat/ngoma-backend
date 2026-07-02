@@ -559,6 +559,87 @@ def resolve_release_country_code(release):
     return (artist.country_code or release.country_code or "").strip().upper()
 
 
+def aggregate_platform_entries(chart_ids):
+    """Aggregate per-platform (platform IS NOT NULL) MonthlyChartEntry rows by
+    (chart, release): summed raw points across platforms, distinct platform
+    count, and max weeks-on-chart — the same shape as the Combined scope's
+    own fields.
+
+    Per-platform rows are the one scope publish validation never requires
+    trimming, so they're the reliable full candidate pool for anything that
+    needs "every release that actually charted that month, not just the
+    public Top 50" — both the Combined self-heal and the regional sync use
+    this.
+
+    Returns {(chart_id, release_id): {'source': MonthlyChartEntry, ...}}.
+    """
+    candidates = {}
+    platform_entries = (
+        MonthlyChartEntry.objects.filter(
+            chart_id__in=chart_ids, platform__isnull=False
+        )
+        .select_related('chart', 'release', 'release__artist')
+        .prefetch_related('release__artist_credits__artist')
+    )
+    for entry in platform_entries:
+        key = (entry.chart_id, entry.release_id)
+        candidate = candidates.setdefault(key, {
+            'source': entry,
+            'raw_total_points': 0,
+            'platform_ids': set(),
+            'weeks_on_chart': 0,
+        })
+        candidate['raw_total_points'] += max(int(entry.raw_total_points or 0), 0)
+        candidate['platform_ids'].add(entry.platform_id)
+        candidate['weeks_on_chart'] = max(
+            candidate['weeks_on_chart'],
+            int(entry.weeks_on_chart or 0),
+        )
+    return candidates
+
+
+def sync_combined_chart_entries(charts):
+    """Ensure the Combined (platform IS NULL) scope has a row for every
+    release present in the per-platform aggregate for that chart.
+
+    Storage is never trimmed to the public Top 50 — only the public API's
+    own rank<=50 filter limits what's shown there. This restores whatever a
+    prior manual trim deleted and keeps every future rebuild/publish from
+    ever needing one: it's additive only, never deletes a Combined row.
+    """
+    chart_ids = [chart.id for chart in charts]
+    candidates = aggregate_platform_entries(chart_ids)
+
+    existing_release_ids_by_chart = defaultdict(set)
+    for chart_id, release_id in MonthlyChartEntry.objects.filter(
+        chart_id__in=chart_ids, platform__isnull=True
+    ).values_list('chart_id', 'release_id'):
+        existing_release_ids_by_chart[chart_id].add(release_id)
+
+    to_create = []
+    for (chart_id, release_id), candidate in candidates.items():
+        if release_id in existing_release_ids_by_chart[chart_id]:
+            continue
+        source = candidate['source']
+        to_create.append(MonthlyChartEntry(
+            chart_id=chart_id,
+            platform=None,
+            release_id=release_id,
+            # Temporary unique placeholder; the main harmonize ranking loop
+            # (which runs right after this) assigns the real rank.
+            rank=-(3_000_000 + release_id),
+            total_points=0,
+            raw_total_points=candidate['raw_total_points'],
+            weeks_on_chart=candidate['weeks_on_chart'],
+            platform_count=len(candidate['platform_ids']),
+            platform_max=platform_max_for(source.chart.chart_type),
+            peak_rank=1_000_000,
+        ))
+    if to_create:
+        MonthlyChartEntry.objects.bulk_create(to_create, batch_size=500)
+    return {'restored': len(to_create)}
+
+
 def sync_regional_chart_entries(charts):
     """Rebuild RegionalChartEntry rows from full per-platform monthly rows.
 
@@ -574,28 +655,7 @@ def sync_regional_chart_entries(charts):
         return {'created': 0, 'updated': 0, 'removed': 0}
 
     chart_ids = [chart.id for chart in charts]
-    platform_candidates = {}
-    platform_entries = (
-        MonthlyChartEntry.objects.filter(
-            chart_id__in=chart_ids, platform__isnull=False
-        )
-        .select_related('chart', 'release', 'release__artist')
-        .prefetch_related('release__artist_credits__artist')
-    )
-    for entry in platform_entries:
-        key = (entry.chart_id, entry.release_id)
-        candidate = platform_candidates.setdefault(key, {
-            'source': entry,
-            'raw_total_points': 0,
-            'platform_ids': set(),
-            'weeks_on_chart': 0,
-        })
-        candidate['raw_total_points'] += max(int(entry.raw_total_points or 0), 0)
-        candidate['platform_ids'].add(entry.platform_id)
-        candidate['weeks_on_chart'] = max(
-            candidate['weeks_on_chart'],
-            int(entry.weeks_on_chart or 0),
-        )
+    platform_candidates = aggregate_platform_entries(chart_ids)
 
     candidate_entries = []
     for candidate in platform_candidates.values():
@@ -791,6 +851,11 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
             'certifications_changed': 0,
         }
 
+    # Restore any Combined-scope rows missing relative to the per-platform
+    # aggregate (e.g. from a prior manual trim) before ranking, so they're
+    # included in this pass instead of waiting for the next harmonize call.
+    combined_restored = sync_combined_chart_entries(charts)
+
     entries = list(
         MonthlyChartEntry.objects.filter(chart_id__in=[chart.id for chart in charts])
         .select_related('chart')
@@ -943,6 +1008,7 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
         'scoring_changes': scoring_changes,
         'history_changes': len(history_changed),
         'certifications_changed': certifications_changed,
+        'combined_restored': combined_restored['restored'],
         'regional_sync': regional_sync,
         'regional_rank_changes': regional_rank['rank_changes'],
     }
