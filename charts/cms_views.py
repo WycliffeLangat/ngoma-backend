@@ -907,6 +907,30 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         return Response(result)
 
 
+class CmsRegionalChartEntryViewSet(CmsBaseViewSet):
+    """Read-only: RegionalChartEntry rows are entirely derived by
+    sync_regional_chart_entries/harmonize_regional_chart_entries — a direct
+    edit here would just be overwritten by the next harmonize run."""
+    http_method_names = ['get', 'head', 'options']
+    queryset = RegionalChartEntry.objects.select_related(
+        'chart', 'release', 'release__artist'
+    ).all()
+    serializer_class = CmsRegionalChartEntrySerializer
+    search_fields = ['release__title', 'release__artist__name', 'featured_artists']
+    ordering_fields = ['rank', 'total_points', 'weeks_on_chart']
+    module_name = 'chart_entries'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        chart_id = self.request.query_params.get('chart')
+        region = self.request.query_params.get('region')
+        if chart_id:
+            qs = qs.filter(chart_id=chart_id)
+        if region:
+            qs = qs.filter(region=region)
+        return qs.order_by('rank')
+
+
 
 class CmsWeeklyUploadViewSet(CmsBaseViewSet):
     queryset = WeeklyUpload.objects.select_related('uploaded_by').all()
