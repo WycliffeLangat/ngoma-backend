@@ -225,7 +225,21 @@ def _release_payload(request, release):
     })
 
 
-def _entry_payload(request, entry):
+def _movement_value(prev_rank, rank, appeared_before):
+    """Same semantics as MonthlyChartEntry.movement / RegionalChartEntry.movement,
+    but takes appeared_before as a precomputed bool instead of running a query —
+    callers here compute it in bulk from already-fetched data (see _chart_data)."""
+    if prev_rank is None:
+        return 're-entry' if appeared_before else 'new'
+    d = prev_rank - rank
+    if d > 0:
+        return f'+{d}'
+    if d < 0:
+        return str(d)
+    return '='
+
+
+def _entry_payload(request, entry, movement=None):
     release = entry.release
     featured_artists = release.featured_artists or entry.featured_artists
     credits = release_credit_payload(release, entry_featured=featured_artists)
@@ -265,7 +279,7 @@ def _entry_payload(request, entry):
         "prev_rank": entry.prev_rank,
         "last_month": entry.prev_rank if entry.prev_rank is not None else "—",
         "peak_rank": entry.peak_rank,
-        "movement": entry.movement,
+        "movement": entry.movement if movement is None else movement,
         # Include the editable release fields on every chart row.  The public
         # app can therefore render a CMS edit immediately without having to
         # join against the bundled/static release dataset.
@@ -297,14 +311,35 @@ def _chart_data(request, charts):
     }
     months = []
 
+    # Bulk-precompute "appeared in an earlier published month" per
+    # (chart_type, scope, release_id) from data already fetched via the
+    # entries/regional_entries prefetch. Avoids the N+1 .exists() query that
+    # MonthlyChartEntry.movement / RegionalChartEntry.movement would
+    # otherwise run once per "new" (prev_rank is None) entry — with enough
+    # published months that was over a thousand extra round trips per
+    # request.
+    monthly_periods = defaultdict(set)
+    regional_periods = defaultdict(set)
+    for chart in charts:
+        period = (chart.year, chart.month)
+        for entry in chart.public_entries:
+            monthly_periods[(chart.chart_type, entry.platform_id, entry.release_id)].add(period)
+        for entry in chart.public_regional_entries:
+            regional_periods[(chart.chart_type, entry.region, entry.release_id)].add(period)
+
     for chart in charts:
         if chart.label not in months:
             months.append(chart.label)
         chart_bucket = full.setdefault(chart.chart_type, {"combined": {}, "platforms": {}, "regions": {}})
+        period = (chart.year, chart.month)
         for entry in chart.public_entries:
             if not _is_public_status(entry.release.status) or not _is_public_status(entry.release.artist.status):
                 continue
-            row = _entry_payload(request, entry)
+            appeared_before = any(
+                p < period for p in monthly_periods[(chart.chart_type, entry.platform_id, entry.release_id)]
+            )
+            movement = _movement_value(entry.prev_rank, entry.rank, appeared_before)
+            row = _entry_payload(request, entry, movement=movement)
             if entry.platform_id is None:
                 chart_bucket["combined"].setdefault(chart.label, []).append(row)
             elif entry.platform.active:
@@ -314,7 +349,11 @@ def _chart_data(request, charts):
         for entry in chart.public_regional_entries:
             if not _is_public_status(entry.release.status) or not _is_public_status(entry.release.artist.status):
                 continue
-            row = _entry_payload(request, entry)
+            appeared_before = any(
+                p < period for p in regional_periods[(chart.chart_type, entry.region, entry.release_id)]
+            )
+            movement = _movement_value(entry.prev_rank, entry.rank, appeared_before)
+            row = _entry_payload(request, entry, movement=movement)
             region_bucket = chart_bucket["regions"].setdefault(entry.region, {})
             region_bucket.setdefault(chart.label, []).append(row)
 
