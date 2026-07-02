@@ -1,2 +1,2 @@
 release: python manage.py migrate --noinput && python manage.py collectstatic --noinput && python manage.py merge_duplicate_releases --file "Data/ngoma_duplicate_releases_final_merge_ready.xlsx" && python manage.py clean_artist_aliases && python manage.py purge_release_duplicates
-web: python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn ngoma_backend.wsgi --log-file -
+web: python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn ngoma_backend.wsgi --timeout 300 --log-file -
