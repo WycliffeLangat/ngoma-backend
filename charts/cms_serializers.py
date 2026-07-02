@@ -488,17 +488,6 @@ class CmsMonthlyChartSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({
                 'is_published': 'Published status requires the chart to be public.'
             })
-
-        if self.instance and self.instance.locked:
-            protected = {'year', 'month', 'chart_type', 'status', 'is_published'}
-            changed = [
-                field for field in protected
-                if field in attrs and attrs[field] != getattr(self.instance, field)
-            ]
-            if changed:
-                raise serializers.ValidationError({
-                    'detail': 'This published chart is locked. Unlock it before changing its period or publication state.'
-                })
         return attrs
 
     def get_entries_count(self, obj):

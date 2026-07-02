@@ -709,16 +709,6 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
     ordering_fields = ['year', 'month', 'chart_type', 'status', 'updated_at']
     module_name = 'charts'
 
-    def perform_update(self, serializer):
-        if serializer.instance.locked:
-            raise DRFValidationError('This chart is locked. Unlock it before editing.')
-        super().perform_update(serializer)
-
-    def perform_destroy(self, instance):
-        if instance.locked:
-            raise DRFValidationError('This chart is locked and cannot be archived.')
-        super().perform_destroy(instance)
-
     @staticmethod
     def _validate_for_publication(chart):
         """Validate only the public-facing Top 50 subset.
@@ -760,10 +750,9 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
         self._validate_for_publication(chart)
         chart.is_published = True
         chart.status = 'published'
-        chart.locked = True
         chart.published_by = request.user
         chart.published_at = timezone.now()
-        chart.save(update_fields=['is_published', 'status', 'locked', 'published_by', 'published_at', 'updated_at'])
+        chart.save(update_fields=['is_published', 'status', 'published_by', 'published_at', 'updated_at'])
         audit(request, 'published_chart', module='charts', obj=chart)
         return Response(CmsMonthlyChartSerializer(chart).data)
 
@@ -771,7 +760,7 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
     def options(self, request):
         rows = MonthlyChart.objects.order_by('-year', '-month').values(
             'id', 'year', 'month', 'label', 'chart_type', 'status',
-            'is_published', 'locked',
+            'is_published',
         )[:240]
         return Response(list(rows))
 
@@ -780,26 +769,9 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
         chart = self.get_object()
         chart.is_published = False
         chart.status = 'draft'
-        chart.locked = False
         chart.published_at = None
-        chart.save(update_fields=['is_published', 'status', 'locked', 'published_at', 'updated_at'])
+        chart.save(update_fields=['is_published', 'status', 'published_at', 'updated_at'])
         audit(request, 'unpublished_chart', module='charts', obj=chart)
-        return Response(CmsMonthlyChartSerializer(chart).data)
-
-    @action(detail=True, methods=['post'])
-    def lock(self, request, pk=None):
-        chart = self.get_object()
-        chart.locked = True
-        chart.save(update_fields=['locked', 'updated_at'])
-        audit(request, 'locked_chart', module='charts', obj=chart)
-        return Response(CmsMonthlyChartSerializer(chart).data)
-
-    @action(detail=True, methods=['post'])
-    def unlock(self, request, pk=None):
-        chart = self.get_object()
-        chart.locked = False
-        chart.save(update_fields=['locked', 'updated_at'])
-        audit(request, 'unlocked_chart', module='charts', obj=chart)
         return Response(CmsMonthlyChartSerializer(chart).data)
 
 
@@ -824,14 +796,7 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
             qs = qs.filter(platform_id=platform)
         return qs.order_by('rank')
 
-    def _check_locked(self, chart):
-        if chart.locked:
-            raise DRFValidationError("This chart is locked and cannot be edited.")
-
     def perform_create(self, serializer):
-        chart = serializer.validated_data.get('chart')
-        if chart:
-            self._check_locked(chart)
         if (
             'total_points' in serializer.validated_data
             and 'raw_total_points' not in serializer.validated_data
@@ -849,7 +814,6 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         })
 
     def perform_update(self, serializer):
-        self._check_locked(serializer.instance.chart)
         old = model_to_dict_safe(serializer.instance)
         # Rank is derived from points. Ignoring a directly supplied rank also
         # avoids transient unique-rank collisions; harmonization installs the
@@ -872,7 +836,6 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         })
 
     def perform_destroy(self, instance):
-        self._check_locked(instance.chart)
         chart_type = instance.chart.chart_type
         audit(self.request, 'deleted', module=self.module_name, obj=instance)
         instance.delete()
@@ -898,7 +861,6 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
             chart = MonthlyChart.objects.get(pk=chart_id)
         except MonthlyChart.DoesNotExist:
             return Response({'detail': 'Chart not found.'}, status=404)
-        self._check_locked(chart)
         result = harmonize_chart_history(chart_ids=[chart.id])
         audit(request, 'reordered_entries', module=self.module_name, new={
             'chart_id': chart_id,

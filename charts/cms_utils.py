@@ -429,8 +429,6 @@ def publish_chart_upload(upload, user=None):
         chart_type=upload.chart_type,
         defaults={'is_published': False, 'status': 'draft'},
     )
-    if chart.locked:
-        raise ValueError('This chart month is locked. Unlock it before replacing data.')
     MonthlyChartEntry.objects.filter(chart=chart, platform=platform).delete()
     entries = []
     for row in sorted(upload.rows_data or [], key=lambda r: int(r.get('rank') or 9999)):

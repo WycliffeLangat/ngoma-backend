@@ -325,7 +325,7 @@ class PublicAppDataSyncTests(TestCase):
         if response.json():
             self.assertEqual(
                 set(response.json()[0]),
-                {"id", "year", "month", "label", "chart_type", "status", "is_published", "locked"},
+                {"id", "year", "month", "label", "chart_type", "status", "is_published"},
             )
 
     def test_draft_chart_entries_do_not_change_public_artist_history_or_stats(self):
@@ -366,18 +366,19 @@ class PublicAppDataSyncTests(TestCase):
         self.assertEqual(analytics.status_code, 200, analytics.content)
         self.assertNotIn("August 2026", analytics.json())
 
-    def test_publish_validates_ranks_and_locks_historical_chart(self):
+    def test_publish_validates_ranks_and_leaves_chart_editable(self):
         self.client.force_authenticate(self.admin)
         response = self.client.post(f"/api/v1/cms/charts/{self.chart.id}/publish/", {}, format="json")
         self.assertEqual(response.status_code, 200, response.content)
-        self.assertTrue(response.json()["locked"])
+        self.assertTrue(response.json()["is_published"])
 
+        # Publishing must never make a chart read-only — edits stay allowed.
         edit_response = self.client.patch(
             f"/api/v1/cms/chart-entries/{self.combined_entry.id}/",
             {"total_points": 999},
             format="json",
         )
-        self.assertEqual(edit_response.status_code, 400)
+        self.assertEqual(edit_response.status_code, 200, edit_response.content)
         self.client.force_authenticate(user=None)
 
     def test_data_editor_cannot_publish_or_hard_delete(self):
