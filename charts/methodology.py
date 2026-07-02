@@ -15,6 +15,10 @@ WEEKLY_POINTS_BASE = 101
 PUBLIC_CHART_LIMIT = 50
 PUBLIC_POINTS_BASE = 51
 
+# Country-scoped Top 50 charts (e.g. "Kenyan Top 50"). Adding another region
+# is just appending its ISO 3166-1 alpha-2 code here.
+REGIONAL_CHART_CODES = ["KE"]
+
 SINGLES_PLATFORMS = (
     "Apple Music",
     "Audiomack",

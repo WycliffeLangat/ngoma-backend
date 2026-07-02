@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction, IntegrityError
+from django.db.models import Q
 
 from charts.models import (
     Artist,
@@ -9,6 +10,7 @@ from charts.models import (
     Certification,
     NewsArticle,
 )
+from charts.cms_utils import harmonize_chart_history
 
 
 # ===========================================================================
@@ -425,6 +427,7 @@ class Command(BaseCommand):
                     renamed.append((wrong, correct))
 
         updated, not_found = 0, []
+        updated_artist_ids = []
         for name, (country, code) in ARTIST_COUNTRIES.items():
             artist = Artist.objects.filter(name__iexact=name).first()
             if not artist:
@@ -434,9 +437,25 @@ class Command(BaseCommand):
             artist.country_code = code
             artist.save(update_fields=["country", "country_code"])
             updated += 1
+            updated_artist_ids.append(artist.id)
             self.stdout.write(
                 self.style.SUCCESS(f"Updated: {artist.name} -> {country} / {code}")
             )
+
+        # Artist country is authoritative for chart eligibility, so
+        # country-scoped charts (e.g. Kenya) need re-harmonizing wherever
+        # these artists appear.
+        if updated_artist_ids:
+            chart_ids = list(
+                MonthlyChartEntry.objects.filter(platform__isnull=True)
+                .filter(
+                    Q(release__artist__in=updated_artist_ids)
+                    | Q(release__artist_credits__artist__in=updated_artist_ids)
+                )
+                .values_list('chart_id', flat=True).distinct()
+            )
+            if chart_ids:
+                harmonize_chart_history(chart_ids=chart_ids)
 
         # ----- report -----
         self.stdout.write("")

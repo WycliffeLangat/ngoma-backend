@@ -25,6 +25,17 @@ from .cms_alerts import build_dashboard_alerts, summarize_alerts
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
 
 
+def _chart_ids_for_artists(artist_ids):
+    """Charts containing a combined entry for a release credited (primary or
+    featured) to any of `artist_ids`. Used to scope harmonize_chart_history
+    after a country change so region charts (e.g. Kenya) get resynced."""
+    return list(
+        MonthlyChartEntry.objects.filter(platform__isnull=True)
+        .filter(Q(release__artist__in=artist_ids) | Q(release__artist_credits__artist__in=artist_ids))
+        .values_list('chart_id', flat=True).distinct()
+    )
+
+
 @method_decorator(csrf_exempt, name='dispatch')
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class CmsLoginView(APIView):
@@ -290,6 +301,13 @@ class CmsArtistViewSet(CmsBaseViewSet):
             ).filter(code_filter).update(
                 country=new_country, country_code=new_country_code, updated_at=timezone.now()
             )
+            # Artist country is authoritative for chart eligibility, so every
+            # chart this artist appears on (primary or featured) needs
+            # re-evaluating for country-scoped charts (e.g. Kenya) —
+            # not just the releases the cascade above touched.
+            chart_ids = _chart_ids_for_artists([obj.id])
+            if chart_ids:
+                harmonize_chart_history(chart_ids=chart_ids)
         audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new=serializer.data)
 
     @action(detail=False, methods=['get'])
@@ -435,6 +453,9 @@ class CmsArtistViewSet(CmsBaseViewSet):
                 country_code=artist.country_code,
             ).update(country=country, country_code=country_code, updated_at=timezone.now())
         updated = Artist.objects.filter(id__in=ids).update(country=country, country_code=country_code, updated_at=timezone.now())
+        chart_ids = _chart_ids_for_artists(ids)
+        if chart_ids:
+            harmonize_chart_history(chart_ids=chart_ids)
         audit(request, 'bulk_country_update', module='artists', new={'updated': updated, 'country': country, 'country_code': country_code})
         return Response({'updated': updated})
 
@@ -469,6 +490,20 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         if status_param:
             qs = qs.filter(status=status_param)
         return qs
+
+    def perform_update(self, serializer):
+        old_country = serializer.instance.country
+        old_country_code = serializer.instance.country_code
+        old = model_to_dict_safe(serializer.instance)
+        obj = serializer.save()
+        if obj.country != old_country or obj.country_code != old_country_code:
+            chart_ids = list(
+                MonthlyChartEntry.objects.filter(platform__isnull=True, release=obj)
+                .values_list('chart_id', flat=True).distinct()
+            )
+            if chart_ids:
+                harmonize_chart_history(chart_ids=chart_ids)
+        audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new=serializer.data)
 
     @action(detail=False, methods=['get'])
     def duplicates(self, request):

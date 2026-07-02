@@ -23,6 +23,7 @@ from .models import (
     NewsArticle,
     PageContent,
     Platform,
+    RegionalChartEntry,
     Release,
     SiteSetting,
 )
@@ -291,15 +292,15 @@ def _entry_payload(request, entry):
 
 def _chart_data(request, charts):
     full = {
-        "singles": {"combined": {}, "platforms": {}},
-        "albums": {"combined": {}, "platforms": {}},
+        "singles": {"combined": {}, "platforms": {}, "regions": {}},
+        "albums": {"combined": {}, "platforms": {}, "regions": {}},
     }
     months = []
 
     for chart in charts:
         if chart.label not in months:
             months.append(chart.label)
-        chart_bucket = full.setdefault(chart.chart_type, {"combined": {}, "platforms": {}})
+        chart_bucket = full.setdefault(chart.chart_type, {"combined": {}, "platforms": {}, "regions": {}})
         for entry in chart.public_entries:
             if not _is_public_status(entry.release.status) or not _is_public_status(entry.release.artist.status):
                 continue
@@ -310,6 +311,12 @@ def _chart_data(request, charts):
                 platform_key = entry.platform.name.upper()
                 platform_bucket = chart_bucket["platforms"].setdefault(platform_key, {})
                 platform_bucket.setdefault(chart.label, []).append(row)
+        for entry in chart.public_regional_entries:
+            if not _is_public_status(entry.release.status) or not _is_public_status(entry.release.artist.status):
+                continue
+            row = _entry_payload(request, entry)
+            region_bucket = chart_bucket["regions"].setdefault(entry.region, {})
+            region_bucket.setdefault(chart.label, []).append(row)
 
     return months, full
 
@@ -338,9 +345,17 @@ class PublicAppDataView(APIView):
         ).prefetch_related(
             "release__artist_credits__artist"
         ).filter(rank__gte=1, rank__lte=50).order_by("rank")
+        public_regional_entries = RegionalChartEntry.objects.select_related(
+            "release", "release__artist"
+        ).prefetch_related(
+            "release__artist_credits__artist"
+        ).filter(rank__gte=1, rank__lte=50).order_by("rank")
         charts = list(
             MonthlyChart.objects.filter(is_published=True, status="published")
-            .prefetch_related(Prefetch("entries", queryset=public_entries, to_attr="public_entries"))
+            .prefetch_related(
+                Prefetch("entries", queryset=public_entries, to_attr="public_entries"),
+                Prefetch("regional_entries", queryset=public_regional_entries, to_attr="public_regional_entries"),
+            )
             .order_by("year", "month", "chart_type")
         )
         months, full = _chart_data(request, charts)
@@ -367,16 +382,19 @@ class PublicAppDataView(APIView):
         month_options = [periods[key] for key in sorted(periods)]
         latest_published_month = month_options[-1] if month_options else None
 
+        # A region-scoped entry (e.g. Kenya) can reference a release ranked
+        # outside the global Top 50, so it may not appear in public_entries —
+        # both sources must feed the release/artist id sets below.
         public_release_ids = {
             entry.release_id
             for chart in charts
-            for entry in chart.public_entries
+            for entry in list(chart.public_entries) + list(chart.public_regional_entries)
             if _is_public_status(entry.release.status)
             and _is_public_status(entry.release.artist.status)
         }
         public_artist_ids = set()
         for chart in charts:
-            for entry in chart.public_entries:
+            for entry in list(chart.public_entries) + list(chart.public_regional_entries):
                 if entry.release_id not in public_release_ids:
                     continue
                 credits = release_credit_payload(entry.release, entry_featured=entry.featured_artists)

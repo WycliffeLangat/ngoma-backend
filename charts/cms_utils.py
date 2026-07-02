@@ -10,13 +10,14 @@ from decimal import Decimal
 from django.utils import timezone
 from django.utils.text import slugify
 import openpyxl
-from .artist_credits import format_artist_list, parse_artist_credit, split_artist_names
+from .artist_credits import format_artist_list, parse_artist_credit, split_artist_names, release_credit_payload
 from .methodology import (
     PUBLIC_CHART_LIMIT,
+    REGIONAL_CHART_CODES,
     platform_max_for,
     public_points,
 )
-from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting
+from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, RegionalChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting
 
 
 PUBLIC_DATA_AUDIT_MODULES = {
@@ -546,6 +547,191 @@ def _previous_period(year, month):
     return (year, month - 1) if month > 1 else (year - 1, 12)
 
 
+def resolve_release_country_code(release):
+    """Single source of truth for chart-eligibility country resolution.
+
+    Mirrors the "artist country is authoritative" display rule in
+    app_data.py: the primary credited artist's country wins over a release's
+    own (possibly stale) country field.
+    """
+    credits = release_credit_payload(release)
+    artist = credits["primary_artists"][0] if credits["primary_artists"] else release.artist
+    return (artist.country_code or release.country_code or "").strip().upper()
+
+
+def sync_regional_chart_entries(charts):
+    """Rebuild RegionalChartEntry rows for `charts` from their current
+    combined (platform IS NULL) MonthlyChartEntry rows.
+
+    Combined entries exist for every release with points that month (never
+    truncated to 50 — see rebuild_monthly_chart in pipeline.py), so this is
+    the full candidate pool a region chart can be ranked from. Creates rows
+    for newly-eligible releases, deletes rows for releases that are no
+    longer eligible (e.g. a country change), and keeps raw_total_points and
+    friends in sync with the combined entry. Rank assignment happens
+    afterward in harmonize_regional_chart_entries.
+    """
+    if not REGIONAL_CHART_CODES:
+        return {'created': 0, 'updated': 0, 'removed': 0}
+
+    chart_ids = [chart.id for chart in charts]
+    combined_entries = list(
+        MonthlyChartEntry.objects.filter(chart_id__in=chart_ids, platform__isnull=True)
+        .select_related('release', 'release__artist')
+        .prefetch_related('release__artist_credits__artist')
+    )
+    existing = {
+        (entry.chart_id, entry.region, entry.release_id): entry
+        for entry in RegionalChartEntry.objects.filter(
+            chart_id__in=chart_ids, region__in=REGIONAL_CHART_CODES
+        )
+    }
+
+    seen_keys = set()
+    to_create = []
+    to_update = []
+    synced_fields = (
+        'raw_total_points', 'weeks_on_chart', 'platform_count',
+        'platform_max', 'release_year', 'confidence', 'featured_artists',
+    )
+    for entry in combined_entries:
+        code = resolve_release_country_code(entry.release)
+        if code not in REGIONAL_CHART_CODES:
+            continue
+        key = (entry.chart_id, code, entry.release_id)
+        seen_keys.add(key)
+        existing_row = existing.get(key)
+        if existing_row:
+            changed = False
+            for field in synced_fields:
+                value = getattr(entry, field)
+                if getattr(existing_row, field) != value:
+                    setattr(existing_row, field, value)
+                    changed = True
+            if changed:
+                to_update.append(existing_row)
+        else:
+            to_create.append(RegionalChartEntry(
+                chart_id=entry.chart_id,
+                region=code,
+                release_id=entry.release_id,
+                # Temporary unique placeholder; harmonize_regional_chart_entries
+                # assigns the real rank right after this runs.
+                rank=-(1_000_000 + entry.release_id),
+                total_points=0,
+                raw_total_points=entry.raw_total_points,
+                weeks_on_chart=entry.weeks_on_chart,
+                platform_count=entry.platform_count,
+                platform_max=entry.platform_max,
+                release_year=entry.release_year,
+                confidence=entry.confidence,
+                featured_artists=entry.featured_artists,
+                peak_rank=1_000_000,
+            ))
+
+    stale_ids = [row.id for key, row in existing.items() if key not in seen_keys]
+    if stale_ids:
+        RegionalChartEntry.objects.filter(id__in=stale_ids).delete()
+    if to_update:
+        RegionalChartEntry.objects.bulk_update(to_update, list(synced_fields))
+    if to_create:
+        RegionalChartEntry.objects.bulk_create(to_create, batch_size=500)
+
+    return {'created': len(to_create), 'updated': len(to_update), 'removed': len(stale_ids)}
+
+
+def harmonize_regional_chart_entries(charts):
+    """Re-rank RegionalChartEntry rows per (chart, region) scope.
+
+    Direct port of the per-scope ranking + history block in
+    harmonize_chart_history, targeting RegionalChartEntry/region instead of
+    MonthlyChartEntry/platform.
+    """
+    chart_ids = [chart.id for chart in charts]
+    entries = list(
+        RegionalChartEntry.objects.filter(chart_id__in=chart_ids, region__in=REGIONAL_CHART_CODES)
+        .select_related('chart')
+    )
+    by_scope = defaultdict(list)
+    for entry in entries:
+        by_scope[(entry.chart_id, entry.region)].append(entry)
+
+    rank_changes = 0
+    for scope_entries in by_scope.values():
+        ordered = sorted(
+            scope_entries,
+            key=lambda item: (
+                -int(item.raw_total_points or 0),
+                int(item.rank) if item.rank > 0 else 0,
+                item.id,
+            ),
+        )
+        changed = []
+        for rank, entry in enumerate(ordered, 1):
+            expected_points = public_points(rank)
+            if entry.rank != rank or entry.total_points != expected_points:
+                changed.append(entry)
+            entry.total_points = expected_points
+
+        rank_changed = [entry for rank, entry in enumerate(ordered, 1) if entry.rank != rank]
+        if rank_changed:
+            for entry in rank_changed:
+                entry.rank = -(2_000_000 + entry.id)
+            RegionalChartEntry.objects.bulk_update(rank_changed, ['rank'])
+            rank_changes += len(rank_changed)
+
+        if not changed:
+            continue
+        for rank, entry in enumerate(ordered, 1):
+            entry.rank = rank
+        RegionalChartEntry.objects.bulk_update(changed, ['rank', 'total_points'])
+
+    # Refresh in-memory ranks before rebuilding cross-month history.
+    entries = list(
+        RegionalChartEntry.objects.filter(chart_id__in=chart_ids, region__in=REGIONAL_CHART_CODES)
+        .select_related('chart')
+        .order_by('chart__chart_type', 'chart__year', 'chart__month', 'id')
+    )
+    public_entries = [
+        entry for entry in entries
+        if (
+            entry.chart.is_published
+            and entry.chart.status == 'published'
+            and 1 <= entry.rank <= PUBLIC_CHART_LIMIT
+        )
+    ]
+    rank_lookup = {
+        (entry.chart.chart_type, entry.chart.year, entry.chart.month, entry.region, entry.release_id): entry.rank
+        for entry in public_entries
+    }
+    historical_peaks = {}
+    history_changed = []
+    for entry in entries:
+        history_key = (entry.chart.chart_type, entry.region, entry.release_id)
+        previous_year, previous_month = _previous_period(entry.chart.year, entry.chart.month)
+        previous_rank = rank_lookup.get(
+            (entry.chart.chart_type, previous_year, previous_month, entry.region, entry.release_id)
+        )
+        if (
+            entry.chart.is_published
+            and entry.chart.status == 'published'
+            and entry.rank <= PUBLIC_CHART_LIMIT
+        ):
+            peak_rank = min(historical_peaks.get(history_key, entry.rank), entry.rank)
+            historical_peaks[history_key] = peak_rank
+        else:
+            previous_rank = None
+            peak_rank = entry.rank
+        if entry.prev_rank != previous_rank or entry.peak_rank != peak_rank:
+            entry.prev_rank = previous_rank
+            entry.peak_rank = peak_rank
+            history_changed.append(entry)
+    if history_changed:
+        RegionalChartEntry.objects.bulk_update(history_changed, ['prev_rank', 'peak_rank'])
+
+    return {'rank_changes': rank_changes, 'history_changes': len(history_changed)}
+
+
 @transaction.atomic
 def harmonize_chart_history(chart_type=None, chart_ids=None):
     """Rebuild every derived chart field from the canonical database rows.
@@ -647,6 +833,11 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
             ['rank', 'total_points', 'raw_total_points', 'platform_max'],
         )
 
+    # Country-scoped charts (e.g. Kenya) are derived from the combined ranks
+    # just committed above, so resync/rank them before touching history.
+    regional_sync = sync_regional_chart_entries(charts)
+    regional_rank = harmonize_regional_chart_entries(charts)
+
     # Refresh the in-memory ranks before rebuilding cross-month history.
     entries = list(
         MonthlyChartEntry.objects.filter(chart_id__in=[chart.id for chart in charts])
@@ -726,4 +917,6 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
         'scoring_changes': scoring_changes,
         'history_changes': len(history_changed),
         'certifications_changed': certifications_changed,
+        'regional_sync': regional_sync,
+        'regional_rank_changes': regional_rank['rank_changes'],
     }

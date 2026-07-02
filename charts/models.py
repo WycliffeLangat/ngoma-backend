@@ -323,6 +323,71 @@ class MonthlyChartEntry(models.Model):
         return '='
 
 
+class RegionalChartEntry(models.Model):
+    """Country-scoped Top 50 (e.g. Kenya).
+
+    Kept as its own table rather than a field on MonthlyChartEntry: a large
+    number of call sites elsewhere (analytics, exports, certifications,
+    cleanup jobs) assume `platform IS NULL` on MonthlyChartEntry means "the
+    global combined chart". Reusing that field would risk region rows
+    leaking into those aggregates. This table is never touched by any of
+    that existing code.
+    """
+    chart = models.ForeignKey(MonthlyChart, on_delete=models.CASCADE, related_name='regional_entries')
+    region = models.CharField(max_length=8, db_index=True, help_text="ISO 3166-1 alpha-2 code, e.g. 'KE'")
+    release = models.ForeignKey(Release, on_delete=models.CASCADE)
+    rank = models.IntegerField()
+    total_points = models.IntegerField()
+    raw_total_points = models.IntegerField(null=True, blank=True)
+    weeks_on_chart = models.IntegerField(default=1)
+    platform_count = models.IntegerField(default=1)
+    platform_max = models.IntegerField(default=1)
+    featured_artists = models.TextField(blank=True, default='')
+    release_year = models.IntegerField(null=True, blank=True)
+    confidence = models.CharField(max_length=30, blank=True, default='')
+    peak_rank = models.IntegerField(default=1)
+    prev_rank = models.IntegerField(null=True, blank=True, help_text="Rank in previous month")
+
+    class Meta:
+        unique_together = ['chart', 'region', 'rank']
+        ordering = ['rank']
+        indexes = [
+            models.Index(fields=['release', 'chart'], name='regional_release_chart_idx'),
+            models.Index(fields=['chart', 'region', 'rank'], name='regional_chart_rank_idx'),
+        ]
+
+    def __str__(self):
+        return f"#{self.rank} {self.release} ({self.region})"
+
+    @property
+    def movement(self):
+        if self.prev_rank is None:
+            if not self.pk or not self.chart_id or not self.release_id:
+                return 'new'
+            appeared_before = RegionalChartEntry.objects.filter(
+                chart__chart_type=self.chart.chart_type,
+                chart__is_published=True,
+                chart__status='published',
+                region=self.region,
+                release_id=self.release_id,
+                rank__gte=1,
+                rank__lte=50,
+            ).filter(
+                models.Q(chart__year__lt=self.chart.year)
+                | models.Q(
+                    chart__year=self.chart.year,
+                    chart__month__lt=self.chart.month,
+                )
+            ).exists()
+            return 're-entry' if appeared_before else 'new'
+        d = self.prev_rank - self.rank
+        if d > 0:
+            return f'+{d}'
+        if d < 0:
+            return str(d)
+        return '='
+
+
 class NewsArticle(models.Model):
     CATEGORY_CHOICES = [
         ('chart_news', 'Chart News'),
