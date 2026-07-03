@@ -19,6 +19,17 @@ PUBLIC_POINTS_BASE = 51
 # is just appending its ISO 3166-1 alpha-2 code here.
 REGIONAL_CHART_CODES = ["KE"]
 
+# A release/artist in one of these statuses is never public-facing. Single
+# source of truth for both the public API's own filtering (app_data.py) and
+# chart ranking (cms_utils.py) — ranking must agree with display, or a
+# hidden release can occupy a Top 50 slot that never appears publicly,
+# silently shrinking the visible chart with nothing promoted to fill it.
+HIDDEN_STATUSES = {"archived", "inactive", "rejected", "draft"}
+
+
+def is_public_status(value):
+    return (value or "active").lower() not in HIDDEN_STATUSES
+
 SINGLES_PLATFORMS = (
     "Apple Music",
     "Audiomack",

@@ -29,10 +29,7 @@ from .models import (
 )
 from .artist_credits import release_credit_payload
 from .cms_utils import published_artist_entries
-from .methodology import public_points
-
-
-HIDDEN_STATUSES = {"archived", "inactive", "rejected", "draft"}
+from .methodology import HIDDEN_STATUSES, is_public_status, public_points
 
 # Every CMS module that can alter something rendered by the public app.  Audit
 # rows give us one generic revision signal, including bulk/custom CMS actions
@@ -131,8 +128,7 @@ def _file_url(request, field):
         return ""
 
 
-def _is_public_status(value):
-    return (value or "active").lower() not in HIDDEN_STATUSES
+_is_public_status = is_public_status
 
 
 def _artist_payload(request, artist):

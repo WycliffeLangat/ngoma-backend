@@ -14,6 +14,7 @@ from .artist_credits import format_artist_list, parse_artist_credit, split_artis
 from .methodology import (
     PUBLIC_CHART_LIMIT,
     REGIONAL_CHART_CODES,
+    is_public_status,
     platform_max_for,
     public_points,
 )
@@ -545,6 +546,15 @@ def _previous_period(year, month):
     return (year, month - 1) if month > 1 else (year - 1, 12)
 
 
+def entry_is_public(entry):
+    """Same visibility rule app_data._chart_data() uses to decide whether an
+    entry appears in the public payload — release and its (FK) artist must
+    both be in a public-facing status. Used at ranking time so a hidden
+    release never occupies a public 1-50 slot; see entry_is_public's call
+    site in harmonize_chart_history."""
+    return is_public_status(entry.release.status) and is_public_status(entry.release.artist.status)
+
+
 def resolve_release_country_code(release):
     """Single source of truth for chart-eligibility country resolution.
 
@@ -734,7 +744,7 @@ def harmonize_regional_chart_entries(charts):
     chart_ids = [chart.id for chart in charts]
     entries = list(
         RegionalChartEntry.objects.filter(chart_id__in=chart_ids, region__in=REGIONAL_CHART_CODES)
-        .select_related('chart')
+        .select_related('chart', 'release', 'release__artist')
     )
     by_scope = defaultdict(list)
     for entry in entries:
@@ -745,6 +755,10 @@ def harmonize_regional_chart_entries(charts):
         ordered = sorted(
             scope_entries,
             key=lambda item: (
+                # See the matching comment in harmonize_chart_history: a
+                # hidden release/artist sinks below public ones so it never
+                # holds a public 1-50 slot.
+                0 if entry_is_public(item) else 1,
                 -int(item.raw_total_points or 0),
                 int(item.rank) if item.rank > 0 else 0,
                 item.id,
@@ -856,7 +870,7 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
 
     entries = list(
         MonthlyChartEntry.objects.filter(chart_id__in=[chart.id for chart in charts])
-        .select_related('chart')
+        .select_related('chart', 'release', 'release__artist')
     )
     by_scope = defaultdict(list)
     for entry in entries:
@@ -876,6 +890,12 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
         ordered = sorted(
             scope_entries,
             key=lambda item: (
+                # A release/artist that's gone hidden (e.g. archived as a
+                # merge duplicate) sinks below every public-status entry in
+                # this scope, so it can never occupy a public 1-50 slot —
+                # the next real candidate takes its place instead of the
+                # chart quietly shrinking. entry_is_public() below.
+                0 if entry_is_public(item) else 1,
                 -int(item.raw_total_points or 0),
                 -int(item.platform_count or 0) if item.platform_id is None else 0,
                 int(item.rank or 0),
