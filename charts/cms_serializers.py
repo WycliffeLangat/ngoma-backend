@@ -400,11 +400,32 @@ class CmsMonthlyChartEntrySerializer(serializers.ModelSerializer):
     artist_display = serializers.SerializerMethodField()
     cover_image = serializers.SerializerMethodField()
     platform_name = serializers.SerializerMethodField()
-    movement = serializers.ReadOnlyField()
+    movement = serializers.SerializerMethodField()
 
     class Meta:
         model = MonthlyChartEntry
         fields = '__all__'
+
+    def get_movement(self, obj):
+        # Mirrors MonthlyChartEntry.movement, but for prev_rank is None uses
+        # the view's bulk-precomputed appeared_before_keys (one query for
+        # the whole page) instead of the property's own .exists() query per
+        # row. Falls back to the property itself for single-object
+        # responses (create/update/retrieve), where there's no N+1 to avoid.
+        if obj.prev_rank is None:
+            if not obj.pk or not obj.chart_id or not obj.release_id:
+                return 'new'
+            appeared_before_keys = self.context.get('appeared_before_keys')
+            if appeared_before_keys is None:
+                return obj.movement
+            key = (obj.chart.chart_type, obj.platform_id, obj.release_id)
+            return 're-entry' if key in appeared_before_keys else 'new'
+        d = obj.prev_rank - obj.rank
+        if d > 0:
+            return f'+{d}'
+        if d < 0:
+            return str(d)
+        return '='
 
     def get_platform_name(self, obj):
         return obj.platform.name if obj.platform else 'Combined'

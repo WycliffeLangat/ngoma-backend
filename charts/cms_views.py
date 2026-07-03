@@ -1,3 +1,4 @@
+from collections import defaultdict
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.cache import cache
@@ -778,7 +779,7 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
 class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
     queryset = MonthlyChartEntry.objects.select_related(
         'chart', 'release', 'release__artist', 'platform'
-    ).all()
+    ).prefetch_related('release__artist_credits__artist').all()
     serializer_class = CmsMonthlyChartEntrySerializer
     search_fields = ['release__title', 'release__artist__name', 'featured_artists']
     ordering_fields = ['rank', 'total_points', 'weeks_on_chart']
@@ -795,6 +796,48 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         elif platform:
             qs = qs.filter(platform_id=platform)
         return qs.order_by('rank')
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        target = page if page is not None else list(queryset)
+
+        # Bulk-precompute "appeared in an earlier published month" for
+        # entries with prev_rank is None, instead of letting the movement
+        # property run one .exists() query per row — the exact N+1 pattern
+        # already fixed for the public API's _entry_payload, just never
+        # applied here. A page is normally all one (chart_type, platform)
+        # scope (the frontend always passes chart+platform), so this is
+        # typically a single extra query regardless of page size.
+        candidates = [e for e in target if e.prev_rank is None and e.pk and e.chart_id and e.release_id]
+        groups = defaultdict(list)
+        for e in candidates:
+            groups[(e.chart.chart_type, e.platform_id, e.chart.year, e.chart.month)].append(e.release_id)
+
+        appeared_keys = set()
+        for (chart_type, platform_id, year, month), release_ids in groups.items():
+            found = MonthlyChartEntry.objects.filter(
+                chart__chart_type=chart_type,
+                platform_id=platform_id,
+                release_id__in=release_ids,
+                chart__is_published=True,
+                chart__status='published',
+                rank__gte=1,
+                rank__lte=50,
+            ).filter(
+                Q(chart__year__lt=year) | Q(chart__year=year, chart__month__lt=month)
+            ).values_list('release_id', flat=True).distinct()
+            for release_id in found:
+                appeared_keys.add((chart_type, platform_id, release_id))
+
+        serializer = self.get_serializer(
+            target, many=True,
+            context={**self.get_serializer_context(), 'appeared_before_keys': appeared_keys},
+        )
+        data = serializer.data
+        if page is not None:
+            return self.get_paginated_response(data)
+        return Response(data)
 
     def perform_create(self, serializer):
         if (
