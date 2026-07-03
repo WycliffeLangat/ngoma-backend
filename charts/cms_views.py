@@ -914,8 +914,9 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
             uploaded_by=self.request.user,
             file=original_filename,
         )
+        skip_harmonize = str(self.request.data.get('skip_harmonize', '')).lower() in ('1', 'true', 'yes')
         try:
-            result = process_weekly_upload(upload, file_obj=incoming_file)
+            result = process_weekly_upload(upload, file_obj=incoming_file, harmonize=not skip_harmonize)
         except Exception as exc:
             upload.processing_notes = f'Error: {exc}'
             upload.save(update_fields=['processing_notes'])

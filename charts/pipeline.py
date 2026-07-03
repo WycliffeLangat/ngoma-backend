@@ -218,7 +218,7 @@ def get_or_create_release(title, artist_credit, chart_type):
 
 
 @transaction.atomic
-def process_weekly_upload(upload: WeeklyUpload, file_obj=None) -> dict:
+def process_weekly_upload(upload: WeeklyUpload, file_obj=None, harmonize=True) -> dict:
     """
     Process a weekly xlsx upload:
     1. Parse the file
@@ -226,6 +226,14 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None) -> dict:
     3. Deduplicate within week/platform
     4. Save PlatformChartEntry records
     5. Rebuild MonthlyChartEntry aggregates for this month
+
+    harmonize=False skips the chart-type-wide harmonize_chart_history call
+    (still rebuilds this month's own MonthlyChartEntry rows). Callers doing
+    several uploads back-to-back — e.g. multiple weeks in a row — should
+    pass False and harmonize once at the end; harmonize_chart_history always
+    recomputes every published month of the chart type, so running it after
+    every single upload is redundant and, over HTTP, can exceed platform
+    request-timeout limits that this app has no control over.
     """
     is_album = upload.chart_type == ChartType.ALBUMS
     artist_rules, title_rules = get_norm_rules()
@@ -324,7 +332,7 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None) -> dict:
     upload.save()
 
     # Rebuild monthly aggregates
-    result = rebuild_monthly_chart(upload.chart_type, upload.year, upload.month)
+    result = rebuild_monthly_chart(upload.chart_type, upload.year, upload.month, harmonize=harmonize)
     result['dupes_dropped'] = total_dupes
     result['entries_processed'] = total_processed
     return result
