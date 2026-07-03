@@ -426,6 +426,24 @@ class CmsArtistViewSet(CmsBaseViewSet):
                 if safe_ids:
                     moved += Release.objects.filter(pk__in=safe_ids).update(artist=primary)
 
+                # Re-point primary/featured billing credits too — these cover
+                # releases the duplicate is credited on beyond the ones it
+                # directly owns (e.g. featured artist), which the release move
+                # above never touches. Without this, primary_artist_ids /
+                # featured_artist_ids keep resolving to the archived duplicate
+                # and its renamed "(merged N)" name leaks into release credits.
+                existing_primary_credits = set(
+                    ReleaseArtistCredit.objects.filter(artist=primary)
+                    .values_list('release_id', 'role')
+                )
+                for credit in list(ReleaseArtistCredit.objects.filter(artist=artist)):
+                    if (credit.release_id, credit.role) in existing_primary_credits:
+                        credit.delete()
+                    else:
+                        credit.artist = primary
+                        credit.save(update_fields=['artist'])
+                        existing_primary_credits.add((credit.release_id, credit.role))
+
                 ArtistMergeLog.objects.create(
                     primary_artist=primary, merged_artist_name=artist.name,
                     merged_artist_id=artist.id, moved_releases=len(safe_ids) + moved,
