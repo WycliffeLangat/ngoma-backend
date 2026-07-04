@@ -746,6 +746,17 @@ def harmonize_regional_chart_entries(charts):
         RegionalChartEntry.objects.filter(chart_id__in=chart_ids, region__in=REGIONAL_CHART_CODES)
         .select_related('chart', 'release', 'release__artist')
     )
+
+    # A hidden release/artist should never occupy a row on a chart that's
+    # already public — remove it outright instead of just sinking its rank.
+    # Draft charts are left alone: editors may still be fixing the release.
+    hidden_on_published = [e for e in entries if e.chart.is_published and not entry_is_public(e)]
+    entries_removed = len(hidden_on_published)
+    if hidden_on_published:
+        RegionalChartEntry.objects.filter(id__in=[e.id for e in hidden_on_published]).delete()
+        hidden_ids = {e.id for e in hidden_on_published}
+        entries = [e for e in entries if e.id not in hidden_ids]
+
     by_scope = defaultdict(list)
     for entry in entries:
         by_scope[(entry.chart_id, entry.region)].append(entry)
@@ -827,7 +838,7 @@ def harmonize_regional_chart_entries(charts):
     if history_changed:
         RegionalChartEntry.objects.bulk_update(history_changed, ['prev_rank', 'peak_rank'])
 
-    return {'rank_changes': rank_changes, 'history_changes': len(history_changed)}
+    return {'rank_changes': rank_changes, 'history_changes': len(history_changed), 'entries_removed': entries_removed}
 
 
 @transaction.atomic
@@ -872,6 +883,20 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
         MonthlyChartEntry.objects.filter(chart_id__in=[chart.id for chart in charts])
         .select_related('chart', 'release', 'release__artist')
     )
+
+    # A hidden release/artist (archived, merged away, etc.) should never
+    # occupy a row on a chart that's already public — remove it outright
+    # instead of just letting it sink in rank, so it doesn't linger as
+    # CMS-only clutter or keep tripping data-quality checks. Draft charts
+    # are left alone: editors may still be fixing the release before publish.
+    entries_removed = 0
+    hidden_on_published = [e for e in entries if e.chart.is_published and not entry_is_public(e)]
+    if hidden_on_published:
+        entries_removed = len(hidden_on_published)
+        MonthlyChartEntry.objects.filter(id__in=[e.id for e in hidden_on_published]).delete()
+        hidden_ids = {e.id for e in hidden_on_published}
+        entries = [e for e in entries if e.id not in hidden_ids]
+
     by_scope = defaultdict(list)
     for entry in entries:
         by_scope[(entry.chart_id, entry.platform_id)].append(entry)
@@ -1029,4 +1054,5 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
         'combined_restored': combined_restored['restored'],
         'regional_sync': regional_sync,
         'regional_rank_changes': regional_rank['rank_changes'],
+        'entries_removed': entries_removed + regional_rank.get('entries_removed', 0),
     }
