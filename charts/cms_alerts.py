@@ -173,6 +173,26 @@ def build_dashboard_alerts(user):
     ).count()
     if no_artist_link_count:
         artist_profile_counts.append({'field': 'Music/profile link', 'count': no_artist_link_count})
+
+    def _artist_missing_fields(artist):
+        missing = []
+        if not artist.genre:
+            missing.append('genre')
+        if not artist.city_region:
+            missing.append('city/region')
+        if not artist.biography:
+            missing.append('biography')
+        if not artist.image:
+            missing.append('image')
+        if not (artist.spotify_url or artist.apple_music_url or artist.youtube_url
+                or artist.boomplay_url or artist.audiomack_url or artist.website_url):
+            missing.append('profile link')
+        return ', '.join(missing)
+
+    incomplete_artists = active_artists.filter(
+        Q(genre='') | Q(city_region='') | Q(biography='') | Q(image='') |
+        Q(spotify_url='', apple_music_url='', youtube_url='', boomplay_url='', audiomack_url='', website_url='')
+    )
     _add_alert(
         alerts,
         alert_id='artist-profile-completeness',
@@ -184,7 +204,7 @@ def build_dashboard_alerts(user):
         module='artists',
         target_url='/artists',
         action='Fill the listed profile fields when reliable information is available.',
-        details=artist_profile_counts,
+        details=[_record_detail(a, a.name, f'Missing {_artist_missing_fields(a)}') for a in incomplete_artists[:DETAIL_LIMIT]],
     )
 
     active_releases = Release.objects.exclude(status='archived')
@@ -259,6 +279,36 @@ def build_dashboard_alerts(user):
     ).count()
     if no_release_link_count:
         release_metadata_counts.append({'field': 'Streaming link', 'count': no_release_link_count})
+
+    def _release_missing_fields(release):
+        missing = []
+        if release.release_year is None:
+            missing.append('release year')
+        if release.release_date is None:
+            missing.append('release date')
+        if not release.genre:
+            missing.append('genre')
+        if not release.label:
+            missing.append('label')
+        if not release.cover_image:
+            missing.append('cover image')
+        if release.number_of_tracks is None:
+            missing.append('track count')
+        if release.chart_type == 'singles' and not release.isrc:
+            missing.append('ISRC')
+        if release.chart_type == 'albums' and not release.upc:
+            missing.append('UPC')
+        if not (release.spotify_url or release.apple_music_url or release.youtube_url
+                or release.boomplay_url or release.audiomack_url):
+            missing.append('streaming link')
+        return ', '.join(missing)
+
+    incomplete_releases = active_releases.filter(
+        Q(release_year__isnull=True) | Q(release_date__isnull=True) | Q(genre='') | Q(label='') |
+        Q(cover_image='') | Q(number_of_tracks__isnull=True) |
+        Q(chart_type='singles', isrc='') | Q(chart_type='albums', upc='') |
+        Q(spotify_url='', apple_music_url='', youtube_url='', boomplay_url='', audiomack_url='')
+    ).select_related('artist')
     _add_alert(
         alerts,
         alert_id='release-metadata-completeness',
@@ -270,7 +320,7 @@ def build_dashboard_alerts(user):
         module='releases',
         target_url='/releases',
         action='Fill the listed fields from verified label, distributor, or platform information.',
-        details=release_metadata_counts,
+        details=[_record_detail(r, f'{r.title} — {r.artist.name}', f'Missing {_release_missing_fields(r)}') for r in incomplete_releases[:DETAIL_LIMIT]],
     )
 
     duplicate_groups = duplicate_artist_groups(limit=50)
@@ -420,7 +470,17 @@ def build_dashboard_alerts(user):
         ('Release type differs from chart type', MonthlyChartEntry.objects.exclude(release__chart_type=F('chart__chart_type'))),
         ('Archived release is still on a published chart', MonthlyChartEntry.objects.filter(release__status='archived', chart__is_published=True)),
     ]
-    invalid_entry_details = [{'field': label, 'count': qs.count()} for label, qs in invalid_entry_checks if qs.exists()]
+    # Details link to the parent chart (not the entry) — that's what the CMS's
+    # Chart Entries page can jump straight to and what actually gets fixed.
+    invalid_entry_details = []
+    for label, qs in invalid_entry_checks:
+        for entry in qs.select_related('chart', 'release', 'platform')[:DETAIL_LIMIT]:
+            scope = entry.platform.name if entry.platform else 'Combined'
+            invalid_entry_details.append({
+                'id': entry.chart_id,
+                'label': f'{entry.release.title} — {entry.chart.label} ({scope})',
+                'problem': label,
+            })
     _add_alert(
         alerts,
         alert_id='invalid-chart-entry-values',
@@ -428,11 +488,11 @@ def build_dashboard_alerts(user):
         category='data_integrity',
         title='Chart entries contain invalid values',
         message='Some chart rows have impossible values or are attached to the wrong chart type.',
-        count=sum(item['count'] for item in invalid_entry_details),
+        count=sum(qs.count() for _, qs in invalid_entry_checks),
         module='chart_entries',
         target_url='/chart-entries',
         action='Correct every listed entry before relying on rankings or points totals.',
-        details=invalid_entry_details,
+        details=invalid_entry_details[:DETAIL_LIMIT],
     )
 
     rank_sets = MonthlyChartEntry.objects.values('chart_id', 'platform_id').annotate(
@@ -577,6 +637,26 @@ def build_dashboard_alerts(user):
         ('seo_title', 'SEO title'),
         ('seo_description', 'SEO description'),
     ])
+
+    def _news_missing_fields(article):
+        missing = []
+        if not article.excerpt:
+            missing.append('excerpt')
+        if not article.body:
+            missing.append('body')
+        if not article.author:
+            missing.append('author')
+        if not article.cover_image:
+            missing.append('cover image')
+        if not article.seo_title:
+            missing.append('SEO title')
+        if not article.seo_description:
+            missing.append('SEO description')
+        return ', '.join(missing)
+
+    incomplete_news = published_news.filter(
+        Q(excerpt='') | Q(body='') | Q(author='') | Q(cover_image='') | Q(seo_title='') | Q(seo_description='')
+    )
     _add_alert(
         alerts,
         alert_id='published-news-completeness',
@@ -588,7 +668,7 @@ def build_dashboard_alerts(user):
         module='news',
         target_url='/news?status=published',
         action='Complete the listed fields, prioritizing missing body, author, and cover image.',
-        details=news_content_counts,
+        details=[_record_detail(n, n.title, f'Missing {_news_missing_fields(n)}') for n in incomplete_news[:DETAIL_LIMIT]],
     )
 
     visible_unofficial = Certification.objects.filter(is_official=False, is_hidden=False)
@@ -680,8 +760,13 @@ def build_dashboard_alerts(user):
         missing_levels = sorted(set(dict(Certification.LEVEL_CHOICES)) - {r.level for r in active_rules})
         if missing_levels:
             rule_problems.append({'label': 'Missing active level(s)', 'values': missing_levels, 'count': len(missing_levels)})
-    if any(a.threshold >= b.threshold for a, b in zip(active_rules, active_rules[1:])):
-        rule_problems.append({'label': 'Thresholds are not strictly increasing', 'count': 1})
+    threshold_conflicts = [(a, b) for a, b in zip(active_rules, active_rules[1:]) if a.threshold >= b.threshold]
+    if threshold_conflicts:
+        rule_problems.append({'label': 'Thresholds are not strictly increasing', 'count': len(threshold_conflicts)})
+    conflict_details = [
+        _record_detail(a, f'{a.get_level_display()} rule ({a.threshold:,} pts)', f'Not below {b.get_level_display()} ({b.threshold:,} pts)')
+        for a, b in threshold_conflicts
+    ]
     _add_alert(
         alerts,
         alert_id='certification-rule-configuration',
@@ -693,7 +778,7 @@ def build_dashboard_alerts(user):
         module='certification_rules',
         target_url='/certification-rules',
         action='Keep one active rule per level and ensure higher awards require strictly more points.',
-        details=rule_problems,
+        details=(conflict_details + rule_problems)[:DETAIL_LIMIT],
     )
 
     visible_empty_content = PageContent.objects.filter(is_visible=True).filter(
@@ -721,6 +806,7 @@ def build_dashboard_alerts(user):
         media_details.append({'field': 'Alternative text', 'count': media_missing_alt})
     if media_missing_title:
         media_details.append({'field': 'Descriptive title', 'count': media_missing_title})
+    incomplete_media = MediaAsset.objects.filter(is_archived=False).filter(Q(alt_text='') | Q(title=''))
     _add_alert(
         alerts,
         alert_id='media-metadata-incomplete',
@@ -732,7 +818,13 @@ def build_dashboard_alerts(user):
         module='media',
         target_url='/media',
         action='Add concise, meaningful titles and alt text to each reusable image.',
-        details=media_details,
+        details=[
+            _record_detail(
+                m, m.title or m.file.name,
+                f"Missing {', '.join(f for f, present in [('title', m.title), ('alt text', m.alt_text)] if not present)}",
+            )
+            for m in incomplete_media[:DETAIL_LIMIT]
+        ],
     )
 
     active_methodologies = MethodologySetting.objects.filter(is_active=True)
