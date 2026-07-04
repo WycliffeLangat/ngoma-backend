@@ -5,6 +5,7 @@ from django.utils import timezone
 
 from .models import (
     AdminNotification,
+    AdminProfile,
     Artist,
     BackupRecord,
     Certification,
@@ -246,6 +247,7 @@ def build_dashboard_alerts(user):
         ('genre', 'Genre'),
         ('label', 'Label'),
         ('cover_image', 'Cover image'),
+        ('number_of_tracks__isnull', 'Number of tracks'),
     ])
     missing_identifier_count = active_releases.filter(
         Q(chart_type='singles', isrc='') | Q(chart_type='albums', upc='')
@@ -300,6 +302,25 @@ def build_dashboard_alerts(user):
         target_url='/countries',
         action='Add an ISO two-letter code and reporting region to each active country.',
         details=[_record_detail(c, c.name, ', '.join(name for value, name in [(c.code, 'Missing code'), (c.region, 'Missing region')] if not value)) for c in country_config[:DETAIL_LIMIT]],
+    )
+
+    duplicate_codes = list(
+        Country.objects.filter(active=True).exclude(code='')
+        .values('code').annotate(n=Count('id')).filter(n__gt=1).values_list('code', flat=True)
+    )
+    countries_with_dup_codes = Country.objects.filter(active=True, code__in=duplicate_codes)
+    _add_alert(
+        alerts,
+        alert_id='countries-duplicate-code',
+        level='error',
+        category='data_integrity',
+        title='Countries share a duplicate code',
+        message=f'{len(duplicate_codes)} country code(s) are used by more than one active country.',
+        count=len(duplicate_codes),
+        module='countries',
+        target_url='/countries',
+        action='Give each active country its own unique ISO two-letter code.',
+        details=[_record_detail(c, c.name, f'Duplicate code: {c.code}') for c in countries_with_dup_codes[:DETAIL_LIMIT]],
     )
 
     platform_config = Platform.objects.filter(active=True).filter(
@@ -397,6 +418,7 @@ def build_dashboard_alerts(user):
         ('Weeks on chart below 1', MonthlyChartEntry.objects.filter(weeks_on_chart__lt=1)),
         ('Platform count exceeds platform maximum', MonthlyChartEntry.objects.filter(platform_count__gt=F('platform_max'))),
         ('Release type differs from chart type', MonthlyChartEntry.objects.exclude(release__chart_type=F('chart__chart_type'))),
+        ('Archived release is still on a published chart', MonthlyChartEntry.objects.filter(release__status='archived', chart__is_published=True)),
     ]
     invalid_entry_details = [{'field': label, 'count': qs.count()} for label, qs in invalid_entry_checks if qs.exists()]
     _add_alert(
@@ -601,6 +623,30 @@ def build_dashboard_alerts(user):
         details=[_record_detail(c, f'{c.release.title} — {c.get_level_display()}', 'Certification date is empty') for c in official_without_date.select_related('release')[:DETAIL_LIMIT]],
     )
 
+    invalid_certification_checks = [
+        ('Points are zero or negative', Certification.objects.filter(total_points__lte=0)),
+        ('Certification date is in the future', Certification.objects.filter(certification_date__gt=timezone.now().date())),
+        ('Underlying release is archived but certification is visible', Certification.objects.filter(release__status='archived', is_hidden=False)),
+    ]
+    invalid_certification_details = [
+        _record_detail(c, f'{c.release.title} — {c.get_level_display()}', label)
+        for label, qs in invalid_certification_checks
+        for c in qs.select_related('release')[:DETAIL_LIMIT]
+    ]
+    _add_alert(
+        alerts,
+        alert_id='certifications-invalid-values',
+        level='error',
+        category='data_integrity',
+        title='Certifications contain invalid values',
+        message='Some certifications have impossible points, a future certification date, or belong to an archived release.',
+        count=sum(qs.count() for _, qs in invalid_certification_checks),
+        module='certifications',
+        target_url='/certifications',
+        action='Correct or hide each listed certification.',
+        details=invalid_certification_details[:DETAIL_LIMIT],
+    )
+
     below_threshold = []
     below_threshold_count = 0
     for rule in CertificationRule.objects.filter(active=True):
@@ -705,6 +751,33 @@ def build_dashboard_alerts(user):
             action='Activate the current methodology and deactivate superseded versions.',
             details=[_record_detail(m, f'{m.version} — {m.name}', 'Currently active') for m in active_methodologies[:DETAIL_LIMIT]],
         )
+
+    inactive_since = timezone.now() - timedelta(days=60)
+    inactive_editors = AdminProfile.objects.filter(
+        user__is_active=True, is_active_editor=True,
+    ).exclude(role='viewer').filter(
+        Q(last_seen_at__isnull=True) | Q(last_seen_at__lt=inactive_since)
+    ).select_related('user')
+    count = inactive_editors.count()
+    _add_alert(
+        alerts,
+        alert_id='inactive-editor-accounts',
+        level='info',
+        category='system',
+        title='Editor accounts have gone quiet',
+        message=f'{count} editor/admin account(s) have not been seen in the CMS for 60+ days, or never.',
+        count=count,
+        module='users',
+        target_url='/users',
+        action='Confirm the person still needs CMS access, or deactivate the account.',
+        details=[
+            _record_detail(
+                p.user, p.user.get_username(),
+                'Never seen in the CMS' if not p.last_seen_at else f'Last seen {p.last_seen_at.date().isoformat()}',
+            )
+            for p in inactive_editors[:DETAIL_LIMIT]
+        ],
+    )
 
     unresolved_notes = InternalNote.objects.filter(is_resolved=False)
     count = unresolved_notes.count()
