@@ -429,9 +429,9 @@ class CmsArtistViewSet(CmsBaseViewSet):
                 # Re-point primary/featured billing credits too — these cover
                 # releases the duplicate is credited on beyond the ones it
                 # directly owns (e.g. featured artist), which the release move
-                # above never touches. Without this, primary_artist_ids /
-                # featured_artist_ids keep resolving to the archived duplicate
-                # and its renamed "(merged N)" name leaks into release credits.
+                # above never touches. Without this, deleting the duplicate
+                # below would cascade-delete those credit rows and silently
+                # drop it from releases it was only featured on.
                 existing_primary_credits = set(
                     ReleaseArtistCredit.objects.filter(artist=primary)
                     .values_list('release_id', 'role')
@@ -444,17 +444,18 @@ class CmsArtistViewSet(CmsBaseViewSet):
                         credit.save(update_fields=['artist'])
                         existing_primary_credits.add((credit.release_id, credit.role))
 
+                # Every release and credit belonging to this artist has already
+                # been moved or re-pointed to the primary above, so nothing
+                # references it anymore — delete it outright instead of
+                # leaving an "archived" duplicate sitting in the catalogue.
                 ArtistMergeLog.objects.create(
                     primary_artist=primary, merged_artist_name=artist.name,
                     merged_artist_id=artist.id, moved_releases=len(safe_ids) + moved,
                     aliases_added=list(aliases), merged_by=request.user,
                 )
-                artist.status = 'archived'
-                artist.name = f'{artist.name} (merged {artist.id})'
-                artist.slug = f'merged-{artist.id}'
-                artist.save(update_fields=['name', 'slug', 'status', 'updated_at'])
+                artist.delete()
 
-            # Update aliases inside the transaction so it's atomic with archiving.
+            # Update aliases inside the transaction so it's atomic with the deletion.
             primary.aliases = sorted(aliases)
             primary.save(update_fields=['aliases', 'updated_at'])
 
