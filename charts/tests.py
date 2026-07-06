@@ -579,3 +579,97 @@ class ChartHistoryHarmonizationTests(TestCase):
         self.assertEqual(row["r"], 1)
         self.assertEqual(row["last_month"], 1)
         self.assertEqual(row["peak_rank"], 1)
+
+    def test_chart_publish_and_unpublish_rebuild_cross_month_history(self):
+        june = MonthlyChart.objects.create(
+            year=2100,
+            month=6,
+            chart_type="singles",
+            status="published",
+            is_published=True,
+        )
+        july = MonthlyChart.objects.create(
+            year=2100,
+            month=7,
+            chart_type="singles",
+            status="approved",
+            is_published=False,
+        )
+        august = MonthlyChart.objects.create(
+            year=2100,
+            month=8,
+            chart_type="singles",
+            status="published",
+            is_published=True,
+        )
+
+        for chart, rows in (
+            (june, ((self.release_b, 1, 60), (self.release_a, 2, 40))),
+            (july, ((self.release_a, 1, 80), (self.release_b, 2, 20))),
+            (august, ((self.release_b, 1, 60), (self.release_a, 2, 40))),
+        ):
+            for release, rank, raw_points in rows:
+                MonthlyChartEntry.objects.create(
+                    chart=chart,
+                    release=release,
+                    rank=rank,
+                    total_points=51 - rank,
+                    raw_total_points=raw_points,
+                    prev_rank=None,
+                    peak_rank=99,
+                )
+
+        self.client.force_authenticate(self.admin)
+        publish_response = self.client.post(
+            f"/api/v1/cms/charts/{july.id}/publish/",
+            {},
+            format="json",
+        )
+        self.assertEqual(publish_response.status_code, 200, publish_response.content)
+
+        july_a = MonthlyChartEntry.objects.get(chart=july, release=self.release_a)
+        august_a = MonthlyChartEntry.objects.get(chart=august, release=self.release_a)
+        self.assertEqual(july_a.prev_rank, 2)
+        self.assertEqual(august_a.prev_rank, 1)
+
+        public = self.client.get("/api/v1/app-data/").json()
+        july_row = next(
+            row
+            for row in public["full"]["singles"]["combined"]["July 2100"]
+            if row["release_id"] == self.release_a.id
+        )
+        august_row = next(
+            row
+            for row in public["full"]["singles"]["combined"]["August 2100"]
+            if row["release_id"] == self.release_a.id
+        )
+        self.assertEqual(july_row["movement"], "+1")
+        self.assertEqual(july_row["last_month"], 2)
+        self.assertEqual(august_row["movement"], "-1")
+        self.assertEqual(august_row["last_month"], 1)
+
+        unpublish_response = self.client.post(
+            f"/api/v1/cms/charts/{july.id}/unpublish/",
+            {},
+            format="json",
+        )
+        self.assertEqual(
+            unpublish_response.status_code,
+            200,
+            unpublish_response.content,
+        )
+
+        august_a.refresh_from_db()
+        self.assertIsNone(august_a.prev_rank)
+        public = self.client.get("/api/v1/app-data/").json()
+        self.assertNotIn(
+            "July 2100",
+            public["full"]["singles"]["combined"],
+        )
+        august_row = next(
+            row
+            for row in public["full"]["singles"]["combined"]["August 2100"]
+            if row["release_id"] == self.release_a.id
+        )
+        self.assertEqual(august_row["movement"], "re-entry")
+        self.assertEqual(august_row["last_month"], "—")

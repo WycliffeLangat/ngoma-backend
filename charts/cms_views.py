@@ -768,12 +768,17 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
     def publish(self, request, pk=None):
         chart = self.get_object()
         self._validate_for_publication(chart)
-        chart.is_published = True
-        chart.status = 'published'
-        chart.published_by = request.user
-        chart.published_at = timezone.now()
-        chart.save(update_fields=['is_published', 'status', 'published_by', 'published_at', 'updated_at'])
-        audit(request, 'published_chart', module='charts', obj=chart)
+        with transaction.atomic():
+            chart.is_published = True
+            chart.status = 'published'
+            chart.published_by = request.user
+            chart.published_at = timezone.now()
+            chart.save(update_fields=['is_published', 'status', 'published_by', 'published_at', 'updated_at'])
+            harmonization = harmonize_chart_history(chart_type=chart.chart_type)
+            audit(
+                request, 'published_chart', module='charts', obj=chart,
+                new={'harmonization': harmonization},
+            )
         return Response(CmsMonthlyChartSerializer(chart).data)
 
     @action(detail=False, methods=['get'])
@@ -787,11 +792,16 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
     @action(detail=True, methods=['post'])
     def unpublish(self, request, pk=None):
         chart = self.get_object()
-        chart.is_published = False
-        chart.status = 'draft'
-        chart.published_at = None
-        chart.save(update_fields=['is_published', 'status', 'published_at', 'updated_at'])
-        audit(request, 'unpublished_chart', module='charts', obj=chart)
+        with transaction.atomic():
+            chart.is_published = False
+            chart.status = 'draft'
+            chart.published_at = None
+            chart.save(update_fields=['is_published', 'status', 'published_at', 'updated_at'])
+            harmonization = harmonize_chart_history(chart_type=chart.chart_type)
+            audit(
+                request, 'unpublished_chart', module='charts', obj=chart,
+                new={'harmonization': harmonization},
+            )
         return Response(CmsMonthlyChartSerializer(chart).data)
 
 
