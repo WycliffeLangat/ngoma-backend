@@ -36,11 +36,11 @@ class Command(BaseCommand):
         )
         group = parser.add_mutually_exclusive_group(required=False)
         group.add_argument("--dry-run", action="store_true", help="Preview without modifying the database")
-        group.add_argument("--apply", action="store_true", help="Apply the purge (default)")
+        group.add_argument("--apply", action="store_true", help="Apply the purge explicitly")
 
     def handle(self, *args, **options):
         year, month = options["year"], options["month"]
-        dry_run = options["dry_run"]
+        dry_run = options["dry_run"] or not options["apply"]
         chart_types = [options["chart_type"]] if options["chart_type"] else [ChartType.SINGLES, ChartType.ALBUMS]
         mode_label = "DRY RUN" if dry_run else "APPLY"
 
