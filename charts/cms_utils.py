@@ -192,11 +192,19 @@ def prune_orphaned_releases(release_ids):
     release_ids = [rid for rid in set(release_ids or []) if rid]
     if not release_ids:
         return 0
-    orphan_ids = [
-        rid for rid in release_ids
-        if not PlatformChartEntry.objects.filter(release_id=rid).exists()
-        and not MonthlyChartEntry.objects.filter(release_id=rid).exists()
-    ]
+
+    # Fetch support in two set-based queries. The former per-release
+    # ``exists()`` checks turned a corrected 500-row upload into roughly one
+    # thousand network round trips against a remote production database.
+    supported_release_ids = set(
+        PlatformChartEntry.objects.filter(release_id__in=release_ids)
+        .values_list('release_id', flat=True)
+    )
+    supported_release_ids.update(
+        MonthlyChartEntry.objects.filter(release_id__in=release_ids)
+        .values_list('release_id', flat=True)
+    )
+    orphan_ids = set(release_ids) - supported_release_ids
     if orphan_ids:
         Release.objects.filter(pk__in=orphan_ids).delete()
     return len(orphan_ids)
