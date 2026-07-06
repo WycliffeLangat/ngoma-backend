@@ -18,7 +18,7 @@ from .methodology import (
     platform_max_for,
     public_points,
 )
-from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, RegionalChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting, NormalizationRule
+from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, PlatformChartEntry, RegionalChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting, NormalizationRule
 
 
 PUBLIC_DATA_AUDIT_MODULES = {
@@ -177,6 +177,29 @@ def record_merge_normalization(rule_type, raw_value, canonical_value, notes=''):
     NormalizationRule.objects.filter(rule_type=rule_type, canonical_value=raw_value).update(
         canonical_value=canonical_value
     )
+
+
+def prune_orphaned_releases(release_ids):
+    """
+    Delete releases from `release_ids` that no longer have any supporting
+    chart data (no PlatformChartEntry, no MonthlyChartEntry) — leftover
+    "ghost" rows from a deleted weekly upload or chart period that would
+    otherwise keep surfacing in release listings and duplicate detection.
+    Only ever considers releases actually touched by the caller's delete —
+    never a blanket sweep — so a manually-added, not-yet-charted release is
+    never at risk.
+    """
+    release_ids = [rid for rid in set(release_ids or []) if rid]
+    if not release_ids:
+        return 0
+    orphan_ids = [
+        rid for rid in release_ids
+        if not PlatformChartEntry.objects.filter(release_id=rid).exists()
+        and not MonthlyChartEntry.objects.filter(release_id=rid).exists()
+    ]
+    if orphan_ids:
+        Release.objects.filter(pk__in=orphan_ids).delete()
+    return len(orphan_ids)
 
 
 def unique_slug(model, text, field='slug'):

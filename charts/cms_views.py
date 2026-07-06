@@ -20,7 +20,7 @@ from rest_framework.views import APIView
 from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
-from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, harmonize_chart_history, published_top50_entries, record_merge_normalization
+from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, harmonize_chart_history, published_top50_entries, record_merge_normalization, prune_orphaned_releases
 from .models import PlatformChartEntry
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
@@ -817,6 +817,30 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
             )
         return Response(CmsMonthlyChartSerializer(chart).data)
 
+    @action(detail=True, methods=['delete'], url_path='hard_delete')
+    def hard_delete(self, request, pk=None):
+        # Overrides CmsBaseViewSet.hard_delete: deleting a whole chart period
+        # also needs to (a) re-harmonize the remaining periods, since other
+        # months' movement/prev_rank can reference this one, and (b) prune any
+        # release that only ever charted in this now-deleted period — without
+        # this it lingers as a "ghost" release still visible in listings and
+        # duplicate detection with no real chart data behind it.
+        obj = self.get_object()
+        chart_type = obj.chart_type
+        obj_repr = str(obj)
+        obj_id = obj.pk
+        release_ids = list(
+            MonthlyChartEntry.objects.filter(chart=obj)
+            .values_list('release_id', flat=True).distinct()
+        )
+        with transaction.atomic():
+            obj.delete()
+        audit(request, 'hard_deleted', module=self.module_name, new={'id': obj_id, 'repr': obj_repr})
+        harmonize_chart_history(chart_type=chart_type)
+        pruned = prune_orphaned_releases(release_ids)
+        bump_public_revision()
+        return Response({'deleted': True, 'releases_pruned': pruned}, status=200)
+
 
 class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
     queryset = MonthlyChartEntry.objects.select_related(
@@ -922,9 +946,11 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
 
     def perform_destroy(self, instance):
         chart_type = instance.chart.chart_type
+        release_id = instance.release_id
         audit(self.request, 'deleted', module=self.module_name, obj=instance)
         instance.delete()
         harmonize_chart_history(chart_type=chart_type)
+        prune_orphaned_releases([release_id])
 
     @action(detail=False, methods=['post'])
     def harmonize(self, request):
@@ -985,6 +1011,35 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
     parser_classes = [MultiPartParser, FormParser, JSONParser]
     search_fields = ['chart_type', 'processing_notes']
     module_name = 'uploads'
+
+    def perform_destroy(self, instance):
+        # Capture what this upload contributed before the CASCADE wipes its
+        # PlatformChartEntry rows, so the affected month's MonthlyChartEntry
+        # aggregates can be rebuilt (or cleared, if no uploads remain) and any
+        # release that was only ever supported by this upload can be pruned —
+        # otherwise it lingers as a "ghost" release, still visible in listings
+        # and duplicate detection with no real chart data behind it.
+        chart_type, year, month = instance.chart_type, instance.year, instance.month
+        release_ids = list(
+            PlatformChartEntry.objects.filter(upload=instance)
+            .values_list('release_id', flat=True).distinct()
+        )
+        audit(self.request, 'deleted', module=self.module_name, obj=instance)
+        instance.delete()
+
+        if WeeklyUpload.objects.filter(chart_type=chart_type, year=year, month=month, processed=True).exists():
+            rebuild_monthly_chart(chart_type, year, month)
+        else:
+            MonthlyChartEntry.objects.filter(
+                chart__chart_type=chart_type, chart__year=year, chart__month=month,
+            ).delete()
+            harmonize_chart_history(chart_type=chart_type)
+
+        pruned = prune_orphaned_releases(release_ids)
+        if pruned:
+            audit(self.request, 'pruned_orphaned_releases', module=self.module_name, new={
+                'chart_type': chart_type, 'year': year, 'month': month, 'count': pruned,
+            })
 
     def perform_create(self, serializer):
         incoming_file = self.request.FILES.get('file')
