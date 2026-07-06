@@ -562,16 +562,24 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             return s
 
         from collections import defaultdict
+        releases = list(qs.order_by('id'))
+
+        # One aggregated query for every release's entry count instead of a
+        # per-release COUNT(*) — the latter turned this endpoint into an N+1
+        # (400+ queries for ~2,300 releases), slow enough over a networked
+        # production DB to blow past the frontend's request timeout.
+        entry_counts = dict(
+            MonthlyChartEntry.objects.filter(release_id__in=[r.id for r in releases])
+            .values('release_id').annotate(n=Count('id')).values_list('release_id', 'n')
+        )
+
         groups = defaultdict(list)
-        for r in qs.order_by('id'):
+        for r in releases:
             key = (simplify(r.title), r.chart_type)
             groups[key].append(r)
 
-        entry_counts_cache = {}
         def entry_count(r):
-            if r.id not in entry_counts_cache:
-                entry_counts_cache[r.id] = MonthlyChartEntry.objects.filter(release=r).count()
-            return entry_counts_cache[r.id]
+            return entry_counts.get(r.id, 0)
 
         result = []
         for releases in groups.values():
