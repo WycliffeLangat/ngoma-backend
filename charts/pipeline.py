@@ -274,7 +274,14 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None, harmonize=True) -
     if not configured:
         raise ValueError('The workbook columns are valid, but the matching platforms are not configured.')
 
-    # Clear existing entries for this upload
+    # Capture the releases supported by the previous version before clearing
+    # its rows. A corrected re-upload can resolve to completely different
+    # title/artist pairs; without this list, the bad version's releases linger
+    # forever as unsupported CMS records.
+    previous_release_ids = list(
+        PlatformChartEntry.objects.filter(upload=upload)
+        .values_list('release_id', flat=True).distinct()
+    )
     PlatformChartEntry.objects.filter(upload=upload).delete()
 
     total_processed = 0
@@ -349,6 +356,12 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None, harmonize=True) -
 
     # Rebuild monthly aggregates
     result = rebuild_monthly_chart(upload.chart_type, upload.year, upload.month, harmonize=harmonize)
+    if previous_release_ids:
+        # Local import avoids pipeline <-> cms_utils import-time circularity.
+        from .cms_utils import prune_orphaned_releases
+        result['orphaned_releases_pruned'] = prune_orphaned_releases(
+            previous_release_ids
+        )
     result['dupes_dropped'] = total_dupes
     result['entries_processed'] = total_processed
     return result

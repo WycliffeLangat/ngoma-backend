@@ -8,13 +8,15 @@ from django.urls import reverse
 from rest_framework.test import APITestCase
 
 from .models import (
+    Artist,
     ChartType,
     MonthlyChartEntry,
     Platform,
     PlatformChartEntry,
+    Release,
     WeeklyUpload,
 )
-from .pipeline import get_or_create_release
+from .pipeline import get_or_create_release, process_weekly_upload
 
 
 PLATFORMS = [
@@ -33,6 +35,17 @@ def weekly_workbook_bytes():
     sheet.append(PLATFORMS)
     sheet.append(['Song A - Artist A'] * len(PLATFORMS))
     sheet.append(['Song B - Artist B'] * len(PLATFORMS))
+    output = io.BytesIO()
+    workbook.save(output)
+    workbook.close()
+    return output.getvalue()
+
+
+def single_column_workbook_bytes(value):
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.append(['Apple Music'])
+    sheet.append([value])
     output = io.BytesIO()
     workbook.save(output)
     workbook.close()
@@ -109,6 +122,41 @@ class CmsWeeklyUploadTests(APITestCase):
                 platform__isnull=True,
             ).exclude(weeks_on_chart=1).exists()
         )
+
+    def test_reprocessing_corrected_upload_prunes_swapped_release(self):
+        Artist.objects.create(name='Known Artist', slug='known-artist')
+        upload = WeeklyUpload.objects.create(
+            chart_type=ChartType.SINGLES,
+            year=2026,
+            month=7,
+            week=2,
+            file='July 2026 Week 2 Singles.xlsx',
+        )
+
+        process_weekly_upload(
+            upload,
+            io.BytesIO(single_column_workbook_bytes(
+                'Known Artist - Real Song'
+            )),
+        )
+        swapped = Release.objects.get(
+            title='Known Artist',
+            artist__name='Real Song',
+        )
+
+        result = process_weekly_upload(
+            upload,
+            io.BytesIO(single_column_workbook_bytes(
+                'Real Song - Known Artist'
+            )),
+        )
+
+        self.assertEqual(result['orphaned_releases_pruned'], 1)
+        self.assertFalse(Release.objects.filter(pk=swapped.pk).exists())
+        self.assertTrue(Release.objects.filter(
+            title='Real Song',
+            artist__name='Known Artist',
+        ).exists())
 
     def test_weekly_upload_rejects_non_excel_file(self):
         response = self.client.post(

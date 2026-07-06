@@ -41,14 +41,14 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         group = parser.add_mutually_exclusive_group(required=False)
         group.add_argument("--dry-run", action="store_true", help="Preview without modifying the database")
-        group.add_argument("--apply", action="store_true", help="Apply the fixes (default)")
+        group.add_argument("--apply", action="store_true", help="Apply the fixes explicitly")
         parser.add_argument(
             "--artist", default="",
             help="Only fix swaps where the real artist's name matches this (case-insensitive).",
         )
 
     def handle(self, *args, **options):
-        dry_run = options["dry_run"]
+        dry_run = options["dry_run"] or not options["apply"]
         artist_filter = options["artist"].strip().lower()
         mode_label = "DRY RUN" if dry_run else "APPLY"
         self.stdout.write(self.style.WARNING(f"\n[{mode_label}] Scanning for title/artist swaps...\n"))
