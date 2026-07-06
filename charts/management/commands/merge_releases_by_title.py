@@ -90,7 +90,7 @@ class Command(BaseCommand):
                 rac = _merge_artist_credits(dup, keeper, dry_run)
                 meta = _merge_metadata(dup, keeper, dry_run)
                 certs = _merge_certifications(dup, keeper, dry_run)
-                _archive_duplicate(dup, dry_run)
+                _archive_duplicate(dup, keeper, dry_run)
                 self.stdout.write(
                     f"{prefix}  id={dup.id} -> id={keeper.id}: "
                     f"mce_reassigned={mce_r} mce_merged={mce_m} "

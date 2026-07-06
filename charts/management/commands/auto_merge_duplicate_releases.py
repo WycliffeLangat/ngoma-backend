@@ -163,7 +163,7 @@ class Command(BaseCommand):
                     rac = _merge_artist_credits(dup, keeper, dry_run)
                     meta = _merge_metadata(dup, keeper, dry_run)
                     Certification.objects.filter(release=dup).delete() if not dry_run else None
-                    _archive_duplicate(dup, dry_run)
+                    _archive_duplicate(dup, keeper, dry_run)
 
                     self.stdout.write(
                         f"{prefix}      id={dup.id}: "

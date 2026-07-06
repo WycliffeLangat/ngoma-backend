@@ -279,6 +279,8 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None, harmonize=True) -
 
     total_processed = 0
     total_dupes = 0
+    release_cache = {}
+    platform_entries_to_create = []
 
     for plat_name in platform_names:
         if plat_name not in platform_col or plat_name not in platforms:
@@ -319,12 +321,26 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None, harmonize=True) -
 
         # Save entries
         for key, (ct, ca, pts, pos, rt, ra) in seen.items():
-            release_obj = get_or_create_release(ct, ca, upload.chart_type)
-            PlatformChartEntry.objects.create(
+            release_key = (
+                ct.casefold().strip(),
+                ca.casefold().strip(),
+                upload.chart_type,
+            )
+            release_obj = release_cache.get(release_key)
+            if release_obj is None:
+                release_obj = get_or_create_release(ct, ca, upload.chart_type)
+                release_cache[release_key] = release_obj
+            platform_entries_to_create.append(PlatformChartEntry(
                 upload=upload, platform=plat, release=release_obj,
                 position=pos, points=pts, raw_title=rt, raw_artist=ra
-            )
+            ))
             total_processed += 1
+
+    if platform_entries_to_create:
+        PlatformChartEntry.objects.bulk_create(
+            platform_entries_to_create,
+            batch_size=500,
+        )
 
     upload.processed = True
     upload.duplicates_dropped = total_dupes
@@ -444,7 +460,7 @@ def rebuild_monthly_chart(
     harmonization = None
     if harmonize:
         from .cms_utils import harmonize_chart_history
-        harmonization = harmonize_chart_history(chart_type=chart_type)
+        harmonization = harmonize_chart_history(chart_ids=[chart.id])
 
     return {
         'chart': str(chart),

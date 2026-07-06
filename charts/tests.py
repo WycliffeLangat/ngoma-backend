@@ -8,6 +8,7 @@ from django.test import TestCase
 from django.test.utils import CaptureQueriesContext
 from rest_framework.test import APIClient
 
+from .cms_utils import harmonize_chart_history
 from .models import (
     AdminProfile,
     AdminRole,
@@ -579,6 +580,46 @@ class ChartHistoryHarmonizationTests(TestCase):
         self.assertEqual(row["r"], 1)
         self.assertEqual(row["last_month"], 1)
         self.assertEqual(row["peak_rank"], 1)
+
+    def test_scoped_harmonization_only_reranks_changed_chart(self):
+        march = MonthlyChart.objects.create(
+            year=2099,
+            month=3,
+            chart_type="singles",
+            status="published",
+            is_published=True,
+        )
+        march_a = MonthlyChartEntry.objects.create(
+            chart=march,
+            release=self.release_a,
+            rank=1,
+            total_points=50,
+            raw_total_points=10,
+        )
+        march_b = MonthlyChartEntry.objects.create(
+            chart=march,
+            release=self.release_b,
+            rank=2,
+            total_points=49,
+            raw_total_points=100,
+        )
+
+        self.february_a.raw_total_points = 100
+        self.february_a.save(update_fields=["raw_total_points"])
+        result = harmonize_chart_history(chart_ids=[self.february.id])
+
+        self.february_a.refresh_from_db()
+        march_a.refresh_from_db()
+        march_b.refresh_from_db()
+        self.assertEqual(result["charts"], 1)
+        self.assertGreaterEqual(result["history_charts"], 3)
+        self.assertEqual(self.february_a.rank, 1)
+        self.assertEqual(
+            (march_a.rank, march_b.rank),
+            (1, 2),
+            "An unchanged month must not be re-ranked during another month's upload.",
+        )
+        self.assertEqual(march_a.prev_rank, self.february_a.rank)
 
     def test_chart_publish_and_unpublish_rebuild_cross_month_history(self):
         june = MonthlyChart.objects.create(

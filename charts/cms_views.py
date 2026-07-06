@@ -20,7 +20,7 @@ from rest_framework.views import APIView
 from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
-from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, harmonize_chart_history, published_top50_entries
+from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, harmonize_chart_history, published_top50_entries, record_merge_normalization
 from .models import PlatformChartEntry
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
@@ -453,6 +453,15 @@ class CmsArtistViewSet(CmsBaseViewSet):
                     merged_artist_id=artist.id, moved_releases=len(safe_ids) + moved,
                     aliases_added=list(aliases), merged_by=request.user,
                 )
+                record_merge_normalization(
+                    'artist', artist.name, primary.name,
+                    notes=f'Auto-created when artist {artist.id} was merged into {primary.id}',
+                )
+                for alias in artist.aliases or []:
+                    record_merge_normalization(
+                        'artist', alias, primary.name,
+                        notes=f'Auto-created when artist {artist.id} (alias) was merged into {primary.id}',
+                    )
                 artist.delete()
 
             # Update aliases inside the transaction so it's atomic with the deletion.
@@ -663,6 +672,10 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             Certification.objects.filter(release=duplicate).delete()
             dup_repr = str(duplicate)
             dup_id = duplicate.pk
+            record_merge_normalization(
+                'title', duplicate.title, keeper.title,
+                notes=f'Auto-created when release {dup_id} was merged into {keeper.pk}',
+            )
             duplicate.delete()
 
         harmonize_chart_history(chart_type=keeper.chart_type)

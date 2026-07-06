@@ -1,4 +1,5 @@
 import io
+from unittest.mock import patch
 
 import openpyxl
 from django.contrib.auth.models import User
@@ -13,6 +14,7 @@ from .models import (
     PlatformChartEntry,
     WeeklyUpload,
 )
+from .pipeline import get_or_create_release
 
 
 PLATFORMS = [
@@ -66,19 +68,24 @@ class CmsWeeklyUploadTests(APITestCase):
             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         )
 
-        response = self.client.post(
-            reverse('cms-weekly-uploads-list'),
-            {
-                'chart_type': ChartType.SINGLES,
-                'year': 2026,
-                'month': 7,
-                'week': 1,
-                'file': chart_file,
-            },
-            format='multipart',
-        )
+        with patch(
+            'charts.pipeline.get_or_create_release',
+            wraps=get_or_create_release,
+        ) as release_resolver:
+            response = self.client.post(
+                reverse('cms-weekly-uploads-list'),
+                {
+                    'chart_type': ChartType.SINGLES,
+                    'year': 2026,
+                    'month': 7,
+                    'week': 1,
+                    'file': chart_file,
+                },
+                format='multipart',
+            )
 
         self.assertEqual(response.status_code, 201, response.data)
+        self.assertEqual(release_resolver.call_count, 2)
         upload = WeeklyUpload.objects.get(year=2026, month=7, week=1)
         self.assertTrue(upload.processed)
         self.assertEqual(upload.entries_processed, 12)

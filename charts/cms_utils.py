@@ -18,7 +18,7 @@ from .methodology import (
     platform_max_for,
     public_points,
 )
-from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, RegionalChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting
+from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, RegionalChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting, NormalizationRule
 
 
 PUBLIC_DATA_AUDIT_MODULES = {
@@ -155,6 +155,28 @@ def bump_public_revision():
 
 def normalize_name(value):
     return re.sub(r'\s+', ' ', str(value or '').strip())
+
+
+def record_merge_normalization(rule_type, raw_value, canonical_value, notes=''):
+    """
+    Auto-create/repoint a NormalizationRule so future ingested rows matching a
+    just-merged duplicate's raw name/title resolve to the surviving record
+    instead of recreating it (see charts/pipeline.py get_norm_rules()/
+    normalize_entry()).
+    """
+    raw_value = (raw_value or '').strip()
+    canonical_value = (canonical_value or '').strip()
+    if not raw_value or not canonical_value or raw_value.lower() == canonical_value.lower():
+        return
+    NormalizationRule.objects.update_or_create(
+        rule_type=rule_type, raw_value=raw_value,
+        defaults={'canonical_value': canonical_value, 'notes': notes},
+    )
+    # Chained merges: repoint any rule that already pointed at the name/title
+    # that just got merged away, so it keeps resolving to the final survivor.
+    NormalizationRule.objects.filter(rule_type=rule_type, canonical_value=raw_value).update(
+        canonical_value=canonical_value
+    )
 
 
 def unique_slug(model, text, field='slug'):
@@ -473,7 +495,7 @@ def publish_chart_upload(upload, user=None):
     upload.published_by = user
     upload.published_at = timezone.now()
     upload.save(update_fields=['status', 'published_by', 'published_at', 'updated_at'])
-    harmonize_chart_history(chart_type=upload.chart_type)
+    harmonize_chart_history(chart_ids=[chart.id])
     return chart, len(entries)
 
 
@@ -487,17 +509,32 @@ def certification_thresholds():
 def recalculate_certifications(chart_type=None, release=None):
     from django.db.models import Sum
 
-    qs = Release.objects.all()
+    published = published_top50_entries()
+    existing_certifications = Certification.objects.all()
     if chart_type:
-        qs = qs.filter(chart_type=chart_type)
+        published = published.filter(chart__chart_type=chart_type)
+        existing_certifications = existing_certifications.filter(
+            release__chart_type=chart_type
+        )
     if release:
-        qs = qs.filter(pk=release.pk)
+        published = published.filter(release=release)
+        existing_certifications = existing_certifications.filter(
+            release=release
+        )
     thresholds = certification_thresholds()
-    release_ids = list(qs.values_list('id', flat=True))
+    release_ids = set(
+        published.values_list('release_id', flat=True).distinct()
+    )
+    release_ids.update(
+        existing_certifications.values_list('release_id', flat=True).distinct()
+    )
+    if release:
+        release_ids.add(release.pk)
+    release_ids = sorted(release_ids)
     totals = {
         row['release_id']: row['total']
         for row in (
-            published_top50_entries()
+            published
             .filter(release_id__in=release_ids)
             .values('release_id')
             .annotate(total=Sum('total_points'))
@@ -850,8 +887,13 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
     and year-end totals all share the same monthly history. This routine is
     deliberately backend-owned so CMS, scripts, and future clients cannot
     leave those surfaces out of sync.
+
+    When chart_ids are supplied, expensive ranking and regional candidate
+    rebuilding is limited to those changed periods. Cross-month history and
+    certifications still use every period of the affected chart type.
     """
     chart_ids = [int(value) for value in (chart_ids or []) if value]
+    requested_chart_ids = set(chart_ids)
     chart_types = set()
     if chart_type:
         chart_types.add(str(chart_type))
@@ -860,14 +902,25 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
             MonthlyChart.objects.filter(id__in=chart_ids)
             .values_list('chart_type', flat=True)
         )
+    if requested_chart_ids and not chart_types:
+        return {
+            'chart_types': [], 'charts': 0, 'history_charts': 0,
+            'rank_changes': 0, 'scoring_changes': 0,
+            'history_changes': 0, 'certifications_changed': 0,
+        }
     charts_qs = MonthlyChart.objects.all()
     if chart_types:
         charts_qs = charts_qs.filter(chart_type__in=chart_types)
-    charts = list(charts_qs.order_by('chart_type', 'year', 'month', 'id'))
+    history_charts = list(charts_qs.order_by('chart_type', 'year', 'month', 'id'))
+    charts = (
+        [chart for chart in history_charts if chart.id in requested_chart_ids]
+        if requested_chart_ids else history_charts
+    )
     if not charts:
         return {
             'chart_types': sorted(chart_types),
             'charts': 0,
+            'history_charts': len(history_charts),
             'rank_changes': 0,
             'scoring_changes': 0,
             'history_changes': 0,
@@ -970,11 +1023,11 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
     # Country-scoped charts (e.g. Kenya) are derived from the combined ranks
     # just committed above, so resync/rank them before touching history.
     regional_sync = sync_regional_chart_entries(charts)
-    regional_rank = harmonize_regional_chart_entries(charts)
+    regional_rank = harmonize_regional_chart_entries(history_charts)
 
     # Refresh the in-memory ranks before rebuilding cross-month history.
     entries = list(
-        MonthlyChartEntry.objects.filter(chart_id__in=[chart.id for chart in charts])
+        MonthlyChartEntry.objects.filter(chart_id__in=[chart.id for chart in history_charts])
         .select_related('chart')
         .order_by('chart__chart_type', 'chart__year', 'chart__month', 'id')
     )
@@ -1038,7 +1091,7 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
             ['prev_rank', 'peak_rank'],
         )
 
-    affected_types = sorted({chart.chart_type for chart in charts})
+    affected_types = sorted({chart.chart_type for chart in history_charts})
     certifications_changed = sum(
         recalculate_certifications(chart_type=affected_type)
         for affected_type in affected_types
@@ -1047,6 +1100,7 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
     return {
         'chart_types': affected_types,
         'charts': len(charts),
+        'history_charts': len(history_charts),
         'rank_changes': rank_changes,
         'scoring_changes': scoring_changes,
         'history_changes': len(history_changed),

@@ -23,7 +23,7 @@ from charts.models import (
     Release,
     ReleaseArtistCredit,
 )
-from charts.cms_utils import recalculate_certifications
+from charts.cms_utils import recalculate_certifications, record_merge_normalization
 
 
 # Fields copied from duplicate to keeper only when the keeper's field is blank/null/zero.
@@ -252,10 +252,14 @@ def _merge_certifications(dup, keeper, dry_run):
     return count
 
 
-def _archive_duplicate(dup, dry_run):
+def _archive_duplicate(dup, keeper, dry_run):
     if not dry_run:
         dup.status = "archived"
         dup.save(update_fields=["status", "updated_at"])
+        record_merge_normalization(
+            "title", dup.title, keeper.title,
+            notes=f"Auto-created when release {dup.pk} was merged into {keeper.pk}",
+        )
 
 
 def _log_merge(dup, keeper, stats):
@@ -376,7 +380,7 @@ class Command(BaseCommand):
                 rac_count = _merge_artist_credits(dup, keeper, dry_run)
                 meta_filled = _merge_metadata(dup, keeper, dry_run)
                 cert_deleted = _merge_certifications(dup, keeper, dry_run)
-                _archive_duplicate(dup, dry_run)
+                _archive_duplicate(dup, keeper, dry_run)
 
                 total_mce_reassigned += mce_reassigned
                 total_mce_merged += mce_merged
