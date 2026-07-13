@@ -23,6 +23,27 @@ def validate_upload(file_value, max_megabytes, allowed_types=None, label='file')
     return file_value
 
 
+def unique_conflict_message(model, field, value, instance=None, noun=None, display_attr='name'):
+    """Identify the record already holding `value` for `field` so uniqueness errors name it,
+    instead of DRF's default '<model> with this <field> already exists.' with no way to tell which one."""
+    if not value:
+        return None
+    lookup = {f'{field}__iexact': value} if isinstance(value, str) else {field: value}
+    qs = model.objects.filter(**lookup)
+    if instance is not None and instance.pk:
+        qs = qs.exclude(pk=instance.pk)
+    existing = qs.first()
+    if existing is None:
+        return None
+    noun = noun or model._meta.verbose_name
+    display = getattr(existing, display_attr, None) or str(existing)
+    field_label = field.replace('_', ' ')
+    return (
+        f'{noun.capitalize()} "{display}" (ID {existing.pk}) already uses this {field_label}. '
+        f'Edit that {noun} instead, or choose a different {field_label}.'
+    )
+
+
 class AdminProfileSerializer(serializers.ModelSerializer):
     role_label = serializers.CharField(source='get_role_display', read_only=True)
 
@@ -100,12 +121,37 @@ class CmsPlatformSerializer(serializers.ModelSerializer):
     class Meta:
         model = Platform
         fields = '__all__'
+        extra_kwargs = {
+            'name': {'validators': []},
+            'slug': {'validators': []},
+        }
+
+    def validate_name(self, value):
+        conflict = unique_conflict_message(Platform, 'name', value, self.instance)
+        if conflict:
+            raise serializers.ValidationError(conflict)
+        return value
+
+    def validate_slug(self, value):
+        conflict = unique_conflict_message(Platform, 'slug', value, self.instance)
+        if conflict:
+            raise serializers.ValidationError(conflict)
+        return value
 
 
 class CmsCountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Country
         fields = '__all__'
+        extra_kwargs = {
+            'name': {'validators': []},
+        }
+
+    def validate_name(self, value):
+        conflict = unique_conflict_message(Country, 'name', value, self.instance)
+        if conflict:
+            raise serializers.ValidationError(conflict)
+        return value
 
 
 class CmsArtistSerializer(serializers.ModelSerializer):
@@ -121,6 +167,22 @@ class CmsArtistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artist
         fields = '__all__'
+        extra_kwargs = {
+            'name': {'validators': []},
+            'slug': {'validators': []},
+        }
+
+    def validate_name(self, value):
+        conflict = unique_conflict_message(Artist, 'name', value, self.instance)
+        if conflict:
+            raise serializers.ValidationError(conflict)
+        return value
+
+    def validate_slug(self, value):
+        conflict = unique_conflict_message(Artist, 'slug', value, self.instance)
+        if conflict:
+            raise serializers.ValidationError(conflict)
+        return value
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
@@ -500,6 +562,21 @@ class CmsMonthlyChartSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'year': 'Enter a year between 1900 and 2200.'})
         if month is not None and not 1 <= month <= 12:
             raise serializers.ValidationError({'month': 'Enter a month from 1 to 12.'})
+
+        chart_type_value = attrs.get('chart_type', getattr(self.instance, 'chart_type', None))
+        if year is not None and month is not None and chart_type_value:
+            qs = MonthlyChart.objects.filter(year=year, month=month, chart_type=chart_type_value)
+            if self.instance is not None and self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+            existing = qs.first()
+            if existing is not None:
+                raise serializers.ValidationError({
+                    'month': (
+                        f'A {existing.get_chart_type_display()} chart for {existing.label} already exists '
+                        f'(ID {existing.pk}, status "{existing.status}"). Edit that chart instead of creating a new one.'
+                    )
+                })
+
         if is_published and status_value != 'published':
             raise serializers.ValidationError({
                 'status': 'A public chart must have Published status. Use the Publish action when review is complete.'
@@ -527,6 +604,15 @@ class CmsNewsArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsArticle
         fields = '__all__'
+        extra_kwargs = {
+            'slug': {'validators': []},
+        }
+
+    def validate_slug(self, value):
+        conflict = unique_conflict_message(NewsArticle, 'slug', value, self.instance, noun='news article', display_attr='title')
+        if conflict:
+            raise serializers.ValidationError(conflict)
+        return value
 
     def validate_cover_image(self, value):
         return validate_upload(value, 5, ALLOWED_IMAGE_TYPES - {'image/svg+xml'}, 'news image')
@@ -540,6 +626,23 @@ class CmsCertificationSerializer(serializers.ModelSerializer):
         model = Certification
         fields = '__all__'
 
+    def validate(self, attrs):
+        release = attrs.get('release', getattr(self.instance, 'release', None))
+        level = attrs.get('level', getattr(self.instance, 'level', None))
+        if release and level:
+            qs = Certification.objects.filter(release=release, level=level)
+            if self.instance is not None and self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+            existing = qs.first()
+            if existing is not None:
+                raise serializers.ValidationError({
+                    'level': (
+                        f'"{release.title}" already has a {existing.get_level_display()} certification '
+                        f'(ID {existing.pk}). Edit that certification instead of creating a new one.'
+                    )
+                })
+        return attrs
+
 
 class CertificationRuleSerializer(serializers.ModelSerializer):
     label = serializers.CharField(source='get_level_display', read_only=True)
@@ -547,6 +650,21 @@ class CertificationRuleSerializer(serializers.ModelSerializer):
     class Meta:
         model = CertificationRule
         fields = '__all__'
+        extra_kwargs = {
+            'level': {'validators': []},
+        }
+
+    def validate_level(self, value):
+        qs = CertificationRule.objects.filter(level=value)
+        if self.instance is not None and self.instance.pk:
+            qs = qs.exclude(pk=self.instance.pk)
+        existing = qs.first()
+        if existing is not None:
+            raise serializers.ValidationError(
+                f'A rule for "{existing.get_level_display()}" already exists '
+                f'(ID {existing.pk}, threshold {existing.threshold}). Edit that rule instead of creating a new one.'
+            )
+        return value
 
 
 class MethodologySettingSerializer(serializers.ModelSerializer):
@@ -559,12 +677,44 @@ class SiteSettingSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteSetting
         fields = '__all__'
+        extra_kwargs = {
+            'key': {'validators': []},
+        }
+
+    def validate_key(self, value):
+        qs = SiteSetting.objects.filter(key=value)
+        if self.instance is not None and self.instance.pk:
+            qs = qs.exclude(pk=self.instance.pk)
+        existing = qs.first()
+        if existing is not None:
+            raise serializers.ValidationError(
+                f'A setting with key "{value}" already exists (ID {existing.pk}, group "{existing.group}"). '
+                f'Edit that setting instead of creating a new one.'
+            )
+        return value
 
 
 class PageContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = PageContent
         fields = '__all__'
+
+    def validate(self, attrs):
+        page = attrs.get('page', getattr(self.instance, 'page', None))
+        section = attrs.get('section', getattr(self.instance, 'section', None))
+        if page and section:
+            qs = PageContent.objects.filter(page=page, section=section)
+            if self.instance is not None and self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+            existing = qs.first()
+            if existing is not None:
+                raise serializers.ValidationError({
+                    'section': (
+                        f'Content for page "{page}", section "{section}" already exists '
+                        f'(ID {existing.pk}). Edit that entry instead of creating a new one.'
+                    )
+                })
+        return attrs
 
 
 class MediaAssetSerializer(serializers.ModelSerializer):
