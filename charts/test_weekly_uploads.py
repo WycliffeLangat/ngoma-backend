@@ -9,6 +9,7 @@ from rest_framework.test import APITestCase
 
 from .models import (
     Artist,
+    ChartUpload,
     ChartType,
     MonthlyChartEntry,
     Platform,
@@ -46,6 +47,17 @@ def single_column_workbook_bytes(value):
     sheet = workbook.active
     sheet.append(['Apple Music'])
     sheet.append([value])
+    output = io.BytesIO()
+    workbook.save(output)
+    workbook.close()
+    return output.getvalue()
+
+
+def final_chart_workbook_bytes(title='Song A', artist='Artist A'):
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.append(['rank', 'title', 'artist', 'total_points'])
+    sheet.append([1, title, artist, 50])
     output = io.BytesIO()
     workbook.save(output)
     workbook.close()
@@ -174,4 +186,105 @@ class CmsWeeklyUploadTests(APITestCase):
             },
             format='multipart',
         )
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_weekly_workbook_can_be_viewed_downloaded_edited_and_reprocessed(self):
+        response = self.client.post(
+            reverse('cms-weekly-uploads-list'),
+            {
+                'chart_type': ChartType.SINGLES,
+                'year': 2026,
+                'month': 7,
+                'week': 3,
+                'file': SimpleUploadedFile(
+                    'July 2026 Week 3 Singles.xlsx',
+                    single_column_workbook_bytes('Original Song - Artist A'),
+                    content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                ),
+            },
+            format='multipart',
+        )
+        self.assertEqual(response.status_code, 201, response.data)
+        upload_id = response.data['id']
+        self.assertTrue(response.data['workbook_available'])
+
+        workbook_response = self.client.get(
+            reverse('cms-weekly-uploads-workbook', args=[upload_id]),
+        )
+        self.assertEqual(workbook_response.status_code, 200, workbook_response.data)
+        self.assertEqual(workbook_response.data['sheets'][0]['rows'][1][0], 'Original Song - Artist A')
+
+        download_response = self.client.get(
+            reverse('cms-weekly-uploads-download', args=[upload_id]),
+        )
+        self.assertEqual(download_response.status_code, 200)
+        self.assertIn('spreadsheetml.sheet', download_response['Content-Type'])
+
+        sheets = workbook_response.data['sheets']
+        sheets[0]['rows'][1][0] = 'Corrected Song - Artist A'
+        edit_response = self.client.patch(
+            reverse('cms-weekly-uploads-workbook', args=[upload_id]),
+            {'sheets': sheets, 'filename': 'July 2026 Week 3 Singles.xlsx'},
+            format='json',
+        )
+        self.assertEqual(edit_response.status_code, 200, edit_response.data)
+        upload = WeeklyUpload.objects.get(pk=upload_id)
+        self.assertTrue(upload.processed)
+        self.assertEqual(upload.entries_processed, 1)
+        self.assertTrue(Release.objects.filter(title='Corrected Song', artist__name='Artist A').exists())
+        self.assertFalse(Release.objects.filter(title='Original Song', artist__name='Artist A').exists())
+
+
+class CmsChartUploadWorkbookTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_superuser(
+            username='chart-upload-admin',
+            email='chart-upload@example.com',
+            password='test-password',
+        )
+        self.client.force_authenticate(self.user)
+
+    def test_chart_upload_workbook_can_be_viewed_downloaded_and_saved_to_rows(self):
+        response = self.client.post(
+            reverse('cms-chart-uploads-list'),
+            {
+                'chart_type': ChartType.SINGLES,
+                'year': 2026,
+                'month': 7,
+                'file': SimpleUploadedFile(
+                    'July 2026 Singles.xlsx',
+                    final_chart_workbook_bytes(),
+                    content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                ),
+            },
+            format='multipart',
+        )
+        self.assertEqual(response.status_code, 201, response.data)
+        upload_id = response.data['id']
+        self.assertTrue(response.data['workbook_available'])
+        self.assertEqual(response.data['rows_data'][0]['title'], 'Song A')
+
+        workbook_response = self.client.get(
+            reverse('cms-chart-uploads-workbook', args=[upload_id]),
+        )
+        self.assertEqual(workbook_response.status_code, 200, workbook_response.data)
+        sheets = workbook_response.data['sheets']
+        sheets[0]['rows'][1][1] = 'Edited Song'
+
+        edit_response = self.client.patch(
+            reverse('cms-chart-uploads-workbook', args=[upload_id]),
+            {'sheets': sheets, 'filename': 'July 2026 Singles.xlsx'},
+            format='json',
+        )
+        self.assertEqual(edit_response.status_code, 200, edit_response.data)
+        upload = ChartUpload.objects.get(pk=upload_id)
+        self.assertEqual(upload.rows_data[0]['title'], 'Edited Song')
+        self.assertEqual(upload.validation_summary['error_count'], 0)
+
+        download_response = self.client.get(
+            reverse('cms-chart-uploads-download', args=[upload_id]),
+        )
+        self.assertEqual(download_response.status_code, 200)
+        self.assertIn('spreadsheetml.sheet', download_response['Content-Type'])
 

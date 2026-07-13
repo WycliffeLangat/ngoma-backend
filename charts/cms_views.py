@@ -1,7 +1,9 @@
+import io
 from collections import defaultdict
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.cache import cache
+from django.http import HttpResponse
 from django.db import transaction
 from django.db.models import Count, Min, Sum, Q
 from django.db.models.functions import Coalesce
@@ -17,13 +19,195 @@ from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+import openpyxl
 from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
 from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, harmonize_chart_history, published_top50_entries, record_merge_normalization, prune_orphaned_releases
 from .models import PlatformChartEntry
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
+from .methodology import platforms_for
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
+
+
+WORKBOOK_MAX_ROWS = 500
+WORKBOOK_MAX_COLS = 80
+
+
+class NamedBytesIO(io.BytesIO):
+    def __init__(self, content, name):
+        super().__init__(content)
+        self.name = name
+
+
+def _safe_workbook_filename(name, default_name):
+    raw = str(name or default_name or 'workbook.xlsx').replace('\\', '/').rsplit('/', 1)[-1].strip()
+    if not raw:
+        raw = default_name or 'workbook.xlsx'
+    if not raw.lower().endswith(('.xlsx', '.xlsm')):
+        raw = f"{raw.rsplit('.', 1)[0] or 'workbook'}.xlsx"
+    return raw
+
+
+def _json_cell(value):
+    if value is None:
+        return ''
+    if hasattr(value, 'isoformat') and not isinstance(value, (str, bytes)):
+        return value.isoformat()
+    return value
+
+
+def _sheet_title(value, index, used):
+    raw = str(value or f'Sheet {index + 1}').strip()[:31] or f'Sheet {index + 1}'
+    title = ''.join('_' if ch in r'[]:*?/\\' else ch for ch in raw)[:31] or f'Sheet {index + 1}'
+    base = title
+    counter = 2
+    while title in used:
+        suffix = f' {counter}'
+        title = f'{base[:31 - len(suffix)]}{suffix}'
+        counter += 1
+    used.add(title)
+    return title
+
+
+def _sheets_from_workbook_bytes(content):
+    workbook = openpyxl.load_workbook(NamedBytesIO(content, 'workbook.xlsx'), read_only=True, data_only=False)
+    try:
+        sheets = []
+        for sheet in workbook.worksheets:
+            max_row = min(sheet.max_row or 1, WORKBOOK_MAX_ROWS)
+            max_col = min(sheet.max_column or 1, WORKBOOK_MAX_COLS)
+            rows = []
+            for row in sheet.iter_rows(min_row=1, max_row=max_row, max_col=max_col):
+                values = [_json_cell(cell.value) for cell in row]
+                while values and values[-1] == '':
+                    values.pop()
+                rows.append(values)
+            while rows and not any(cell not in ('', None) for cell in rows[-1]):
+                rows.pop()
+            sheets.append({'name': sheet.title, 'rows': rows or [[]]})
+        return sheets
+    finally:
+        workbook.close()
+
+
+def _workbook_bytes_from_sheets(sheets):
+    if not isinstance(sheets, list) or not sheets:
+        raise DRFValidationError({'sheets': 'Provide at least one worksheet.'})
+
+    workbook = openpyxl.Workbook()
+    used_titles = set()
+    for index, sheet_data in enumerate(sheets):
+        worksheet = workbook.active if index == 0 else workbook.create_sheet()
+        worksheet.title = _sheet_title(sheet_data.get('name'), index, used_titles)
+        rows = sheet_data.get('rows') or []
+        if len(rows) > WORKBOOK_MAX_ROWS:
+            raise DRFValidationError({'sheets': f'Each sheet can contain at most {WORKBOOK_MAX_ROWS} rows.'})
+        for row in rows:
+            if not isinstance(row, list):
+                raise DRFValidationError({'sheets': 'Worksheet rows must be arrays.'})
+            if len(row) > WORKBOOK_MAX_COLS:
+                raise DRFValidationError({'sheets': f'Each sheet can contain at most {WORKBOOK_MAX_COLS} columns.'})
+            worksheet.append([None if cell == '' else cell for cell in row])
+    output = io.BytesIO()
+    workbook.save(output)
+    workbook.close()
+    return output.getvalue()
+
+
+def _workbook_download_response(content, filename):
+    response = HttpResponse(
+        content,
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = f'attachment; filename="{_safe_workbook_filename(filename, "workbook.xlsx")}"'
+    return response
+
+
+def _rows_to_workbook_bytes(rows, filename='chart-upload.xlsx'):
+    headers = [
+        'rank', 'title', 'artist', 'featured_artists', 'credited_artists',
+        'country', 'country_code', 'release_year', 'total_points',
+        'platform_count', 'weeks_on_chart', 'peak_rank', 'prev_rank',
+        'isrc', 'upc', 'genre', 'label', 'distributor',
+    ]
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.title = 'Chart'
+    sheet.append(headers)
+    for row in rows or []:
+        sheet.append([row.get(header, '') for header in headers])
+    output = io.BytesIO()
+    workbook.save(output)
+    workbook.close()
+    return output.getvalue(), _safe_workbook_filename(filename, 'chart-upload.xlsx')
+
+
+def _weekly_generated_workbook(upload):
+    platform_names = platforms_for(upload.chart_type)
+    platforms = list(Platform.objects.filter(name__in=platform_names).order_by('display_order', 'name'))
+    if not platforms:
+        platforms = list(Platform.objects.filter(active=True).order_by('display_order', 'name'))
+    headers = [platform.name for platform in platforms]
+    platform_col = {platform.id: index for index, platform in enumerate(platforms)}
+    entries = list(
+        PlatformChartEntry.objects
+        .filter(upload=upload)
+        .select_related('platform', 'release', 'release__artist')
+        .order_by('position')
+    )
+    max_position = max([entry.position for entry in entries], default=0)
+    rows = [['' for _ in headers] for _ in range(max_position)]
+    for entry in entries:
+        col = platform_col.get(entry.platform_id)
+        if col is None or entry.position < 1:
+            continue
+        title = entry.raw_title or entry.release.title
+        artist = entry.raw_artist or entry.release.artist.name
+        rows[entry.position - 1][col] = f'{title} - {artist}' if artist else title
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.title = 'Weekly Rankings'
+    sheet.append(headers)
+    for row in rows:
+        sheet.append(row)
+    output = io.BytesIO()
+    workbook.save(output)
+    workbook.close()
+    return output.getvalue(), _safe_workbook_filename(getattr(upload.file, 'name', ''), f'{upload}.xlsx')
+
+
+def _weekly_workbook_bytes(upload):
+    if upload.workbook_data:
+        return bytes(upload.workbook_data), _safe_workbook_filename(getattr(upload.file, 'name', ''), f'{upload}.xlsx')
+    try:
+        if upload.file:
+            upload.file.open('rb')
+            try:
+                return upload.file.read(), _safe_workbook_filename(upload.file.name, f'{upload}.xlsx')
+            finally:
+                upload.file.close()
+    except Exception:
+        pass
+    if upload.entries.exists():
+        return _weekly_generated_workbook(upload)
+    return None, _safe_workbook_filename(getattr(upload.file, 'name', ''), f'{upload}.xlsx')
+
+
+def _chart_workbook_bytes(upload):
+    filename = _safe_workbook_filename(upload.original_filename, f'chart-upload-{upload.pk}.xlsx')
+    if upload.workbook_data and filename.lower().endswith(('.xlsx', '.xlsm')):
+        return bytes(upload.workbook_data), filename
+    try:
+        if upload.file:
+            upload.file.open('rb')
+            try:
+                return upload.file.read(), _safe_workbook_filename(upload.file.name, filename)
+            finally:
+                upload.file.close()
+    except Exception:
+        pass
+    return _rows_to_workbook_bytes(upload.rows_data or [], filename)
 
 
 def _chart_ids_for_artists(artist_ids):
@@ -290,20 +474,17 @@ class CmsArtistViewSet(CmsBaseViewSet):
         old_country_code = serializer.instance.country_code
         old = model_to_dict_safe(serializer.instance)
         obj = serializer.save()
-        # Cascade country changes to releases that still carry the old artist country
-        # (releases that had an explicitly different country are left untouched).
+        # Release country is derived from the lead artist. Do not preserve older
+        # per-release country drift here; the artist record is authoritative.
         new_country = obj.country
         new_country_code = obj.country_code
         if new_country != old_country or new_country_code != old_country_code:
-            # Match releases by exact old country values, plus releases that have the
-            # old country name but a missing code (those were never fully populated).
-            code_filter = Q(country_code=old_country_code)
-            if old_country and old_country_code:
-                code_filter |= Q(country_code='')
+            primary_credit_release_ids = ReleaseArtistCredit.objects.filter(
+                artist=obj, role='primary', position=0,
+            ).values('release_id')
             Release.objects.filter(
-                artist=obj,
-                country=old_country,
-            ).filter(code_filter).update(
+                Q(artist=obj) | Q(id__in=primary_credit_release_ids)
+            ).update(
                 country=new_country, country_code=new_country_code, updated_at=timezone.now()
             )
             # Artist country is authoritative for chart eligibility, so every
@@ -347,12 +528,13 @@ class CmsArtistViewSet(CmsBaseViewSet):
     def options(self, request):
         """Lightweight complete artist list used by ordered release-credit selectors."""
         artists = Artist.objects.exclude(status='archived').order_by('name').values(
-            'id', 'name', 'display_name', 'country_code'
+            'id', 'name', 'display_name', 'country', 'country_code'
         )
         return Response([
             {
                 'value': artist['id'],
                 'label': artist['display_name'] or artist['name'],
+                'country': artist['country'],
                 'country_code': artist['country_code'],
             }
             for artist in artists
@@ -478,12 +660,13 @@ class CmsArtistViewSet(CmsBaseViewSet):
         ids = request.data.get('artist_ids') or []
         country = request.data.get('country', '')
         country_code = (request.data.get('country_code') or '')[:2].upper()
-        # Cascade to releases: update releases where country matched the artist's old country.
+        # Cascade to releases: the lead artist record is authoritative.
         for artist in Artist.objects.filter(id__in=ids).only('id', 'country', 'country_code'):
+            primary_credit_release_ids = ReleaseArtistCredit.objects.filter(
+                artist=artist, role='primary', position=0,
+            ).values('release_id')
             Release.objects.filter(
-                artist=artist,
-                country=artist.country,
-                country_code=artist.country_code,
+                Q(artist=artist) | Q(id__in=primary_credit_release_ids)
             ).update(country=country, country_code=country_code, updated_at=timezone.now())
         updated = Artist.objects.filter(id__in=ids).update(country=country, country_code=country_code, updated_at=timezone.now())
         chart_ids = _chart_ids_for_artists(ids)
@@ -523,6 +706,19 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         if status_param:
             qs = qs.filter(status=status_param)
         return qs
+
+    @action(detail=False, methods=['get'])
+    def options(self, request):
+        rows = Release.objects.exclude(status='archived').select_related('artist').order_by('title')[:5000]
+        return Response([
+            {
+                'value': release.id,
+                'label': f'{release.title} - {release.artist.display_name or release.artist.name}',
+                'chart_type': release.chart_type,
+                'cover_image': release.cover_image.url if release.cover_image else '',
+            }
+            for release in rows
+        ])
 
     def perform_update(self, serializer):
         old_country = serializer.instance.country
@@ -1054,17 +1250,27 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
         if not incoming_file:
             raise DRFValidationError({'file': 'Select an XLSX weekly chart workbook.'})
         original_filename = str(getattr(incoming_file, 'name', '') or 'weekly-chart.xlsx')
+        if hasattr(incoming_file, 'seek'):
+            incoming_file.seek(0)
+        workbook_bytes = incoming_file.read()
         # Raw chart workbooks are transient processing inputs. Saving them with
         # the global Cloudinary image backend makes valid XLSX ZIP containers
         # fail as "Unsupported ZIP file", so retain the filename and normalized
-        # database rows instead of uploading the workbook as an image.
+        # database rows instead of uploading the workbook as an image. The bytes
+        # are kept in the DB so the CMS can later view, download, edit, and
+        # reprocess the workbook without requiring another upload.
         upload = serializer.save(
             uploaded_by=self.request.user,
             file=original_filename,
+            workbook_data=workbook_bytes,
         )
         skip_harmonize = str(self.request.data.get('skip_harmonize', '')).lower() in ('1', 'true', 'yes')
         try:
-            result = process_weekly_upload(upload, file_obj=incoming_file, harmonize=not skip_harmonize)
+            result = process_weekly_upload(
+                upload,
+                file_obj=NamedBytesIO(workbook_bytes, original_filename),
+                harmonize=not skip_harmonize,
+            )
         except Exception as exc:
             upload.processing_notes = f'Error: {exc}'
             upload.save(update_fields=['processing_notes'])
@@ -1078,6 +1284,54 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
             obj=upload,
             new=result,
         )
+
+    @action(detail=True, methods=['get', 'patch'])
+    def workbook(self, request, pk=None):
+        upload = self.get_object()
+        content, filename = _weekly_workbook_bytes(upload)
+        if request.method.lower() == 'get':
+            if not content:
+                return Response({'detail': 'The workbook is unavailable for this upload.'}, status=404)
+            return Response({
+                'filename': filename,
+                'sheets': _sheets_from_workbook_bytes(content),
+                'upload': CmsWeeklyUploadSerializer(upload, context={'request': request}).data,
+            })
+
+        sheets = request.data.get('sheets')
+        filename = _safe_workbook_filename(request.data.get('filename') or filename, f'{upload}.xlsx')
+        workbook_bytes = _workbook_bytes_from_sheets(sheets)
+        upload.workbook_data = workbook_bytes
+        upload.file = filename
+        upload.processed = False
+        upload.processing_notes = ''
+        upload.save(update_fields=['workbook_data', 'file', 'processed', 'processing_notes'])
+        try:
+            result = process_weekly_upload(upload, file_obj=NamedBytesIO(workbook_bytes, filename))
+        except Exception as exc:
+            upload.processed = False
+            upload.processing_notes = f'Error: {exc}'
+            upload.save(update_fields=['processed', 'processing_notes'])
+            raise DRFValidationError({'workbook': f'Could not process this workbook: {exc}'}) from exc
+        upload.processing_notes = str(result)
+        upload.save(update_fields=['processing_notes'])
+        audit(request, 'edited_weekly_workbook', module='uploads', obj=upload, new=result)
+        return Response({
+            'upload': CmsWeeklyUploadSerializer(upload, context={'request': request}).data,
+            'workbook': {
+                'filename': filename,
+                'sheets': _sheets_from_workbook_bytes(workbook_bytes),
+            },
+            'processing': result,
+        })
+
+    @action(detail=True, methods=['get'])
+    def download(self, request, pk=None):
+        upload = self.get_object()
+        content, filename = _weekly_workbook_bytes(upload)
+        if not content:
+            return Response({'detail': 'The workbook is unavailable for this upload.'}, status=404)
+        return _workbook_download_response(content, filename)
 
     @action(detail=False, methods=['post'])
     def rebuild_month(self, request):
@@ -1104,14 +1358,21 @@ class ChartUploadViewSet(CmsBaseViewSet):
     def perform_create(self, serializer):
         incoming_file = self.request.FILES.get('file')
         original_filename = getattr(incoming_file, 'name', '')
+        file_bytes = b''
+        if incoming_file:
+            if hasattr(incoming_file, 'seek'):
+                incoming_file.seek(0)
+            file_bytes = incoming_file.read()
+        extension = str(original_filename or '').lower().rsplit('.', 1)[-1]
         # Parse workbook bytes directly. The global production storage handles
         # image media and must not receive XLSX/ZIP chart workbooks.
         upload = serializer.save(
             uploaded_by=self.request.user,
             original_filename=original_filename,
             file=None,
+            workbook_data=file_bytes if extension in {'xlsx', 'xlsm'} else None,
         )
-        self._parse_and_validate(upload, file_obj=incoming_file)
+        self._parse_and_validate(upload, file_obj=NamedBytesIO(file_bytes, original_filename) if file_bytes else incoming_file)
         audit(self.request, 'uploaded_chart_file', module='uploads', obj=upload, new={'rows': upload.row_count, 'summary': upload.validation_summary})
 
     def _parse_and_validate(self, upload, file_obj=None):
@@ -1140,6 +1401,59 @@ class ChartUploadViewSet(CmsBaseViewSet):
         summary = self._parse_and_validate(upload)
         audit(request, 'revalidated_upload', module='uploads', obj=upload, new=summary)
         return Response(ChartUploadSerializer(upload).data)
+
+    @action(detail=True, methods=['get', 'patch'])
+    def workbook(self, request, pk=None):
+        upload = self.get_object()
+        content, filename = _chart_workbook_bytes(upload)
+        if request.method.lower() == 'get':
+            return Response({
+                'filename': filename,
+                'sheets': _sheets_from_workbook_bytes(content),
+                'upload': ChartUploadSerializer(upload, context={'request': request}).data,
+            })
+
+        sheets = request.data.get('sheets')
+        filename = _safe_workbook_filename(request.data.get('filename') or filename, f'chart-upload-{upload.pk}.xlsx')
+        workbook_bytes = _workbook_bytes_from_sheets(sheets)
+        was_published = upload.status == 'published'
+        upload.workbook_data = workbook_bytes
+        upload.original_filename = filename
+        if was_published:
+            upload.status = 'draft'
+            upload.published_by = None
+            upload.published_at = None
+            upload.save(update_fields=['workbook_data', 'original_filename', 'status', 'published_by', 'published_at', 'updated_at'])
+        else:
+            upload.save(update_fields=['workbook_data', 'original_filename', 'updated_at'])
+
+        summary = self._parse_and_validate(upload, file_obj=NamedBytesIO(workbook_bytes, filename))
+        publish_result = None
+        if was_published and summary.get('can_publish'):
+            chart, count = publish_chart_upload(upload, user=request.user)
+            publish_result = {
+                'chart_id': chart.id,
+                'entries_created': count,
+            }
+        audit(request, 'edited_chart_workbook', module='uploads', obj=upload, new={
+            'summary': summary,
+            'published': publish_result,
+        })
+        return Response({
+            'upload': ChartUploadSerializer(upload, context={'request': request}).data,
+            'workbook': {
+                'filename': filename,
+                'sheets': _sheets_from_workbook_bytes(workbook_bytes),
+            },
+            'validation': summary,
+            'published': publish_result,
+        })
+
+    @action(detail=True, methods=['get'])
+    def download(self, request, pk=None):
+        upload = self.get_object()
+        content, filename = _chart_workbook_bytes(upload)
+        return _workbook_download_response(content, filename)
 
     @action(detail=True, methods=['patch'])
     def rows(self, request, pk=None):

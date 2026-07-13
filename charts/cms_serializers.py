@@ -245,6 +245,16 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
     def get_artist_credit(self, obj):
         return release_credit_payload(obj)['artist_credit']
 
+    @staticmethod
+    def _lead_artist(obj):
+        credits = release_credit_payload(obj)
+        return credits['primary_artists'][0] if credits['primary_artists'] else obj.artist
+
+    @staticmethod
+    def _apply_artist_country(attrs, artist):
+        attrs['country'] = artist.country or ''
+        attrs['country_code'] = (artist.country_code or '').strip().upper()
+
     def get_total_points(self, obj):
         annotated = getattr(obj, 'cms_total_points', None)
         if annotated is not None:
@@ -274,6 +284,9 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
+        lead_artist = self._lead_artist(instance)
+        rep['country'] = lead_artist.country or ''
+        rep['country_code'] = (lead_artist.country_code or '').strip().upper()
         request = self.context.get('request')
         if request and rep.get('cover_image') and not str(rep['cover_image']).startswith('http'):
             rep['cover_image'] = request.build_absolute_uri(rep['cover_image'])
@@ -318,36 +331,10 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
         if overlap:
             raise serializers.ValidationError({'featured_artist_ids': 'An artist cannot be both a main and featured artist on the same release.'})
 
-        incoming_country = attrs.get('country')
-        incoming_code = attrs.get('country_code')
-
-        if incoming_country and incoming_code is None:
-            code = (
-                Country.objects.filter(name__iexact=incoming_country.strip(), active=True)
-                .values_list('code', flat=True)
-                .first()
-            ) or (
-                Release.objects.filter(country__iexact=incoming_country.strip())
-                .exclude(country_code='')
-                .values_list('country_code', flat=True)
-                .first()
-            )
-            if code:
-                attrs['country_code'] = code.upper()
-
-        elif incoming_code and incoming_country is None:
-            name = (
-                Country.objects.filter(code__iexact=incoming_code.strip(), active=True)
-                .values_list('name', flat=True)
-                .first()
-            ) or (
-                Release.objects.filter(country_code__iexact=incoming_code.strip())
-                .exclude(country='')
-                .values_list('country', flat=True)
-                .first()
-            )
-            if name:
-                attrs['country'] = name
+        if effective_primary_ids:
+            lead_artist = Artist.objects.only('id', 'country', 'country_code').get(pk=effective_primary_ids[0])
+            attrs['artist'] = lead_artist
+            self._apply_artist_country(attrs, lead_artist)
 
         return attrs
 
@@ -376,9 +363,21 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
                 ReleaseArtistCredit(release=instance, artist_id=artist_id, role='primary', position=position)
                 for position, artist_id in enumerate(primary_ids)
             ])
-            if instance.artist_id != primary_ids[0]:
-                instance.artist_id = primary_ids[0]
-                instance.save(update_fields=['artist', 'updated_at'])
+            lead_artist = Artist.objects.only('id', 'country', 'country_code').get(pk=primary_ids[0])
+            update_fields = []
+            if instance.artist_id != lead_artist.id:
+                instance.artist = lead_artist
+                update_fields.append('artist')
+            country = lead_artist.country or ''
+            country_code = (lead_artist.country_code or '').strip().upper()
+            if instance.country != country:
+                instance.country = country
+                update_fields.append('country')
+            if instance.country_code != country_code:
+                instance.country_code = country_code
+                update_fields.append('country_code')
+            if update_fields:
+                instance.save(update_fields=[*update_fields, 'updated_at'])
         if featured_ids is not None:
             instance.artist_credits.filter(role='featured').delete()
             ReleaseArtistCredit.objects.bulk_create([
@@ -591,14 +590,18 @@ class ChartUploadSerializer(serializers.ModelSerializer):
     platform_name = serializers.CharField(source='platform.name', read_only=True)
     uploaded_by_name = serializers.CharField(source='uploaded_by.username', read_only=True)
     can_publish = serializers.SerializerMethodField()
+    workbook_available = serializers.SerializerMethodField()
 
     class Meta:
         model = ChartUpload
-        fields = '__all__'
+        exclude = ['workbook_data']
         read_only_fields = ['rows_data', 'validation_summary', 'row_count', 'uploaded_by', 'approved_by', 'published_by', 'approved_at', 'published_at', 'original_filename']
 
     def get_can_publish(self, obj):
         return bool(obj.validation_summary.get('can_publish')) if obj.validation_summary else False
+
+    def get_workbook_available(self, obj):
+        return bool(obj.workbook_data or obj.file or obj.rows_data)
 
     def validate_file(self, value):
         validated = validate_upload(
@@ -615,6 +618,7 @@ class ChartUploadSerializer(serializers.ModelSerializer):
 class CmsWeeklyUploadSerializer(serializers.ModelSerializer):
     file = serializers.FileField(write_only=True, required=True)
     original_filename = serializers.SerializerMethodField()
+    workbook_available = serializers.SerializerMethodField()
 
     class Meta:
         model = WeeklyUpload
@@ -622,6 +626,7 @@ class CmsWeeklyUploadSerializer(serializers.ModelSerializer):
             'id', 'chart_type', 'year', 'month', 'week', 'file',
             'original_filename', 'processed', 'processing_notes',
             'duplicates_dropped', 'entries_processed', 'uploaded_at',
+            'workbook_available',
         ]
         read_only_fields = [
             'original_filename', 'processed', 'processing_notes',
@@ -631,6 +636,9 @@ class CmsWeeklyUploadSerializer(serializers.ModelSerializer):
     def get_original_filename(self, obj):
         name = str(getattr(obj.file, 'name', '') or '')
         return name.replace('\\', '/').rsplit('/', 1)[-1]
+
+    def get_workbook_available(self, obj):
+        return bool(obj.workbook_data or obj.file or obj.entries.exists())
 
     def validate_file(self, value):
         validated = validate_upload(value, 20, label='weekly chart file')
