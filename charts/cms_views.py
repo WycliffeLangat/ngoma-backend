@@ -524,6 +524,22 @@ class CmsArtistViewSet(CmsBaseViewSet):
         bump_public_revision()
         return Response({'deleted': True}, status=200)
 
+    @action(detail=True, methods=['get'])
+    def releases(self, request, pk=None):
+        """Every release this artist is credited on — lead, secondary main, or featured."""
+        artist = self.get_object()
+        releases_qs = Release.objects.filter(
+            Q(artist=artist) | Q(artist_credits__artist=artist)
+        ).exclude(status='archived').distinct().order_by('-release_year', 'title')
+        credit_roles = dict(
+            ReleaseArtistCredit.objects.filter(artist=artist, release__in=releases_qs)
+            .values_list('release_id', 'role')
+        )
+        data = CmsReleaseSerializer(releases_qs, many=True, context={'request': request}).data
+        for row in data:
+            row['credit_role'] = credit_roles.get(row['id'], 'primary')
+        return Response(data)
+
     @action(detail=False, methods=['get'])
     def options(self, request):
         """Lightweight complete artist list used by ordered release-credit selectors."""
