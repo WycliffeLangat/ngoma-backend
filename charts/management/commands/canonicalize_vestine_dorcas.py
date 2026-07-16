@@ -10,7 +10,7 @@ from charts.artist_credits import (
     should_preserve_registered_artist_name,
 )
 from charts.cms_utils import bump_public_revision, harmonize_chart_history, sync_release_chart_entry_snapshots, unique_slug
-from charts.models import Artist, ChartUpload, MonthlyChartEntry, Release, ReleaseArtistCredit
+from charts.models import Artist, ChartUpload, MonthlyChartEntry, RegionalChartEntry, Release, ReleaseArtistCredit
 
 
 CANONICAL_NAME = 'Vestine & Dorcas'
@@ -176,11 +176,13 @@ class Command(BaseCommand):
 
         stats = {
             'canonical_artist_created': 0,
+            'canonical_artist_metadata_cleaned': 0,
             'allowed_releases_canonicalized': 0,
             'disallowed_featured_removed': 0,
             'disallowed_primary_removed': 0,
             'disallowed_releases_archived': 0,
             'credited_metadata_cleaned': 0,
+            'snapshot_featured_cleaned': 0,
             'upload_rows_updated': 0,
             'standalone_artists_archived': 0,
             'snapshot_rows_synced': 0,
@@ -208,16 +210,32 @@ class Command(BaseCommand):
                     )
                 else:
                     group = Artist(name=CANONICAL_NAME, artist_type='group')
-            elif apply_changes:
+            elif group:
                 updates = []
+                if group.name != CANONICAL_NAME:
+                    updates.append('name')
+                if group.display_name != CANONICAL_NAME:
+                    updates.append('display_name')
                 if group.artist_type != 'group':
-                    group.artist_type = 'group'
                     updates.append('artist_type')
                 if group.status == 'archived':
-                    group.status = 'active'
                     updates.append('status')
+                cleaned_aliases = [
+                    alias for alias in (group.aliases or [])
+                    if norm(alias) not in {norm('Vestine'), norm('Dorcas'), norm(CANONICAL_NAME)}
+                ]
+                if cleaned_aliases != (group.aliases or []):
+                    updates.append('aliases')
                 if updates:
-                    group.save(update_fields=[*updates, 'updated_at'])
+                    stats['canonical_artist_metadata_cleaned'] = 1
+                    if apply_changes:
+                        group.name = CANONICAL_NAME
+                        group.display_name = CANONICAL_NAME
+                        group.artist_type = 'group'
+                        if group.status == 'archived':
+                            group.status = 'active'
+                        group.aliases = cleaned_aliases
+                        group.save(update_fields=[*updates, 'updated_at'])
 
             target_artist_ids = set(
                 Artist.objects.filter(
@@ -230,6 +248,21 @@ class Command(BaseCommand):
             if getattr(group, 'id', None):
                 target_artist_ids.add(group.id)
             protected_names = protected_credit_names(target_artist_ids)
+
+            def clean_entry_snapshots(model):
+                cleaned_count = 0
+                entries = model.objects.filter(
+                    Q(featured_artists__icontains='Vestine')
+                    | Q(featured_artists__icontains='Dorcas')
+                )
+                for entry in entries.iterator():
+                    cleaned_featured = remove_target_credits(entry.featured_artists, protected_names)
+                    if cleaned_featured == str(entry.featured_artists or '').strip():
+                        continue
+                    cleaned_count += 1
+                    if apply_changes:
+                        model.objects.filter(pk=entry.pk).update(featured_artists=cleaned_featured)
+                return cleaned_count
 
             releases = (
                 Release.objects.select_related('artist')
@@ -351,6 +384,9 @@ class Command(BaseCommand):
 
                 if apply_changes and release_changed:
                     release.save(update_fields=['artist', 'featured_artists', 'credited_artists', 'status', 'updated_at'])
+
+            stats['snapshot_featured_cleaned'] += clean_entry_snapshots(MonthlyChartEntry)
+            stats['snapshot_featured_cleaned'] += clean_entry_snapshots(RegionalChartEntry)
 
             for upload in ChartUpload.objects.exclude(rows_data=[]).only('id', 'rows_data').iterator():
                 rows = upload.rows_data if isinstance(upload.rows_data, list) else []

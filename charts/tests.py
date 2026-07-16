@@ -650,6 +650,15 @@ class PublicAppDataSyncTests(TestCase):
         ).delete()
         Artist.objects.filter(name__in=target_names).delete()
 
+        Artist.objects.create(
+            name="Vestine & Dorcas",
+            display_name="Vestine & Dorcas",
+            slug="vestine-dorcas",
+            artist_type="solo",
+            aliases=["Dorcas"],
+            country="Kenya",
+            country_code="KE",
+        )
         vestine = Artist.objects.create(
             name="Vestine",
             slug="vestine",
@@ -702,6 +711,13 @@ class PublicAppDataSyncTests(TestCase):
             canonical_title="mistagged song",
         )
         ReleaseArtistCredit.objects.create(release=wrong_primary, artist=vestine, role="primary", position=0)
+        snapshot_only = Release.objects.create(
+            title="Snapshot Only",
+            artist=correct_artist,
+            chart_type="singles",
+            canonical_title="snapshot only",
+        )
+        ReleaseArtistCredit.objects.create(release=snapshot_only, artist=correct_artist, role="primary", position=0)
         yebo_entry = MonthlyChartEntry.objects.create(
             chart=self.chart,
             release=yebo,
@@ -723,6 +739,13 @@ class PublicAppDataSyncTests(TestCase):
             rank=2,
             total_points=40,
             raw_total_points=40,
+            featured_artists="Vestine & Dorcas",
+        )
+        snapshot_only_entry = MonthlyChartEntry.objects.create(
+            chart=self.chart,
+            release=snapshot_only,
+            rank=5,
+            total_points=30,
             featured_artists="Vestine & Dorcas",
         )
         MonthlyChartEntry.objects.create(
@@ -768,6 +791,7 @@ class PublicAppDataSyncTests(TestCase):
 
         group = Artist.objects.get(name="Vestine & Dorcas")
         self.assertEqual(group.artist_type, "group")
+        self.assertEqual(group.aliases, [])
         self.assertEqual(group.country_code, "KE")
 
         yebo.refresh_from_db()
@@ -777,6 +801,7 @@ class PublicAppDataSyncTests(TestCase):
         yebo_entry.refresh_from_db()
         wrong_feature_entry.refresh_from_db()
         regional.refresh_from_db()
+        snapshot_only_entry.refresh_from_db()
         upload.refresh_from_db()
         vestine.refresh_from_db()
         dorcas.refresh_from_db()
@@ -804,6 +829,8 @@ class PublicAppDataSyncTests(TestCase):
         )
         self.assertEqual(wrong_feature_entry.featured_artists, "Other Guest")
         self.assertEqual(regional.featured_artists, "Other Guest")
+        self.assertEqual(snapshot_only.artist, correct_artist)
+        self.assertEqual(snapshot_only_entry.featured_artists, "")
 
         self.assertEqual(wrong_primary.status, "archived")
         self.assertFalse(MonthlyChartEntry.objects.filter(release=wrong_primary).exists())
