@@ -6,7 +6,7 @@ import re
 import openpyxl
 from collections import defaultdict, Counter
 from django.db import transaction
-from .artist_credits import format_artist_list, parse_artist_credit
+from .artist_credits import format_artist_list, parse_artist_credit, should_preserve_registered_artist_name
 from .methodology import (
     PUBLIC_CHART_LIMIT,
     WEEKLY_CHART_LIMIT,
@@ -20,6 +20,7 @@ from .models import (
     PlatformChartEntry, MonthlyChartEntry, NormalizationRule,
     ReleaseArtistCredit, ChartType
 )
+from .special_artist_rules import clean_vestine_dorcas_credit_names
 
 
 # ── NORMALIZATION RULES (loaded from DB + hardcoded fallbacks) ──────────────
@@ -126,7 +127,7 @@ def get_or_create_artist(name):
 
 def _preserve_artist_name(name):
     artist = Artist.objects.filter(name__iexact=name).first()
-    return bool(artist and artist.artist_type in {'group', 'band', 'duo'})
+    return should_preserve_registered_artist_name(name, artist)
 
 
 def parsed_artist_names(artist_credit):
@@ -137,6 +138,11 @@ def parsed_artist_names(artist_credit):
 
 
 def _sync_release_credits(release, primary_names, featured_names):
+    primary_names, featured_names = clean_vestine_dorcas_credit_names(
+        release.canonical_title or release.title,
+        primary_names,
+        featured_names,
+    )
     desired_primary = [get_or_create_artist(name) for name in primary_names]
     desired_featured = [get_or_create_artist(name) for name in featured_names]
     existing = list(release.artist_credits.select_related('artist'))
@@ -200,6 +206,11 @@ def get_or_create_release(title, artist_credit, chart_type):
     primary_names, featured_names = parsed_artist_names(artist_credit)
     if not primary_names:
         primary_names = [artist_credit or 'Unknown Artist']
+    primary_names, featured_names = clean_vestine_dorcas_credit_names(
+        title,
+        primary_names,
+        featured_names,
+    )
     artist_obj = get_or_create_artist(primary_names[0])
     canonical = title.lower().strip()
     try:

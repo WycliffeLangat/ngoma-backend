@@ -671,38 +671,6 @@ def build_dashboard_alerts(user):
         details=[_record_detail(n, n.title, f'Missing {_news_missing_fields(n)}') for n in incomplete_news[:DETAIL_LIMIT]],
     )
 
-    visible_unofficial = Certification.objects.filter(is_official=False, is_hidden=False)
-    count = visible_unofficial.count()
-    _add_alert(
-        alerts,
-        alert_id='certifications-unofficial-visible',
-        level='warning',
-        category='workflow',
-        title='Unofficial certifications are visible',
-        message=f'{count} certification(s) are visible but have not been marked official.',
-        count=count,
-        module='certifications',
-        target_url='/certifications',
-        action='Verify points and dates, then mark official or hide the certification.',
-        details=[_record_detail(c, f'{c.release.title} — {c.get_level_display()}', f'{c.total_points:,} points') for c in visible_unofficial.select_related('release')[:DETAIL_LIMIT]],
-    )
-
-    official_without_date = Certification.objects.filter(is_official=True, certification_date__isnull=True)
-    count = official_without_date.count()
-    _add_alert(
-        alerts,
-        alert_id='official-certifications-missing-date',
-        level='warning',
-        category='data_quality',
-        title='Official certifications need a date',
-        message=f'{count} official certification(s) do not have a public certification date.',
-        count=count,
-        module='certifications',
-        target_url='/certifications',
-        action='Add the verified date on which each certification became official.',
-        details=[_record_detail(c, f'{c.release.title} — {c.get_level_display()}', 'Certification date is empty') for c in official_without_date.select_related('release')[:DETAIL_LIMIT]],
-    )
-
     invalid_certification_checks = [
         ('Points are zero or negative', Certification.objects.filter(total_points__lte=0)),
         ('Certification date is in the future', Certification.objects.filter(certification_date__gt=timezone.now().date())),

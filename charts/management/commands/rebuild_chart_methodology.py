@@ -3,7 +3,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
-from charts.artist_credits import parse_artist_credit
+from charts.artist_credits import parse_artist_credit, should_preserve_registered_artist_name
 from charts.cms_utils import harmonize_chart_history
 from charts.methodology import (
     ALBUMS_PLATFORMS,
@@ -121,7 +121,7 @@ class Command(BaseCommand):
         if options["chart_type"]:
             releases = releases.filter(chart_type=options["chart_type"])
         for release in releases.select_related("artist").iterator():
-            preserve_name = release.artist.artist_type in {"group", "band", "duo"}
+            preserve_name = should_preserve_registered_artist_name(release.artist.name, release.artist)
             primary, parsed_featured = parse_artist_credit(
                 release.artist.name,
                 preserve_name=preserve_name,

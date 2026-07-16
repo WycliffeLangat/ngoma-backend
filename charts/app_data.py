@@ -30,6 +30,7 @@ from .models import (
 from .artist_credits import release_credit_payload
 from .cms_utils import published_artist_entries
 from .methodology import HIDDEN_STATUSES, is_public_status, public_points
+from .news_media import news_media_payload
 
 # Every CMS module that can alter something rendered by the public app.  Audit
 # rows give us one generic revision signal, including bulk/custom CMS actions
@@ -600,6 +601,24 @@ class PublicAppDataView(APIView):
             scheduled_for__lte=timezone.now(),
         )
         news = news.distinct().order_by("-pinned", "-featured", "-published_at")
+        news = news.select_related(
+            "related_artist",
+            "related_release",
+            "related_release__artist",
+        ).prefetch_related("related_release__artist_credits__artist")
+
+        news_artists = list(
+            Artist.objects.exclude(image="")
+            .exclude(status__in=HIDDEN_STATUSES)
+            .only("id", "name", "slug", "display_name", "aliases", "image")
+        )
+        news_releases = list(
+            Release.objects.exclude(cover_image="")
+            .exclude(status__in=HIDDEN_STATUSES)
+            .select_related("artist")
+            .prefetch_related("artist_credits__artist")
+            .only("id", "title", "cover_image", "artist_id")
+        )
 
         certifications = Certification.objects.select_related("release", "release__artist").prefetch_related(
             "release__artist_credits__artist"
@@ -631,6 +650,7 @@ class PublicAppDataView(APIView):
                     "emoji": item.emoji,
                     "cover_image": _file_url(request, item.cover_image),
                     "gallery": item.gallery,
+                    "media": news_media_payload(request, item, news_artists, news_releases),
                     "tags": item.tags,
                     "author": item.author,
                     "source_links": item.source_links,

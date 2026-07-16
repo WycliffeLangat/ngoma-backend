@@ -6,6 +6,11 @@ from django.db.models import Min, Q, Sum
 from .models import *
 from .artist_credits import release_credit_payload
 from .cms_utils import published_artist_entries, published_top50_entries
+from .special_artist_rules import (
+    SpecialArtistCreditError,
+    clean_vestine_dorcas_credit_ids,
+    format_credit_error,
+)
 
 ALLOWED_IMAGE_TYPES = {'image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml'}
 
@@ -389,6 +394,28 @@ class CmsReleaseSerializer(serializers.ModelSerializer):
         effective_featured_ids = featured_ids if 'featured_artist_ids' in attrs else (
             self.instance.featured_artist_ids if self.instance else []
         )
+        release_title = (
+            attrs.get('canonical_title')
+            or attrs.get('title')
+            or getattr(self.instance, 'canonical_title', '')
+            or getattr(self.instance, 'title', '')
+        )
+        try:
+            canonical_primary_ids, canonical_featured_ids = clean_vestine_dorcas_credit_ids(
+                release_title,
+                effective_primary_ids,
+                effective_featured_ids,
+            )
+        except SpecialArtistCreditError as exc:
+            raise serializers.ValidationError({'artist_credits': format_credit_error(exc)})
+        if canonical_primary_ids != list(effective_primary_ids):
+            attrs['primary_artist_ids'] = canonical_primary_ids
+            primary_ids = canonical_primary_ids
+        if canonical_featured_ids != list(effective_featured_ids):
+            attrs['featured_artist_ids'] = canonical_featured_ids
+            featured_ids = canonical_featured_ids
+        effective_primary_ids = canonical_primary_ids
+        effective_featured_ids = canonical_featured_ids
         overlap = sorted(set(effective_primary_ids) & set(effective_featured_ids))
         if overlap:
             raise serializers.ValidationError({'featured_artist_ids': 'An artist cannot be both a main and featured artist on the same release.'})

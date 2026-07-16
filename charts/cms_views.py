@@ -23,7 +23,7 @@ import openpyxl
 from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
-from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, harmonize_chart_history, published_top50_entries, record_merge_normalization, prune_orphaned_releases
+from .cms_utils import audit, bump_public_revision, parse_chart_file, validate_chart_rows, publish_chart_upload, recalculate_certifications, sync_automatic_news, harmonize_chart_history, published_top50_entries, record_merge_normalization, prune_orphaned_releases, sync_release_chart_entry_snapshots
 from .models import PlatformChartEntry
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
 from .methodology import platforms_for
@@ -355,7 +355,7 @@ class CmsDashboardInsightsView(APIView):
                 'system_health': system_health,
                 'last_backup_date': BackupRecord.objects.order_by('-created_at').values_list('created_at', flat=True).first(),
                 'editors_admins': AdminProfile.objects.exclude(role=AdminRole.VIEWER).count(),
-                'certifications_unofficial': Certification.objects.filter(is_official=False, is_hidden=False).count(),
+                'automatic_certifications': Certification.objects.filter(is_hidden=False).count(),
                 'uploads_awaiting_review': ChartUpload.objects.filter(status__in=['draft', 'pending_review']).count(),
             },
             'top_performing': list(
@@ -741,6 +741,7 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         old_country_code = serializer.instance.country_code
         old = model_to_dict_safe(serializer.instance)
         obj = serializer.save()
+        snapshot_result = sync_release_chart_entry_snapshots(obj)
         if obj.country != old_country or obj.country_code != old_country_code:
             chart_ids = list(
                 MonthlyChartEntry.objects.filter(release=obj)
@@ -748,7 +749,10 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             )
             if chart_ids:
                 harmonize_chart_history(chart_ids=chart_ids)
-        audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new=serializer.data)
+        audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new={
+            **serializer.data,
+            'chart_entry_snapshot_sync': snapshot_result,
+        })
 
     @action(detail=False, methods=['get'])
     def duplicates(self, request):
@@ -1148,6 +1152,7 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         # avoids transient unique-rank collisions; harmonization installs the
         # authoritative ordering immediately after the save.
         serializer.validated_data.pop('rank', None)
+        sync_release_credit = 'featured_artists' in serializer.validated_data
         if (
             'total_points' in serializer.validated_data
             and 'raw_total_points' not in serializer.validated_data
@@ -1157,11 +1162,20 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
                 0,
             )
         obj = serializer.save()
+        snapshot_result = None
+        if sync_release_credit and obj.release_id:
+            release = obj.release
+            next_featured = obj.featured_artists or ''
+            if release.featured_artists != next_featured:
+                release.featured_artists = next_featured
+                release.save(update_fields=['featured_artists', 'updated_at'])
+            snapshot_result = sync_release_chart_entry_snapshots(release)
         result = harmonize_chart_history(chart_type=obj.chart.chart_type)
         obj.refresh_from_db()
         audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new={
             **serializer.data,
             'harmonization': result,
+            'chart_entry_snapshot_sync': snapshot_result,
         })
 
     def perform_destroy(self, instance):
@@ -1596,9 +1610,11 @@ class CmsCertificationViewSet(CmsBaseViewSet):
 
     @action(detail=False, methods=['post'])
     def recalculate(self, request):
-        count = recalculate_certifications(chart_type=request.data.get('chart_type'))
-        audit(request, 'recalculated_certifications', module='certifications', new={'count': count})
-        return Response({'updated_or_created': count})
+        chart_type = request.data.get('chart_type')
+        count = recalculate_certifications(chart_type=chart_type)
+        news_count = sync_automatic_news(chart_types=[chart_type] if chart_type else None)
+        audit(request, 'recalculated_certifications', module='certifications', new={'count': count, 'automatic_news_changed': news_count})
+        return Response({'updated_or_created': count, 'automatic_news_changed': news_count})
 
 
 class CertificationRuleViewSet(CmsBaseViewSet):
@@ -1609,14 +1625,17 @@ class CertificationRuleViewSet(CmsBaseViewSet):
     def perform_create(self, serializer):
         super().perform_create(serializer)
         recalculate_certifications()
+        sync_automatic_news()
 
     def perform_update(self, serializer):
         super().perform_update(serializer)
         recalculate_certifications()
+        sync_automatic_news()
 
     def perform_destroy(self, instance):
         super().perform_destroy(instance)
         recalculate_certifications()
+        sync_automatic_news()
 
 
 class MethodologySettingViewSet(CmsBaseViewSet):

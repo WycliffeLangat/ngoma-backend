@@ -1,9 +1,12 @@
 import base64
+import io
 import tempfile
 
+from django.core.management import call_command
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import connection
+from django.db.models import Q
 from django.test import TestCase
 from django.test.utils import CaptureQueriesContext
 from rest_framework.test import APIClient
@@ -22,8 +25,11 @@ from .models import (
     NewsArticle,
     PageContent,
     Platform,
+    RegionalChartEntry,
     Release,
+    ReleaseArtistCredit,
     SiteSetting,
+    ChartUpload,
 )
 
 
@@ -173,6 +179,83 @@ class PublicAppDataSyncTests(TestCase):
             self.assertTrue(self.artist.image.name.startswith("artists/"))
             self.assertIn("/media/artists/", artist_response.json()["image"])
             self.client.force_authenticate(user=None)
+
+    def test_release_save_derives_country_from_lead_artist(self):
+        response = self.patch_cms(
+            f"/api/v1/cms/releases/{self.release.id}/",
+            {
+                "title": "Country Drift Test",
+                "country": "Tanzania",
+                "country_code": "TZ",
+            },
+        )
+
+        self.release.refresh_from_db()
+        self.assertEqual(response["country"], "Test Country")
+        self.assertEqual(response["country_code"], "TC")
+        self.assertEqual(self.release.country, "Test Country")
+        self.assertEqual(self.release.country_code, "TC")
+
+    def test_release_country_stays_blank_when_lead_artist_has_no_country(self):
+        blank_artist = Artist.objects.create(name="Blank Artist", slug="blank-artist")
+        blank_release = Release.objects.create(
+            title="Unassigned Country",
+            artist=blank_artist,
+            chart_type="albums",
+            canonical_title="unassigned country",
+            country="Tanzania",
+            country_code="TZ",
+        )
+
+        response = self.patch_cms(
+            f"/api/v1/cms/releases/{blank_release.id}/",
+            {
+                "title": "Still Unassigned",
+                "country": "Tanzania",
+                "country_code": "TZ",
+            },
+        )
+
+        blank_release.refresh_from_db()
+        self.assertEqual(response["country"], "")
+        self.assertEqual(response["country_code"], "")
+        self.assertEqual(blank_release.country, "")
+        self.assertEqual(blank_release.country_code, "")
+
+    def test_news_media_prefers_related_release_and_supports_gallery(self):
+        self.release.cover_image = "covers/original-song.jpg"
+        self.release.save(update_fields=["cover_image"])
+        self.artist.image = "artists/original-artist.jpg"
+        self.artist.save(update_fields=["image"])
+        self.news.cover_image = "news/editorial.jpg"
+        self.news.gallery = [{"url": "/media/news/context.jpg", "caption": "Context image"}]
+        self.news.related_release = self.release
+        self.news.save(update_fields=["cover_image", "gallery", "related_release"])
+
+        data = self.app_data()
+        article = next(item for item in data["news"] if item["id"] == self.news.id)
+        self.assertGreaterEqual(len(article["media"]), 3)
+        self.assertEqual(article["media"][0]["kind"], "release_cover")
+        self.assertIn("/media/covers/original-song.jpg", article["media"][0]["url"])
+        self.assertTrue(any(item["kind"] == "artist_image" for item in article["media"]))
+        self.assertTrue(any(item["kind"] == "gallery" for item in article["media"]))
+
+    def test_artist_country_update_overwrites_divergent_release_country(self):
+        self.release.country = "Tanzania"
+        self.release.country_code = "TZ"
+        self.release.save(update_fields=["country", "country_code"])
+
+        self.patch_cms(
+            f"/api/v1/cms/artists/{self.artist.id}/",
+            {
+                "country": "Kenya",
+                "country_code": "KE",
+            },
+        )
+
+        self.release.refresh_from_db()
+        self.assertEqual(self.release.country, "Kenya")
+        self.assertEqual(self.release.country_code, "KE")
 
     def test_all_public_facing_cms_saves_feed_the_app_payload(self):
         initial_revision = self.app_data()["revision"]
@@ -428,6 +511,12 @@ class PublicAppDataSyncTests(TestCase):
         self.assertEqual(response["artist_credit"], "Original Artist, Second Artist & Third Artist ft. Featured Artist & Guest Two")
         self.assertEqual(response["primary_artist_ids"], [self.artist.id, self.second_artist.id, self.third_artist.id])
         self.assertEqual(response["featured_artist_ids"], [self.featured_artist.id, self.featured_artist_two.id])
+        self.combined_entry.refresh_from_db()
+        self.platform_entry.refresh_from_db()
+        self.assertEqual(self.combined_entry.featured_artists, "Featured Artist & Guest Two")
+        self.assertEqual(self.platform_entry.featured_artists, "Featured Artist & Guest Two")
+        self.assertEqual(self.combined_entry.release_year, 2026)
+        self.assertEqual(self.platform_entry.release_year, 2026)
 
         data = self.app_data()
         row = data["full"]["singles"]["combined"]["July 2026"][0]
@@ -461,6 +550,322 @@ class PublicAppDataSyncTests(TestCase):
         detail = detail_response.json()
         self.assertIn(self.release.id, [item["id"] for item in detail["releases"]])
         self.assertIn(self.release.id, [item["release_id"] for item in detail["chart_history"]])
+
+    def test_chart_entry_featured_edit_syncs_release_and_sibling_entries(self):
+        response = self.patch_cms(
+            f"/api/v1/cms/chart-entries/{self.combined_entry.id}/",
+            {"featured_artists": "Correct Guest"},
+        )
+        self.assertEqual(response["featured_artists"], "Correct Guest")
+
+        self.release.refresh_from_db()
+        self.combined_entry.refresh_from_db()
+        self.platform_entry.refresh_from_db()
+        self.assertEqual(self.release.featured_artists, "Correct Guest")
+        self.assertEqual(self.combined_entry.featured_artists, "Correct Guest")
+        self.assertEqual(self.platform_entry.featured_artists, "Correct Guest")
+
+    def test_remove_featured_artist_credit_command_cleans_only_featured_surfaces(self):
+        duo = Artist.objects.create(name="Vestine & Dorcas", slug="vestine-dorcas", artist_type="duo")
+        primary_release = Release.objects.create(
+            title="Yebo (Nitawale)",
+            artist=duo,
+            chart_type="singles",
+            canonical_title="yebo (nitawale)",
+        )
+        ReleaseArtistCredit.objects.create(
+            release=primary_release,
+            artist=duo,
+            role="primary",
+            position=0,
+        )
+        ReleaseArtistCredit.objects.create(
+            release=self.release,
+            artist=duo,
+            role="featured",
+            position=0,
+        )
+        ReleaseArtistCredit.objects.create(
+            release=self.release,
+            artist=self.featured_artist,
+            role="featured",
+            position=1,
+        )
+        self.release.featured_artists = "Featured Artist, Vestine & Dorcas"
+        self.release.save(update_fields=["featured_artists"])
+        self.combined_entry.featured_artists = "Vestine & Dorcas"
+        self.combined_entry.save(update_fields=["featured_artists"])
+        self.platform_entry.featured_artists = "Featured Artist, Vestine & Dorcas"
+        self.platform_entry.save(update_fields=["featured_artists"])
+        regional = RegionalChartEntry.objects.create(
+            chart=self.chart,
+            region="KE",
+            release=self.release,
+            rank=1,
+            total_points=50,
+            featured_artists="Vestine & Dorcas",
+        )
+        upload = ChartUpload.objects.create(
+            chart_type="singles",
+            year=2026,
+            month=7,
+            rows_data=[
+                {"title": "Original Song", "featured_artists": "Vestine & Dorcas"},
+                {"title": "Original Song", "featured_artists": "Featured Artist, Vestine & Dorcas"},
+            ],
+        )
+
+        call_command(
+            "remove_featured_artist_credit",
+            "--artist-name",
+            "Vestine & Dorcas",
+            "--apply",
+            stdout=io.StringIO(),
+        )
+
+        self.release.refresh_from_db()
+        self.combined_entry.refresh_from_db()
+        self.platform_entry.refresh_from_db()
+        regional.refresh_from_db()
+        upload.refresh_from_db()
+
+        self.assertFalse(ReleaseArtistCredit.objects.filter(artist=duo, role="featured").exists())
+        self.assertTrue(ReleaseArtistCredit.objects.filter(release=primary_release, artist=duo, role="primary").exists())
+        self.assertEqual(self.release.featured_artists, "Featured Artist")
+        self.assertEqual(self.combined_entry.featured_artists, "Featured Artist")
+        self.assertEqual(self.platform_entry.featured_artists, "Featured Artist")
+        self.assertEqual(regional.featured_artists, "Featured Artist")
+        self.assertEqual(upload.rows_data[0]["featured_artists"], "")
+        self.assertEqual(upload.rows_data[1]["featured_artists"], "Featured Artist")
+
+    def test_canonicalize_vestine_dorcas_keeps_only_allowed_group_songs(self):
+        target_names = ["Vestine", "Dorcas", "Vestine & Dorcas"]
+        Release.objects.filter(
+            Q(artist__name__in=target_names)
+            | Q(artist_credits__artist__name__in=target_names)
+            | Q(featured_artists__icontains="Vestine")
+            | Q(featured_artists__icontains="Dorcas")
+            | Q(credited_artists__icontains="Vestine")
+            | Q(credited_artists__icontains="Dorcas")
+        ).delete()
+        Artist.objects.filter(name__in=target_names).delete()
+
+        vestine = Artist.objects.create(
+            name="Vestine",
+            slug="vestine",
+            artist_type="solo",
+            country="Kenya",
+            country_code="KE",
+        )
+        dorcas = Artist.objects.create(name="Dorcas", slug="dorcas", artist_type="solo")
+        correct_artist = Artist.objects.create(
+            name="Correct Artist",
+            slug="correct-artist",
+            country="Kenya",
+            country_code="KE",
+        )
+        other_guest = Artist.objects.create(name="Other Guest", slug="other-guest")
+
+        yebo = Release.objects.create(
+            title="Yebo (Nitawale)",
+            artist=vestine,
+            chart_type="singles",
+            canonical_title="yebo (nitawale)",
+            featured_artists="Dorcas",
+            credited_artists="Vestine & Dorcas",
+        )
+        ReleaseArtistCredit.objects.create(release=yebo, artist=vestine, role="primary", position=0)
+        ReleaseArtistCredit.objects.create(release=yebo, artist=dorcas, role="featured", position=0)
+        emmanuel = Release.objects.create(
+            title="Emmanuel",
+            artist=vestine,
+            chart_type="singles",
+            canonical_title="emmanuel",
+        )
+        ReleaseArtistCredit.objects.create(release=emmanuel, artist=vestine, role="primary", position=0)
+
+        wrong_feature = Release.objects.create(
+            title="Pawa",
+            artist=correct_artist,
+            chart_type="singles",
+            canonical_title="pawa",
+            featured_artists="Vestine & Dorcas",
+            credited_artists="Correct Artist, Vestine",
+        )
+        ReleaseArtistCredit.objects.create(release=wrong_feature, artist=correct_artist, role="primary", position=0)
+        ReleaseArtistCredit.objects.create(release=wrong_feature, artist=vestine, role="featured", position=0)
+        ReleaseArtistCredit.objects.create(release=wrong_feature, artist=other_guest, role="featured", position=1)
+        wrong_primary = Release.objects.create(
+            title="Mistagged Song",
+            artist=vestine,
+            chart_type="singles",
+            canonical_title="mistagged song",
+        )
+        ReleaseArtistCredit.objects.create(release=wrong_primary, artist=vestine, role="primary", position=0)
+        yebo_entry = MonthlyChartEntry.objects.create(
+            chart=self.chart,
+            release=yebo,
+            rank=2,
+            total_points=45,
+            featured_artists="Dorcas",
+        )
+        wrong_feature_entry = MonthlyChartEntry.objects.create(
+            chart=self.chart,
+            release=wrong_feature,
+            rank=3,
+            total_points=40,
+            featured_artists="Vestine & Dorcas",
+        )
+        MonthlyChartEntry.objects.create(
+            chart=self.chart,
+            platform=self.platform,
+            release=wrong_feature,
+            rank=2,
+            total_points=40,
+            raw_total_points=40,
+            featured_artists="Vestine & Dorcas",
+        )
+        MonthlyChartEntry.objects.create(
+            chart=self.chart,
+            release=wrong_primary,
+            rank=4,
+            total_points=35,
+        )
+        regional = RegionalChartEntry.objects.create(
+            chart=self.chart,
+            region="KE",
+            release=wrong_feature,
+            rank=1,
+            total_points=40,
+            featured_artists="Vestine & Dorcas",
+        )
+        upload = ChartUpload.objects.create(
+            chart_type="singles",
+            year=2026,
+            month=7,
+            rows_data=[
+                {
+                    "title": "Yebo (Nitawale)",
+                    "artist": "Vestine",
+                    "featured_artists": "Dorcas",
+                    "credited_artists": "Vestine & Dorcas",
+                },
+                {
+                    "title": "Pawa",
+                    "artist": "Correct Artist ft. Vestine & Dorcas",
+                    "featured_artists": "Vestine & Dorcas",
+                    "credited_artists": "Correct Artist, Vestine",
+                },
+                {
+                    "title": "Mistagged Song",
+                    "artist": "Vestine",
+                    "featured_artists": "Dorcas",
+                },
+            ],
+        )
+
+        call_command("canonicalize_vestine_dorcas", "--apply", stdout=io.StringIO())
+
+        group = Artist.objects.get(name="Vestine & Dorcas")
+        self.assertEqual(group.artist_type, "group")
+        self.assertEqual(group.country_code, "KE")
+
+        yebo.refresh_from_db()
+        emmanuel.refresh_from_db()
+        wrong_feature.refresh_from_db()
+        wrong_primary.refresh_from_db()
+        yebo_entry.refresh_from_db()
+        wrong_feature_entry.refresh_from_db()
+        regional.refresh_from_db()
+        upload.refresh_from_db()
+        vestine.refresh_from_db()
+        dorcas.refresh_from_db()
+
+        self.assertEqual(yebo.artist, group)
+        self.assertEqual(emmanuel.artist, group)
+        self.assertEqual(
+            list(yebo.artist_credits.order_by("position").values_list("artist__name", "role")),
+            [("Vestine & Dorcas", "primary")],
+        )
+        self.assertEqual(
+            list(emmanuel.artist_credits.order_by("position").values_list("artist__name", "role")),
+            [("Vestine & Dorcas", "primary")],
+        )
+        self.assertEqual(yebo.featured_artists, "")
+        self.assertEqual(yebo.credited_artists, "")
+        self.assertEqual(yebo_entry.featured_artists, "")
+
+        self.assertEqual(wrong_feature.artist, correct_artist)
+        self.assertEqual(wrong_feature.featured_artists, "Other Guest")
+        self.assertEqual(wrong_feature.credited_artists, "Correct Artist")
+        self.assertEqual(
+            list(wrong_feature.artist_credits.order_by("position").values_list("artist__name", "role")),
+            [("Correct Artist", "primary"), ("Other Guest", "featured")],
+        )
+        self.assertEqual(wrong_feature_entry.featured_artists, "Other Guest")
+        self.assertEqual(regional.featured_artists, "Other Guest")
+
+        self.assertEqual(wrong_primary.status, "archived")
+        self.assertFalse(MonthlyChartEntry.objects.filter(release=wrong_primary).exists())
+        self.assertEqual(vestine.status, "archived")
+        self.assertEqual(dorcas.status, "archived")
+        self.assertEqual(upload.rows_data[0]["artist"], "Vestine & Dorcas")
+        self.assertEqual(upload.rows_data[0]["featured_artists"], "")
+        self.assertEqual(upload.rows_data[0]["credited_artists"], "")
+        self.assertEqual(upload.rows_data[1]["artist"], "Correct Artist")
+        self.assertEqual(upload.rows_data[1]["featured_artists"], "")
+        self.assertEqual(upload.rows_data[1]["credited_artists"], "Correct Artist")
+        self.assertEqual(upload.rows_data[2]["artist"], "")
+        self.assertEqual(upload.rows_data[2]["featured_artists"], "")
+
+    def test_cms_blocks_vestine_dorcas_on_disallowed_releases_and_canonicalizes_allowed_aliases(self):
+        target_names = ["Vestine", "Dorcas", "Vestine & Dorcas"]
+        Release.objects.filter(
+            Q(artist__name__in=target_names)
+            | Q(artist_credits__artist__name__in=target_names)
+            | Q(featured_artists__icontains="Vestine")
+            | Q(featured_artists__icontains="Dorcas")
+            | Q(credited_artists__icontains="Vestine")
+            | Q(credited_artists__icontains="Dorcas")
+        ).delete()
+        Artist.objects.filter(name__in=target_names).delete()
+        group = Artist.objects.create(name="Vestine & Dorcas", slug="vestine-dorcas-cms", artist_type="group")
+        vestine = Artist.objects.create(name="Vestine", slug="vestine-cms", artist_type="solo")
+
+        self.client.force_authenticate(self.admin)
+        blocked = self.client.patch(
+            f"/api/v1/cms/releases/{self.release.id}/",
+            {"featured_artist_ids": [group.id]},
+            format="json",
+        )
+        self.assertEqual(blocked.status_code, 400, blocked.content)
+        self.assertIn("Yebo (Nitawale) and Emmanuel", str(blocked.content))
+        self.assertFalse(
+            ReleaseArtistCredit.objects.filter(
+                release=self.release,
+                artist__name="Vestine & Dorcas",
+            ).exists()
+        )
+
+        yebo = Release.objects.create(
+            title="Yebo (Nitawale)",
+            artist=self.artist,
+            chart_type="singles",
+            canonical_title="yebo (nitawale)",
+        )
+        allowed = self.client.patch(
+            f"/api/v1/cms/releases/{yebo.id}/",
+            {"primary_artist_ids": [vestine.id]},
+            format="json",
+        )
+        self.assertEqual(allowed.status_code, 200, allowed.content)
+        self.client.force_authenticate(user=None)
+        yebo.refresh_from_db()
+        self.assertEqual(yebo.artist, group)
+        self.assertEqual(
+            list(yebo.artist_credits.values_list("artist__name", "role")),
+            [("Vestine & Dorcas", "primary")],
+        )
 
 
 class ChartHistoryHarmonizationTests(TestCase):

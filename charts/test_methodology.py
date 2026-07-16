@@ -17,6 +17,7 @@ from .models import (
     ChartType,
     MonthlyChart,
     MonthlyChartEntry,
+    NewsArticle,
     Platform,
     PlatformChartEntry,
     Release,
@@ -238,6 +239,43 @@ class CanonicalMethodologyTests(TestCase):
         certification = Certification.objects.get(release=release, level="gold")
         self.assertEqual(certification.total_points, 96)
 
+    def test_harmonize_generates_public_news_from_chart_and_certification_data(self):
+        release = self.release("Automatic Anthem", "Data Artist")
+        for month in (7, 8):
+            chart = MonthlyChart.objects.create(
+                year=2027,
+                month=month,
+                chart_type=ChartType.SINGLES,
+                status="published",
+                is_published=True,
+            )
+            MonthlyChartEntry.objects.create(
+                chart=chart,
+                release=release,
+                rank=1,
+                total_points=50,
+                raw_total_points=500,
+            )
+        CertificationRule.objects.update_or_create(
+            level="gold",
+            defaults={"threshold": 96, "active": True},
+        )
+        CertificationRule.objects.filter(level__in=["platinum", "diamond"]).update(active=False)
+
+        result = harmonize_chart_history(chart_type=ChartType.SINGLES)
+
+        self.assertGreaterEqual(result["automatic_news_changed"], 2)
+        chart_article = NewsArticle.objects.get(slug="auto-singles-2027-08")
+        self.assertTrue(chart_article.is_published)
+        self.assertEqual(chart_article.status, "published")
+        self.assertEqual(chart_article.related_release, release)
+        self.assertIn("generated automatically", chart_article.body.lower())
+
+        certification_article = NewsArticle.objects.get(slug=f"auto-certification-{release.id}")
+        self.assertEqual(certification_article.category, "certifications")
+        self.assertEqual(certification_article.related_release, release)
+        self.assertIn("Gold certified", certification_article.body)
+
     def test_collaborators_and_features_receive_structured_credits(self):
         workbook = openpyxl.Workbook()
         sheet = workbook.active
@@ -268,6 +306,100 @@ class CanonicalMethodologyTests(TestCase):
         self.assertEqual(
             set(lifestyle.artist_credits.values_list("artist__name", "role")),
             {("Bien", "primary"), ("Scar", "featured")},
+        )
+
+    def test_registered_compound_artist_name_is_not_split_on_import(self):
+        Artist.objects.create(
+            name="Vestine & Dorcas",
+            slug="vestine-dorcas",
+            artist_type="solo",
+        )
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+        sheet.append(["Apple Music"])
+        sheet.append(["Emmanuel - Vestine & Dorcas"])
+        sheet.append(["Yebo (Nitawale) - Vestine & Dorcas"])
+        output = io.BytesIO()
+        workbook.save(output)
+        workbook.close()
+
+        upload = self.upload(2026, 12, 1)
+        process_weekly_upload(upload, io.BytesIO(output.getvalue()))
+
+        emmanuel = Release.objects.get(
+            canonical_title="emmanuel",
+            artist__name="Vestine & Dorcas",
+            chart_type=ChartType.SINGLES,
+        )
+        self.assertEqual(
+            list(emmanuel.artist_credits.order_by("position").values_list("artist__name", "role")),
+            [("Vestine & Dorcas", "primary")],
+        )
+        self.assertFalse(Artist.objects.filter(name="Dorcas").exists())
+
+        yebo = Release.objects.get(
+            canonical_title="yebo (nitawale)",
+            artist__name="Vestine & Dorcas",
+            chart_type=ChartType.SINGLES,
+        )
+        self.assertEqual(
+            list(yebo.artist_credits.order_by("position").values_list("artist__name", "role")),
+            [("Vestine & Dorcas", "primary")],
+        )
+
+    def test_allowed_vestine_alias_import_canonicalizes_to_group(self):
+        Artist.objects.filter(name__in=["Vestine", "Dorcas", "Vestine & Dorcas"]).delete()
+        Artist.objects.create(
+            name="Vestine & Dorcas",
+            slug="vestine-dorcas",
+            artist_type="group",
+        )
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+        sheet.append(["Apple Music"])
+        sheet.append(["Yebo (Nitawale) - Vestine"])
+        output = io.BytesIO()
+        workbook.save(output)
+        workbook.close()
+
+        upload = self.upload(2027, 1, 1)
+        process_weekly_upload(upload, io.BytesIO(output.getvalue()))
+
+        yebo = Release.objects.get(
+            canonical_title="yebo (nitawale)",
+            chart_type=ChartType.SINGLES,
+        )
+        self.assertEqual(yebo.artist.name, "Vestine & Dorcas")
+        self.assertEqual(
+            list(yebo.artist_credits.order_by("position").values_list("artist__name", "role")),
+            [("Vestine & Dorcas", "primary")],
+        )
+        self.assertFalse(Artist.objects.filter(name="Vestine").exists())
+
+    def test_disallowed_vestine_dorcas_import_is_rejected(self):
+        Artist.objects.filter(name__in=["Vestine", "Dorcas", "Vestine & Dorcas"]).delete()
+        Artist.objects.create(
+            name="Vestine & Dorcas",
+            slug="vestine-dorcas",
+            artist_type="group",
+        )
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+        sheet.append(["Apple Music"])
+        sheet.append(["Pawa - Vestine & Dorcas"])
+        output = io.BytesIO()
+        workbook.save(output)
+        workbook.close()
+
+        upload = self.upload(2027, 2, 1)
+        with self.assertRaisesRegex(ValueError, "can only be credited"):
+            process_weekly_upload(upload, io.BytesIO(output.getvalue()))
+
+        self.assertFalse(
+            Release.objects.filter(
+                canonical_title="pawa",
+                artist__name__in=["Vestine", "Dorcas", "Vestine & Dorcas"],
+            ).exists()
         )
 
     def test_public_history_ignores_rank_54_and_marks_reentry(self):

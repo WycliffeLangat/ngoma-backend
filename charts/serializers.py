@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import *
 from .artist_credits import release_credit_payload
+from .news_media import news_media_payload
 
 
 def artist_credit_summary(artist):
@@ -185,14 +186,25 @@ class MonthlyChartSerializer(serializers.ModelSerializer):
 
 
 class NewsArticleSerializer(serializers.ModelSerializer):
+    media = serializers.SerializerMethodField()
+
     class Meta:
         model = NewsArticle
         fields = [
             'id', 'title', 'slug', 'category', 'excerpt', 'subheadline', 'body',
-            'emoji', 'cover_image', 'gallery', 'tags', 'author', 'source_links',
+            'emoji', 'cover_image', 'gallery', 'media', 'tags', 'author', 'source_links',
             'seo_title', 'seo_description', 'featured', 'pinned', 'breaking',
             'published_at', 'updated_at', 'related_release', 'related_artist',
         ]
+
+    def get_media(self, obj):
+        request = self.context.get('request')
+        return news_media_payload(
+            request,
+            obj,
+            self.context.get('news_artists') or (),
+            self.context.get('news_releases') or (),
+        )
 
 
 class WeeklyUploadSerializer(serializers.ModelSerializer):

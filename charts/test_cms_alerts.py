@@ -7,6 +7,7 @@ from .models import (
     AdminNotification,
     Artist,
     BackupRecord,
+    Certification,
     CertificationRule,
     ChartUpload,
     Country,
@@ -40,6 +41,7 @@ class CmsDashboardAlertTests(TestCase):
             NewsArticle,
             ChartUpload,
             MonthlyChart,
+            Certification,
             Release,
             Artist,
             Platform,
@@ -120,6 +122,28 @@ class CmsDashboardAlertTests(TestCase):
         self.assertGreaterEqual(data['alert_summary']['error'], 1)
         self.assertEqual(data['alert_summary']['total'], len(data['alerts']))
         self.assertEqual(data['cards']['system_health'], 'ACTION_REQUIRED')
+
+    def test_automatic_visible_certifications_do_not_need_official_alerts(self):
+        artist = Artist.objects.create(name='Certified Artist', slug='certified-artist')
+        release = Release.objects.create(
+            title='Certified Song',
+            artist=artist,
+            chart_type='singles',
+            canonical_title='certified song',
+        )
+        Certification.objects.create(
+            release=release,
+            level='gold',
+            total_points=5000,
+            is_official=False,
+            is_hidden=False,
+        )
+
+        data = self.dashboard()
+        alert_ids = {alert['id'] for alert in data['alerts']}
+
+        self.assertNotIn('certifications-unofficial-visible', alert_ids)
+        self.assertEqual(data['cards']['automatic_certifications'], 1)
 
     def test_upload_validation_findings_are_split_by_severity(self):
         ChartUpload.objects.create(

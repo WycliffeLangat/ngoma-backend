@@ -10,7 +10,13 @@ from decimal import Decimal
 from django.utils import timezone
 from django.utils.text import slugify
 import openpyxl
-from .artist_credits import format_artist_list, parse_artist_credit, split_artist_names, release_credit_payload
+from .artist_credits import (
+    format_artist_list,
+    parse_artist_credit,
+    release_credit_payload,
+    should_preserve_registered_artist_name,
+    split_artist_names,
+)
 from .methodology import (
     PUBLIC_CHART_LIMIT,
     REGIONAL_CHART_CODES,
@@ -18,7 +24,8 @@ from .methodology import (
     platform_max_for,
     public_points,
 )
-from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, PlatformChartEntry, RegionalChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting, NormalizationRule
+from .special_artist_rules import clean_vestine_dorcas_credit_names
+from .models import AuditLog, Artist, Release, MonthlyChart, MonthlyChartEntry, PlatformChartEntry, RegionalChartEntry, Platform, ChartType, CertificationRule, Certification, SiteSetting, NormalizationRule, NewsArticle
 
 
 PUBLIC_DATA_AUDIT_MODULES = {
@@ -210,6 +217,40 @@ def prune_orphaned_releases(release_ids):
     return len(orphan_ids)
 
 
+def sync_release_chart_entry_snapshots(release):
+    """
+    Keep per-chart-entry snapshots aligned with the release record.
+
+    Monthly/regional chart entries store featured_artists and release_year so
+    older rows can keep rendering even when they were imported before the CMS
+    record was fully enriched. Once the CMS release is edited, the release is
+    authoritative and every existing chart entry for it should converge.
+    """
+    if not release or not getattr(release, 'pk', None):
+        return {'monthly_updated': 0, 'regional_updated': 0, 'updated': 0}
+
+    featured_artists = release_credit_payload(release)['featured_artist_credit']
+    release_year = release.release_year
+
+    def stale_snapshot(qs):
+        year_filter = ~Q(release_year__isnull=True) if release_year is None else ~Q(release_year=release_year)
+        return qs.filter(~Q(featured_artists=featured_artists) | year_filter)
+
+    monthly_updated = stale_snapshot(MonthlyChartEntry.objects.filter(release=release)).update(
+        featured_artists=featured_artists,
+        release_year=release_year,
+    )
+    regional_updated = stale_snapshot(RegionalChartEntry.objects.filter(release=release)).update(
+        featured_artists=featured_artists,
+        release_year=release_year,
+    )
+    return {
+        'monthly_updated': monthly_updated,
+        'regional_updated': regional_updated,
+        'updated': monthly_updated + regional_updated,
+    }
+
+
 def unique_slug(model, text, field='slug'):
     base = slugify(text)[:80] or 'item'
     slug = base
@@ -386,13 +427,11 @@ def get_or_create_cms_artist(name, country='', country_code=''):
 
 
 def get_or_create_cms_release(row, artist, chart_type):
-    preserve_name = bool(
-        artist
-        and artist.name.casefold() == normalize_name(row.get('artist')).casefold()
-        and artist.artist_type in {'group', 'band', 'duo'}
-    )
+    raw_artist = normalize_name(row.get('artist'))
+    exact_artist = find_artist_by_name(raw_artist)
+    preserve_name = should_preserve_registered_artist_name(raw_artist, exact_artist)
     primary_names, parsed_featured_names = parse_artist_credit(
-        row.get('artist'),
+        raw_artist,
         preserve_name=preserve_name,
     )
     primary_names = primary_names or [artist.name]
@@ -405,6 +444,11 @@ def get_or_create_cms_release(row, artist, chart_type):
         if key not in primary_keys and key not in seen_featured:
             featured_names.append(name)
             seen_featured.add(key)
+    primary_names, featured_names = clean_vestine_dorcas_credit_names(
+        row.get('title'),
+        primary_names,
+        featured_names,
+    )
 
     artist = get_or_create_cms_artist(
         primary_names[0],
@@ -456,9 +500,7 @@ def detect_entry_status(row, chart_type, platform, year, month):
         return 'unknown'
     raw_artist = normalize_name(row.get('artist'))
     exact_artist = find_artist_by_name(raw_artist)
-    preserve_name = bool(
-        exact_artist and exact_artist.artist_type in {'group', 'band', 'duo'}
-    )
+    preserve_name = should_preserve_registered_artist_name(raw_artist, exact_artist)
     primary_names, _ = parse_artist_credit(raw_artist, preserve_name=preserve_name)
     artist = find_artist_by_name(primary_names[0] if primary_names else raw_artist)
     if not artist:
@@ -488,10 +530,7 @@ def publish_chart_upload(upload, user=None):
     for row in sorted(upload.rows_data or [], key=lambda r: int(r.get('rank') or 9999)):
         raw_artist = normalize_name(row.get('artist'))
         existing_artist = find_artist_by_name(raw_artist)
-        preserve_name = bool(
-            existing_artist
-            and existing_artist.artist_type in {'group', 'band', 'duo'}
-        )
+        preserve_name = should_preserve_registered_artist_name(raw_artist, existing_artist)
         primary_names, _ = parse_artist_credit(raw_artist, preserve_name=preserve_name)
         artist = get_or_create_cms_artist(
             primary_names[0] if primary_names else raw_artist,
@@ -608,6 +647,228 @@ def recalculate_certifications(chart_type=None, release=None):
                 )
                 updated += 1
     return updated
+
+
+AUTO_NEWS_TAG = 'auto-generated'
+AUTO_NEWS_AUTHOR = 'Ngoma Charts Data Desk'
+CERTIFICATION_LEVEL_RANK = {'diamond': 0, 'platinum': 1, 'gold': 2}
+
+
+def _chart_kind(chart_type):
+    return 'albums' if chart_type == ChartType.ALBUMS else 'singles'
+
+
+def _level_label(level):
+    return dict(Certification.LEVEL_CHOICES).get(level, str(level or '').title())
+
+
+def _article_date(value=None):
+    return value or timezone.now()
+
+
+def _release_credit(release):
+    return release_credit_payload(release)['artist_credit'] or release.artist.name
+
+
+def _automatic_tags(*values):
+    tags = [AUTO_NEWS_TAG]
+    for value in values:
+        text = str(value or '').strip()
+        if text and text not in tags:
+            tags.append(text)
+    return tags
+
+
+def _is_automatic_article(article):
+    tags = article.tags or []
+    if AUTO_NEWS_TAG in tags:
+        return True
+    for link in article.source_links or []:
+        if isinstance(link, dict) and str(link.get('kind', '')).startswith('automatic_'):
+            return True
+    return False
+
+
+def _upsert_automatic_article(slug, defaults):
+    article = NewsArticle.objects.filter(slug=slug).first()
+    if article and not _is_automatic_article(article):
+        return 0
+
+    if not article:
+        NewsArticle.objects.create(slug=slug, **defaults)
+        return 1
+
+    changed_fields = []
+    for field, value in defaults.items():
+        if getattr(article, field) != value:
+            setattr(article, field, value)
+            changed_fields.append(field)
+    if changed_fields:
+        article.save(update_fields=changed_fields + ['updated_at'])
+        return 1
+    return 0
+
+
+def _chart_article_defaults(chart, rows):
+    top = rows[0]
+    runner = rows[1] if len(rows) > 1 else None
+    third = rows[2] if len(rows) > 2 else None
+    kind = _chart_kind(chart.chart_type)
+    category = 'albums' if kind == 'albums' else 'chart_news'
+    release = top.release
+    artist = _release_credit(release)
+    runner_text = (
+        f'{runner.release.title} by {_release_credit(runner.release)} at #{runner.rank}'
+        if runner else 'a fast-moving chase pack'
+    )
+    third_text = (
+        f'{third.release.title} by {_release_credit(third.release)} at #{third.rank}'
+        if third else 'fresh catalogue movement'
+    )
+    points = int(top.total_points or 0)
+    published_at = _article_date(chart.published_at)
+    title = (
+        f'{release.title} frames the {chart.label} album race'
+        if kind == 'albums'
+        else f'{release.title} turns {chart.label} into a statement month'
+    )
+    return {
+        'title': title[:500],
+        'category': category,
+        'excerpt': (
+            f'{artist} leads the {chart.label} {kind} chart while '
+            f'{runner_text} keeps the story moving.'
+        ),
+        'subheadline': 'Generated from the latest published Combined Top 50 data.',
+        'body': '\n\n'.join([
+            (
+                f'{release.title} by {artist} opens the {chart.label} {kind} '
+                f'conversation at #1, converting the latest Combined chart data '
+                f'into {points:,} public Top 50 points.'
+            ),
+            (
+                f'The month has more texture behind the leader: {runner_text}, '
+                f'with {third_text}. Together they show how momentum, catalogue '
+                f'depth and audience discovery are reshaping the chart in real time.'
+            ),
+            (
+                'This public article is generated automatically from published '
+                'chart data and refreshes whenever a new month, correction or '
+                'ranking update is introduced.'
+            ),
+        ]),
+        'emoji': '',
+        'tags': _automatic_tags(chart.chart_type, 'combined-chart', chart.label),
+        'author': AUTO_NEWS_AUTHOR,
+        'source_links': [{'label': 'Generated from published chart data', 'kind': 'automatic_chart_story'}],
+        'status': 'published',
+        'is_published': True,
+        'featured': True,
+        'pinned': False,
+        'breaking': False,
+        'published_at': published_at,
+        'scheduled_for': None,
+        'related_release': release,
+        'related_artist': release.artist,
+    }
+
+
+def _certification_article_defaults(cert, threshold):
+    release = cert.release
+    artist = _release_credit(release)
+    label = _level_label(cert.level)
+    total = int(cert.total_points or 0)
+    release_kind = 'album' if release.chart_type == ChartType.ALBUMS else 'single'
+    published_at = _article_date(cert.certified_at)
+    return {
+        'title': f'{release.title} crosses into {label} territory'[:500],
+        'category': 'certifications',
+        'excerpt': (
+            f"{artist}'s {release_kind} has {total:,} cumulative Combined chart "
+            f'points, clearing the {int(threshold):,}+ {label} benchmark.'
+        ),
+        'subheadline': 'Certification milestones are generated directly from point totals.',
+        'body': '\n\n'.join([
+            (
+                f'{release.title} by {artist} is now {label} certified after '
+                f'reaching {total:,} cumulative Combined chart points.'
+            ),
+            (
+                'The award is triggered by the same monthly public Top 50 point '
+                'system that powers the charts, so the certification moves as '
+                'soon as the data moves.'
+            ),
+            (
+                "This story is generated automatically from the certification "
+                "engine and will update when new chart data changes the release's "
+                'point total or milestone level.'
+            ),
+        ]),
+        'emoji': '',
+        'tags': _automatic_tags('certification', cert.level, release.chart_type),
+        'author': AUTO_NEWS_AUTHOR,
+        'source_links': [{'label': 'Generated from certification point totals', 'kind': 'automatic_certification_story'}],
+        'status': 'published',
+        'is_published': True,
+        'featured': False,
+        'pinned': False,
+        'breaking': False,
+        'published_at': published_at,
+        'scheduled_for': None,
+        'related_release': release,
+        'related_artist': release.artist,
+    }
+
+
+def sync_automatic_news(chart_types=None, chart_ids=None):
+    chart_types = [str(value) for value in (chart_types or []) if value]
+    chart_ids = [int(value) for value in (chart_ids or []) if value]
+    changed = 0
+
+    charts = MonthlyChart.objects.filter(is_published=True, status='published')
+    if chart_ids:
+        charts = charts.filter(id__in=chart_ids)
+    elif chart_types:
+        charts = charts.filter(chart_type__in=chart_types)
+    charts = list(charts.order_by('year', 'month', 'chart_type'))
+    chart_types = sorted(set(chart_types) | {chart.chart_type for chart in charts})
+
+    for chart in charts:
+        rows = list(
+            MonthlyChartEntry.objects.filter(
+                chart=chart,
+                platform__isnull=True,
+                rank__gte=1,
+                rank__lte=3,
+            )
+            .select_related('release', 'release__artist')
+            .prefetch_related('release__artist_credits__artist')
+            .order_by('rank')
+        )
+        if rows:
+            slug = f'auto-{chart.chart_type}-{chart.year}-{chart.month:02d}'
+            changed += _upsert_automatic_article(slug, _chart_article_defaults(chart, rows))
+
+    thresholds = certification_thresholds()
+    certs = Certification.objects.filter(is_hidden=False, total_points__gt=0)
+    if chart_types:
+        certs = certs.filter(release__chart_type__in=chart_types)
+    best_by_release = {}
+    for cert in certs.select_related('release', 'release__artist').prefetch_related('release__artist_credits__artist'):
+        threshold = thresholds.get(cert.level)
+        if threshold is None or int(cert.total_points or 0) < int(threshold):
+            continue
+        existing = best_by_release.get(cert.release_id)
+        if not existing or CERTIFICATION_LEVEL_RANK.get(cert.level, 99) < CERTIFICATION_LEVEL_RANK.get(existing.level, 99):
+            best_by_release[cert.release_id] = cert
+
+    for cert in best_by_release.values():
+        slug = f'auto-certification-{cert.release_id}'
+        changed += _upsert_automatic_article(slug, _certification_article_defaults(cert, thresholds[cert.level]))
+
+    if changed:
+        bump_public_revision()
+    return changed
 
 
 def _previous_period(year, month):
@@ -1127,6 +1388,10 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
         recalculate_certifications(chart_type=affected_type)
         for affected_type in affected_types
     )
+    automatic_news_changed = sync_automatic_news(
+        chart_types=affected_types,
+        chart_ids=[chart.id for chart in charts],
+    )
     bump_public_revision()
     return {
         'chart_types': affected_types,
@@ -1136,6 +1401,7 @@ def harmonize_chart_history(chart_type=None, chart_ids=None):
         'scoring_changes': scoring_changes,
         'history_changes': len(history_changed),
         'certifications_changed': certifications_changed,
+        'automatic_news_changed': automatic_news_changed,
         'combined_restored': combined_restored['restored'],
         'regional_sync': regional_sync,
         'regional_rank_changes': regional_rank['rank_changes'],

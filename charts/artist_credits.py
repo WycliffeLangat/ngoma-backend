@@ -13,6 +13,11 @@ PRIMARY_SEPARATOR_RE = re.compile(
     r'\s*(?:,|&|\b(?:and|x|with)\b)\s*',
     re.IGNORECASE,
 )
+ARTIST_NAME_SEPARATOR_RE = re.compile(
+    r'[,/&]|\b(?:and|x|with|feat|featuring|ft)\b\.?',
+    re.IGNORECASE,
+)
+PROTECTED_ARTIST_TYPES = {'group', 'band', 'duo'}
 
 # Separators are part of these canonical act names, not collaboration syntax.
 # An editorially managed Artist marked as a group/band/duo is also protected.
@@ -26,6 +31,22 @@ NON_COLLABORATION_ARTIST_NAMES = {
     'tyler, the creator',
     'years & years',
 }
+
+
+def artist_name_has_separator(value):
+    return bool(ARTIST_NAME_SEPARATOR_RE.search(str(value or '').strip()))
+
+
+def should_preserve_registered_artist_name(value, artist=None):
+    value = str(value or '').strip()
+    if not value:
+        return False
+    if value.casefold() in NON_COLLABORATION_ARTIST_NAMES:
+        return True
+    if not artist:
+        return False
+    artist_type = str(getattr(artist, 'artist_type', '') or '').strip().casefold()
+    return artist_type in PROTECTED_ARTIST_TYPES or artist_name_has_separator(value)
 
 
 def unique_names(names):

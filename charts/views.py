@@ -267,7 +267,9 @@ class NewsArticleViewSet(viewsets.ModelViewSet):
     queryset = NewsArticle.objects.filter(
         is_published=True,
         status='published',
-    ).filter(Q(scheduled_for__isnull=True) | Q(scheduled_for__lte=timezone.now())).order_by(
+    ).filter(Q(scheduled_for__isnull=True) | Q(scheduled_for__lte=timezone.now())).select_related(
+        'related_artist', 'related_release', 'related_release__artist'
+    ).prefetch_related('related_release__artist_credits__artist').order_by(
         '-pinned', '-featured', '-published_at'
     )
     serializer_class = NewsArticleSerializer
@@ -277,6 +279,22 @@ class NewsArticleViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [IsAdminUser()]
         return super().get_permissions()
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['news_artists'] = list(
+            Artist.objects.exclude(image='')
+            .exclude(status__in=['archived', 'inactive', 'rejected', 'draft'])
+            .only('id', 'name', 'display_name', 'aliases', 'image')
+        )
+        context['news_releases'] = list(
+            Release.objects.exclude(cover_image='')
+            .exclude(status__in=['archived', 'inactive', 'rejected', 'draft'])
+            .select_related('artist')
+            .prefetch_related('artist_credits__artist')
+            .only('id', 'title', 'cover_image', 'artist_id')
+        )
+        return context
 
 
 class CertificationViewSet(viewsets.ReadOnlyModelViewSet):
