@@ -17,7 +17,10 @@ python manage.py seed_data --clear
 # 4. Create admin user
 python manage.py createsuperuser
 
-# 5. Run server
+# 5. Run the background chart worker in a second terminal
+python manage.py process_chart_jobs
+
+# 6. Run server
 python manage.py runserver
 ```
 
@@ -71,6 +74,7 @@ The AI Analyst code is retained for possible future use, but the endpoint return
 ### Admin-only
 - `POST /uploads/` — upload weekly xlsx file (auto-processes)
 - `POST /uploads/rebuild_month/` — manually rebuild monthly aggregates
+- `GET /cms/chart-jobs/` - inspect queued/running/succeeded/failed chart calculation jobs
 - `POST /normalization-rules/` — manage artist/title spelling rules
 
 ## Models
@@ -116,6 +120,19 @@ The pipeline runs automatically when you upload a weekly file via the admin.
 
 The formulas and supported-platform lists live in `charts/methodology.py`;
 editable platform metadata cannot change scoring.
+### Background calculation jobs
+
+Weekly upload processing, final-chart publishing, month rebuilds, and chart
+history harmonization are queued as `ChartCalculationJob` records so CMS
+requests can return quickly. Run `python manage.py process_chart_jobs` beside
+the web server to process queued work. Production startup already launches the
+worker helper in the same service, and the `Procfile` also exposes a dedicated
+`worker` process if you split web and worker services later.
+
+Set `CHART_JOBS_ASYNC=false` for local debugging when you want the old
+request-blocking behavior. Set `REDIS_URL` to use Redis as Django's shared
+cache for public `/app-data/` payloads across gunicorn workers.
+
 
 ### Rebuild after a methodology deployment
 

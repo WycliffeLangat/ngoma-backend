@@ -825,6 +825,20 @@ class CmsWeeklyUploadSerializer(serializers.ModelSerializer):
         return validated
 
 
+class ChartCalculationJobSerializer(serializers.ModelSerializer):
+    created_by_name = serializers.CharField(source='created_by.username', read_only=True)
+
+    class Meta:
+        model = ChartCalculationJob
+        fields = [
+            'id', 'job_type', 'status', 'payload', 'result', 'error',
+            'dedupe_key', 'priority', 'attempts', 'max_attempts',
+            'locked_by', 'locked_at', 'started_at', 'finished_at',
+            'created_by', 'created_by_name', 'created_at', 'updated_at',
+        ]
+        read_only_fields = fields
+
+
 class AuditLogSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(source='user.username', read_only=True)
 

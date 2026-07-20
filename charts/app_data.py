@@ -55,6 +55,14 @@ PUBLIC_DATA_AUDIT_MODULES = {
 
 
 def _public_data_revision():
+    action_rev = (
+        SiteSetting.objects.filter(key='_cms_action_revision')
+        .values_list('value', flat=True)
+        .first()
+    )
+    if action_rev and isinstance(action_rev, dict) and action_rev.get('ts'):
+        return f"x:{action_rev.get('ts')}"
+
     latest_log = (
         AuditLog.objects.filter(module__in=PUBLIC_DATA_AUDIT_MODULES)
         .values("id", "created_at")
@@ -81,14 +89,9 @@ def _public_data_revision():
     latest_page_content = aggregates["page_content"]
     latest_setting = aggregates["setting"]
 
-    # Explicit bump written by merge/hard_delete actions — guarantees a revision
+    # Explicit bump written by merge/hard_delete actions - guarantees a revision
     # change even when audit() fails AND the deleted record wasn't the most
     # recently updated model (so Max("updated_at") stays the same).
-    action_rev = (
-        SiteSetting.objects.filter(key='_cms_action_revision')
-        .values_list('value', flat=True)
-        .first()
-    )
 
     parts = []
     if latest_log:

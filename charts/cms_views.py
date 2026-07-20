@@ -28,6 +28,7 @@ from .models import PlatformChartEntry
 from .cms_alerts import build_dashboard_alerts, summarize_alerts
 from .methodology import platforms_for
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
+from .jobs import enqueue_chart_job, enqueue_harmonize_job
 
 
 WORKBOOK_MAX_ROWS = 500
@@ -38,6 +39,26 @@ class NamedBytesIO(io.BytesIO):
     def __init__(self, content, name):
         super().__init__(content)
         self.name = name
+
+
+def _job_is_pending(job):
+    return job.status in {
+        ChartCalculationJob.Status.QUEUED,
+        ChartCalculationJob.Status.RUNNING,
+    }
+
+
+def _job_payload(job, request):
+    return ChartCalculationJobSerializer(job, context={'request': request}).data
+
+
+def _job_response(job, request, **extra):
+    status_code = status.HTTP_202_ACCEPTED if _job_is_pending(job) else status.HTTP_200_OK
+    return Response({
+        **extra,
+        'queued': _job_is_pending(job),
+        'job': _job_payload(job, request),
+    }, status=status_code)
 
 
 def _safe_workbook_filename(name, default_name):
@@ -432,6 +453,46 @@ class CmsBaseViewSet(viewsets.ModelViewSet):
         })
         bump_public_revision()
         return Response({'deleted': True}, status=200)
+
+
+class ChartCalculationJobViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [CmsRolePermission]
+    pagination_class = CmsPagination
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    queryset = ChartCalculationJob.objects.select_related('created_by').all()
+    serializer_class = ChartCalculationJobSerializer
+    search_fields = ['job_type', 'status', 'dedupe_key', 'error']
+    ordering_fields = ['created_at', 'updated_at', 'started_at', 'finished_at', 'priority', 'status']
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        job_type = self.request.query_params.get('job_type')
+        status_param = self.request.query_params.get('status')
+        if job_type:
+            qs = qs.filter(job_type=job_type)
+        if status_param:
+            qs = qs.filter(status=status_param)
+        return qs
+
+    @action(detail=True, methods=['post'])
+    def retry(self, request, pk=None):
+        job = self.get_object()
+        if job.status not in {
+            ChartCalculationJob.Status.FAILED,
+            ChartCalculationJob.Status.SUCCEEDED,
+        }:
+            return Response({'detail': 'Only finished jobs can be queued again.'}, status=400)
+        job.status = ChartCalculationJob.Status.QUEUED
+        job.result = {}
+        job.error = ''
+        job.locked_by = ''
+        job.locked_at = None
+        job.finished_at = None
+        job.save(update_fields=[
+            'status', 'result', 'error', 'locked_by', 'locked_at',
+            'finished_at', 'updated_at',
+        ])
+        return Response(self.get_serializer(job).data)
 
 
 class CmsUserViewSet(CmsBaseViewSet):
@@ -1011,12 +1072,15 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
             chart.published_by = request.user
             chart.published_at = timezone.now()
             chart.save(update_fields=['is_published', 'status', 'published_by', 'published_at', 'updated_at'])
-            harmonization = harmonize_chart_history(chart_type=chart.chart_type)
+            job = enqueue_harmonize_job(user=request.user, chart_type=chart.chart_type)
             audit(
                 request, 'published_chart', module='charts', obj=chart,
-                new={'harmonization': harmonization},
+                new={'calculation_job': job.id},
             )
-        return Response(CmsMonthlyChartSerializer(chart).data)
+        data = CmsMonthlyChartSerializer(chart).data
+        data['queued'] = _job_is_pending(job)
+        data['job'] = _job_payload(job, request)
+        return Response(data, status=status.HTTP_202_ACCEPTED if _job_is_pending(job) else status.HTTP_200_OK)
 
     @action(detail=False, methods=['get'])
     def options(self, request):
@@ -1034,12 +1098,15 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
             chart.status = 'draft'
             chart.published_at = None
             chart.save(update_fields=['is_published', 'status', 'published_at', 'updated_at'])
-            harmonization = harmonize_chart_history(chart_type=chart.chart_type)
+            job = enqueue_harmonize_job(user=request.user, chart_type=chart.chart_type)
             audit(
                 request, 'unpublished_chart', module='charts', obj=chart,
-                new={'harmonization': harmonization},
+                new={'calculation_job': job.id},
             )
-        return Response(CmsMonthlyChartSerializer(chart).data)
+        data = CmsMonthlyChartSerializer(chart).data
+        data['queued'] = _job_is_pending(job)
+        data['job'] = _job_payload(job, request)
+        return Response(data, status=status.HTTP_202_ACCEPTED if _job_is_pending(job) else status.HTTP_200_OK)
 
     @action(detail=True, methods=['delete'], url_path='hard_delete')
     def hard_delete(self, request, pk=None):
@@ -1060,10 +1127,10 @@ class CmsMonthlyChartViewSet(CmsBaseViewSet):
         with transaction.atomic():
             obj.delete()
         audit(request, 'hard_deleted', module=self.module_name, new={'id': obj_id, 'repr': obj_repr})
-        harmonize_chart_history(chart_type=chart_type)
+        job = enqueue_harmonize_job(user=request.user, chart_type=chart_type)
         pruned = prune_orphaned_releases(release_ids)
         bump_public_revision()
-        return Response({'deleted': True, 'releases_pruned': pruned}, status=200)
+        return _job_response(job, request, deleted=True, releases_pruned=pruned)
 
 
 class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
@@ -1139,11 +1206,10 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
                 0,
             )
         obj = serializer.save()
-        result = harmonize_chart_history(chart_type=obj.chart.chart_type)
-        obj.refresh_from_db()
+        job = enqueue_harmonize_job(user=self.request.user, chart_type=obj.chart.chart_type)
         audit(self.request, 'created', module=self.module_name, obj=obj, new={
             **serializer.data,
-            'harmonization': result,
+            'calculation_job': job.id,
         })
 
     def perform_update(self, serializer):
@@ -1170,11 +1236,10 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
                 release.featured_artists = next_featured
                 release.save(update_fields=['featured_artists', 'updated_at'])
             snapshot_result = sync_release_chart_entry_snapshots(release)
-        result = harmonize_chart_history(chart_type=obj.chart.chart_type)
-        obj.refresh_from_db()
+        job = enqueue_harmonize_job(user=self.request.user, chart_type=obj.chart.chart_type)
         audit(self.request, 'updated', module=self.module_name, obj=obj, old=old, new={
             **serializer.data,
-            'harmonization': result,
+            'calculation_job': job.id,
             'chart_entry_snapshot_sync': snapshot_result,
         })
 
@@ -1183,17 +1248,18 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
         release_id = instance.release_id
         audit(self.request, 'deleted', module=self.module_name, obj=instance)
         instance.delete()
-        harmonize_chart_history(chart_type=chart_type)
+        enqueue_harmonize_job(user=self.request.user, chart_type=chart_type)
         prune_orphaned_releases([release_id])
 
     @action(detail=False, methods=['post'])
     def harmonize(self, request):
-        result = harmonize_chart_history(
+        job = enqueue_harmonize_job(
+            user=request.user,
             chart_type=request.data.get('chart_type'),
             chart_ids=request.data.get('chart_ids') or [],
         )
-        audit(request, 'harmonized_chart_history', module=self.module_name, new=result)
-        return Response(result)
+        audit(request, 'queued_chart_harmonization', module=self.module_name, new={'job_id': job.id})
+        return _job_response(job, request)
 
     @action(detail=False, methods=['post'])
     def reorder(self, request):
@@ -1206,12 +1272,12 @@ class CmsMonthlyChartEntryViewSet(CmsBaseViewSet):
             chart = MonthlyChart.objects.get(pk=chart_id)
         except MonthlyChart.DoesNotExist:
             return Response({'detail': 'Chart not found.'}, status=404)
-        result = harmonize_chart_history(chart_ids=[chart.id])
+        job = enqueue_harmonize_job(user=request.user, chart_ids=[chart.id])
         audit(request, 'reordered_entries', module=self.module_name, new={
             'chart_id': chart_id,
-            **result,
+            'job_id': job.id,
         })
-        return Response(result)
+        return _job_response(job, request, chart_id=chart_id)
 
 
 class CmsRegionalChartEntryViewSet(CmsBaseViewSet):
@@ -1246,6 +1312,19 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
     search_fields = ['chart_type', 'processing_notes']
     module_name = 'uploads'
 
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        job = getattr(self, 'created_job', None)
+        if job:
+            response.data = {
+                **dict(response.data),
+                'queued': _job_is_pending(job),
+                'job': _job_payload(job, request),
+            }
+            if _job_is_pending(job):
+                response.status_code = status.HTTP_202_ACCEPTED
+        return response
+
     def perform_destroy(self, instance):
         # Capture what this upload contributed before the CASCADE wipes its
         # PlatformChartEntry rows, so the affected month's MonthlyChartEntry
@@ -1262,12 +1341,18 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
         instance.delete()
 
         if WeeklyUpload.objects.filter(chart_type=chart_type, year=year, month=month, processed=True).exists():
-            rebuild_monthly_chart(chart_type, year, month)
+            job = enqueue_chart_job(
+                ChartCalculationJob.JobType.REBUILD_MONTH,
+                {'chart_type': chart_type, 'year': year, 'month': month},
+                user=self.request.user,
+                dedupe_key=f'rebuild-month:{chart_type}:{year}:{month}',
+                priority=30,
+            )
         else:
             MonthlyChartEntry.objects.filter(
                 chart__chart_type=chart_type, chart__year=year, chart__month=month,
             ).delete()
-            harmonize_chart_history(chart_type=chart_type)
+            job = enqueue_harmonize_job(user=self.request.user, chart_type=chart_type)
 
         pruned = prune_orphaned_releases(release_ids)
         if pruned:
@@ -1295,24 +1380,22 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
             workbook_data=workbook_bytes,
         )
         skip_harmonize = str(self.request.data.get('skip_harmonize', '')).lower() in ('1', 'true', 'yes')
-        try:
-            result = process_weekly_upload(
-                upload,
-                file_obj=NamedBytesIO(workbook_bytes, original_filename),
-                harmonize=not skip_harmonize,
-            )
-        except Exception as exc:
-            upload.processing_notes = f'Error: {exc}'
-            upload.save(update_fields=['processing_notes'])
-            raise DRFValidationError({'file': f'Could not process this workbook: {exc}'}) from exc
-        upload.processing_notes = str(result)
+        upload.processing_notes = 'Queued for background processing.'
         upload.save(update_fields=['processing_notes'])
+        job = enqueue_chart_job(
+            ChartCalculationJob.JobType.PROCESS_WEEKLY_UPLOAD,
+            {'weekly_upload_id': upload.id, 'harmonize': not skip_harmonize},
+            user=self.request.user,
+            dedupe_key=f'weekly-upload:{upload.id}:process',
+            priority=20,
+        )
+        self.created_job = job
         audit(
             self.request,
-            'processed_weekly_chart',
+            'queued_weekly_chart_processing',
             module='uploads',
             obj=upload,
-            new=result,
+            new={'job_id': job.id, 'queued': _job_is_pending(job)},
         )
 
     @action(detail=True, methods=['get', 'patch'])
@@ -1334,26 +1417,26 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
         upload.workbook_data = workbook_bytes
         upload.file = filename
         upload.processed = False
-        upload.processing_notes = ''
+        upload.processing_notes = 'Queued for background processing.'
         upload.save(update_fields=['workbook_data', 'file', 'processed', 'processing_notes'])
-        try:
-            result = process_weekly_upload(upload, file_obj=NamedBytesIO(workbook_bytes, filename))
-        except Exception as exc:
-            upload.processed = False
-            upload.processing_notes = f'Error: {exc}'
-            upload.save(update_fields=['processed', 'processing_notes'])
-            raise DRFValidationError({'workbook': f'Could not process this workbook: {exc}'}) from exc
-        upload.processing_notes = str(result)
-        upload.save(update_fields=['processing_notes'])
-        audit(request, 'edited_weekly_workbook', module='uploads', obj=upload, new=result)
+        job = enqueue_chart_job(
+            ChartCalculationJob.JobType.PROCESS_WEEKLY_UPLOAD,
+            {'weekly_upload_id': upload.id, 'harmonize': True},
+            user=request.user,
+            dedupe_key=f'weekly-upload:{upload.id}:process',
+            priority=20,
+        )
+        audit(request, 'edited_weekly_workbook', module='uploads', obj=upload, new={'job_id': job.id})
         return Response({
             'upload': CmsWeeklyUploadSerializer(upload, context={'request': request}).data,
             'workbook': {
                 'filename': filename,
                 'sheets': _sheets_from_workbook_bytes(workbook_bytes),
             },
-            'processing': result,
-        })
+            'processing': {'queued': _job_is_pending(job), 'job_id': job.id},
+            'queued': _job_is_pending(job),
+            'job': _job_payload(job, request),
+        }, status=status.HTTP_202_ACCEPTED if _job_is_pending(job) else status.HTTP_200_OK)
 
     @action(detail=True, methods=['get'])
     def download(self, request, pk=None):
@@ -1368,14 +1451,20 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
         chart_type = request.data.get('chart_type', ChartType.SINGLES)
         year = int(request.data.get('year', timezone.now().year))
         month = int(request.data.get('month', timezone.now().month))
-        result = rebuild_monthly_chart(chart_type, year, month)
+        job = enqueue_chart_job(
+            ChartCalculationJob.JobType.REBUILD_MONTH,
+            {'chart_type': chart_type, 'year': year, 'month': month},
+            user=request.user,
+            dedupe_key=f'rebuild-month:{chart_type}:{year}:{month}',
+            priority=30,
+        )
         audit(
             request,
-            'rebuilt_monthly_chart',
+            'queued_monthly_chart_rebuild',
             module='uploads',
-            new={'chart_type': chart_type, 'year': year, 'month': month, **result},
+            new={'chart_type': chart_type, 'year': year, 'month': month, 'job_id': job.id},
         )
-        return Response(result)
+        return _job_response(job, request, chart_type=chart_type, year=year, month=month)
 
 
 class ChartUploadViewSet(CmsBaseViewSet):
@@ -1459,11 +1548,18 @@ class ChartUploadViewSet(CmsBaseViewSet):
 
         summary = self._parse_and_validate(upload, file_obj=NamedBytesIO(workbook_bytes, filename))
         publish_result = None
+        publish_job = None
         if was_published and summary.get('can_publish'):
-            chart, count = publish_chart_upload(upload, user=request.user)
+            publish_job = enqueue_chart_job(
+                ChartCalculationJob.JobType.PUBLISH_CHART_UPLOAD,
+                {'chart_upload_id': upload.id, 'user_id': request.user.id},
+                user=request.user,
+                dedupe_key=f'publish-chart-upload:{upload.id}',
+                priority=25,
+            )
             publish_result = {
-                'chart_id': chart.id,
-                'entries_created': count,
+                'queued': _job_is_pending(publish_job),
+                'job_id': publish_job.id,
             }
         audit(request, 'edited_chart_workbook', module='uploads', obj=upload, new={
             'summary': summary,
@@ -1477,7 +1573,8 @@ class ChartUploadViewSet(CmsBaseViewSet):
             },
             'validation': summary,
             'published': publish_result,
-        })
+            **({'queued': _job_is_pending(publish_job), 'job': _job_payload(publish_job, request)} if publish_job else {}),
+        }, status=status.HTTP_202_ACCEPTED if publish_job and _job_is_pending(publish_job) else status.HTTP_200_OK)
 
     @action(detail=True, methods=['get'])
     def download(self, request, pk=None):
@@ -1518,9 +1615,18 @@ class ChartUploadViewSet(CmsBaseViewSet):
         upload = self.get_object()
         if not upload.validation_summary.get('can_publish'):
             return Response({'detail': 'Fix validation errors before publishing.', 'validation': upload.validation_summary}, status=400)
-        chart, count = publish_chart_upload(upload, user=request.user)
-        audit(request, 'published_upload', module='uploads', obj=upload, new={'chart_id': chart.id, 'entries': count})
-        return Response({'upload': ChartUploadSerializer(upload).data, 'chart': CmsMonthlyChartSerializer(chart).data, 'entries_created': count})
+        job = enqueue_chart_job(
+            ChartCalculationJob.JobType.PUBLISH_CHART_UPLOAD,
+            {'chart_upload_id': upload.id, 'user_id': request.user.id},
+            user=request.user,
+            dedupe_key=f'publish-chart-upload:{upload.id}',
+            priority=25,
+        )
+        audit(request, 'queued_upload_publish', module='uploads', obj=upload, new={'job_id': job.id})
+        return _job_response(
+            job, request, upload=ChartUploadSerializer(upload).data,
+            chart=None, entries_created=0,
+        )
 
     @action(detail=True, methods=['post'])
     def reject(self, request, pk=None):

@@ -216,6 +216,56 @@ class WeeklyUpload(models.Model):
         return f"{self.chart_type} W{self.week} {self.year}-{self.month:02d}"
 
 
+class ChartCalculationJob(models.Model):
+    """Small database-backed queue for expensive chart calculations."""
+
+    class JobType(models.TextChoices):
+        PROCESS_WEEKLY_UPLOAD = 'process_weekly_upload', 'Process weekly upload'
+        REBUILD_MONTH = 'rebuild_month', 'Rebuild monthly chart'
+        PUBLISH_CHART_UPLOAD = 'publish_chart_upload', 'Publish chart upload'
+        HARMONIZE_CHART_HISTORY = 'harmonize_chart_history', 'Harmonize chart history'
+
+    class Status(models.TextChoices):
+        QUEUED = 'queued', 'Queued'
+        RUNNING = 'running', 'Running'
+        SUCCEEDED = 'succeeded', 'Succeeded'
+        FAILED = 'failed', 'Failed'
+
+    job_type = models.CharField(max_length=64, choices=JobType.choices)
+    status = models.CharField(max_length=24, choices=Status.choices, default=Status.QUEUED)
+    payload = models.JSONField(default=dict, blank=True)
+    result = models.JSONField(default=dict, blank=True)
+    error = models.TextField(blank=True, default='')
+    dedupe_key = models.CharField(max_length=255, blank=True, default='', db_index=True)
+    priority = models.IntegerField(default=100)
+    attempts = models.PositiveIntegerField(default=0)
+    max_attempts = models.PositiveIntegerField(default=3)
+    locked_by = models.CharField(max_length=120, blank=True, default='')
+    locked_at = models.DateTimeField(blank=True, null=True)
+    started_at = models.DateTimeField(blank=True, null=True)
+    finished_at = models.DateTimeField(blank=True, null=True)
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='chart_calculation_jobs',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['priority', 'created_at']
+        indexes = [
+            models.Index(fields=['status', 'priority', 'created_at'], name='job_status_priority_idx'),
+            models.Index(fields=['job_type', 'status'], name='job_type_status_idx'),
+            models.Index(fields=['locked_at'], name='job_locked_at_idx'),
+        ]
+
+    def __str__(self):
+        return f"{self.get_job_type_display()} #{self.pk} ({self.status})"
+
+
 class NormalizationRule(models.Model):
     """Stores artist/title normalization rules"""
     rule_type = models.CharField(max_length=10, choices=[('artist', 'Artist'), ('title', 'Title')])

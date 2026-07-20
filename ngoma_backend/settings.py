@@ -3,6 +3,7 @@ Django settings for ngoma_backend project.
 Production-ready: reads from environment variables, falls back to dev defaults.
 """
 import os
+import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,13 @@ def _parse_csv(value):
 
 def _dedupe(items):
     return list(dict.fromkeys(items))
+
+
+def _env_bool(name, default=False):
+    raw = os.environ.get(name)
+    if raw is None:
+        return bool(default)
+    return raw.strip().lower() in {'1', 'true', 'yes', 'on'}
 
 
 DEFAULT_ALLOWED_HOSTS = [
@@ -99,6 +107,25 @@ else:
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'ngoma_charts.db',
     }}
+
+# Heavy chart calculations are queued by default outside tests. Run
+# `python manage.py process_chart_jobs` beside the web process, or set
+# CHART_JOBS_ASYNC=false for local one-process debugging.
+CHART_JOBS_ASYNC = _env_bool('CHART_JOBS_ASYNC', default='test' not in sys.argv)
+
+# Optional shared cache. With REDIS_URL set, /app-data/ payloads are shared
+# across gunicorn workers and survive longer than one process' local memory.
+REDIS_URL = os.environ.get('REDIS_URL')
+if REDIS_URL:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': REDIS_URL,
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            },
+        },
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},

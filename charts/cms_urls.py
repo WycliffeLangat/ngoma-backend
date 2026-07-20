@@ -12,6 +12,7 @@ router.register('charts', cms_views.CmsMonthlyChartViewSet, basename='cms-charts
 router.register('chart-entries', cms_views.CmsMonthlyChartEntryViewSet, basename='cms-chart-entries')
 router.register('regional-chart-entries', cms_views.CmsRegionalChartEntryViewSet, basename='cms-regional-chart-entries')
 router.register('chart-uploads', cms_views.ChartUploadViewSet, basename='cms-chart-uploads')
+router.register('chart-jobs', cms_views.ChartCalculationJobViewSet, basename='cms-chart-jobs')
 router.register('weekly-uploads', cms_views.CmsWeeklyUploadViewSet, basename='cms-weekly-uploads')
 router.register('news', cms_views.CmsNewsArticleViewSet, basename='cms-news')
 router.register('media', cms_views.CmsMediaAssetViewSet, basename='cms-media')

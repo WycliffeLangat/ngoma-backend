@@ -4,6 +4,6 @@
     "preDeployCommand": [
       "python manage.py migrate --noinput"
     ],
-    "startCommand": "python manage.py collectstatic --noinput && gunicorn ngoma_backend.wsgi --workers 2 --timeout 900 --log-file -"
+    "startCommand": "python manage.py collectstatic --noinput && (python manage.py process_chart_jobs --sleep 2 &) && gunicorn ngoma_backend.wsgi --workers 2 --timeout 900 --log-file -"
   }
 }
