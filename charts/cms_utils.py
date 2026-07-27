@@ -4,6 +4,7 @@ import re
 from collections import Counter, defaultdict
 from django.db import transaction
 from django.db.models import Q
+from django.db.models.functions import Lower
 from collections.abc import Mapping
 from datetime import date, datetime, time
 from decimal import Decimal
@@ -383,8 +384,7 @@ def validate_chart_rows(rows, chart_type='singles', platform=None, max_size=None
         missing = [rank for rank in range(1, min(max_size, max(ranks)) + 1) if rank not in rank_counts]
         if missing:
             warnings.append({'row': None, 'field': 'rank', 'message': f'Missing rank(s): {missing[:15]}{"..." if len(missing)>15 else ""}'})
-    for row in rows:
-        row['entry_status'] = detect_entry_status(row, chart_type, platform, year, month)
+    annotate_entry_statuses(rows, chart_type, platform, year, month)
     return {
         'errors': errors,
         'warnings': warnings,
@@ -409,6 +409,167 @@ def find_artist_by_name(name):
             if name in (artist.aliases or []):
                 return artist
         return None
+
+
+def artist_lookup_for_names(names):
+    normalized_names = {
+        normalize_name(name)
+        for name in names
+        if normalize_name(name)
+    }
+    lookup_keys = {name.casefold() for name in normalized_names}
+    if not lookup_keys:
+        return {}
+
+    lookup = {}
+    exact_artists = (
+        Artist.objects
+        .annotate(name_lookup=Lower('name'))
+        .filter(name_lookup__in=lookup_keys)
+        .only('id', 'name', 'aliases', 'artist_type')
+    )
+    for artist in exact_artists:
+        lookup.setdefault(normalize_name(artist.name).casefold(), artist)
+
+    missing = lookup_keys - set(lookup)
+    if missing:
+        alias_artists = (
+            Artist.objects
+            .exclude(aliases=[])
+            .only('id', 'name', 'aliases', 'artist_type')
+        )
+        for artist in alias_artists:
+            for alias in artist.aliases or []:
+                key = normalize_name(alias).casefold()
+                if key in missing:
+                    lookup.setdefault(key, artist)
+                    missing.discard(key)
+                    if not missing:
+                        break
+            if not missing:
+                break
+
+    return lookup
+
+
+def primary_artist_name_from_lookup(raw_artist, artist_lookup):
+    raw_artist = normalize_name(raw_artist)
+    artist = artist_lookup.get(raw_artist.casefold())
+    preserve_name = should_preserve_registered_artist_name(raw_artist, artist)
+    primary_names, _ = parse_artist_credit(raw_artist, preserve_name=preserve_name)
+    return primary_names[0] if primary_names else raw_artist
+
+
+def annotate_entry_statuses(rows, chart_type, platform, year, month):
+    candidates = []
+    raw_artist_names = set()
+    for row in rows:
+        if not (year and month and row.get('title') and row.get('artist')):
+            row['entry_status'] = 'unknown'
+            continue
+        raw_artist = normalize_name(row.get('artist'))
+        raw_artist_names.add(raw_artist)
+        candidates.append((row, raw_artist))
+
+    if not candidates:
+        return rows
+
+    raw_artist_lookup = artist_lookup_for_names(raw_artist_names)
+    parsed_candidates = []
+    primary_artist_names = set()
+    for row, raw_artist in candidates:
+        primary_artist = primary_artist_name_from_lookup(raw_artist, raw_artist_lookup)
+        primary_artist_names.add(primary_artist)
+        parsed_candidates.append((row, raw_artist, primary_artist))
+
+    missing_primary_names = {
+        name
+        for name in primary_artist_names
+        if name.casefold() not in raw_artist_lookup
+    }
+    artist_lookup = {
+        **raw_artist_lookup,
+        **artist_lookup_for_names(missing_primary_names),
+    }
+    release_keys = []
+    artist_ids = set()
+    titles = set()
+    for row, raw_artist, primary_artist in parsed_candidates:
+        artist = (
+            artist_lookup.get(primary_artist.casefold())
+            or artist_lookup.get(raw_artist.casefold())
+        )
+        canonical_title = normalize_name(row.get('title')).lower()
+        release_keys.append((row, artist, canonical_title))
+        if artist:
+            artist_ids.add(artist.id)
+            titles.add(canonical_title)
+
+    release_lookup = {}
+    if artist_ids and titles:
+        releases = Release.objects.filter(
+            chart_type=chart_type,
+            artist_id__in=artist_ids,
+            canonical_title__in=titles,
+        ).only('id', 'artist_id', 'canonical_title')
+        release_lookup = {
+            (release.artist_id, release.canonical_title): release
+            for release in releases
+        }
+
+    row_releases = []
+    release_ids = set()
+    for row, artist, canonical_title in release_keys:
+        release = release_lookup.get((artist.id, canonical_title)) if artist else None
+        row_releases.append((row, release))
+        if release:
+            release_ids.add(release.id)
+
+    previous_by_release = {}
+    earlier_release_ids = set()
+    if release_ids:
+        prev_year, prev_month = (year, month - 1) if month > 1 else (year - 1, 12)
+        previous_entries = (
+            MonthlyChartEntry.objects
+            .filter(
+                chart__year=prev_year,
+                chart__month=prev_month,
+                chart__chart_type=chart_type,
+                release_id__in=release_ids,
+                platform=platform,
+            )
+            .only('release_id', 'rank')
+            .order_by('rank')
+        )
+        for entry in previous_entries:
+            previous_by_release.setdefault(entry.release_id, entry)
+
+        earlier_release_ids = set(
+            MonthlyChartEntry.objects
+            .filter(
+                chart__chart_type=chart_type,
+                release_id__in=release_ids,
+                platform=platform,
+            )
+            .exclude(chart__year=year, chart__month=month)
+            .values_list('release_id', flat=True)
+            .distinct()
+        )
+
+    for row, release in row_releases:
+        if not release:
+            row['entry_status'] = 'new'
+            continue
+        previous = previous_by_release.get(release.id)
+        if previous:
+            row['prev_rank'] = previous.rank
+            row['entry_status'] = 'returning'
+        elif release.id in earlier_release_ids:
+            row['entry_status'] = 'reentry'
+        else:
+            row['entry_status'] = 'new'
+
+    return rows
 
 
 def get_or_create_cms_artist(name, country='', country_code=''):
@@ -496,25 +657,8 @@ def get_or_create_cms_release(row, artist, chart_type):
 
 
 def detect_entry_status(row, chart_type, platform, year, month):
-    if not (year and month and row.get('title') and row.get('artist')):
-        return 'unknown'
-    raw_artist = normalize_name(row.get('artist'))
-    exact_artist = find_artist_by_name(raw_artist)
-    preserve_name = should_preserve_registered_artist_name(raw_artist, exact_artist)
-    primary_names, _ = parse_artist_credit(raw_artist, preserve_name=preserve_name)
-    artist = find_artist_by_name(primary_names[0] if primary_names else raw_artist)
-    if not artist:
-        return 'new'
-    release = Release.objects.filter(canonical_title=normalize_name(row.get('title')).lower(), artist=artist, chart_type=chart_type).first()
-    if not release:
-        return 'new'
-    prev_year, prev_month = (year, month - 1) if month > 1 else (year - 1, 12)
-    previous = MonthlyChartEntry.objects.filter(chart__year=prev_year, chart__month=prev_month, chart__chart_type=chart_type, release=release, platform=platform).first()
-    if previous:
-        row['prev_rank'] = previous.rank
-        return 'returning'
-    earlier = MonthlyChartEntry.objects.filter(chart__chart_type=chart_type, release=release, platform=platform).exclude(chart__year=year, chart__month=month).exists()
-    return 'reentry' if earlier else 'new'
+    annotate_entry_statuses([row], chart_type, platform, year, month)
+    return row.get('entry_status', 'unknown')
 
 
 def publish_chart_upload(upload, user=None):

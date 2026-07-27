@@ -11,7 +11,7 @@ from django.test import TestCase
 from django.test.utils import CaptureQueriesContext
 from rest_framework.test import APIClient
 
-from .cms_utils import harmonize_chart_history
+from .cms_utils import harmonize_chart_history, validate_chart_rows
 from .models import (
     AdminProfile,
     AdminRole,
@@ -31,6 +31,84 @@ from .models import (
     SiteSetting,
     ChartUpload,
 )
+
+
+class ChartUploadValidationTests(TestCase):
+    def test_validate_chart_rows_batches_entry_status_lookups(self):
+        returning_artist = Artist.objects.create(name="Returning Artist", slug="returning-artist")
+        dormant_artist = Artist.objects.create(name="Dormant Artist", slug="dormant-artist")
+        returning_release = Release.objects.create(
+            title="Returning Song",
+            artist=returning_artist,
+            chart_type="singles",
+            canonical_title="returning song",
+        )
+        dormant_release = Release.objects.create(
+            title="Dormant Song",
+            artist=dormant_artist,
+            chart_type="singles",
+            canonical_title="dormant song",
+        )
+        previous_chart = MonthlyChart.objects.create(
+            year=2090,
+            month=6,
+            chart_type="singles",
+            label="June 2090",
+            status="published",
+            is_published=True,
+        )
+        earlier_chart = MonthlyChart.objects.create(
+            year=2090,
+            month=4,
+            chart_type="singles",
+            label="April 2090",
+            status="published",
+            is_published=True,
+        )
+        MonthlyChartEntry.objects.create(
+            chart=previous_chart,
+            release=returning_release,
+            rank=7,
+            total_points=44,
+        )
+        MonthlyChartEntry.objects.create(
+            chart=earlier_chart,
+            release=dormant_release,
+            rank=9,
+            total_points=42,
+        )
+
+        templates = [
+            {"title": "Returning Song", "artist": "Returning Artist", "expected": "returning"},
+            {"title": "Dormant Song", "artist": "Dormant Artist", "expected": "reentry"},
+            {"title": "Unseen Song", "artist": "Unseen Artist", "expected": "new"},
+        ]
+        rows = []
+        expected_by_row = {}
+        for index in range(12):
+            template = templates[index % len(templates)]
+            row = {
+                "row_number": index + 1,
+                "rank": index + 1,
+                "title": template["title"],
+                "artist": template["artist"],
+                "country": "Kenya",
+                "country_code": "KE",
+                "release_year": 2090,
+            }
+            rows.append(row)
+            expected_by_row[index + 1] = template["expected"]
+
+        with CaptureQueriesContext(connection) as captured:
+            summary = validate_chart_rows(rows, chart_type="singles", year=2090, month=7)
+
+        self.assertLessEqual(len(captured), 10)
+        self.assertEqual(summary["error_count"], 0)
+        for row in rows:
+            self.assertEqual(row["entry_status"], expected_by_row[row["row_number"]])
+        returning_rows = [row for row in rows if row["title"] == "Returning Song"]
+        self.assertTrue(returning_rows)
+        self.assertTrue(all(row["prev_rank"] == 7 for row in returning_rows))
 
 
 class PublicAppDataSyncTests(TestCase):
