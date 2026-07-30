@@ -285,6 +285,17 @@ class StorageDebugView(APIView):
             'cloudinary_cloud_name': getattr(cfg, 'cloud_name', None),
             'cloudinary_api_key_set': bool(getattr(cfg, 'api_key', None)),
             'cloudinary_api_secret_set': bool(getattr(cfg, 'api_secret', None)),
+            'GOOGLE_DRIVE_STORAGE_READY': bool(getattr(dj_settings, 'GOOGLE_DRIVE_STORAGE_READY', False)),
+            'GOOGLE_DRIVE_STORAGE_FOLDER_ID_SET': bool(getattr(dj_settings, 'GOOGLE_DRIVE_STORAGE_FOLDER_ID', '')),
+            'GOOGLE_DRIVE_MIRROR_FOLDER_IDS_COUNT': len(getattr(dj_settings, 'GOOGLE_DRIVE_MIRROR_FOLDER_IDS', []) or []),
+            'GOOGLE_DRIVE_CREDENTIALS_SET': bool(
+                getattr(dj_settings, 'GOOGLE_DRIVE_CREDENTIALS_JSON', '') or
+                getattr(dj_settings, 'GOOGLE_DRIVE_CREDENTIALS_B64', '') or
+                getattr(dj_settings, 'GOOGLE_DRIVE_CREDENTIALS_FILE', '')
+            ),
+            'GOOGLE_DRIVE_PUBLIC_READ': bool(getattr(dj_settings, 'GOOGLE_DRIVE_PUBLIC_READ', False)),
+            'GOOGLE_DRIVE_PUBLIC_PREFIXES': getattr(dj_settings, 'GOOGLE_DRIVE_PUBLIC_PREFIXES', []),
+            'GOOGLE_DRIVE_STORAGE_OWNER_EMAILS': getattr(dj_settings, 'GOOGLE_DRIVE_STORAGE_OWNER_EMAILS', []),
         })
 
 

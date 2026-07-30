@@ -146,10 +146,36 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Use Cloudinary for media uploads when CLOUDINARY_URL env var is set.
-# Falls back to local disk (for development without a Cloudinary account).
+# Use Google Drive for media/uploads/backups when folder + service-account
+# credentials are set. Falls back to Cloudinary when CLOUDINARY_URL is set,
+# then local disk for development.
+GOOGLE_DRIVE_CREDENTIALS_JSON = os.environ.get('GOOGLE_DRIVE_CREDENTIALS_JSON', '')
+GOOGLE_DRIVE_CREDENTIALS_B64 = os.environ.get('GOOGLE_DRIVE_CREDENTIALS_B64', '')
+GOOGLE_DRIVE_CREDENTIALS_FILE = os.environ.get('GOOGLE_DRIVE_CREDENTIALS_FILE', '')
+GOOGLE_DRIVE_STORAGE_FOLDER_ID = (
+    os.environ.get('GOOGLE_DRIVE_STORAGE_FOLDER_ID', '') or
+    os.environ.get('GOOGLE_DRIVE_FOLDER_ID', '')
+)
+GOOGLE_DRIVE_MIRROR_FOLDER_IDS = _parse_csv(os.environ.get('GOOGLE_DRIVE_MIRROR_FOLDER_IDS', ''))
+GOOGLE_DRIVE_PUBLIC_READ = _env_bool('GOOGLE_DRIVE_PUBLIC_READ', default=True)
+GOOGLE_DRIVE_PUBLIC_PREFIXES = _parse_csv(os.environ.get(
+    'GOOGLE_DRIVE_PUBLIC_PREFIXES',
+    'platforms/,artists/,covers/,news/,admin-users/,cms-media/',
+))
+GOOGLE_DRIVE_STORAGE_OWNER_EMAILS = _parse_csv(os.environ.get('GOOGLE_DRIVE_STORAGE_OWNER_EMAILS', ''))
+GOOGLE_DRIVE_URL_TEMPLATE = os.environ.get(
+    'GOOGLE_DRIVE_URL_TEMPLATE',
+    'https://drive.google.com/uc?export=view&id={file_id}',
+)
+
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL', '')
-if CLOUDINARY_URL:
+GOOGLE_DRIVE_STORAGE_READY = bool(
+    GOOGLE_DRIVE_STORAGE_FOLDER_ID and
+    (GOOGLE_DRIVE_CREDENTIALS_JSON or GOOGLE_DRIVE_CREDENTIALS_B64 or GOOGLE_DRIVE_CREDENTIALS_FILE)
+)
+if GOOGLE_DRIVE_STORAGE_READY:
+    DEFAULT_FILE_STORAGE = 'ngoma_backend.storage.GoogleDriveMediaStorage'
+elif CLOUDINARY_URL:
     import cloudinary
     from urllib.parse import urlparse as _urlparse
     _cu = _urlparse(CLOUDINARY_URL)

@@ -44,6 +44,10 @@ git push -u origin main
    | `CORS_ALLOWED_ORIGINS` | `https://ngomacharts.co.ke` (your frontend URL) |
    | `CSRF_TRUSTED_ORIGINS` | `https://your-app-name.up.railway.app` |
    | `AI_ANALYST_ENABLED` | `False` |
+   | `GOOGLE_DRIVE_STORAGE_FOLDER_ID` | Primary Drive folder ID for CMS files |
+   | `GOOGLE_DRIVE_MIRROR_FOLDER_IDS` | Optional mirror Drive folder ID |
+   | `GOOGLE_DRIVE_CREDENTIALS_B64` | Base64 service-account JSON |
+   | `GOOGLE_DRIVE_PUBLIC_PREFIXES` | Public media prefixes only |
 
 6. Wait ~2 minutes for first deploy. The `release` command in Procfile auto-runs migrations.
 
@@ -108,6 +112,12 @@ For when you want more control. You'll provision a droplet, install nginx, gunic
 | `CORS_ALLOWED_ORIGINS` | Yes | `https://ngomacharts.co.ke` |
 | `CSRF_TRUSTED_ORIGINS` | Yes | `https://api.ngomacharts.co.ke` |
 | `AI_ANALYST_ENABLED` | No | `False` |
+| `GOOGLE_DRIVE_STORAGE_OWNER_EMAILS` | No | `wickielangat99@gmail.com,ngomacharts@gmail.com` |
+| `GOOGLE_DRIVE_STORAGE_FOLDER_ID` | For Drive storage | Primary Google Drive folder ID |
+| `GOOGLE_DRIVE_MIRROR_FOLDER_IDS` | No | Backup/mirror Google Drive folder ID |
+| `GOOGLE_DRIVE_CREDENTIALS_B64` | For Drive storage | Base64-encoded service-account JSON |
+| `GOOGLE_DRIVE_PUBLIC_READ` | No | `True` for public media URLs |
+| `GOOGLE_DRIVE_PUBLIC_PREFIXES` | No | `platforms/,artists/,covers/,news/,admin-users/,cms-media/` |
 
 ---
 

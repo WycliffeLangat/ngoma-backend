@@ -133,6 +133,33 @@ Set `CHART_JOBS_ASYNC=false` for local debugging when you want the old
 request-blocking behavior. Set `REDIS_URL` to use Redis as Django's shared
 cache for public `/app-data/` payloads across gunicorn workers.
 
+### Google Drive storage
+
+Production can store CMS media, uploaded files, and backup files in Google
+Drive instead of the server's local filesystem. Keep PostgreSQL/Railway as the
+database source of truth; Drive is used for file storage only.
+
+1. Create a Google Cloud service account with Drive API access.
+2. Create one Drive folder under `wickielangat99@gmail.com` and one under
+   `ngomacharts@gmail.com`.
+3. Share both folders with the service account's `client_email` as Editor.
+4. Set these Railway variables:
+
+```env
+GOOGLE_DRIVE_STORAGE_OWNER_EMAILS=wickielangat99@gmail.com,ngomacharts@gmail.com
+GOOGLE_DRIVE_STORAGE_FOLDER_ID=<primary folder id>
+GOOGLE_DRIVE_MIRROR_FOLDER_IDS=<mirror folder id>
+GOOGLE_DRIVE_CREDENTIALS_B64=<base64 service-account json>
+GOOGLE_DRIVE_PUBLIC_READ=True
+GOOGLE_DRIVE_PUBLIC_PREFIXES=platforms/,artists/,covers/,news/,admin-users/,cms-media/
+```
+
+When `GOOGLE_DRIVE_STORAGE_FOLDER_ID` and credentials are present, Django uses
+`ngoma_backend.storage.GoogleDriveMediaStorage`. If they are absent, it falls
+back to Cloudinary when `CLOUDINARY_URL` is set, then local disk for local
+development. Public sharing is limited to media/image prefixes by default, so
+backup and upload folders remain private.
+
 
 ### Rebuild after a methodology deployment
 
