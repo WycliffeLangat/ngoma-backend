@@ -414,7 +414,14 @@ class Command(BaseCommand):
         primary_ids = set(release.primary_artist_ids)
         artists = [artist for artist in artists if artist.pk not in primary_ids]
         if not artists:
-            report["featured_links_skipped"] += 1
+            if release.featured_artists:
+                report["featured_links_updated"] += 1
+                if apply_changes:
+                    release.featured_artists = ""
+                    release.save(update_fields=["featured_artists", "updated_at"])
+                    sync_release_chart_entry_snapshots(release)
+            else:
+                report["featured_links_skipped"] += 1
             return
 
         current_ids = [
