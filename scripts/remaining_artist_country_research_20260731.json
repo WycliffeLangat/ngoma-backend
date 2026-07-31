@@ -1,0 +1,1903 @@
+{
+  "generated_at": "2026-07-31T10:24:18.420Z",
+  "researched_count": 108,
+  "unresolved_count": 116,
+  "artists": [
+    {
+      "id": 407,
+      "name": "Arrow Bwoy",
+      "country": "Kenya",
+      "country_code": "KE",
+      "city_region": "Nairobi, Kenya",
+      "genre": "Afro-pop; dancehall",
+      "source_url": "https://www.musicinafrica.net/directory/arrow-bwoy",
+      "confidence": "high"
+    },
+    {
+      "id": 2213,
+      "name": "AUDREY NUNA",
+      "country": "United States",
+      "country_code": "US",
+      "source_url": "https://www.wikidata.org/wiki/Q105538243",
+      "source_note": "South Korean-American singer and rapper",
+      "confidence": "medium"
+    },
+    {
+      "id": 641,
+      "name": "B2k Mnyama",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "city_region": "Dar es Salaam, Tanzania",
+      "genre": "Bongo Flava",
+      "source_url": "https://music.apple.com/tz/artist/b2k-mnyama/1490990572",
+      "confidence": "high"
+    },
+    {
+      "id": 561,
+      "name": "Balloranking",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos, Nigeria",
+      "genre": "Afrobeats; street-pop",
+      "source_url": "https://www.musicinafrica.net/directory/balloranking",
+      "confidence": "high"
+    },
+    {
+      "id": 994,
+      "name": "Bam Boy",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "source_url": "https://www.wikidata.org/wiki/Q137425554",
+      "source_note": "Tanzanian musician",
+      "confidence": "medium"
+    },
+    {
+      "id": 2968,
+      "name": "Blumengarten",
+      "country": "Germany",
+      "country_code": "DE",
+      "source_url": "https://www.wikidata.org/wiki/Q121248244",
+      "source_note": "German musical duo",
+      "confidence": "medium"
+    },
+    {
+      "id": 2050,
+      "name": "Boohle",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "Vosloorus, South Africa",
+      "genre": "Amapiano",
+      "source_url": "https://music.apple.com/us/artist/boohle/1454569417",
+      "confidence": "high"
+    },
+    {
+      "id": 1062,
+      "name": "Brick & Lace",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Kingston, Jamaica",
+      "genre": "Dancehall; R&B",
+      "source_url": "https://www.allmusic.com/artist/brick-lace-mn0000642562",
+      "confidence": "high"
+    },
+    {
+      "id": 921,
+      "name": "Bryson Tiller",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Louisville, KY, United States",
+      "genre": "R&B/Soul",
+      "source_url": "https://music.apple.com/us/artist/bryson-tiller/962266584",
+      "confidence": "high"
+    },
+    {
+      "id": 411,
+      "name": "Busy Signal",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "St Ann Parish, Jamaica",
+      "genre": "Dancehall; reggae",
+      "source_url": "https://music.apple.com/us/artist/busy-signal/209487914",
+      "confidence": "high"
+    },
+    {
+      "id": 544,
+      "name": "Caine",
+      "country": "GB",
+      "country_code": "GB",
+      "city_region": "United Kingdom",
+      "genre": "hardstyle",
+      "source_url": "https://musicbrainz.org/artist/c2b2b1b0-8354-44a5-9b61-a33f8795091d",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 386,
+      "name": "CeCe Winans",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Detroit, MI, United States",
+      "genre": "Gospel",
+      "source_url": "https://music.apple.com/us/artist/cece-winans/16162",
+      "confidence": "high"
+    },
+    {
+      "id": 560,
+      "name": "Chris Grey",
+      "country": "US",
+      "country_code": "US",
+      "city_region": "United States",
+      "genre": "",
+      "source_url": "https://musicbrainz.org/artist/d6cb8700-8c8b-490a-800e-cfc1ae69d454",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 598,
+      "name": "Christopher Martin",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "St Catherine, Jamaica",
+      "genre": "Reggae; dancehall",
+      "source_url": "https://music.apple.com/us/artist/christopher-martin/72429116",
+      "confidence": "high"
+    },
+    {
+      "id": 2104,
+      "name": "David Guetta",
+      "country": "France",
+      "country_code": "FR",
+      "city_region": "Paris, France",
+      "genre": "Dance; electronic",
+      "source_url": "https://music.apple.com/us/artist/david-guetta/5557599",
+      "confidence": "high"
+    },
+    {
+      "id": 423,
+      "name": "Dexta Daps",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Kingston, Jamaica",
+      "genre": "Dancehall; reggae",
+      "source_url": "https://music.apple.com/us/artist/dexta-daps/706951612",
+      "confidence": "high"
+    },
+    {
+      "id": 2102,
+      "name": "Di Genius",
+      "country": "JM",
+      "country_code": "JM",
+      "city_region": "Jamaica",
+      "genre": "reggae; dancehall",
+      "source_url": "https://musicbrainz.org/artist/5cf26850-c213-4307-be20-49827d498536",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 310,
+      "name": "DJ Khaled",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Miami, FL, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/dj-khaled/157434",
+      "confidence": "high"
+    },
+    {
+      "id": 744,
+      "name": "DJ Snake",
+      "country": "France",
+      "country_code": "FR",
+      "city_region": "Paris, France",
+      "genre": "Dance; electronic",
+      "source_url": "https://music.apple.com/us/artist/dj-snake/125742557",
+      "confidence": "high"
+    },
+    {
+      "id": 311,
+      "name": "DJ Tunez",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos, Nigeria",
+      "genre": "Afrobeats; DJ",
+      "source_url": "https://music.apple.com/us/artist/dj-tunez/973894308",
+      "confidence": "high"
+    },
+    {
+      "id": 754,
+      "name": "Djo",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Chicago, IL, United States",
+      "genre": "Alternative",
+      "source_url": "https://music.apple.com/us/artist/djo/1384579987",
+      "confidence": "high"
+    },
+    {
+      "id": 2209,
+      "name": "Eemoh",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "South Africa",
+      "genre": "Amapiano",
+      "source_url": "https://music.apple.com/za/artist/eemoh/1482628196",
+      "confidence": "high"
+    },
+    {
+      "id": 353,
+      "name": "EMIN",
+      "country": "Azerbaijan",
+      "country_code": "AZ",
+      "city_region": "Baku, Azerbaijan",
+      "genre": "Pop",
+      "source_url": "https://music.apple.com/us/artist/emin/375643927",
+      "confidence": "high"
+    },
+    {
+      "id": 600,
+      "name": "Eshconinco",
+      "country": "JM",
+      "country_code": "JM",
+      "city_region": "Jamaica",
+      "genre": "",
+      "source_url": "https://musicbrainz.org/artist/83f14149-fb9e-4b4c-925a-0d0c6dcf0cb4",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 1003,
+      "name": "Fameye",
+      "country": "Ghana",
+      "country_code": "GH",
+      "city_region": "Accra, Ghana",
+      "genre": "Afrobeats; highlife",
+      "source_url": "https://www.musicinafrica.net/directory/fameye",
+      "confidence": "high"
+    },
+    {
+      "id": 328,
+      "name": "Famous Pluto",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Nigeria",
+      "genre": "Afrobeats",
+      "source_url": "https://music.apple.com/ng/artist/famous-pluto/1545122663",
+      "confidence": "high"
+    },
+    {
+      "id": 884,
+      "name": "Fena Gitu",
+      "country": "Kenya",
+      "country_code": "KE",
+      "city_region": "Nairobi, Kenya",
+      "genre": "Urban soul; Afro-pop",
+      "source_url": "https://www.musicinafrica.net/directory/fena-gitu",
+      "confidence": "high"
+    },
+    {
+      "id": 2218,
+      "name": "Fik Fameica",
+      "country": "Uganda",
+      "country_code": "UG",
+      "city_region": "Kampala, Uganda",
+      "genre": "Hip-hop; Afro-pop",
+      "source_url": "https://www.musicinafrica.net/directory/fik-fameica",
+      "confidence": "high"
+    },
+    {
+      "id": 321,
+      "name": "Frida Amani",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "city_region": "Dar es Salaam, Tanzania",
+      "genre": "Hip-hop",
+      "source_url": "https://www.musicinafrica.net/directory/frida-amani",
+      "confidence": "high"
+    },
+    {
+      "id": 374,
+      "name": "Gaise Baba",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos, Nigeria",
+      "genre": "Gospel; Afro-fusion",
+      "source_url": "https://www.musicinafrica.net/directory/gaise-baba",
+      "confidence": "high"
+    },
+    {
+      "id": 470,
+      "name": "Harry Belafonte",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "New York, NY, United States",
+      "genre": "Calypso; folk",
+      "source_url": "https://music.apple.com/us/artist/harry-belafonte/44112",
+      "confidence": "high"
+    },
+    {
+      "id": 880,
+      "name": "Harry Craze",
+      "country": "GB",
+      "country_code": "GB",
+      "city_region": "United Kingdom",
+      "genre": "",
+      "source_url": "https://musicbrainz.org/artist/f8249f60-56ff-4516-97c7-597689b5104f",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 2120,
+      "name": "I-Octane",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Sandy Bay, Jamaica",
+      "genre": "Reggae; dancehall",
+      "source_url": "https://music.apple.com/us/artist/i-octane/284434196",
+      "confidence": "high"
+    },
+    {
+      "id": 599,
+      "name": "Ice Prince",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Jos, Nigeria",
+      "genre": "Hip-hop",
+      "source_url": "https://music.apple.com/us/artist/ice-prince/389528887",
+      "confidence": "high"
+    },
+    {
+      "id": 745,
+      "name": "Indila",
+      "country": "France",
+      "country_code": "FR",
+      "city_region": "Paris, France",
+      "genre": "French pop",
+      "source_url": "https://music.apple.com/us/artist/indila/365485168",
+      "confidence": "high"
+    },
+    {
+      "id": 2085,
+      "name": "IShowSpeed",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Cincinnati, OH, United States",
+      "genre": "Hip-Hop/Rap; internet personality",
+      "source_url": "https://music.apple.com/us/artist/ishowspeed/1576146671",
+      "confidence": "high"
+    },
+    {
+      "id": 642,
+      "name": "J Hus",
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "city_region": "London, England",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/j-hus/1101587937",
+      "confidence": "high"
+    },
+    {
+      "id": 2208,
+      "name": "JAE5",
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "city_region": "London, England",
+      "genre": "Afrobeats; producer",
+      "source_url": "https://music.apple.com/us/artist/jae5/1475854901",
+      "confidence": "high"
+    },
+    {
+      "id": 517,
+      "name": "John Holt",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Kingston, Jamaica",
+      "genre": "Reggae; rocksteady",
+      "source_url": "https://music.apple.com/us/artist/john-holt/783961",
+      "confidence": "high"
+    },
+    {
+      "id": 376,
+      "name": "Jovial",
+      "country": "Kenya",
+      "country_code": "KE",
+      "city_region": "Mombasa, Kenya",
+      "genre": "Afro-pop",
+      "source_url": "https://www.musicinafrica.net/directory/jovial",
+      "confidence": "high"
+    },
+    {
+      "id": 316,
+      "name": "Justin Bieber",
+      "country": "Canada",
+      "country_code": "CA",
+      "city_region": "Stratford, Ontario, Canada",
+      "genre": "Pop",
+      "source_url": "https://music.apple.com/us/artist/justin-bieber/320569549",
+      "confidence": "high"
+    },
+    {
+      "id": 1146,
+      "name": "Kali Uchis",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Alexandria, VA, United States",
+      "genre": "R&B/Soul; pop",
+      "source_url": "https://music.apple.com/us/artist/kali-uchis/894731301",
+      "confidence": "high"
+    },
+    {
+      "id": 424,
+      "name": "Kedjevara",
+      "country": "Côte d'Ivoire",
+      "country_code": "CI",
+      "city_region": "Abidjan, Côte d'Ivoire",
+      "genre": "Coupé-décalé",
+      "source_url": "https://music.apple.com/us/artist/kedjevara/381823962",
+      "confidence": "high"
+    },
+    {
+      "id": 1462,
+      "name": "Kelvin Momo",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "Soweto, South Africa",
+      "genre": "Amapiano",
+      "source_url": "https://music.apple.com/us/artist/kelvin-momo/1458403100",
+      "confidence": "high"
+    },
+    {
+      "id": 647,
+      "name": "Kevin Kade",
+      "country": "RW",
+      "country_code": "RW",
+      "city_region": "Rwanda",
+      "genre": "",
+      "source_url": "https://musicbrainz.org/artist/dc6aa0ed-842a-4e17-b226-1f988ad40910",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 1121,
+      "name": "Key Glock",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Memphis, TN, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/key-glock/1048375180",
+      "confidence": "high"
+    },
+    {
+      "id": 327,
+      "name": "KiDi",
+      "country": "Ghana",
+      "country_code": "GH",
+      "city_region": "Accra, Ghana",
+      "genre": "Afrobeats; highlife",
+      "source_url": "https://www.musicinafrica.net/directory/kidi",
+      "confidence": "high"
+    },
+    {
+      "id": 2142,
+      "name": "KITSCHKRIEG",
+      "country": "Germany",
+      "country_code": "DE",
+      "city_region": "Berlin, Germany",
+      "genre": "Hip-hop; production",
+      "source_url": "https://music.apple.com/us/artist/kitschkrieg/1069966449",
+      "confidence": "high"
+    },
+    {
+      "id": 384,
+      "name": "Klassik Frescobar",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "source_url": "https://www.wikidata.org/wiki/Q98974111",
+      "source_note": "Jamaican-American Singer",
+      "confidence": "medium"
+    },
+    {
+      "id": 804,
+      "name": "KMK MAKUBURI",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "source_url": "https://www.wikidata.org/wiki/Q137426501",
+      "source_note": "Tanzanian religious singer",
+      "confidence": "medium"
+    },
+    {
+      "id": 355,
+      "name": "Koko Pee",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "source_url": "https://www.wikidata.org/wiki/Q135436723",
+      "source_note": "Musician",
+      "confidence": "medium"
+    },
+    {
+      "id": 421,
+      "name": "Kusah",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "city_region": "Dar es Salaam, Tanzania",
+      "genre": "Bongo Flava",
+      "source_url": "https://www.musicinafrica.net/directory/kusah",
+      "confidence": "high"
+    },
+    {
+      "id": 1956,
+      "name": "Kweku Smoke",
+      "country": "Ghana",
+      "country_code": "GH",
+      "city_region": "Kumasi, Ghana",
+      "genre": "Hip-hop; drill",
+      "source_url": "https://music.apple.com/us/artist/kweku-smoke/1487483337",
+      "confidence": "high"
+    },
+    {
+      "id": 1011,
+      "name": "Lasmid",
+      "country": "Ghana",
+      "country_code": "GH",
+      "city_region": "Takoradi, Ghana",
+      "genre": "Afrobeats; highlife",
+      "source_url": "https://www.musicinafrica.net/directory/lasmid",
+      "confidence": "high"
+    },
+    {
+      "id": 1119,
+      "name": "Lecrae",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Houston, TX, United States",
+      "genre": "Christian hip-hop",
+      "source_url": "https://music.apple.com/us/artist/lecrae/15230611",
+      "confidence": "high"
+    },
+    {
+      "id": 425,
+      "name": "Lucky Dube",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "Ermelo, South Africa",
+      "genre": "Reggae",
+      "source_url": "https://music.apple.com/us/artist/lucky-dube/474139",
+      "confidence": "high"
+    },
+    {
+      "id": 2016,
+      "name": "M Huncho",
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "city_region": "London, England",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/m-huncho/1226613001",
+      "confidence": "high"
+    },
+    {
+      "id": 1859,
+      "name": "M'Du",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "South Africa",
+      "genre": "Kwaito",
+      "source_url": "https://music.apple.com/za/artist/mdu/281878078",
+      "confidence": "high"
+    },
+    {
+      "id": 634,
+      "name": "Madilu System",
+      "country": "DR Congo",
+      "country_code": "CD",
+      "city_region": "Kinshasa, DR Congo",
+      "genre": "Congolese rumba; soukous",
+      "source_url": "https://music.apple.com/us/artist/madilu-system/30815123",
+      "confidence": "high"
+    },
+    {
+      "id": 2137,
+      "name": "Major League DJz",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "Johannesburg, South Africa",
+      "genre": "Amapiano; DJ",
+      "source_url": "https://music.apple.com/us/artist/major-league-djz/580528964",
+      "confidence": "high"
+    },
+    {
+      "id": 603,
+      "name": "Masego",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Virginia, United States",
+      "genre": "R&B/Soul; jazz",
+      "source_url": "https://music.apple.com/us/artist/masego/674485551",
+      "confidence": "high"
+    },
+    {
+      "id": 337,
+      "name": "Masicka",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Kingston, Jamaica",
+      "genre": "Dancehall",
+      "source_url": "https://music.apple.com/us/artist/masicka/542750597",
+      "confidence": "high"
+    },
+    {
+      "id": 2112,
+      "name": "Mauvais Djo",
+      "country": "France",
+      "country_code": "FR",
+      "source_url": "https://www.wikidata.org/wiki/Q140118234",
+      "source_note": "french rapper",
+      "confidence": "medium"
+    },
+    {
+      "id": 953,
+      "name": "Mikado",
+      "country": "FR",
+      "country_code": "FR",
+      "city_region": "France",
+      "genre": "",
+      "source_url": "https://musicbrainz.org/artist/889499b5-d6aa-4bf0-b923-7c883e7d81d6",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 1408,
+      "name": "Mr Eazi",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Port Harcourt, Nigeria",
+      "genre": "Afrobeats; Banku music",
+      "source_url": "https://music.apple.com/us/artist/mr-eazi/490466661",
+      "confidence": "high"
+    },
+    {
+      "id": 974,
+      "name": "Mr Nice",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "city_region": "Tanzania",
+      "genre": "Bongo Flava",
+      "source_url": "https://music.apple.com/tz/artist/mr-nice/89969925",
+      "confidence": "high"
+    },
+    {
+      "id": 1009,
+      "name": "Muyeez",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos, Nigeria",
+      "genre": "Afrobeats",
+      "source_url": "https://music.apple.com/ng/artist/muyeez/1732381145",
+      "confidence": "high"
+    },
+    {
+      "id": 649,
+      "name": "Naira Marley",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos, Nigeria",
+      "genre": "Afrobeats; street-pop",
+      "source_url": "https://music.apple.com/us/artist/naira-marley/365997599",
+      "confidence": "high"
+    },
+    {
+      "id": 1549,
+      "name": "Nas",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Queens, NY, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/nas/35307",
+      "confidence": "high"
+    },
+    {
+      "id": 1159,
+      "name": "Nemzzz",
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "city_region": "Manchester, England",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/nemzzz/1497377979",
+      "confidence": "high"
+    },
+    {
+      "id": 612,
+      "name": "NF",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Gladwin, MI, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/nf/898094630",
+      "confidence": "high"
+    },
+    {
+      "id": 1259,
+      "name": "NLE Choppa",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Memphis, TN, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/nle-choppa/1441529793",
+      "confidence": "high"
+    },
+    {
+      "id": 1692,
+      "name": "Noah Kahan",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Strafford, VT, United States",
+      "genre": "Singer-songwriter",
+      "source_url": "https://music.apple.com/us/artist/noah-kahan/1217322902",
+      "confidence": "high"
+    },
+    {
+      "id": 2103,
+      "name": "Notnice",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Jamaica",
+      "genre": "Dancehall; producer",
+      "source_url": "https://music.apple.com/us/artist/notnice/336179189",
+      "confidence": "high"
+    },
+    {
+      "id": 553,
+      "name": "Odeal",
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "city_region": "London, England",
+      "genre": "R&B/Soul; Afrobeats",
+      "source_url": "https://music.apple.com/us/artist/odeal/1164700032",
+      "confidence": "high"
+    },
+    {
+      "id": 426,
+      "name": "Omega 256",
+      "country": "Uganda",
+      "country_code": "UG",
+      "city_region": "Uganda",
+      "genre": "Afro-pop",
+      "source_url": "https://www.musicinafrica.net/directory/omega-256",
+      "confidence": "high"
+    },
+    {
+      "id": 300,
+      "name": "Oscar Mbo",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "Pretoria, South Africa",
+      "genre": "Deep house",
+      "source_url": "https://music.apple.com/us/artist/oscar-mbo/1331771625",
+      "confidence": "high"
+    },
+    {
+      "id": 867,
+      "name": "Pam",
+      "country": "JP",
+      "country_code": "JP",
+      "city_region": "Japan",
+      "genre": "",
+      "source_url": "https://musicbrainz.org/artist/01ea7b87-04ed-431d-8a4b-675446e3aa7c",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 707,
+      "name": "R2Bees",
+      "country": "Ghana",
+      "country_code": "GH",
+      "city_region": "Tema, Ghana",
+      "genre": "Afrobeats; hiplife",
+      "source_url": "https://music.apple.com/us/artist/r2bees/467782879",
+      "confidence": "high"
+    },
+    {
+      "id": 1391,
+      "name": "ROSALÍA",
+      "country": "Spain",
+      "country_code": "ES",
+      "city_region": "Catalonia, Spain",
+      "genre": "Pop; flamenco",
+      "source_url": "https://music.apple.com/us/artist/rosal%C3%ADa/1193536819",
+      "confidence": "high"
+    },
+    {
+      "id": 469,
+      "name": "Sam Deep",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "South Africa",
+      "genre": "Amapiano",
+      "source_url": "https://music.apple.com/za/artist/sam-deep/1458548629",
+      "confidence": "high"
+    },
+    {
+      "id": 1000,
+      "name": "SAMAD",
+      "country": "IR",
+      "country_code": "IR",
+      "city_region": "Iran",
+      "genre": "",
+      "source_url": "https://musicbrainz.org/artist/cf536ab7-3142-4d40-841d-88fe80b59410",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 656,
+      "name": "Sammy Irungu",
+      "country": "Kenya",
+      "country_code": "KE",
+      "city_region": "Kenya",
+      "genre": "Gospel",
+      "source_url": "https://music.apple.com/us/artist/sammy-irungu/1333714846",
+      "confidence": "high"
+    },
+    {
+      "id": 842,
+      "name": "Sean Paul",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Kingston, Jamaica",
+      "genre": "Dancehall; reggae",
+      "source_url": "https://music.apple.com/us/artist/sean-paul/201319",
+      "confidence": "high"
+    },
+    {
+      "id": 951,
+      "name": "Shane O",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Kingston, Jamaica",
+      "genre": "Dancehall",
+      "source_url": "https://music.apple.com/us/artist/shane-o/296711020",
+      "confidence": "high"
+    },
+    {
+      "id": 987,
+      "name": "Sheebah",
+      "country": "Uganda",
+      "country_code": "UG",
+      "city_region": "Kampala, Uganda",
+      "genre": "Afro-pop; dancehall",
+      "source_url": "https://www.musicinafrica.net/directory/sheebah-karungi",
+      "confidence": "high"
+    },
+    {
+      "id": 2144,
+      "name": "Shirin David",
+      "country": "Germany",
+      "country_code": "DE",
+      "city_region": "Hamburg, Germany",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/shirin-david/1126528949",
+      "confidence": "high"
+    },
+    {
+      "id": 710,
+      "name": "Shoday",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Nigeria",
+      "genre": "Afrobeats",
+      "source_url": "https://music.apple.com/ng/artist/shoday/1555302949",
+      "confidence": "high"
+    },
+    {
+      "id": 2108,
+      "name": "Slyzza Rsa",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "South Africa",
+      "genre": "Amapiano",
+      "source_url": "https://music.apple.com/za/artist/slyzza-rsa/1729031848",
+      "confidence": "high"
+    },
+    {
+      "id": 868,
+      "name": "Spice",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Portmore, Jamaica",
+      "genre": "Dancehall",
+      "source_url": "https://music.apple.com/us/artist/spice/13471220",
+      "confidence": "high"
+    },
+    {
+      "id": 1603,
+      "name": "Steve Lacy",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Compton, CA, United States",
+      "genre": "Alternative; R&B",
+      "source_url": "https://music.apple.com/us/artist/steve-lacy/1210217424",
+      "confidence": "high"
+    },
+    {
+      "id": 597,
+      "name": "Tabu Ley Rochereau",
+      "country": "DR Congo",
+      "country_code": "CD",
+      "city_region": "Kinshasa, DR Congo",
+      "genre": "Congolese rumba",
+      "source_url": "https://music.apple.com/us/artist/tabu-ley-rochereau/16442328",
+      "confidence": "high"
+    },
+    {
+      "id": 1967,
+      "name": "Tommy Lee Sparta",
+      "country": "Jamaica",
+      "country_code": "JM",
+      "city_region": "Montego Bay, Jamaica",
+      "genre": "Dancehall",
+      "source_url": "https://music.apple.com/us/artist/tommy-lee-sparta/486821481",
+      "confidence": "high"
+    },
+    {
+      "id": 640,
+      "name": "TxC",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "source_url": "https://www.wikidata.org/wiki/Q132159183",
+      "source_note": "South African DJ and record production duo",
+      "confidence": "medium"
+    },
+    {
+      "id": 545,
+      "name": "Tyga",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Compton, CA, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/tyga/106598105",
+      "confidence": "high"
+    },
+    {
+      "id": 302,
+      "name": "Uncle Waffles",
+      "country": "Eswatini",
+      "country_code": "SZ",
+      "city_region": "Eswatini",
+      "genre": "Amapiano; DJ",
+      "source_url": "https://music.apple.com/us/artist/uncle-waffles/1586910863",
+      "confidence": "high"
+    },
+    {
+      "id": 1410,
+      "name": "V",
+      "country": "South Korea",
+      "country_code": "KR",
+      "city_region": "Daegu, South Korea",
+      "genre": "K-pop",
+      "source_url": "https://music.apple.com/us/artist/v/1191850724",
+      "confidence": "high"
+    },
+    {
+      "id": 335,
+      "name": "Vanillah",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "city_region": "Tanzania",
+      "genre": "Bongo Flava; Afro-pop",
+      "source_url": "https://www.musicinafrica.net/directory/vanillah",
+      "confidence": "high"
+    },
+    {
+      "id": 1390,
+      "name": "Wale",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Washington, DC, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/wale/231136951",
+      "confidence": "high"
+    },
+    {
+      "id": 885,
+      "name": "Walter Chilambo",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "city_region": "Tanzania",
+      "genre": "Gospel",
+      "source_url": "https://www.musicinafrica.net/directory/walter-chilambo",
+      "confidence": "high"
+    },
+    {
+      "id": 564,
+      "name": "Wendy Shay",
+      "country": "Ghana",
+      "country_code": "GH",
+      "city_region": "Accra, Ghana",
+      "genre": "Afrobeats",
+      "source_url": "https://www.musicinafrica.net/directory/wendy-shay",
+      "confidence": "high"
+    },
+    {
+      "id": 2176,
+      "name": "Yemi Alade",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos, Nigeria",
+      "genre": "Afrobeats",
+      "source_url": "https://www.musicinafrica.net/directory/yemi-alade",
+      "confidence": "high"
+    },
+    {
+      "id": 2014,
+      "name": "YG",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Compton, CA, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/yg/316190158",
+      "confidence": "high"
+    },
+    {
+      "id": 2127,
+      "name": "Yung Miami",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Miami, FL, United States",
+      "genre": "Hip-Hop/Rap",
+      "source_url": "https://music.apple.com/us/artist/yung-miami/1397336115",
+      "confidence": "high"
+    },
+    {
+      "id": 2069,
+      "name": "Zagga",
+      "country": "JM",
+      "country_code": "JM",
+      "city_region": "Jamaica",
+      "genre": "zagga; zaggamusic; ahzagga",
+      "source_url": "https://musicbrainz.org/artist/a5dd1797-1740-460c-b4fc-4d3195d8b181",
+      "source_note": "MusicBrainz exact artist match",
+      "confidence": "medium"
+    },
+    {
+      "id": 1306,
+      "name": "Zara Larsson",
+      "country": "Sweden",
+      "country_code": "SE",
+      "city_region": "Stockholm, Sweden",
+      "genre": "Pop",
+      "source_url": "https://music.apple.com/us/artist/zara-larsson/572252868",
+      "confidence": "high"
+    },
+    {
+      "id": 472,
+      "name": "Zinoleesky",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos, Nigeria",
+      "genre": "Afrobeats; street-pop",
+      "source_url": "https://music.apple.com/us/artist/zinoleesky/1482942496",
+      "confidence": "high"
+    },
+    {
+      "id": 481,
+      "name": "Zlatan",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos, Nigeria",
+      "genre": "Afrobeats; street-pop",
+      "source_url": "https://music.apple.com/us/artist/zlatan/479433528",
+      "confidence": "high"
+    }
+  ],
+  "unresolved": [
+    {
+      "id": 1012,
+      "name": "BBO",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1018,
+      "name": "Black Coco",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 749,
+      "name": "Brayan Crist",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 751,
+      "name": "Broken Trails",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 486,
+      "name": "brux XTN",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1916,
+      "name": "Catholic Church Songs",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 952,
+      "name": "Chiktay",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 760,
+      "name": "Chill77",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1075,
+      "name": "CJS",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 954,
+      "name": "Coconut Rootz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2221,
+      "name": "CrashDummy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 747,
+      "name": "Criss MJ",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1074,
+      "name": "Dela Cuffy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 610,
+      "name": "Delana Hope",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2219,
+      "name": "DJ CHEEM",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1128,
+      "name": "DJ Grauchi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 808,
+      "name": "Dj Kezz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2220,
+      "name": "DJ MAC",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 992,
+      "name": "Dolv Gvng",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 392,
+      "name": "Dr Sarah K",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 362,
+      "name": "Drex D",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 949,
+      "name": "DWAYNE SPIKES",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 611,
+      "name": "Emanuel Nicarios",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 830,
+      "name": "English Audio Bible",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 997,
+      "name": "Faceless",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 823,
+      "name": "Faith Grey",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2790,
+      "name": "Fat Papi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2202,
+      "name": "Fenix Flexin",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 834,
+      "name": "FRAH KE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1068,
+      "name": "Free Da Truth",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 753,
+      "name": "Furryx",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 935,
+      "name": "GIFT MELODY",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 957,
+      "name": "Greenworld music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 993,
+      "name": "Hildah Watiri",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1065,
+      "name": "Hornsphere",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1017,
+      "name": "Hyce",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 750,
+      "name": "Jorh Creta",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 568,
+      "name": "Josh Kamba",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2147,
+      "name": "Kabelo Tiro aka skavenja",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2958,
+      "name": "Kano Choir",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 986,
+      "name": "Kassam",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 956,
+      "name": "KayArchonn",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 422,
+      "name": "Kendi Kiremi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 428,
+      "name": "Khadeair",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1085,
+      "name": "King Bubby",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1046,
+      "name": "King Soundboi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2090,
+      "name": "Kingpheezle",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2222,
+      "name": "Kinoti",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2191,
+      "name": "Kisii All Stars",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 950,
+      "name": "Laflare",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1091,
+      "name": "Levelz UP",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2168,
+      "name": "Lift Soul Records",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2146,
+      "name": "LOVIXX & STOSLIV",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 755,
+      "name": "LR GLOBAL",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 412,
+      "name": "Mad G Odeya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 955,
+      "name": "Mavoicetz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2113,
+      "name": "Miracle LRE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 852,
+      "name": "Moses Luka",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 822,
+      "name": "MSA",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 336,
+      "name": "Nahj",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2082,
+      "name": "Nahsh kariuki Official",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 377,
+      "name": "NG'ETHE STEVE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2049,
+      "name": "Nia Pearl",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 704,
+      "name": "NO11",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 436,
+      "name": "Ntombemhlope",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1002,
+      "name": "Oberz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 958,
+      "name": "Official Tikiti",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 989,
+      "name": "Party Wright",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 378,
+      "name": "Patrick Kubuya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 802,
+      "name": "Pelzy Never Mind",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 717,
+      "name": "Peterbril",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 357,
+      "name": "Phany Love",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2791,
+      "name": "prodshushy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2203,
+      "name": "Purps On The Beat",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 995,
+      "name": "R.M.H",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 938,
+      "name": "Rachats Classic",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 975,
+      "name": "Ragal Ironbull",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1072,
+      "name": "ragerx",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2214,
+      "name": "REI AMI",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 748,
+      "name": "Roland MANTAMA",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 821,
+      "name": "Ronis Goliath",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2967,
+      "name": "Ronoo",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1015,
+      "name": "Rord Kelly",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 427,
+      "name": "Sam Wa Ukweli",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2106,
+      "name": "SamDan",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 746,
+      "name": "SdoDiRoba",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 752,
+      "name": "shewahdexta",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 674,
+      "name": "Shift to Abundance",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 616,
+      "name": "SIJI.",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1600,
+      "name": "slayr",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 192,
+      "name": "SleepTherapy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 628,
+      "name": "Solpulse",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 673,
+      "name": "Song Writer's Playbook",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 519,
+      "name": "Sounds Of Afrika Music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1006,
+      "name": "Stahgee",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2059,
+      "name": "Sykes",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 363,
+      "name": "T Peller",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2087,
+      "name": "THE LIGHTBEARERS TZ",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1069,
+      "name": "The Wamagatas",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 685,
+      "name": "Time N Gold",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 790,
+      "name": "Timi Dre",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 782,
+      "name": "Tipsy Gee",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 516,
+      "name": "Tkandz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 882,
+      "name": "Trinix Remix",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2217,
+      "name": "Unjaps",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 763,
+      "name": "V-Be",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 828,
+      "name": "Vailedmoon music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 312,
+      "name": "Valiant",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 792,
+      "name": "Various Artists",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 538,
+      "name": "Vicoka",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 657,
+      "name": "Virusi Mbaya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2124,
+      "name": "where.t.at",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 429,
+      "name": "World hive",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 721,
+      "name": "WorshipWithCorry",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 796,
+      "name": "Xouh",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2710,
+      "name": "YOUNG RAPPERS",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    }
+  ]
+}

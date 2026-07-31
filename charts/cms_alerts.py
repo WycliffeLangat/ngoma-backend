@@ -27,6 +27,14 @@ from .models import (
 
 DETAIL_LIMIT = 5
 LEVEL_ORDER = {'error': 0, 'warning': 1, 'info': 2, 'success': 3}
+GENERIC_ARTIST_COUNTRY_EXEMPTIONS = {'various artists'}
+
+
+def _exclude_generic_artist_country_rows(qs):
+    for name in GENERIC_ARTIST_COUNTRY_EXEMPTIONS:
+        qs = qs.exclude(name__iexact=name)
+    return qs
+
 
 
 def _record_detail(obj, label, problem='', **extra):
@@ -107,7 +115,9 @@ def build_dashboard_alerts(user):
             details=details,
         )
 
-    missing_artist_country = Artist.objects.filter(country='', country_code='').exclude(status='archived')
+    missing_artist_country = _exclude_generic_artist_country_rows(
+        Artist.objects.filter(country='', country_code='').exclude(status='archived')
+    )
     count = missing_artist_country.count()
     _add_alert(
         alerts,
@@ -123,9 +133,11 @@ def build_dashboard_alerts(user):
         details=[_record_detail(a, a.name, 'Country name and code are both empty') for a in missing_artist_country[:DETAIL_LIMIT]],
     )
 
-    partial_artist_country = Artist.objects.filter(
-        Q(country='', country_code__gt='') | Q(country__gt='', country_code='')
-    ).exclude(status='archived')
+    partial_artist_country = _exclude_generic_artist_country_rows(
+        Artist.objects.filter(
+            Q(country='', country_code__gt='') | Q(country__gt='', country_code='')
+        ).exclude(status='archived')
+    )
     count = partial_artist_country.count()
     _add_alert(
         alerts,
@@ -145,7 +157,9 @@ def build_dashboard_alerts(user):
     )
 
     valid_country_codes = list(Country.objects.filter(active=True).exclude(code='').values_list('code', flat=True))
-    artist_bad_codes = Artist.objects.exclude(country_code='').exclude(country_code__in=valid_country_codes).exclude(status='archived')
+    artist_bad_codes = _exclude_generic_artist_country_rows(
+        Artist.objects.exclude(country_code='').exclude(country_code__in=valid_country_codes).exclude(status='archived')
+    )
     count = artist_bad_codes.count()
     _add_alert(
         alerts,
@@ -161,7 +175,7 @@ def build_dashboard_alerts(user):
         details=[_record_detail(a, a.name, f'Unknown code: {a.country_code}', country=a.country) for a in artist_bad_codes[:DETAIL_LIMIT]],
     )
 
-    active_artists = Artist.objects.exclude(status='archived')
+    active_artists = _exclude_generic_artist_country_rows(Artist.objects.exclude(status='archived'))
     artist_profile_counts = _field_counts(active_artists, [
         ('genre', 'Genre'),
         ('city_region', 'City/region'),

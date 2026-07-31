@@ -33,6 +33,14 @@ from .jobs import enqueue_chart_job, enqueue_harmonize_job
 
 WORKBOOK_MAX_ROWS = 500
 WORKBOOK_MAX_COLS = 80
+GENERIC_ARTIST_COUNTRY_EXEMPTIONS = {'various artists'}
+
+
+def _exclude_generic_artist_country_rows(qs):
+    for name in GENERIC_ARTIST_COUNTRY_EXEMPTIONS:
+        qs = qs.exclude(name__iexact=name)
+    return qs
+
 
 
 class NamedBytesIO(io.BytesIO):
@@ -380,7 +388,9 @@ class CmsDashboardInsightsView(APIView):
             'alerts': alerts,
             'alert_summary': alert_summary,
             'cards': {
-                'missing_artist_countries': Artist.objects.filter(Q(country='') & Q(country_code='')).count(),
+                'missing_artist_countries': _exclude_generic_artist_country_rows(
+                    Artist.objects.filter(Q(country='') & Q(country_code=''))
+                ).count(),
                 'duplicate_artists_detected': duplicate_count,
                 'latest_news_posts': NewsArticle.objects.count(),
                 'recently_edited_data': AuditLog.objects.count(),
@@ -538,7 +548,7 @@ class CmsArtistViewSet(CmsBaseViewSet):
         qs = super().get_queryset()
         missing_country = self.request.query_params.get('missing_country')
         if missing_country in {'1', 'true', 'yes'}:
-            qs = qs.filter(Q(country='') & Q(country_code=''))
+            qs = _exclude_generic_artist_country_rows(qs.filter(Q(country='') & Q(country_code='')))
         return qs
 
     def perform_update(self, serializer):
