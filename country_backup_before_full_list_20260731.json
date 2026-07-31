@@ -1,0 +1,326 @@
+[
+{
+ "model": "charts.country",
+ "pk": 1,
+ "fields": {
+  "name": "Kenya",
+  "code": "KE",
+  "region": "East Africa",
+  "flag": "",
+  "display_order": 0,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 2,
+ "fields": {
+  "name": "Tanzania",
+  "code": "TZ",
+  "region": "East Africa",
+  "flag": "",
+  "display_order": 1,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 3,
+ "fields": {
+  "name": "Uganda",
+  "code": "UG",
+  "region": "East Africa",
+  "flag": "",
+  "display_order": 2,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 23,
+ "fields": {
+  "name": "Angola",
+  "code": "AO",
+  "region": "Africa",
+  "flag": "",
+  "display_order": 3,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 4,
+ "fields": {
+  "name": "Rwanda",
+  "code": "RW",
+  "region": "East Africa",
+  "flag": "",
+  "display_order": 3,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 5,
+ "fields": {
+  "name": "Nigeria",
+  "code": "NG",
+  "region": "West Africa",
+  "flag": "",
+  "display_order": 4,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 6,
+ "fields": {
+  "name": "South Africa",
+  "code": "ZA",
+  "region": "Southern Africa",
+  "flag": "",
+  "display_order": 5,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 7,
+ "fields": {
+  "name": "Ghana",
+  "code": "GH",
+  "region": "West Africa",
+  "flag": "",
+  "display_order": 6,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 17,
+ "fields": {
+  "name": "Chile",
+  "code": "CL",
+  "region": "Global",
+  "flag": "",
+  "display_order": 7,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 22,
+ "fields": {
+  "name": "Germany",
+  "code": "DE",
+  "region": "Global",
+  "flag": "",
+  "display_order": 7,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 8,
+ "fields": {
+  "name": "Jamaica",
+  "code": "JM",
+  "region": "Caribbean",
+  "flag": "",
+  "display_order": 7,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 21,
+ "fields": {
+  "name": "Sweden",
+  "code": "SE",
+  "region": "Global",
+  "flag": "",
+  "display_order": 7,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 20,
+ "fields": {
+  "name": "Zimbabwe",
+  "code": "ZW",
+  "region": "Africa",
+  "flag": "",
+  "display_order": 7,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 24,
+ "fields": {
+  "name": "Barbados",
+  "code": "BB",
+  "region": "Global",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 16,
+ "fields": {
+  "name": "DR Congo",
+  "code": "CD",
+  "region": "Africa",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 19,
+ "fields": {
+  "name": "France",
+  "code": "FR",
+  "region": "Global",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 18,
+ "fields": {
+  "name": "India",
+  "code": "IN",
+  "region": "Global",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 13,
+ "fields": {
+  "name": "Norway",
+  "code": "NO",
+  "region": "Global",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 14,
+ "fields": {
+  "name": "Puerto Rico",
+  "code": "PR",
+  "region": "Global",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 15,
+ "fields": {
+  "name": "South Korea",
+  "code": "KR",
+  "region": "Global",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 9,
+ "fields": {
+  "name": "United States",
+  "code": "US",
+  "region": "Global",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 25,
+ "fields": {
+  "name": "Zambia",
+  "code": "ZM",
+  "region": "Africa",
+  "flag": "",
+  "display_order": 8,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 10,
+ "fields": {
+  "name": "United Kingdom",
+  "code": "GB",
+  "region": "Global",
+  "flag": "",
+  "display_order": 9,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 11,
+ "fields": {
+  "name": "Canada",
+  "code": "CA",
+  "region": "Global",
+  "flag": "",
+  "display_order": 10,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 26,
+ "fields": {
+  "name": "Colombia",
+  "code": "CO",
+  "region": "Global",
+  "flag": "",
+  "display_order": 10,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 27,
+ "fields": {
+  "name": "Haiti",
+  "code": "HT",
+  "region": "Caribbean",
+  "flag": "",
+  "display_order": 10,
+  "active": true
+ }
+},
+{
+ "model": "charts.country",
+ "pk": 12,
+ "fields": {
+  "name": "Unknown",
+  "code": "",
+  "region": "Unknown",
+  "flag": "",
+  "display_order": 11,
+  "active": true
+ }
+}
+]
