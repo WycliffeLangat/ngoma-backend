@@ -6,7 +6,7 @@ from django.db import transaction
 from django.db.models import Q
 from django.db.models.functions import Lower
 from collections.abc import Mapping
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timezone as dt_timezone
 from decimal import Decimal
 from django.utils import timezone
 from django.utils.text import slugify
@@ -810,6 +810,23 @@ def _article_date(value=None):
     return value or timezone.now()
 
 
+def _chart_article_date(chart):
+    try:
+        return datetime(int(chart.year), int(chart.month), 1, 9, 0, 0, tzinfo=dt_timezone.utc)
+    except (TypeError, ValueError):
+        return _article_date(chart.published_at)
+
+
+def _chart_article_date_from_slug(slug):
+    match = re.match(r'^auto-(singles|albums)-(\d{4})-(\d{2})$', str(slug or ''))
+    if not match:
+        return None
+    try:
+        return datetime(int(match.group(2)), int(match.group(3)), 1, 9, 0, 0, tzinfo=dt_timezone.utc)
+    except ValueError:
+        return None
+
+
 def _release_credit(release):
     return release_credit_payload(release)['artist_credit'] or release.artist.name
 
@@ -945,7 +962,7 @@ def _chart_article_defaults(chart, rows):
         if third else 'the rest of the front pack'
     )
     points = int(top.total_points or 0)
-    published_at = _article_date(chart.published_at)
+    published_at = _chart_article_date(chart)
     title = (
         f"{artist}'s {release.title} sets the pace for {chart.label} albums"
         if kind == 'albums'
@@ -1109,6 +1126,11 @@ def _clean_legacy_automatic_news_copy():
         elif article.subheadline == 'Certification milestones are generated directly from point totals.':
             article.subheadline = 'A closer look at the chart run behind the certification milestone.'
             update_fields.append('subheadline')
+
+        period_date = _chart_article_date_from_slug(article.slug)
+        if period_date and article.published_at != period_date:
+            article.published_at = period_date
+            update_fields.append('published_at')
 
         tags = [tag for tag in (article.tags or []) if tag != AUTO_NEWS_TAG]
         if tags != (article.tags or []):

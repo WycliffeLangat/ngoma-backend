@@ -272,6 +272,7 @@ class CanonicalMethodologyTests(TestCase):
         self.assertEqual(chart_article.related_release, release)
         self.assertIn("opens the August 2027 singles chart at #1", chart_article.body)
         self.assertNotIn("generated automatically", chart_article.body.lower())
+        self.assertEqual(chart_article.published_at.isoformat(), "2027-08-01T09:00:00+00:00")
 
         certification_article = NewsArticle.objects.get(slug=f"auto-certification-{release.id}")
         self.assertEqual(certification_article.category, "certifications")
@@ -279,6 +280,16 @@ class CanonicalMethodologyTests(TestCase):
         self.assertIn("Gold certified", certification_article.body)
         self.assertNotIn("generated automatically", certification_article.body.lower())
 
+        legacy_chart = NewsArticle.objects.create(
+            title="Legacy March story",
+            slug="auto-singles-2036-03",
+            category="chart_news",
+            body="Legacy chart copy.",
+            tags=["auto-generated", "singles"],
+            source_links=[{"kind": "automatic_chart_story", "label": "Generated from published chart data"}],
+            status="published",
+            is_published=True,
+        )
         legacy = NewsArticle.objects.create(
             title="Legacy Release crosses into Gold territory",
             slug="auto-certification-99999",
@@ -300,6 +311,11 @@ class CanonicalMethodologyTests(TestCase):
         )
 
         sync_automatic_news()
+
+        legacy_chart.refresh_from_db()
+        self.assertEqual(legacy_chart.published_at.isoformat(), "2036-03-01T09:00:00+00:00")
+        self.assertNotIn("auto-generated", legacy_chart.tags)
+        self.assertEqual(legacy_chart.source_links[0]["label"], "Combined Top 50 chart data")
 
         legacy.refresh_from_db()
         self.assertEqual(legacy.title, "Legacy Release earns Gold status on Ngoma Charts")
