@@ -9,6 +9,7 @@ from .cms_utils import (
     harmonize_chart_history,
     published_top50_entries,
     recalculate_certifications,
+    sync_automatic_news,
 )
 from .models import (
     Artist,
@@ -269,12 +270,42 @@ class CanonicalMethodologyTests(TestCase):
         self.assertTrue(chart_article.is_published)
         self.assertEqual(chart_article.status, "published")
         self.assertEqual(chart_article.related_release, release)
-        self.assertIn("generated automatically", chart_article.body.lower())
+        self.assertIn("opens the August 2027 singles chart at #1", chart_article.body)
+        self.assertNotIn("generated automatically", chart_article.body.lower())
 
         certification_article = NewsArticle.objects.get(slug=f"auto-certification-{release.id}")
         self.assertEqual(certification_article.category, "certifications")
         self.assertEqual(certification_article.related_release, release)
         self.assertIn("Gold certified", certification_article.body)
+        self.assertNotIn("generated automatically", certification_article.body.lower())
+
+        legacy = NewsArticle.objects.create(
+            title="Legacy Release crosses into Gold territory",
+            slug="auto-certification-99999",
+            category="certifications",
+            body=(
+                "Legacy Release by Data Artist is now Gold certified after reaching "
+                "205 cumulative Combined chart points.\n\n"
+                "The award is triggered by the same monthly public Top 50 point "
+                "system that powers the charts, so the certification moves as soon "
+                "as the data moves.\n\n"
+                "This story is generated automatically from the certification "
+                "engine and will update when new chart data changes the release's "
+                "point total or milestone level."
+            ),
+            tags=["auto-generated", "certification", "gold"],
+            source_links=[{"kind": "automatic_certification_story", "label": "Generated from certification point totals"}],
+            status="published",
+            is_published=True,
+        )
+
+        sync_automatic_news()
+
+        legacy.refresh_from_db()
+        self.assertEqual(legacy.title, "Legacy Release earns Gold status on Ngoma Charts")
+        self.assertNotIn("generated automatically", legacy.body.lower())
+        self.assertNotIn("auto-generated", legacy.tags)
+        self.assertEqual(legacy.source_links[0]["label"], "Certification point totals")
 
     def test_collaborators_and_features_receive_structured_credits(self):
         workbook = openpyxl.Workbook()

@@ -815,7 +815,7 @@ def _release_credit(release):
 
 
 def _automatic_tags(*values):
-    tags = [AUTO_NEWS_TAG]
+    tags = []
     for value in values:
         text = str(value or '').strip()
         if text and text not in tags:
@@ -824,6 +824,9 @@ def _automatic_tags(*values):
 
 
 def _is_automatic_article(article):
+    slug = str(article.slug or '')
+    if slug.startswith(('auto-singles-', 'auto-albums-', 'auto-certification-')):
+        return True
     tags = article.tags or []
     if AUTO_NEWS_TAG in tags:
         return True
@@ -853,6 +856,81 @@ def _upsert_automatic_article(slug, defaults):
     return 0
 
 
+def _entry_credit(entry):
+    return f'{entry.release.title} by {_release_credit(entry.release)} at #{entry.rank}'
+
+
+def _artist_verb(artist, singular, plural):
+    return plural if re.search(r'\s(&|and|x)\s|,|\bft\.?\b|\bfeat\.?\b', str(artist or ''), re.I) else singular
+
+
+def _rank_gap_sentence(top, runner):
+    if not runner:
+        return 'The nearest challengers are still forming behind the leader.'
+    gap = int(top.total_points or 0) - int(runner.total_points or 0)
+    gap_text = f', with a {gap:,} point gap from #1 to #2' if gap > 0 else ''
+    return f'{_entry_credit(runner)} is the immediate pressure point{gap_text}.'
+
+
+def _movement_sentence(entry):
+    rank = int(entry.rank or 0)
+    title = entry.release.title
+    previous = entry.prev_rank
+    movement = str(entry.movement or '').lower()
+    if previous is None:
+        if movement in ('re-entry', 'reentry', 're'):
+            return f'{title} returns to the Top 50 this month, making the #{rank or 1} placement a comeback as well as a chart lead.'
+        return f'{title} arrives as a new Top 50 entry, giving the month a fresh #{rank or 1} story.'
+    delta = int(previous) - rank
+    if delta > 0:
+        suffix = '' if delta == 1 else 's'
+        return f'{title} climbs {delta} place{suffix} from #{previous} to #{rank}, adding momentum to its lead.'
+    if delta < 0:
+        drop = abs(delta)
+        suffix = '' if drop == 1 else 's'
+        return f'{title} slips {drop} place{suffix} from #{previous} but still holds the chart conversation at #{rank}.'
+    return f'{title} holds steady at #{rank}, suggesting sustained demand rather than a one-week spike.'
+
+
+def _coverage_sentence(entry, kind):
+    parts = []
+    if entry.platform_count and entry.platform_max and int(entry.platform_max or 0) > 1:
+        parts.append(f'platform coverage is {entry.platform_count}/{entry.platform_max}')
+    if entry.peak_rank:
+        parts.append(f'its best Combined rank is #{entry.peak_rank}')
+    if entry.weeks_on_chart:
+        weeks = int(entry.weeks_on_chart or 0)
+        suffix = '' if weeks == 1 else 's'
+        parts.append(f'it has appeared for {weeks} chart week{suffix} in this monthly cycle')
+    if not parts:
+        return ''
+    return f'The chart context is stronger with the details in view: {", ".join(parts)} across the {kind} dataset.'
+
+
+def _supporting_motion_sentence(rows, top):
+    movers = []
+    arrivals = []
+    for row in rows:
+        if row.release_id == top.release_id:
+            continue
+        rank = int(row.rank or 0)
+        previous = row.prev_rank
+        movement = str(row.movement or '').lower()
+        if previous is not None:
+            gain = int(previous) - rank
+            if gain > 0:
+                suffix = '' if gain == 1 else 's'
+                movers.append(f'{row.release.title} gains {gain} place{suffix} to #{rank}')
+        elif movement in ('new', 're-entry', 'reentry', 're'):
+            arrivals.append(_entry_credit(row))
+    clauses = []
+    if movers:
+        clauses.append('; '.join(movers[:2]) + '.')
+    if arrivals:
+        clauses.append('New and returning pressure also matters: ' + '; '.join(arrivals[:3]) + '.')
+    return ' '.join(clauses)
+
+
 def _chart_article_defaults(chart, rows):
     top = rows[0]
     runner = rows[1] if len(rows) > 1 else None
@@ -861,50 +939,60 @@ def _chart_article_defaults(chart, rows):
     category = 'albums' if kind == 'albums' else 'chart_news'
     release = top.release
     artist = _release_credit(release)
-    runner_text = (
-        f'{runner.release.title} by {_release_credit(runner.release)} at #{runner.rank}'
-        if runner else 'a fast-moving chase pack'
-    )
+    runner_text = _entry_credit(runner) if runner else 'a fast-moving chase pack'
     third_text = (
-        f'{third.release.title} by {_release_credit(third.release)} at #{third.rank}'
-        if third else 'fresh catalogue movement'
+        _entry_credit(third)
+        if third else 'the rest of the front pack'
     )
     points = int(top.total_points or 0)
     published_at = _article_date(chart.published_at)
     title = (
-        f'{release.title} frames the {chart.label} album race'
+        f"{artist}'s {release.title} sets the pace for {chart.label} albums"
         if kind == 'albums'
-        else f'{release.title} turns {chart.label} into a statement month'
+        else f"{artist}'s {release.title} leads {chart.label} singles at #1"
+    )
+    motion = ' '.join(
+        part for part in [
+            _coverage_sentence(top, kind),
+            _supporting_motion_sentence(rows, top),
+        ]
+        if part
     )
     return {
         'title': title[:500],
         'category': category,
         'excerpt': (
-            f'{artist} leads the {chart.label} {kind} chart while '
-            f'{runner_text} keeps the story moving.'
+            f'{artist} {_artist_verb(artist, "tops", "top")} '
+            f'the {chart.label} {kind} chart with {points:,} '
+            f'points, with {runner_text} setting the nearest challenge.'
         ),
-        'subheadline': 'Generated from the latest published Combined Top 50 data.',
-        'body': '\n\n'.join([
+        'subheadline': f'A closer read of the leader, challengers and movement shaping the {chart.label} Combined Top 50 {kind}.',
+        'body': '\n\n'.join(
+            part for part in [
             (
                 f'{release.title} by {artist} opens the {chart.label} {kind} '
-                f'conversation at #1, converting the latest Combined chart data '
-                f'into {points:,} public Top 50 points.'
+                f'chart at #1 with {points:,} public Top 50 points.'
             ),
             (
-                f'The month has more texture behind the leader: {runner_text}, '
-                f'with {third_text}. Together they show how momentum, catalogue '
-                f'depth and audience discovery are reshaping the chart in real time.'
+                f'{_rank_gap_sentence(top, runner)} '
+                f'{third_text} gives the podium another angle, so the month '
+                f'reads as a race rather than a runaway.'
             ),
+            _movement_sentence(top),
+            motion,
             (
-                'This public article is generated automatically from published '
-                'chart data and refreshes whenever a new month, correction or '
-                'ranking update is introduced.'
+                f'{artist} {_artist_verb(artist, "leaves", "leave")} '
+                f'{chart.label} with the strongest front-page signal in the '
+                f'{kind} table, while the rest of the Top 50 shows where '
+                f'pressure is building next.'
             ),
-        ]),
+            ]
+            if part
+        ),
         'emoji': '',
         'tags': _automatic_tags(chart.chart_type, 'combined-chart', chart.label),
         'author': AUTO_NEWS_AUTHOR,
-        'source_links': [{'label': 'Generated from published chart data', 'kind': 'automatic_chart_story'}],
+        'source_links': [{'label': f'{chart.label} Combined Top 50 {kind}', 'kind': 'automatic_chart_story', 'href': '/charts'}],
         'status': 'published',
         'is_published': True,
         'featured': True,
@@ -925,13 +1013,13 @@ def _certification_article_defaults(cert, threshold):
     release_kind = 'album' if release.chart_type == ChartType.ALBUMS else 'single'
     published_at = _article_date(cert.certified_at)
     return {
-        'title': f'{release.title} crosses into {label} territory'[:500],
+        'title': f'{release.title} earns {label} status on Ngoma Charts'[:500],
         'category': 'certifications',
         'excerpt': (
             f"{artist}'s {release_kind} has {total:,} cumulative Combined chart "
             f'points, clearing the {int(threshold):,}+ {label} benchmark.'
         ),
-        'subheadline': 'Certification milestones are generated directly from point totals.',
+        'subheadline': f'A closer look at the chart run behind the {label} milestone.',
         'body': '\n\n'.join([
             (
                 f'{release.title} by {artist} is now {label} certified after '
@@ -939,19 +1027,19 @@ def _certification_article_defaults(cert, threshold):
             ),
             (
                 'The award is triggered by the same monthly public Top 50 point '
-                'system that powers the charts, so the certification moves as '
-                'soon as the data moves.'
+                'system that powers the charts, connecting the milestone to '
+                'sustained public performance.'
             ),
             (
-                "This story is generated automatically from the certification "
-                "engine and will update when new chart data changes the release's "
-                'point total or milestone level.'
+                'The next chart periods will show whether the release simply '
+                'holds this level or keeps adding enough points to push toward '
+                'the next benchmark.'
             ),
         ]),
         'emoji': '',
         'tags': _automatic_tags('certification', cert.level, release.chart_type),
         'author': AUTO_NEWS_AUTHOR,
-        'source_links': [{'label': 'Generated from certification point totals', 'kind': 'automatic_certification_story'}],
+        'source_links': [{'label': 'Certification point totals', 'kind': 'automatic_certification_story', 'href': '/certifications'}],
         'status': 'published',
         'is_published': True,
         'featured': False,
@@ -962,6 +1050,95 @@ def _certification_article_defaults(cert, threshold):
         'related_release': release,
         'related_artist': release.artist,
     }
+
+
+def _clean_legacy_automatic_news_copy():
+    changed = 0
+    chart_replacement = (
+        'The result gives the chart table a clear public record of who led '
+        'the month, who chased, and where movement shaped the Top 50.'
+    )
+    certification_replacement = (
+        'The next chart periods will show whether the release simply holds '
+        'this level or keeps adding enough points to push toward the next '
+        'benchmark.'
+    )
+    certification_context = (
+        'The award is triggered by the same monthly public Top 50 point '
+        'system that powers the charts, connecting the milestone to '
+        'sustained public performance.'
+    )
+    replacements = {
+        (
+            'This public article is generated automatically from published '
+            'chart data and refreshes whenever a new month, correction or '
+            'ranking update is introduced.'
+        ): chart_replacement,
+        (
+            "This story is generated automatically from the certification "
+            "engine and will update when new chart data changes the release's "
+            'point total or milestone level.'
+        ): certification_replacement,
+        (
+            'The award is triggered by the same monthly public Top 50 point '
+            'system that powers the charts, so the certification moves as '
+            'soon as the data moves.'
+        ): certification_context,
+    }
+
+    for article in NewsArticle.objects.filter(slug__startswith='auto-'):
+        if not _is_automatic_article(article):
+            continue
+
+        update_fields = []
+        body = article.body or ''
+        for old, new in replacements.items():
+            body = body.replace(old, new)
+        if body != (article.body or ''):
+            article.body = body
+            update_fields.append('body')
+
+        title_match = re.match(r'^(.+?) crosses into (.+?) territory$', article.title or '')
+        if title_match:
+            article.title = f'{title_match.group(1)} earns {title_match.group(2)} status on Ngoma Charts'[:500]
+            update_fields.append('title')
+
+        if article.subheadline == 'Generated from the latest published Combined Top 50 data.':
+            article.subheadline = 'A closer read of the leader, challengers and movement shaping the Combined Top 50.'
+            update_fields.append('subheadline')
+        elif article.subheadline == 'Certification milestones are generated directly from point totals.':
+            article.subheadline = 'A closer look at the chart run behind the certification milestone.'
+            update_fields.append('subheadline')
+
+        tags = [tag for tag in (article.tags or []) if tag != AUTO_NEWS_TAG]
+        if tags != (article.tags or []):
+            article.tags = tags
+            update_fields.append('tags')
+
+        source_links = []
+        links_changed = False
+        for link in article.source_links or []:
+            if not isinstance(link, dict):
+                source_links.append(link)
+                continue
+            next_link = dict(link)
+            if next_link.get('label') == 'Generated from published chart data':
+                next_link['label'] = 'Combined Top 50 chart data'
+                next_link.setdefault('href', '/charts')
+            elif next_link.get('label') == 'Generated from certification point totals':
+                next_link['label'] = 'Certification point totals'
+                next_link.setdefault('href', '/certifications')
+            if next_link != link:
+                links_changed = True
+            source_links.append(next_link)
+        if links_changed:
+            article.source_links = source_links
+            update_fields.append('source_links')
+
+        if update_fields:
+            article.save(update_fields=update_fields + ['updated_at'])
+            changed += 1
+    return changed
 
 
 def sync_automatic_news(chart_types=None, chart_ids=None):
@@ -1009,6 +1186,8 @@ def sync_automatic_news(chart_types=None, chart_ids=None):
     for cert in best_by_release.values():
         slug = f'auto-certification-{cert.release_id}'
         changed += _upsert_automatic_article(slug, _certification_article_defaults(cert, thresholds[cert.level]))
+
+    changed += _clean_legacy_automatic_news_copy()
 
     if changed:
         bump_public_revision()
