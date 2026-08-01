@@ -610,19 +610,6 @@ class PublicAppDataView(APIView):
             "related_release__artist",
         ).prefetch_related("related_release__artist_credits__artist")
 
-        news_artists = list(
-            Artist.objects.exclude(image="")
-            .exclude(status__in=HIDDEN_STATUSES)
-            .only("id", "name", "slug", "display_name", "aliases", "image")
-        )
-        news_releases = list(
-            Release.objects.exclude(cover_image="")
-            .exclude(status__in=HIDDEN_STATUSES)
-            .select_related("artist")
-            .prefetch_related("artist_credits__artist")
-            .only("id", "title", "cover_image", "artist_id")
-        )
-
         certifications = Certification.objects.select_related("release", "release__artist").prefetch_related(
             "release__artist_credits__artist"
         ).filter(is_hidden=False)
@@ -653,7 +640,7 @@ class PublicAppDataView(APIView):
                     "emoji": item.emoji,
                     "cover_image": _file_url(request, item.cover_image),
                     "gallery": item.gallery,
-                    "media": news_media_payload(request, item, news_artists, news_releases),
+                    "media": news_media_payload(request, item),
                     "tags": item.tags,
                     "author": item.author,
                     "source_links": item.source_links,

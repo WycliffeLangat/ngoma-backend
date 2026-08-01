@@ -199,12 +199,7 @@ class NewsArticleSerializer(serializers.ModelSerializer):
 
     def get_media(self, obj):
         request = self.context.get('request')
-        return news_media_payload(
-            request,
-            obj,
-            self.context.get('news_artists') or (),
-            self.context.get('news_releases') or (),
-        )
+        return news_media_payload(request, obj)
 
 
 class WeeklyUploadSerializer(serializers.ModelSerializer):

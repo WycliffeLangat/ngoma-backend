@@ -305,10 +305,23 @@ class PublicAppDataSyncTests(TestCase):
         self.release.save(update_fields=["cover_image"])
         self.artist.image = "artists/original-artist.jpg"
         self.artist.save(update_fields=["image"])
+        self.second_artist.image = "artists/second-artist.jpg"
+        self.second_artist.save(update_fields=["image"])
+        unrelated_release = Release.objects.create(
+            title="Unrelated Song",
+            artist=self.second_artist,
+            chart_type="singles",
+            canonical_title="unrelated song",
+            cover_image="covers/unrelated-song.jpg",
+        )
         self.news.cover_image = "news/editorial.jpg"
         self.news.gallery = [{"url": "/media/news/context.jpg", "caption": "Context image"}]
         self.news.related_release = self.release
-        self.news.save(update_fields=["cover_image", "gallery", "related_release"])
+        self.news.body = (
+            f"The article text mentions {unrelated_release.title} and "
+            f"{self.second_artist.name}, but those records are not linked media."
+        )
+        self.news.save(update_fields=["cover_image", "gallery", "related_release", "body"])
 
         data = self.app_data()
         article = next(item for item in data["news"] if item["id"] == self.news.id)
@@ -317,6 +330,9 @@ class PublicAppDataSyncTests(TestCase):
         self.assertIn("/media/covers/original-song.jpg", article["media"][0]["url"])
         self.assertTrue(any(item["kind"] == "artist_image" for item in article["media"]))
         self.assertTrue(any(item["kind"] == "gallery" for item in article["media"]))
+        media_urls = " ".join(item["url"] for item in article["media"])
+        self.assertNotIn("/media/covers/unrelated-song.jpg", media_urls)
+        self.assertNotIn("/media/artists/second-artist.jpg", media_urls)
 
     def test_artist_country_update_overwrites_divergent_release_country(self):
         self.release.country = "Tanzania"

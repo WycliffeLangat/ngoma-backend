@@ -280,23 +280,6 @@ class NewsArticleViewSet(viewsets.ModelViewSet):
             return [IsAdminUser()]
         return super().get_permissions()
 
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context['news_artists'] = list(
-            Artist.objects.exclude(image='')
-            .exclude(status__in=['archived', 'inactive', 'rejected', 'draft'])
-            .only('id', 'name', 'display_name', 'aliases', 'image')
-        )
-        context['news_releases'] = list(
-            Release.objects.exclude(cover_image='')
-            .exclude(status__in=['archived', 'inactive', 'rejected', 'draft'])
-            .select_related('artist')
-            .prefetch_related('artist_credits__artist')
-            .only('id', 'title', 'cover_image', 'artist_id')
-        )
-        return context
-
-
 class CertificationViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Certification.objects.select_related('release', 'release__artist').filter(
         is_hidden=False

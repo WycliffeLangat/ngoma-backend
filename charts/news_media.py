@@ -1,5 +1,3 @@
-import re
-
 from .artist_credits import release_credit_payload
 
 
@@ -10,15 +8,6 @@ def _file_url(request, field):
         return request.build_absolute_uri(field.url)
     except (AttributeError, ValueError):
         return ""
-
-
-def _norm(value):
-    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", str(value or "").casefold())).strip()
-
-
-def _mentioned(text, label):
-    key = _norm(label)
-    return bool(key and len(key) >= 3 and key in text)
 
 
 def _add(media, seen, url, kind, title="", entity_id=None, entity_type="", caption=""):
@@ -49,18 +38,11 @@ def _gallery_url(item):
 def news_media_payload(request, article, artists=(), releases=()):
     """Return relevant image candidates for a news article.
 
-    Relations win over freeform article art so public news imagery follows the
-    artist, album, or song being discussed whenever the CMS has enough context.
+    Only explicit article relationships are used. Text mentions are not scanned
+    for images because names and titles can collide with unrelated records.
     """
     media = []
     seen = set()
-    body_text = _norm(" ".join([
-        article.title,
-        article.subheadline,
-        article.excerpt,
-        article.body,
-        " ".join(article.tags or []),
-    ]))
 
     related_release = getattr(article, "related_release", None)
     if related_release:
@@ -81,29 +63,6 @@ def news_media_payload(request, article, artists=(), releases=()):
             "artist_image", related_artist.display_name or related_artist.name,
             related_artist.id, "artist",
         )
-
-    for release in releases:
-        if len(media) >= 6:
-            break
-        if related_release and release.id == related_release.id:
-            continue
-        if _mentioned(body_text, release.title):
-            _add(
-                media, seen, _file_url(request, release.cover_image),
-                "release_cover", release.title, release.id, "release",
-            )
-
-    for artist in artists:
-        if len(media) >= 8:
-            break
-        if related_artist and artist.id == related_artist.id:
-            continue
-        names = [artist.name, artist.display_name, *(artist.aliases or [])]
-        if any(_mentioned(body_text, name) for name in names):
-            _add(
-                media, seen, _file_url(request, artist.image),
-                "artist_image", artist.display_name or artist.name, artist.id, "artist",
-            )
 
     for item in article.gallery or []:
         url, caption = _gallery_url(item)
