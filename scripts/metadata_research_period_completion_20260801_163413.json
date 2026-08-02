@@ -1,0 +1,2470 @@
+{
+  "applied": true,
+  "backend_release_ids_missing": [
+    22792,
+    22890,
+    22909,
+    22910,
+    22911,
+    22942,
+    22998
+  ],
+  "backend_releases_found": 1041,
+  "backup": "C:\\Users\\HP\\Desktop\\Ngoma Charts Folder\\files\\ngoma_charts_backend\\backend\\ngoma_charts.db.bak-metadata-period-20260801163413",
+  "db_chart_unique_release_ids": 1031,
+  "generated_at": "2026-08-01T16:34:13",
+  "misses": [
+    {
+      "artist": "JAZZWRLD",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22011,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 25,
+      "title": "Tholukuthi (Clap Song) [feat. MaWhoo]"
+    },
+    {
+      "artist": "X.O",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18040,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 20,
+      "title": "M.O.T.O"
+    },
+    {
+      "artist": "Drake",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19388,
+      "missing_before": [
+        "upc"
+      ],
+      "placements": 19,
+      "title": "Take Care (Deluxe Version)"
+    },
+    {
+      "artist": "Intence",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19373,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "apple_music_url"
+      ],
+      "placements": 18,
+      "title": "Fast & Furious Riddim"
+    },
+    {
+      "artist": "SleepTherapy",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19486,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 13,
+      "title": "Rain Sounds"
+    },
+    {
+      "artist": "Licky Tones",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17367,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 13,
+      "title": "Usiniache"
+    },
+    {
+      "artist": "Coster Ojwang",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19502,
+      "missing_before": [
+        "upc"
+      ],
+      "placements": 11,
+      "title": "Mbak Ndalo - EP"
+    },
+    {
+      "artist": "DJ Maphorisa",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22013,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 11,
+      "title": "Ngibolekeni (feat. Sean 1401, Leemckrazy, Blxckie, Pcee, Madumane & Kabelo Sings)"
+    },
+    {
+      "artist": "Otile Brown",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20216,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 10,
+      "title": "The Real King Of The East - EP"
+    },
+    {
+      "artist": "Maandy",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20234,
+      "missing_before": [
+        "upc"
+      ],
+      "placements": 9,
+      "title": "Baddies Need Love - EP"
+    },
+    {
+      "artist": "Nyashinski",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19639,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 9,
+      "title": "Good Old Days - EP"
+    },
+    {
+      "artist": "Minister James",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19465,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 9,
+      "title": "Nyimbo za Imani vol 1"
+    },
+    {
+      "artist": "Skillibeng",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19466,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 9,
+      "title": "PRODIGY NONSTOP"
+    },
+    {
+      "artist": "Nyashinski",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19608,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 9,
+      "title": "To Whom It May Concern - EP"
+    },
+    {
+      "artist": "Guardian Angel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17308,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 9,
+      "title": "Kimya"
+    },
+    {
+      "artist": "MSA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22616,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 9,
+      "title": "Lengoma (feat. sami kay & Misokuhle)"
+    },
+    {
+      "artist": "Rvssian",
+      "candidate_sources_seen": [
+        "MusicBrainz API"
+      ],
+      "chart_type": "singles",
+      "id": 17381,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 9,
+      "title": "What I Like"
+    },
+    {
+      "artist": "Cardi B",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19409,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 8,
+      "title": "AM I THE DRAMA? (Album Release Live Edition)"
+    },
+    {
+      "artist": "Emma Jalamo",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19750,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 8,
+      "title": "Safari Ya Muziki"
+    },
+    {
+      "artist": "Dj Boat",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20514,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 7,
+      "title": "3 STEP 2025 MIX (DJ Mix)"
+    },
+    {
+      "artist": "TxC",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22006,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 7,
+      "title": "Nakupenda (feat. Al Xapo & Zlatan)"
+    },
+    {
+      "artist": "Dlala Thukzin",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22014,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 7,
+      "title": "Sohlala Sisonke (feat. Zeh McGeba & MK Productions)"
+    },
+    {
+      "artist": "Tml Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19415,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 6,
+      "title": "Pawon Boy, Vol. 1 (Deluxe)"
+    },
+    {
+      "artist": "Thukuthela",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17422,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 6,
+      "title": "uMA weNGANE"
+    },
+    {
+      "artist": "Gunna",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17420,
+      "missing_before": [
+        "upc",
+        "isrc"
+      ],
+      "placements": 6,
+      "title": "wgft"
+    },
+    {
+      "artist": "Olamide",
+      "candidate_sources_seen": [
+        "MusicBrainz API"
+      ],
+      "chart_type": "albums",
+      "id": 19370,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "apple_music_url"
+      ],
+      "placements": 5,
+      "title": "Olamidé"
+    },
+    {
+      "artist": "T.I BLAZE",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19426,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 5,
+      "title": "Shakur (Deluxe)"
+    },
+    {
+      "artist": "031CHOPPA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22016,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "apple_music_url"
+      ],
+      "placements": 5,
+      "title": "Fast Fast (feat. Roscosteazy, Al Xapo, Benzoo & JusGigi)"
+    },
+    {
+      "artist": "Tml Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19445,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "A Street Kid's Diary"
+    },
+    {
+      "artist": "Ruger",
+      "candidate_sources_seen": [
+        "MusicBrainz API"
+      ],
+      "chart_type": "albums",
+      "id": 19729,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "BlownBoy RU"
+    },
+    {
+      "artist": "Daddy Lumba",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21369,
+      "missing_before": [
+        "upc",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Daddy Lumba Old Classic (1989-1994)"
+    },
+    {
+      "artist": "Various Artists",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19382,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 4,
+      "title": "Saiyaara (Original Motion Picture Soundtrack)"
+    },
+    {
+      "artist": "Darassa",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19376,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Take Away The Pain"
+    },
+    {
+      "artist": "DJ WIZZY 254",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18358,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Toxic Lyrikali mix"
+    },
+    {
+      "artist": "WorshipWithCorry",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18498,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Wewe ni Sababu ya Maisha yangu"
+    },
+    {
+      "artist": "EMIN",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17819,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Камин"
+    },
+    {
+      "artist": "Ed Sheeran",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19755,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 3,
+      "title": "+-=÷× (Tour Collection: Live)"
+    },
+    {
+      "artist": "Karun",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21026,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 3,
+      "title": "Eternal - EP"
+    },
+    {
+      "artist": "Shashwat Sachdev",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20707,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Dhurandhar (Original Motion Picture Soundtrack)"
+    },
+    {
+      "artist": "NF",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20204,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 2,
+      "title": "FEAR - EP"
+    },
+    {
+      "artist": "Balloranking",
+      "candidate_sources_seen": [
+        "MusicBrainz API"
+      ],
+      "chart_type": "albums",
+      "id": 19736,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Lifestyle"
+    },
+    {
+      "artist": "Seyi Vibez",
+      "candidate_sources_seen": [
+        "MusicBrainz API"
+      ],
+      "chart_type": "albums",
+      "id": 19836,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Loseyi Professor"
+    },
+    {
+      "artist": "Various Artists",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20510,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 2,
+      "title": "Saiyaara (Extended Album) [Original Motion Picture Soundtrack]"
+    },
+    {
+      "artist": "Elevation Worship",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20670,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 2,
+      "title": "SO BE IT (Live)"
+    },
+    {
+      "artist": "DJ Grauchi",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19551,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "The Sounds of Nairobi (DJ Mix)"
+    },
+    {
+      "artist": "Rybeena",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19772,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Virtuoso"
+    },
+    {
+      "artist": "Wadagliz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17723,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 2,
+      "title": "ANGUKA NAYO"
+    },
+    {
+      "artist": "JustBasweti",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19304,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Black Tax"
+    },
+    {
+      "artist": "Faith Grey",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18742,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Electric Heat"
+    },
+    {
+      "artist": "Brayan Crist",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18557,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Fix The Ride"
+    },
+    {
+      "artist": "World hive",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17828,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "God of miracles"
+    },
+    {
+      "artist": "Kabelo Tiro aka skavenja",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21699,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "KWANTLE KWAA"
+    },
+    {
+      "artist": "Roland MANTAMA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18556,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Mayday RDC"
+    },
+    {
+      "artist": "Matata",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17737,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "TIKI TAKO"
+    },
+    {
+      "artist": "Pam",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18841,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Usimpe roho"
+    },
+    {
+      "artist": "WorshipWithCorry",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18477,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Wewe ni Sababu ya Maisha Yetu, Unastahili kuabudiwa Cover"
+    },
+    {
+      "artist": "DJames",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 22548,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Africa Now: July 2026 (DJ Mix)"
+    },
+    {
+      "artist": "Burna Boy",
+      "candidate_sources_seen": [
+        "MusicBrainz API"
+      ],
+      "chart_type": "albums",
+      "id": 20016,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "African Giant"
+    },
+    {
+      "artist": "Young Jonn",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20233,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Blue Disco"
+    },
+    {
+      "artist": "BURUKLYN BOYZ",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20586,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "East Mpaka London"
+    },
+    {
+      "artist": "T.I BLAZE",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20608,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "El-Chapo"
+    },
+    {
+      "artist": "Sun-El Musician",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19500,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc"
+      ],
+      "placements": 1,
+      "title": "Isgubhu September 2025 (DJ Mix)"
+    },
+    {
+      "artist": "Salim Junior",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20818,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 1,
+      "title": "Kiomboyo"
+    },
+    {
+      "artist": "V",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20241,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Layover"
+    },
+    {
+      "artist": "Rybeena",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20111,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Mr Bee"
+    },
+    {
+      "artist": "Bensoul",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21393,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NaEnjoy"
+    },
+    {
+      "artist": "Eunice Njeri",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19920,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nani Kama Wewe"
+    },
+    {
+      "artist": "YOUNG RAPPERS",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21376,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NEED THE MONEY"
+    },
+    {
+      "artist": "JAZZWRLD",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20507,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc"
+      ],
+      "placements": 1,
+      "title": "Summertime Sounds 2026: JAZZWRLD (DJ Mix)"
+    },
+    {
+      "artist": "GENIUSJINI X66",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19743,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Time Traveller"
+    },
+    {
+      "artist": "Tml Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19799,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Timileyin 2.0"
+    },
+    {
+      "artist": "Mutoriah",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19596,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 1,
+      "title": "Tipati - EP"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17549,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Amanda (Explicit)"
+    },
+    {
+      "artist": "SSSoundGawd",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18800,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 1,
+      "title": "Aura Salad"
+    },
+    {
+      "artist": "Urban Chords",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18044,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "badman gangsta"
+    },
+    {
+      "artist": "Josh Kamba",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18356,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "DML"
+    },
+    {
+      "artist": "ragerx",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19303,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Dream Chaser"
+    },
+    {
+      "artist": "Burna Boy",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18515,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "For Everybody"
+    },
+    {
+      "artist": "Urban Chords",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18042,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "I'm a mess (Choir Version)"
+    },
+    {
+      "artist": "R.M.H",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19150,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Imbobo"
+    },
+    {
+      "artist": "Muyeez",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19170,
+      "missing_before": [
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Instagram"
+    },
+    {
+      "artist": "Dlala Thukzin",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22021,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 1,
+      "title": "iPlan (feat. Zaba & Sykes)"
+    },
+    {
+      "artist": "Heavenly Echoes Ministers",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21644,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Kamanda Wa Vita"
+    },
+    {
+      "artist": "Emanuel Nicarios",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18487,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Mengi kwa ajili yangu."
+    },
+    {
+      "artist": "Shift to Abundance",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18407,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mirror To Magic"
+    },
+    {
+      "artist": "Matata",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17832,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "MPISHI (Mixed)"
+    },
+    {
+      "artist": "Kisii All Stars",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22777,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "MUKAYO"
+    },
+    {
+      "artist": "Tabu Ley Rochereau",
+      "candidate_sources_seen": [
+        "MusicBrainz API"
+      ],
+      "chart_type": "singles",
+      "id": 18246,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Muzina"
+    },
+    {
+      "artist": "JustBasweti",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19302,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nakupenda Ulivyo"
+    },
+    {
+      "artist": "Sammy Irungu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19272,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NI NGAI UMAGIRAGIA"
+    },
+    {
+      "artist": "Lift Soul Records",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21711,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Niko Na Neema"
+    },
+    {
+      "artist": "Tuzo Jerome Tz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21636,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nina Neno Moja Tu Asante"
+    },
+    {
+      "artist": "Greenworld music",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19028,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Niseme Nini Bwana"
+    },
+    {
+      "artist": "Emanuel Nicarios",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18405,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nitaamini"
+    },
+    {
+      "artist": "Countree Hype",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17726,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Toyota Crown 2"
+    },
+    {
+      "artist": "KMK MAKUBURI",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18702,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Tumaini Letu"
+    },
+    {
+      "artist": "GIFT MELODY",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18756,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "UBAYA WA DHAMBI"
+    },
+    {
+      "artist": "WorshipWithCorry",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18744,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Wewe ni Mungu"
+    },
+    {
+      "artist": "Popcaan",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18265,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "When You Wine Like That"
+    },
+    {
+      "artist": "DJ Lyta",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17665,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Worship Mix"
+    },
+    {
+      "artist": "Najeeriii",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19801,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Dutty Money Riddim"
+    },
+    {
+      "artist": "YOUNG RAPPERS",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 22572,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Money dey give man joy"
+    },
+    {
+      "artist": "Seyi Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20620,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "NAHAMciaga"
+    },
+    {
+      "artist": "Darque",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 22723,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc"
+      ],
+      "placements": 0,
+      "title": "The Darque Experience, Ep. 001 (DJ Mix)"
+    },
+    {
+      "artist": "Tyla",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19386,
+      "missing_before": [
+        "upc"
+      ],
+      "placements": 0,
+      "title": "WWP - Single"
+    },
+    {
+      "artist": "Balloranking",
+      "candidate_sources_seen": [
+        "MusicBrainz API"
+      ],
+      "chart_type": "albums",
+      "id": 19791,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Zero Panic, Vol. 2"
+    },
+    {
+      "artist": "ShaunMusiq",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22048,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 0,
+      "title": "Ngiyak'cela (feat. Mashudu)"
+    },
+    {
+      "artist": "Dizompa Mr Killer",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21753,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Niko Mbali"
+    },
+    {
+      "artist": "Rave Son",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18131,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Who’s Dat Girl"
+    },
+    {
+      "artist": "KITSCHKRIEG",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22290,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "ZW"
+    }
+  ],
+  "missing_counts_after": {
+    "apple_music_url": 253,
+    "distributor": 816,
+    "genre": 62,
+    "isrc": 55,
+    "label": 50,
+    "number_of_tracks": 12,
+    "producers": 309,
+    "release_date": 41,
+    "release_year": 41,
+    "songwriters": 349,
+    "upc": 96
+  },
+  "missing_counts_before": {
+    "apple_music_url": 253,
+    "distributor": 816,
+    "genre": 63,
+    "isrc": 58,
+    "label": 53,
+    "number_of_tracks": 15,
+    "producers": 309,
+    "release_date": 44,
+    "release_year": 44,
+    "songwriters": 349,
+    "upc": 104
+  },
+  "months": [
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
+    "January 2026",
+    "February 2026",
+    "March 2026",
+    "April 2026",
+    "May 2026",
+    "June 2026",
+    "July 2026"
+  ],
+  "public_unique_release_ids": 1020,
+  "release_order_limit": 0,
+  "release_order_start": 0,
+  "script_version": "2026-08-01",
+  "selected_releases": 1041,
+  "source": "Automated high-confidence metadata lookup using Deezer, iTunes/Apple, and Genius public endpoints.",
+  "source_hits": {
+    "MusicBrainz API": 21
+  },
+  "sources_mode": "musicbrainz",
+  "target_unique_release_ids": 1048,
+  "targets_scanned": 123,
+  "updates": [
+    {
+      "artist": "Burna Boy",
+      "candidates": [
+        {
+          "fields": {
+            "label": "Atlantic; Bad Habit",
+            "number_of_tracks": 16,
+            "release_date": "2025-07-10",
+            "release_year": 2025,
+            "upc": "075679623539"
+          },
+          "raw_match": {
+            "artist": "Burna Boy",
+            "title": "No Sign of Weakness"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/94272879-8d74-4214-8e4f-85b1922737d0"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "075679623539"
+      },
+      "id": 19351,
+      "missing_before": [
+        "upc"
+      ],
+      "placements": 17,
+      "source_names_by_field": {
+        "upc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://musicbrainz.org/release/94272879-8d74-4214-8e4f-85b1922737d0"
+        ]
+      },
+      "title": "No Sign Of Weakness"
+    },
+    {
+      "artist": "Darassa",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "ZA40S2500090",
+            "release_date": "2025-02-07",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Darassa Mbosso",
+            "release": "Take Away the Pain",
+            "title": "Looking for Love"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/recording/4f5d058c-35ff-43cf-b8f2-c74c2190643e"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "ZA40S2500090"
+      },
+      "id": 17301,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "apple_music_url"
+      ],
+      "placements": 9,
+      "source_names_by_field": {
+        "isrc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://musicbrainz.org/recording/4f5d058c-35ff-43cf-b8f2-c74c2190643e"
+        ]
+      },
+      "title": "Looking For Love"
+    },
+    {
+      "artist": "Seyi Vibez",
+      "candidates": [
+        {
+          "fields": {
+            "label": "EMPIRE",
+            "number_of_tracks": 14,
+            "release_date": "2025-11-14",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Seyi Vibez",
+            "title": "Fuji Moto"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/8af57082-75ab-4df0-bd44-99ad7377ec86"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "label": "EMPIRE",
+        "number_of_tracks": 14,
+        "release_date": "2025-11-14",
+        "release_year": 2025
+      },
+      "id": 19421,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 8,
+      "source_names_by_field": {
+        "label": [
+          "MusicBrainz API"
+        ],
+        "number_of_tracks": [
+          "MusicBrainz API"
+        ],
+        "release_date": [
+          "MusicBrainz API"
+        ],
+        "release_year": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "label": [
+          "https://musicbrainz.org/release/8af57082-75ab-4df0-bd44-99ad7377ec86"
+        ],
+        "number_of_tracks": [
+          "https://musicbrainz.org/release/8af57082-75ab-4df0-bd44-99ad7377ec86"
+        ],
+        "release_date": [
+          "https://musicbrainz.org/release/8af57082-75ab-4df0-bd44-99ad7377ec86"
+        ],
+        "release_year": [
+          "https://musicbrainz.org/release/8af57082-75ab-4df0-bd44-99ad7377ec86"
+        ]
+      },
+      "title": "FUJI MOTO"
+    },
+    {
+      "artist": "OMAH LAY",
+      "candidates": [
+        {
+          "fields": {
+            "number_of_tracks": 5,
+            "release_date": "2020-06-11",
+            "release_year": 2020
+          },
+          "raw_match": {
+            "artist": "Omah Lay",
+            "title": "Get Layd"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/a31b0278-c0a3-4928-a356-3e4bf226edce"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "number_of_tracks": 5,
+        "release_date": "2020-06-11",
+        "release_year": 2020
+      },
+      "id": 21526,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 8,
+      "source_names_by_field": {
+        "number_of_tracks": [
+          "MusicBrainz API"
+        ],
+        "release_date": [
+          "MusicBrainz API"
+        ],
+        "release_year": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "number_of_tracks": [
+          "https://musicbrainz.org/release/a31b0278-c0a3-4928-a356-3e4bf226edce"
+        ],
+        "release_date": [
+          "https://musicbrainz.org/release/a31b0278-c0a3-4928-a356-3e4bf226edce"
+        ],
+        "release_year": [
+          "https://musicbrainz.org/release/a31b0278-c0a3-4928-a356-3e4bf226edce"
+        ]
+      },
+      "title": "Get Layd"
+    },
+    {
+      "artist": "Taylor Swift",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "USUG12507350",
+            "label": "Taylor Swift",
+            "release_date": "2025-11-07",
+            "release_year": 2025,
+            "upc": "00602488388238"
+          },
+          "raw_match": {
+            "artist": "Taylor Swift",
+            "release": "The Fate of Ophelia (Loud Luxury remix)",
+            "title": "The Fate of Ophelia"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/recording/fc0d204e-bb52-45b5-8b02-82cafd070704",
+            "https://musicbrainz.org/release/a2682f81-8195-427c-b1d7-6def216539ff"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "USUG12507350",
+        "upc": "00602488388238"
+      },
+      "id": 17877,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 7,
+      "source_names_by_field": {
+        "isrc": [
+          "MusicBrainz API"
+        ],
+        "upc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://musicbrainz.org/recording/fc0d204e-bb52-45b5-8b02-82cafd070704",
+          "https://musicbrainz.org/release/a2682f81-8195-427c-b1d7-6def216539ff"
+        ],
+        "upc": [
+          "https://musicbrainz.org/recording/fc0d204e-bb52-45b5-8b02-82cafd070704",
+          "https://musicbrainz.org/release/a2682f81-8195-427c-b1d7-6def216539ff"
+        ]
+      },
+      "title": "The Fate of Ophelia"
+    },
+    {
+      "artist": "OMAH LAY",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Afro-Pop",
+            "label": "KeyQaad",
+            "number_of_tracks": 12,
+            "release_date": "2026-04-03",
+            "release_year": 2026,
+            "upc": "823375044253"
+          },
+          "raw_match": {
+            "artist": "OMAH LAY",
+            "title": "CLARITY OF MIND"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/85b0ad3d-d463-4134-8bc9-52bc980813a4"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "genre": "Afro-Pop",
+        "label": "KeyQaad",
+        "number_of_tracks": 12,
+        "release_date": "2026-04-03",
+        "release_year": 2026,
+        "upc": "823375044253"
+      },
+      "id": 19477,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 6,
+      "source_names_by_field": {
+        "genre": [
+          "MusicBrainz API"
+        ],
+        "label": [
+          "MusicBrainz API"
+        ],
+        "number_of_tracks": [
+          "MusicBrainz API"
+        ],
+        "release_date": [
+          "MusicBrainz API"
+        ],
+        "release_year": [
+          "MusicBrainz API"
+        ],
+        "upc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "genre": [
+          "https://musicbrainz.org/release/85b0ad3d-d463-4134-8bc9-52bc980813a4"
+        ],
+        "label": [
+          "https://musicbrainz.org/release/85b0ad3d-d463-4134-8bc9-52bc980813a4"
+        ],
+        "number_of_tracks": [
+          "https://musicbrainz.org/release/85b0ad3d-d463-4134-8bc9-52bc980813a4"
+        ],
+        "release_date": [
+          "https://musicbrainz.org/release/85b0ad3d-d463-4134-8bc9-52bc980813a4"
+        ],
+        "release_year": [
+          "https://musicbrainz.org/release/85b0ad3d-d463-4134-8bc9-52bc980813a4"
+        ],
+        "upc": [
+          "https://musicbrainz.org/release/85b0ad3d-d463-4134-8bc9-52bc980813a4"
+        ]
+      },
+      "title": "CLARITY OF MIND"
+    },
+    {
+      "artist": "Kahu$h",
+      "candidates": [
+        {
+          "fields": {
+            "label": "kahush",
+            "number_of_tracks": 13,
+            "release_date": "2026-06-01",
+            "release_year": 2026,
+            "upc": "883105824869"
+          },
+          "raw_match": {
+            "artist": "kahu$h",
+            "title": "Kiama"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/eea95bb5-9fb7-43c7-89c7-55ed74a9173c"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "883105824869"
+      },
+      "id": 19579,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "apple_music_url"
+      ],
+      "placements": 6,
+      "source_names_by_field": {
+        "upc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://musicbrainz.org/release/eea95bb5-9fb7-43c7-89c7-55ed74a9173c"
+        ]
+      },
+      "title": "Kiama"
+    },
+    {
+      "artist": "Michael Jackson",
+      "candidates": [
+        {
+          "fields": {
+            "label": "Epic",
+            "number_of_tracks": 2,
+            "release_date": "2006-02-20",
+            "release_year": 2006,
+            "upc": "828767252025"
+          },
+          "raw_match": {
+            "artist": "Michael Jackson",
+            "title": "Thriller"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/bc0cc120-24ed-47cf-abdb-bab8f581fb41"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "828767252025"
+      },
+      "id": 19496,
+      "missing_before": [
+        "upc"
+      ],
+      "placements": 6,
+      "source_names_by_field": {
+        "upc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://musicbrainz.org/release/bc0cc120-24ed-47cf-abdb-bab8f581fb41"
+        ]
+      },
+      "title": "Thriller"
+    },
+    {
+      "artist": "Kehlani",
+      "candidates": [
+        {
+          "fields": {
+            "label": "Atlantic; TSNMI",
+            "number_of_tracks": 17,
+            "release_date": "2026-04-24",
+            "release_year": 2026,
+            "upc": "075679584670"
+          },
+          "raw_match": {
+            "artist": "Kehlani",
+            "title": "Kehlani"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/a48a4a3a-c077-4ef5-9747-5a0c66534581"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "075679584670"
+      },
+      "id": 19492,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 4,
+      "source_names_by_field": {
+        "upc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://musicbrainz.org/release/a48a4a3a-c077-4ef5-9747-5a0c66534581"
+        ]
+      },
+      "title": "Kehlani"
+    },
+    {
+      "artist": "Taylor Swift",
+      "candidates": [
+        {
+          "fields": {
+            "label": "Taylor Swift",
+            "number_of_tracks": 16,
+            "release_date": "2025-10-06",
+            "release_year": 2025,
+            "upc": "00602488195980"
+          },
+          "raw_match": {
+            "artist": "Taylor Swift",
+            "title": "The Life of a Showgirl"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/0d44f978-41d0-4822-ac92-d3120ebfe92e"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "00602488195980"
+      },
+      "id": 19431,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 4,
+      "source_names_by_field": {
+        "upc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://musicbrainz.org/release/0d44f978-41d0-4822-ac92-d3120ebfe92e"
+        ]
+      },
+      "title": "The Life of a Showgirl"
+    },
+    {
+      "artist": "Michael Jackson",
+      "candidates": [
+        {
+          "fields": {
+            "label": "Epic",
+            "number_of_tracks": 18,
+            "release_date": "2001-10-15",
+            "release_year": 2001,
+            "upc": "5099750442326"
+          },
+          "raw_match": {
+            "artist": "Michael Jackson",
+            "title": "Bad"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/release/098eedff-6ada-4b39-8a85-27d0271515e2"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "5099750442326"
+      },
+      "id": 19497,
+      "missing_before": [
+        "distributor",
+        "upc"
+      ],
+      "placements": 2,
+      "source_names_by_field": {
+        "upc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://musicbrainz.org/release/098eedff-6ada-4b39-8a85-27d0271515e2"
+        ]
+      },
+      "title": "Bad"
+    },
+    {
+      "artist": "Seyi Vibez",
+      "candidates": [
+        {
+          "fields": {
+            "label": "EMPIRE",
+            "release_date": "2025-11-14",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Seyi Vibez",
+            "release": "Fuji Moto",
+            "title": "Fuji Moto"
+          },
+          "score": 1.0,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/recording/7c588684-807f-4734-8835-33a2ea9d6a84",
+            "https://musicbrainz.org/release/8af57082-75ab-4df0-bd44-99ad7377ec86"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "label": "EMPIRE"
+      },
+      "id": 18132,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "source_names_by_field": {
+        "label": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "label": [
+          "https://musicbrainz.org/recording/7c588684-807f-4734-8835-33a2ea9d6a84",
+          "https://musicbrainz.org/release/8af57082-75ab-4df0-bd44-99ad7377ec86"
+        ]
+      },
+      "title": "FUJI MOTO"
+    },
+    {
+      "artist": "Future",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "USSM12203785",
+            "release_date": "2022-04-29",
+            "release_year": 2022
+          },
+          "raw_match": {
+            "artist": "Future",
+            "release": "I NEVER LIKED YOU",
+            "title": "I’M DAT NIGGA"
+          },
+          "score": 0.971,
+          "source": "MusicBrainz API",
+          "sources": [
+            "https://musicbrainz.org/recording/4947b598-3258-44e9-8e18-6586587f3817"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "USSM12203785"
+      },
+      "id": 17529,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "isrc": [
+          "MusicBrainz API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://musicbrainz.org/recording/4947b598-3258-44e9-8e18-6586587f3817"
+        ]
+      },
+      "title": "I'M DAT NIGGA"
+    }
+  ],
+  "updates_planned_or_applied": 13
+}

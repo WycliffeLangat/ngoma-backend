@@ -1,0 +1,54 @@
+You are running an unattended, scheduled metadata-enrichment sweep for the Ngoma Charts backend (a Django project in the current working directory). Nobody is watching this run — do not ask questions, do not wait for confirmation, just execute the pipeline below and finish. Use ./venv/Scripts/python.exe for every manage.py invocation.
+
+GOAL: find Artist/Release records with blank enrichment fields, research the missing values on the public internet, and write them into the local database — filling only fields that are currently blank, exactly like the CMS's existing manual "research workbook" process (scripts/metadata_research_*.json + `manage.py apply_researched_metadata`), just automated end to end.
+
+STEP 1 — Detect gaps
+Run: ./venv/Scripts/python.exe manage.py find_metadata_gaps --path scripts/metadata_gap_queue.json --limit 25
+This overwrites scripts/metadata_gap_queue.json with up to 25 artists, 25 songs, and 25 albums that are each missing at least one enrichable field. Read that file.
+
+If artists, songs, and albums are ALL empty: print "Nothing to enrich this run." and STOP. Do not proceed further.
+
+STEP 2 — Research each queued record
+For every record in the queue, use web search to find values for exactly the fields listed in its "missing_fields" array. Nothing else.
+
+Field meanings:
+- Artist: country (full name), country_code (ISO 3166-1 alpha-2, e.g. KE, TZ, NG, US), city_region (city/region of origin), genre, biography (2-4 sentences, neutral factual tone, no marketing fluff), spotify_url, apple_music_url, youtube_url, boomplay_url, audiomack_url, tiktok_url, instagram_url, x_url, facebook_url, website_url (the artist's own official channel URLs, not a search results page).
+- Release (song/album): country, country_code, genre, label, distributor, spotify_url, apple_music_url, boomplay_url, audiomack_url, youtube_url, tiktok_url, shazam_url. Songs additionally: songwriters, producers, isrc. Albums additionally: number_of_tracks, upc. Both additionally: release_year, release_date (YYYY-MM-DD, only if you can confirm the exact day).
+
+Sourcing rules (match the standard this project already holds itself to — see the reasoning in scripts/metadata_research_*.json and charts/management/commands/update_artist_countries.py if you want examples of the expected quality bar):
+- Prefer official platform artist/release pages (Apple Music, Spotify, Shazam, Audiomack, Boomplay, YouTube Music), the artist's own official website/socials, Wikipedia, MusicBrainz, or reputable music press (e.g. musicinafrica.net for African acts, AllMusic, Genius).
+- Only include a field in your output if you found it from a source you'd call reasonably reliable. If you can't confirm a field with a real source, LEAVE IT OUT of that record entirely — do not guess, do not infer from the artist's name/nationality stereotypes, do not fabricate URLs. An incomplete-but-correct record is fine; a wrong or made-up value is not.
+- Never touch identity/merge decisions: don't flag or attempt to merge possible duplicate artists, and never suggest setting an artist's "verified" flag — those stay human-only, exactly as apply_researched_metadata.py's own docstring already requires.
+- Skip a record entirely (omit it from your output) if it turns out not to be a real artist/release (e.g. a generic sound-effects/ambience catalog name) rather than guessing a country for it.
+
+STEP 3 — Write the research payload
+Compose one JSON file at scripts/metadata_research_auto_<UTC timestamp, format YYYYMMDD_HHMMSS>.json with this exact shape (only the fields you actually found go in each row; always keep "id" and the row's original name/title/artist):
+
+{
+  "artists": [ {"id": 123, "name": "...", "<field>": "<value>", ...} ],
+  "songs":   [ {"id": 456, "title": "...", "artist": "...", "<field>": "<value>", ...} ],
+  "albums":  [ {"id": 789, "title": "...", "artist": "...", "<field>": "<value>", ...} ]
+}
+
+Omit any record you found nothing usable for (don't include an empty row).
+
+STEP 4 — Apply it locally
+Run: ./venv/Scripts/python.exe manage.py apply_researched_metadata --path scripts/metadata_research_auto_<same timestamp>.json --apply
+This only ever fills currently-blank fields and never overwrites an existing value, so it's safe even if your research disagrees with something already on file. It also skips any row where the live record's name/title no longer matches what you recorded in step 3 (an identity-drift safety net) — that's expected behavior, not an error.
+
+STEP 5 — Apply it to production
+The exact same JSON file also needs applying to the live production database (Railway Postgres) — this backend repo's local SQLite is a separate, disconnected copy, and the public site only ever reads from production. The Railway CLI is already authenticated and this project is already linked (project "ngoma_backend", service "web").
+
+IMPORTANT invocation detail: running `railway run` directly from a Bash/git-bash shell mangles `./venv/Scripts/python.exe`-style forward-slash paths (Windows argument parsing strips them). Always wrap the call through PowerShell instead, using a backslash path, exactly like this one-liner (adjust only the JSON filename):
+
+powershell.exe -NoProfile -Command "railway run --service web -- .\venv\Scripts\python.exe manage.py apply_researched_metadata --path scripts/metadata_research_auto_<same timestamp>.json --apply"
+
+Run that via the Bash tool. It prints the same per-record report as step 4, applied against production instead. If it errors or `railway` isn't authenticated/linked, do NOT try to fix Railway auth yourself — stop, leave the local changes from step 4 as they are, and note the production-apply failure clearly in your final report so a human can push it manually.
+
+STEP 6 — Report and log the leftovers
+Print a short summary: how many artists/songs/albums were updated locally AND in production (from each command's own output), and how many queued records got no usable research at all.
+For every queued record that ended up with zero fields found, append one line to scripts/metadata_enrichment_review_needed.md (create it with a one-line header if it doesn't exist) in the form:
+`- YYYY-MM-DD: Artist/Song/Album #id "name" — no reliable public source found for: field, field, ...`
+This is the human follow-up list — do not try harder to guess values for these, just log them and move on.
+
+Do not modify any file outside scripts/ and logs/. Do not touch git (no commits, no pushes). Do not run migrations. Do not delete or rename anything. Do not attempt any production action other than the single apply_researched_metadata call in step 5.

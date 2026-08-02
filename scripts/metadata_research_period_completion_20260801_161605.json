@@ -1,0 +1,1171 @@
+{
+  "applied": true,
+  "backend_release_ids_missing": [
+    22792,
+    22890,
+    22909,
+    22910,
+    22911,
+    22942,
+    22998
+  ],
+  "backend_releases_found": 1013,
+  "backup": "C:\\Users\\HP\\Desktop\\Ngoma Charts Folder\\files\\ngoma_charts_backend\\backend\\ngoma_charts.db.bak-metadata-period-20260801161604",
+  "generated_at": "2026-08-01T16:16:05",
+  "misses": [
+    {
+      "artist": "Young Jonn",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20233,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Blue Disco"
+    },
+    {
+      "artist": "BURUKLYN BOYZ",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20586,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "East Mpaka London"
+    },
+    {
+      "artist": "T.I BLAZE",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20608,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "El-Chapo"
+    },
+    {
+      "artist": "Rybeena",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20111,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Mr Bee"
+    },
+    {
+      "artist": "Bensoul",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21393,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NaEnjoy"
+    },
+    {
+      "artist": "Eunice Njeri",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19920,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nani Kama Wewe"
+    },
+    {
+      "artist": "YOUNG RAPPERS",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21376,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NEED THE MONEY"
+    },
+    {
+      "artist": "GENIUSJINI X66",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19743,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Time Traveller"
+    },
+    {
+      "artist": "Tml Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19799,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Timileyin 2.0"
+    },
+    {
+      "artist": "Sean Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18770,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "(When You Gonna) Give It Up to Me [Radio Version]"
+    },
+    {
+      "artist": "Betty Bayo",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18177,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "11Th Hour"
+    },
+    {
+      "artist": "Dax Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19143,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Aeiou"
+    },
+    {
+      "artist": "Willy Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17595,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Ahere"
+    },
+    {
+      "artist": "Toprock Gospel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19267,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "All I Need Is You"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17549,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Amanda (Explicit)"
+    },
+    {
+      "artist": "HBK Live Act",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18866,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Anginayo Imali"
+    },
+    {
+      "artist": "Beniko",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18404,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Assinata"
+    },
+    {
+      "artist": "Official Baba Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19305,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Baba God"
+    },
+    {
+      "artist": "Urban Chords",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18044,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "badman gangsta"
+    },
+    {
+      "artist": "KODONGKLAN",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18280,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Better Days"
+    },
+    {
+      "artist": "Timaya",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18360,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "BIG MAN TING"
+    }
+  ],
+  "missing_counts_after": {
+    "apple_music_url": 241,
+    "distributor": 797,
+    "genre": 59,
+    "isrc": 54,
+    "label": 47,
+    "number_of_tracks": 13,
+    "producers": 386,
+    "release_date": 41,
+    "release_year": 41,
+    "songwriters": 422,
+    "upc": 96
+  },
+  "missing_counts_before": {
+    "apple_music_url": 241,
+    "distributor": 797,
+    "genre": 59,
+    "isrc": 54,
+    "label": 47,
+    "number_of_tracks": 13,
+    "producers": 400,
+    "release_date": 41,
+    "release_year": 41,
+    "songwriters": 436,
+    "upc": 96
+  },
+  "months": [
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
+    "January 2026",
+    "February 2026",
+    "March 2026",
+    "April 2026",
+    "May 2026",
+    "June 2026",
+    "July 2026"
+  ],
+  "public_unique_release_ids": 1020,
+  "release_order_limit": 100,
+  "release_order_start": 700,
+  "script_version": "2026-08-01",
+  "selected_releases": 100,
+  "source": "Automated high-confidence metadata lookup using Deezer, iTunes/Apple, and Genius public endpoints.",
+  "source_hits": {
+    "Genius API": 16
+  },
+  "sources_mode": "genius",
+  "targets_scanned": 37,
+  "updates": [
+    {
+      "artist": "Drake",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "OZ; Ben10k; Karri; Mars (DEU) (Producer); P-LO; Thomas Madynski",
+            "release_date": "2026-05-15",
+            "release_year": 2026,
+            "songwriters": "Drake; OZ; Ben10k; Karri; Mars (DEU) (Producer); P-LO; Thomas Madynski; Brian Alexander Morgan; Mac Dre; Khayree; Stevie Wonder; Wayman Tisdale"
+          },
+          "raw_match": {
+            "artist": "Drake",
+            "title": "2 Hard 4 The Radio"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Drake-2-hard-4-the-radio-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "OZ; Ben10k; Karri; Mars (DEU) (Producer); P-LO; Thomas Madynski",
+        "songwriters": "Drake; OZ; Ben10k; Karri; Mars (DEU) (Producer); P-LO; Thomas Madynski; Brian Alexander Morgan; Mac Dre; Khayree; Stevie Wonder; Wayman Tisdale"
+      },
+      "id": 19089,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Drake-2-hard-4-the-radio-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Drake-2-hard-4-the-radio-lyrics"
+        ]
+      },
+      "title": "2 Hard 4 The Radio"
+    },
+    {
+      "artist": "J. Cole",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "J. Cole",
+            "release_date": "2026-02-06",
+            "release_year": 2026,
+            "songwriters": "J. Cole; James Taylor"
+          },
+          "raw_match": {
+            "artist": "J. Cole",
+            "title": "29 Intro"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/J-cole-29-intro-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "J. Cole",
+        "songwriters": "J. Cole; James Taylor"
+      },
+      "id": 18621,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/J-cole-29-intro-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/J-cole-29-intro-lyrics"
+        ]
+      },
+      "title": "29 Intro"
+    },
+    {
+      "artist": "Rybeena",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "R-B",
+            "producers": "Japhkenti",
+            "songwriters": "Rybeena; Joeboy"
+          },
+          "raw_match": {
+            "artist": "Rybeena (Ft. Joeboy)",
+            "title": "Adunni"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Rybeena-adunni-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Japhkenti",
+        "songwriters": "Rybeena; Joeboy"
+      },
+      "id": 17621,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Rybeena-adunni-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Rybeena-adunni-lyrics"
+        ]
+      },
+      "title": "Adunni"
+    },
+    {
+      "artist": "Zuchu",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "S2Kizzy",
+            "release_date": "2025-09-23",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Zuchu (Ft. Spice)",
+            "title": "Amanda Remix"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Zuchu-amanda-remix-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "S2Kizzy"
+      },
+      "id": 17920,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Zuchu-amanda-remix-lyrics"
+        ]
+      },
+      "title": "Amanda Remix"
+    },
+    {
+      "artist": "Asake",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Magicsticks",
+            "release_date": "2026-05-01",
+            "release_year": 2026,
+            "songwriters": "Asake; Olasunkanmi Temitayo Kareem; Nana Ntorinkansah"
+          },
+          "raw_match": {
+            "artist": "Asake",
+            "title": "Amen"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Asake-amen-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Magicsticks",
+        "songwriters": "Asake; Olasunkanmi Temitayo Kareem; Nana Ntorinkansah"
+      },
+      "id": 19074,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Asake-amen-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Asake-amen-lyrics"
+        ]
+      },
+      "title": "Amen"
+    },
+    {
+      "artist": "Mbosso",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "R-B",
+            "producers": "S2Kizzy",
+            "release_date": "2023-05-11",
+            "release_year": 2023,
+            "songwriters": "Mbosso"
+          },
+          "raw_match": {
+            "artist": "Mbosso",
+            "title": "Amepotea"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Mbosso-amepotea-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "S2Kizzy",
+        "songwriters": "Mbosso"
+      },
+      "id": 17659,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Mbosso-amepotea-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Mbosso-amepotea-lyrics"
+        ]
+      },
+      "title": "Amepotea"
+    },
+    {
+      "artist": "Yammi",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Mafeeling",
+            "release_date": "2025-08-22",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Yammi",
+            "title": "Arenare"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Yammi-arenare-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Mafeeling"
+      },
+      "id": 17560,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Yammi-arenare-lyrics"
+        ]
+      },
+      "title": "Arenare"
+    },
+    {
+      "artist": "Asake",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Kabza De Small",
+            "release_date": "2026-05-01",
+            "release_year": 2026,
+            "songwriters": "Asake; Kabza De Small; Nana Ntorinkansah"
+          },
+          "raw_match": {
+            "artist": "Asake & Kabza De Small",
+            "title": "Asambe"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Asake-and-kabza-de-small-asambe-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Kabza De Small",
+        "songwriters": "Asake; Kabza De Small; Nana Ntorinkansah"
+      },
+      "id": 19076,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Asake-and-kabza-de-small-asambe-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Asake-and-kabza-de-small-asambe-lyrics"
+        ]
+      },
+      "title": "Asambe"
+    },
+    {
+      "artist": "SSSoundGawd",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "DJ 808; Dibs; SSSoundGawd",
+            "release_date": "2026-02-20",
+            "release_year": 2026,
+            "songwriters": "SSSoundGawd; Mavo"
+          },
+          "raw_match": {
+            "artist": "Mavo & SSSoundGawd",
+            "title": "Aura Salad"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Mavo-and-sssoundgawd-aura-salad-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "DJ 808; Dibs; SSSoundGawd",
+        "songwriters": "SSSoundGawd; Mavo"
+      },
+      "id": 18800,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Mavo-and-sssoundgawd-aura-salad-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Mavo-and-sssoundgawd-aura-salad-lyrics"
+        ]
+      },
+      "title": "Aura Salad"
+    },
+    {
+      "artist": "Prince Ben",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Non-Music",
+            "producers": "Agbor Napoleon Eta",
+            "release_date": "2026-01-01",
+            "release_year": 2026,
+            "songwriters": "Tabe Horace Oben"
+          },
+          "raw_match": {
+            "artist": "Official Prince Ben",
+            "title": "Baba don do wam again"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Official-prince-ben-baba-don-do-wam-again-annotated"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Agbor Napoleon Eta",
+        "songwriters": "Tabe Horace Oben"
+      },
+      "id": 18870,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Official-prince-ben-baba-don-do-wam-again-annotated"
+        ],
+        "songwriters": [
+          "https://genius.com/Official-prince-ben-baba-don-do-wam-again-annotated"
+        ]
+      },
+      "title": "Baba don do wam again"
+    },
+    {
+      "artist": "Fireboy DML",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "P.Priime",
+            "release_date": "2022-07-14",
+            "release_year": 2022,
+            "songwriters": "Fireboy DML; Asake"
+          },
+          "raw_match": {
+            "artist": "Fireboy DML & Asake",
+            "title": "Bandana"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Fireboy-dml-and-asake-bandana-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "P.Priime",
+        "songwriters": "Fireboy DML; Asake"
+      },
+      "id": 17479,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Fireboy-dml-and-asake-bandana-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Fireboy-dml-and-asake-bandana-lyrics"
+        ]
+      },
+      "title": "Bandana"
+    },
+    {
+      "artist": "Kman 6ixx",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "release_date": "2026-03-16",
+            "release_year": 2026,
+            "songwriters": "Kman 6ixx; SamDan"
+          },
+          "raw_match": {
+            "artist": "Kman 6ixx (Ft. Countree Hype & SamDan)",
+            "title": "Bend Ova"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Kman-6ixx-bend-ova-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "songwriters": "Kman 6ixx; SamDan"
+      },
+      "id": 18970,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "songwriters": [
+          "https://genius.com/Kman-6ixx-bend-ova-lyrics"
+        ]
+      },
+      "title": "Bend Ova"
+    },
+    {
+      "artist": "Michael Jackson",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Quincy Jones",
+            "release_date": "1982-11-30",
+            "release_year": 1982,
+            "songwriters": "Michael Jackson"
+          },
+          "raw_match": {
+            "artist": "Michael Jackson",
+            "title": "Billie Jean"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Michael-jackson-billie-jean-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Quincy Jones",
+        "songwriters": "Michael Jackson"
+      },
+      "id": 18921,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Michael-jackson-billie-jean-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Michael-jackson-billie-jean-lyrics"
+        ]
+      },
+      "title": "Billie Jean"
+    },
+    {
+      "artist": "shewahdexta",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "release_date": "2026-01-02",
+            "release_year": 2026,
+            "songwriters": "Shewahdexta"
+          },
+          "raw_match": {
+            "artist": "Shewahdexta",
+            "title": "Birkin Bag"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Shewahdexta-birkin-bag-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "songwriters": "Shewahdexta"
+      },
+      "id": 18560,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "songwriters": [
+          "https://genius.com/Shewahdexta-birkin-bag-lyrics"
+        ]
+      },
+      "title": "Birkin Bag"
+    },
+    {
+      "artist": "J. Cole",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "The Alchemist; Ron Gilmore",
+            "release_date": "2026-02-06",
+            "release_year": 2026,
+            "songwriters": "J. Cole; USHER; Bas; The Alchemist; Ron Gilmore; BJ the Chicago Kid; Brian Casey; Jermaine Dupri; Manuel Seal; Yuli"
+          },
+          "raw_match": {
+            "artist": "J. Cole, Future & Tems",
+            "title": "Bunce Road Blues"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/J-cole-future-and-tems-bunce-road-blues-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "The Alchemist; Ron Gilmore",
+        "songwriters": "J. Cole; USHER; Bas; The Alchemist; Ron Gilmore; BJ the Chicago Kid; Brian Casey; Jermaine Dupri; Manuel Seal; Yuli"
+      },
+      "id": 18607,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/J-cole-future-and-tems-bunce-road-blues-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/J-cole-future-and-tems-bunce-road-blues-lyrics"
+        ]
+      },
+      "title": "Bunce Road Blues"
+    },
+    {
+      "artist": "Drake",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Smash David; London Cyr; Alex Lustig; 2one2; b4u; Digital Jet; Eli Brown (CAN); 5EBAS; Prodkavin",
+            "release_date": "2026-05-15",
+            "release_year": 2026,
+            "songwriters": "Drake; Smash David; London Cyr; Alex Lustig; 2one2; b4u; Digital Jet; Eli Brown (CAN); 5EBAS; Prodkavin"
+          },
+          "raw_match": {
+            "artist": "Drake",
+            "title": "Burning Bridges"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Drake-burning-bridges-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Smash David; London Cyr; Alex Lustig; 2one2; b4u; Digital Jet; Eli Brown (CAN); 5EBAS; Prodkavin",
+        "songwriters": "Drake; Smash David; London Cyr; Alex Lustig; 2one2; b4u; Digital Jet; Eli Brown (CAN); 5EBAS; Prodkavin"
+      },
+      "id": 19085,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Drake-burning-bridges-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Drake-burning-bridges-lyrics"
+        ]
+      },
+      "title": "Burning Bridges"
+    }
+  ],
+  "updates_planned_or_applied": 16
+}

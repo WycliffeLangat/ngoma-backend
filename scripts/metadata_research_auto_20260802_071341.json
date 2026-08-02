@@ -1,0 +1,111 @@
+{
+  "artists": [
+    {
+      "id": 563,
+      "name": "-Prey",
+      "country": "Germany",
+      "country_code": "DE",
+      "genre": "Phonk",
+      "biography": "German phonk producer who began releasing music in late 2021. Known for dark, atmospheric downtempo productions built on heavy 808s and chopped-soul samples, blending phonk with ambient and electronic elements. Releases include the tracks \"Party Party Phonk\" (2022), \"INFINITY FUNK\" (2024), and \"Confess Your Love Funk\" (2025).",
+      "spotify_url": "https://open.spotify.com/artist/3uA4unR7LBOcqjpbOeCs0Y",
+      "apple_music_url": "https://music.apple.com/us/artist/prey/1616387895",
+      "instagram_url": "https://www.instagram.com/preymsc/"
+    },
+    {
+      "id": 2286,
+      "name": "031CHOPPA",
+      "city_region": "Durban, KwaZulu-Natal, South Africa",
+      "spotify_url": "https://open.spotify.com/artist/5CqbErFqBV89u0gqQfH3ks",
+      "apple_music_url": "https://music.apple.com/us/artist/031choppa/1508553003",
+      "youtube_url": "https://www.youtube.com/channel/UCFoUquortaxdtPxGdwRf0GA",
+      "audiomack_url": "https://audiomack.com/031choppa",
+      "instagram_url": "https://www.instagram.com/031choppa/",
+      "facebook_url": "https://www.facebook.com/p/031choppa-100068025914248/",
+      "tiktok_url": "https://www.tiktok.com/@031choppa_",
+      "x_url": "https://x.com/031choppa"
+    }
+  ],
+  "songs": [
+    {
+      "id": 18651,
+      "title": "$ex Appeal",
+      "artist": "Baby Keem",
+      "genre": "Hip hop; Trap; Pop rap",
+      "label": "pgLang / Columbia Records",
+      "spotify_url": "https://open.spotify.com/track/2N1D5t5zkvlNElbH9q0vBv",
+      "apple_music_url": "https://music.apple.com/us/song/%24ex-appeal-feat-too-%24hort/1878400246",
+      "youtube_url": "https://www.youtube.com/watch?v=l7ZmV5SSAIk",
+      "shazam_url": "https://www.shazam.com/song/1878400246/ex-appeal-feat-too-hort",
+      "release_year": 2026,
+      "release_date": "2026-02-20"
+    },
+    {
+      "id": 18770,
+      "title": "(When You Gonna) Give It Up to Me [Radio Version]",
+      "artist": "Sean Paul",
+      "spotify_url": "https://open.spotify.com/track/5nEdwtSv0qqeE0l4o1lR4q",
+      "audiomack_url": "https://audiomack.com/sean-paul/album/when-you-gonna-give-it-up-to-me-8695109",
+      "youtube_url": "https://www.youtube.com/watch?v=N9djIgkO3v8",
+      "shazam_url": "https://www.shazam.com/song/186774469/when-you-gonna-give-it-up-to-me-radio-version-feat-keyshia-cole",
+      "songwriters": "Sean Henriques; Donovan Bennett; Nigel Staff",
+      "producers": "Donovan Bennett"
+    },
+    {
+      "id": 18177,
+      "title": "11Th Hour",
+      "artist": "Betty Bayo",
+      "spotify_url": "https://open.spotify.com/track/4MnYNtuF9iLFmN2CSkmmnZ",
+      "audiomack_url": "https://audiomack.com/betty-bayo/album/11th-hour",
+      "youtube_url": "https://www.youtube.com/watch?v=CXSsNdJZobo",
+      "shazam_url": "https://www.shazam.com/song/706971078/11th-hour/music-video",
+      "songwriters": "Betty Bayo (Beatrice Wairimu Mbugua)"
+    }
+  ],
+  "albums": [
+    {
+      "id": 20044,
+      "title": "#F.E.B",
+      "artist": "Kankan",
+      "genre": "Hip-Hop/Rap; Trap",
+      "label": "EMPIRE",
+      "distributor": "EMPIRE",
+      "country": "United States",
+      "country_code": "US",
+      "spotify_url": "https://open.spotify.com/album/75RMWrQaADsBgO8lGpvj6l",
+      "apple_music_url": "https://music.apple.com/us/album/f-e-b/1844492507",
+      "audiomack_url": "https://audiomack.com/kankan/album/feb-1042723",
+      "number_of_tracks": 23,
+      "release_year": 2025,
+      "release_date": "2025-10-24"
+    },
+    {
+      "id": 20277,
+      "title": "#FEDERAL",
+      "artist": "SINN6R",
+      "genre": "UK rap; Trap",
+      "label": "XV Records / Lizzy Records",
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "spotify_url": "https://open.spotify.com/album/0HqtaJLSCT9F0YPRadmigb",
+      "apple_music_url": "https://music.apple.com/us/album/federal/1850434696",
+      "audiomack_url": "https://audiomack.com/sinn6rkilla/album/federal-8518425",
+      "number_of_tracks": 10,
+      "release_year": 2025,
+      "release_date": "2025-11-21"
+    },
+    {
+      "id": 19751,
+      "title": "$exy Girl $ummer (Vol.1)",
+      "artist": "Darkoo",
+      "genre": "Afrobeats",
+      "label": "Black Pearl Music Group",
+      "distributor": "Ditto Music",
+      "spotify_url": "https://open.spotify.com/album/68q09r65wcBidNleimVoLk",
+      "apple_music_url": "https://music.apple.com/us/album/%24exy-girl-%24ummer-vol-1/1819093001",
+      "youtube_url": "https://www.youtube.com/watch?v=AU4o5Xezyxo",
+      "number_of_tracks": 8,
+      "release_year": 2025,
+      "release_date": "2025-06-27"
+    }
+  ]
+}

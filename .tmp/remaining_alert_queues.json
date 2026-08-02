@@ -1,0 +1,2493 @@
+{
+  "generated_at": "2026-07-31T10:38:24.221Z",
+  "counts": {
+    "missingArtists": 126,
+    "releaseCountryRows": 117,
+    "songCountryRows": 105,
+    "albumCountryRows": 12,
+    "news": 34,
+    "featuredText": 0
+  },
+  "missingArtists": [
+    {
+      "id": 1012,
+      "name": "BBO",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1018,
+      "name": "Black Coco",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 749,
+      "name": "Brayan Crist",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 751,
+      "name": "Broken Trails",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 486,
+      "name": "brux XTN",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 544,
+      "name": "Caine",
+      "country": "GB",
+      "country_code": "GB",
+      "problem": "Country/code mismatch: GB is paired with GB (United Kingdom)"
+    },
+    {
+      "id": 1916,
+      "name": "Catholic Church Songs",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 952,
+      "name": "Chiktay",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 760,
+      "name": "Chill77",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 560,
+      "name": "Chris Grey",
+      "country": "US",
+      "country_code": "US",
+      "problem": "Country/code mismatch: US is paired with US (United States)"
+    },
+    {
+      "id": 1075,
+      "name": "CJS",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 954,
+      "name": "Coconut Rootz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2221,
+      "name": "CrashDummy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 747,
+      "name": "Criss MJ",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1074,
+      "name": "Dela Cuffy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 610,
+      "name": "Delana Hope",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2102,
+      "name": "Di Genius",
+      "country": "JM",
+      "country_code": "JM",
+      "problem": "Country/code mismatch: JM is paired with JM (Jamaica)"
+    },
+    {
+      "id": 2219,
+      "name": "DJ CHEEM",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1128,
+      "name": "DJ Grauchi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 808,
+      "name": "Dj Kezz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2220,
+      "name": "DJ MAC",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 992,
+      "name": "Dolv Gvng",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 392,
+      "name": "Dr Sarah K",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 362,
+      "name": "Drex D",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 949,
+      "name": "DWAYNE SPIKES",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 611,
+      "name": "Emanuel Nicarios",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 830,
+      "name": "English Audio Bible",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 600,
+      "name": "Eshconinco",
+      "country": "JM",
+      "country_code": "JM",
+      "problem": "Country/code mismatch: JM is paired with JM (Jamaica)"
+    },
+    {
+      "id": 997,
+      "name": "Faceless",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 823,
+      "name": "Faith Grey",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2790,
+      "name": "Fat Papi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2202,
+      "name": "Fenix Flexin",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 834,
+      "name": "FRAH KE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1068,
+      "name": "Free Da Truth",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 753,
+      "name": "Furryx",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 935,
+      "name": "GIFT MELODY",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 957,
+      "name": "Greenworld music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 880,
+      "name": "Harry Craze",
+      "country": "GB",
+      "country_code": "GB",
+      "problem": "Country/code mismatch: GB is paired with GB (United Kingdom)"
+    },
+    {
+      "id": 993,
+      "name": "Hildah Watiri",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1065,
+      "name": "Hornsphere",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1017,
+      "name": "Hyce",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 750,
+      "name": "Jorh Creta",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 568,
+      "name": "Josh Kamba",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2147,
+      "name": "Kabelo Tiro aka skavenja",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2958,
+      "name": "Kano Choir",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 986,
+      "name": "Kassam",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 956,
+      "name": "KayArchonn",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 422,
+      "name": "Kendi Kiremi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 647,
+      "name": "Kevin Kade",
+      "country": "RW",
+      "country_code": "RW",
+      "problem": "Country/code mismatch: RW is paired with RW (Rwanda)"
+    },
+    {
+      "id": 428,
+      "name": "Khadeair",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1085,
+      "name": "King Bubby",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1046,
+      "name": "King Soundboi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2090,
+      "name": "Kingpheezle",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2222,
+      "name": "Kinoti",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2191,
+      "name": "Kisii All Stars",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 950,
+      "name": "Laflare",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1091,
+      "name": "Levelz UP",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2168,
+      "name": "Lift Soul Records",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2146,
+      "name": "LOVIXX & STOSLIV",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 755,
+      "name": "LR GLOBAL",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 412,
+      "name": "Mad G Odeya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 955,
+      "name": "Mavoicetz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 953,
+      "name": "Mikado",
+      "country": "FR",
+      "country_code": "FR",
+      "problem": "Country/code mismatch: FR is paired with FR (France)"
+    },
+    {
+      "id": 2113,
+      "name": "Miracle LRE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 852,
+      "name": "Moses Luka",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 822,
+      "name": "MSA",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 336,
+      "name": "Nahj",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2082,
+      "name": "Nahsh kariuki Official",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 377,
+      "name": "NG'ETHE STEVE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2049,
+      "name": "Nia Pearl",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 704,
+      "name": "NO11",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 436,
+      "name": "Ntombemhlope",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1002,
+      "name": "Oberz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 958,
+      "name": "Official Tikiti",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 867,
+      "name": "Pam",
+      "country": "JP",
+      "country_code": "JP",
+      "problem": "Country/code mismatch: JP is paired with JP (Japan)"
+    },
+    {
+      "id": 989,
+      "name": "Party Wright",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 378,
+      "name": "Patrick Kubuya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 802,
+      "name": "Pelzy Never Mind",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 717,
+      "name": "Peterbril",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 357,
+      "name": "Phany Love",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2791,
+      "name": "prodshushy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2203,
+      "name": "Purps On The Beat",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 995,
+      "name": "R.M.H",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 938,
+      "name": "Rachats Classic",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 975,
+      "name": "Ragal Ironbull",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1072,
+      "name": "ragerx",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2214,
+      "name": "REI AMI",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 748,
+      "name": "Roland MANTAMA",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 821,
+      "name": "Ronis Goliath",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2967,
+      "name": "Ronoo",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1015,
+      "name": "Rord Kelly",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 427,
+      "name": "Sam Wa Ukweli",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1000,
+      "name": "SAMAD",
+      "country": "IR",
+      "country_code": "IR",
+      "problem": "Country/code mismatch: IR is paired with IR (Iran)"
+    },
+    {
+      "id": 2106,
+      "name": "SamDan",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 746,
+      "name": "SdoDiRoba",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 752,
+      "name": "shewahdexta",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 674,
+      "name": "Shift to Abundance",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 616,
+      "name": "SIJI.",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1600,
+      "name": "slayr",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 192,
+      "name": "SleepTherapy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 628,
+      "name": "Solpulse",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 673,
+      "name": "Song Writer's Playbook",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 519,
+      "name": "Sounds Of Afrika Music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1006,
+      "name": "Stahgee",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2059,
+      "name": "Sykes",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 363,
+      "name": "T Peller",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2087,
+      "name": "THE LIGHTBEARERS TZ",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 1069,
+      "name": "The Wamagatas",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 685,
+      "name": "Time N Gold",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 790,
+      "name": "Timi Dre",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 782,
+      "name": "Tipsy Gee",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 516,
+      "name": "Tkandz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 882,
+      "name": "Trinix Remix",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2217,
+      "name": "Unjaps",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 763,
+      "name": "V-Be",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 828,
+      "name": "Vailedmoon music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 312,
+      "name": "Valiant",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 792,
+      "name": "Various Artists",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 538,
+      "name": "Vicoka",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 657,
+      "name": "Virusi Mbaya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2124,
+      "name": "where.t.at",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 429,
+      "name": "World hive",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 721,
+      "name": "WorshipWithCorry",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 796,
+      "name": "Xouh",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2710,
+      "name": "YOUNG RAPPERS",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 2069,
+      "name": "Zagga",
+      "country": "JM",
+      "country_code": "JM",
+      "problem": "Country/code mismatch: JM is paired with JM (Jamaica)"
+    }
+  ],
+  "releaseCountryRows": [
+    {
+      "id": 21267,
+      "title": "Ave Maria",
+      "chart_type": "albums",
+      "label": "Ave Maria - Catholic Church Songs",
+      "artist_id": 1916,
+      "lead_artist": "Catholic Church Songs",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 21024,
+      "title": "Half Blood (BloodLuxe)",
+      "chart_type": "albums",
+      "label": "Half Blood (BloodLuxe) - slayr",
+      "artist_id": 1600,
+      "lead_artist": "slayr",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 21376,
+      "title": "NEED THE MONEY",
+      "chart_type": "albums",
+      "label": "NEED THE MONEY - YOUNG RAPPERS",
+      "artist_id": 2710,
+      "lead_artist": "YOUNG RAPPERS",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 20643,
+      "title": "ON YOU",
+      "chart_type": "albums",
+      "label": "ON YOU - Timi Dre",
+      "artist_id": 790,
+      "lead_artist": "Timi Dre",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19794,
+      "title": "PREMIUM LAMBA",
+      "chart_type": "albums",
+      "label": "PREMIUM LAMBA - King Soundboi",
+      "artist_id": 1046,
+      "lead_artist": "King Soundboi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19486,
+      "title": "Rain Sounds",
+      "chart_type": "albums",
+      "label": "Rain Sounds - SleepTherapy",
+      "artist_id": 192,
+      "lead_artist": "SleepTherapy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 20510,
+      "title": "Saiyaara (Extended Album) [Original Motion Picture Soundtrack]",
+      "chart_type": "albums",
+      "label": "Saiyaara (Extended Album) [Original Motion Picture Soundtrack] - Various Artists",
+      "artist_id": 792,
+      "lead_artist": "Various Artists",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19382,
+      "title": "Saiyaara (Original Motion Picture Soundtrack)",
+      "chart_type": "albums",
+      "label": "Saiyaara (Original Motion Picture Soundtrack) - Various Artists",
+      "artist_id": 792,
+      "lead_artist": "Various Artists",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19823,
+      "title": "Souled Out",
+      "chart_type": "albums",
+      "label": "Souled Out - Virusi Mbaya",
+      "artist_id": 657,
+      "lead_artist": "Virusi Mbaya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19412,
+      "title": "Story Book Riddim",
+      "chart_type": "albums",
+      "label": "Story Book Riddim - Various Artists",
+      "artist_id": 792,
+      "lead_artist": "Various Artists",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19969,
+      "title": "THE CASTLE NEVER FALLS",
+      "chart_type": "albums",
+      "label": "THE CASTLE NEVER FALLS - Chris Grey",
+      "artist_id": 560,
+      "lead_artist": "Chris Grey",
+      "country": "US",
+      "country_code": "US",
+      "problem": "Country/code mismatch: US is paired with US (United States)"
+    },
+    {
+      "id": 19551,
+      "title": "The Sounds of Nairobi (DJ Mix)",
+      "chart_type": "albums",
+      "label": "The Sounds of Nairobi (DJ Mix) - DJ Grauchi",
+      "artist_id": 1128,
+      "lead_artist": "DJ Grauchi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18560,
+      "title": "Birkin Bag",
+      "chart_type": "singles",
+      "label": "Birkin Bag - shewahdexta",
+      "artist_id": 752,
+      "lead_artist": "shewahdexta",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18263,
+      "title": "Bruk It Dung",
+      "chart_type": "singles",
+      "label": "Bruk It Dung - Eshconinco",
+      "artist_id": 600,
+      "lead_artist": "Eshconinco",
+      "country": "JM",
+      "country_code": "JM",
+      "problem": "Country/code mismatch: JM is paired with JM (Jamaica)"
+    },
+    {
+      "id": 18867,
+      "title": "Bwagalaa",
+      "chart_type": "singles",
+      "label": "Bwagalaa - Harry Craze",
+      "artist_id": 880,
+      "lead_artist": "Harry Craze",
+      "country": "GB",
+      "country_code": "GB",
+      "problem": "Country/code mismatch: GB is paired with GB (United Kingdom)"
+    },
+    {
+      "id": 17818,
+      "title": "confirm remix",
+      "chart_type": "singles",
+      "label": "confirm remix - Kendi Kiremi",
+      "artist_id": 422,
+      "lead_artist": "Kendi Kiremi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19179,
+      "title": "Constantly",
+      "chart_type": "singles",
+      "label": "Constantly - Hyce, BoyPee & Brown Joel",
+      "artist_id": 1017,
+      "lead_artist": "Hyce",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19266,
+      "title": "Dey For You",
+      "chart_type": "singles",
+      "label": "Dey For You - T Peller",
+      "artist_id": 363,
+      "lead_artist": "T Peller",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18554,
+      "title": "Dibiri Dikae",
+      "chart_type": "singles",
+      "label": "Dibiri Dikae - SdoDiRoba",
+      "artist_id": 746,
+      "lead_artist": "SdoDiRoba",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18356,
+      "title": "DML",
+      "chart_type": "singles",
+      "label": "DML - Josh Kamba",
+      "artist_id": 568,
+      "lead_artist": "Josh Kamba",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 22910,
+      "title": "Don't Tell Your Dreams",
+      "chart_type": "singles",
+      "label": "Don't Tell Your Dreams - LOVIXX & STOSLIV",
+      "artist_id": 2146,
+      "lead_artist": "LOVIXX & STOSLIV",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19303,
+      "title": "Dream Chaser",
+      "chart_type": "singles",
+      "label": "Dream Chaser - ragerx",
+      "artist_id": 1072,
+      "lead_artist": "ragerx",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19165,
+      "title": "Dying Minute",
+      "chart_type": "singles",
+      "label": "Dying Minute - Stahgee, Feladehusla & Aguero Banks",
+      "artist_id": 1006,
+      "lead_artist": "Stahgee",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19299,
+      "title": "EBENEZER",
+      "chart_type": "singles",
+      "label": "EBENEZER - The Wamagatas",
+      "artist_id": 1069,
+      "lead_artist": "The Wamagatas",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18742,
+      "title": "Electric Heat",
+      "chart_type": "singles",
+      "label": "Electric Heat - Faith Grey",
+      "artist_id": 823,
+      "lead_artist": "Faith Grey",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18557,
+      "title": "Fix The Ride",
+      "chart_type": "singles",
+      "label": "Fix The Ride - Brayan Crist",
+      "artist_id": 749,
+      "lead_artist": "Brayan Crist",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 22708,
+      "title": "FREAKED OUT",
+      "chart_type": "singles",
+      "label": "FREAKED OUT - Fat Papi & prodshushy",
+      "artist_id": 2790,
+      "lead_artist": "Fat Papi",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 22677,
+      "title": "GACUMBIRI / PALE KILELE (Live)",
+      "chart_type": "singles",
+      "label": "GACUMBIRI / PALE KILELE (Live) - Dr Sarah K",
+      "artist_id": 392,
+      "lead_artist": "Dr Sarah K",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17828,
+      "title": "God of miracles",
+      "chart_type": "singles",
+      "label": "God of miracles - World hive",
+      "artist_id": 429,
+      "lead_artist": "World hive",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18559,
+      "title": "Hate Me All You Want",
+      "chart_type": "singles",
+      "label": "Hate Me All You Want - Broken Trails",
+      "artist_id": 751,
+      "lead_artist": "Broken Trails",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19307,
+      "title": "Hebu Nieleze",
+      "chart_type": "singles",
+      "label": "Hebu Nieleze - CJS",
+      "artist_id": 1075,
+      "lead_artist": "CJS",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 22046,
+      "title": "How are you?",
+      "chart_type": "singles",
+      "label": "How are you? - Levelz UP",
+      "artist_id": 1091,
+      "lead_artist": "Levelz UP",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18449,
+      "title": "HOW FAR",
+      "chart_type": "singles",
+      "label": "HOW FAR - NO11",
+      "artist_id": 704,
+      "lead_artist": "NO11",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18663,
+      "title": "Huyu",
+      "chart_type": "singles",
+      "label": "Huyu - Phany Love",
+      "artist_id": 357,
+      "lead_artist": "Phany Love",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18871,
+      "title": "I Speak Blessings",
+      "chart_type": "singles",
+      "label": "I Speak Blessings - Delana Hope",
+      "artist_id": 610,
+      "lead_artist": "Delana Hope",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19150,
+      "title": "Imbobo",
+      "chart_type": "singles",
+      "label": "Imbobo - R.M.H",
+      "artist_id": 995,
+      "lead_artist": "R.M.H",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19025,
+      "title": "In the Silence",
+      "chart_type": "singles",
+      "label": "In the Silence - English Audio Bible",
+      "artist_id": 830,
+      "lead_artist": "English Audio Bible",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18869,
+      "title": "Jeene Laga Hoon",
+      "chart_type": "singles",
+      "label": "Jeene Laga Hoon - Trinix Remix",
+      "artist_id": 882,
+      "lead_artist": "Trinix Remix",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18564,
+      "title": "Kamwambie",
+      "chart_type": "singles",
+      "label": "Kamwambie - LR GLOBAL",
+      "artist_id": 755,
+      "lead_artist": "LR GLOBAL",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19017,
+      "title": "Kiuzombie",
+      "chart_type": "singles",
+      "label": "Kiuzombie - DWAYNE SPIKES",
+      "artist_id": 949,
+      "lead_artist": "DWAYNE SPIKES",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18272,
+      "title": "KOMSA",
+      "chart_type": "singles",
+      "label": "KOMSA - SIJI.",
+      "artist_id": 616,
+      "lead_artist": "SIJI.",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18874,
+      "title": "Kristo Wa Neema Yote Imbisha Moyo Wangu",
+      "chart_type": "singles",
+      "label": "Kristo Wa Neema Yote Imbisha Moyo Wangu - Sounds Of Afrika Music",
+      "artist_id": 519,
+      "lead_artist": "Sounds Of Afrika Music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 21699,
+      "title": "KWANTLE KWAA",
+      "chart_type": "singles",
+      "label": "KWANTLE KWAA - Kabelo Tiro aka skavenja",
+      "artist_id": 2147,
+      "lead_artist": "Kabelo Tiro aka skavenja",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19021,
+      "title": "La pli si tol",
+      "chart_type": "singles",
+      "label": "La pli si tol - Chiktay",
+      "artist_id": 952,
+      "lead_artist": "Chiktay",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19022,
+      "title": "LA PLI SI TOL (Shatta Remix)",
+      "chart_type": "singles",
+      "label": "LA PLI SI TOL (Shatta Remix) - Mikado",
+      "artist_id": 953,
+      "lead_artist": "Mikado",
+      "country": "FR",
+      "country_code": "FR",
+      "problem": "Country/code mismatch: FR is paired with FR (France)"
+    },
+    {
+      "id": 19159,
+      "title": "Lameda",
+      "chart_type": "singles",
+      "label": "Lameda - SAMAD",
+      "artist_id": 1000,
+      "lead_artist": "SAMAD",
+      "country": "IR",
+      "country_code": "IR",
+      "problem": "Country/code mismatch: IR is paired with IR (Iran)"
+    },
+    {
+      "id": 22616,
+      "title": "Lengoma (feat. sami kay & Misokuhle)",
+      "chart_type": "singles",
+      "label": "Lengoma (feat. sami kay & Misokuhle) - MSA",
+      "artist_id": 822,
+      "lead_artist": "MSA",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19026,
+      "title": "Limenoga",
+      "chart_type": "singles",
+      "label": "Limenoga - Mavoicetz",
+      "artist_id": 955,
+      "lead_artist": "Mavoicetz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17826,
+      "title": "Magumba",
+      "chart_type": "singles",
+      "label": "Magumba - Khadeair",
+      "artist_id": 428,
+      "lead_artist": "Khadeair",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17837,
+      "title": "MAMA",
+      "chart_type": "singles",
+      "label": "MAMA - Ntombemhlope",
+      "artist_id": 436,
+      "lead_artist": "Ntombemhlope",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18556,
+      "title": "Mayday RDC",
+      "chart_type": "singles",
+      "label": "Mayday RDC - Roland MANTAMA",
+      "artist_id": 748,
+      "lead_artist": "Roland MANTAMA",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 22909,
+      "title": "Mbona unanichukia",
+      "chart_type": "singles",
+      "label": "Mbona unanichukia - Ronoo",
+      "artist_id": 2967,
+      "lead_artist": "Ronoo",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18487,
+      "title": "Mengi kwa ajili yangu.",
+      "chart_type": "singles",
+      "label": "Mengi kwa ajili yangu. - Emanuel Nicarios",
+      "artist_id": 611,
+      "lead_artist": "Emanuel Nicarios",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18992,
+      "title": "Mimi Ni Nani",
+      "chart_type": "singles",
+      "label": "Mimi Ni Nani - Rachats Classic & Mbosso",
+      "artist_id": 938,
+      "lead_artist": "Rachats Classic",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19029,
+      "title": "Mimina Neema",
+      "chart_type": "singles",
+      "label": "Mimina Neema - Official Tikiti",
+      "artist_id": 958,
+      "lead_artist": "Official Tikiti",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19306,
+      "title": "Mind Your Business",
+      "chart_type": "singles",
+      "label": "Mind Your Business - Dela Cuffy",
+      "artist_id": 1074,
+      "lead_artist": "Dela Cuffy",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18407,
+      "title": "Mirror To Magic",
+      "chart_type": "singles",
+      "label": "Mirror To Magic - Shift to Abundance",
+      "artist_id": 674,
+      "lead_artist": "Shift to Abundance",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18807,
+      "title": "Moja",
+      "chart_type": "singles",
+      "label": "Moja - Moses Luka",
+      "artist_id": 852,
+      "lead_artist": "Moses Luka",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18555,
+      "title": "Mon Bébé",
+      "chart_type": "singles",
+      "label": "Mon Bébé - Criss MJ",
+      "artist_id": 747,
+      "lead_artist": "Criss MJ",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17744,
+      "title": "Moyo Wangu (Live)",
+      "chart_type": "singles",
+      "label": "Moyo Wangu (Live) - Patrick Kubuya",
+      "artist_id": 378,
+      "lead_artist": "Patrick Kubuya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 22777,
+      "title": "MUKAYO",
+      "chart_type": "singles",
+      "label": "MUKAYO - Kisii All Stars & JIAN NDUNGU",
+      "artist_id": 2191,
+      "lead_artist": "Kisii All Stars",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17743,
+      "title": "Munyamaruri",
+      "chart_type": "singles",
+      "label": "Munyamaruri - NG'ETHE STEVE",
+      "artist_id": 377,
+      "lead_artist": "NG'ETHE STEVE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19137,
+      "title": "My Baby",
+      "chart_type": "singles",
+      "label": "My Baby - Xouh",
+      "artist_id": 796,
+      "lead_artist": "Xouh",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19023,
+      "title": "My Everything",
+      "chart_type": "singles",
+      "label": "My Everything - Coconut Rootz",
+      "artist_id": 954,
+      "lead_artist": "Coconut Rootz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19173,
+      "title": "MY GOD",
+      "chart_type": "singles",
+      "label": "MY GOD - BBO",
+      "artist_id": 1012,
+      "lead_artist": "BBO",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17593,
+      "title": "My Lady",
+      "chart_type": "singles",
+      "label": "My Lady - Nahj",
+      "artist_id": 336,
+      "lead_artist": "Nahj",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19298,
+      "title": "MZEE WA HOVYO",
+      "chart_type": "singles",
+      "label": "MZEE WA HOVYO - Free Da Truth",
+      "artist_id": 1068,
+      "lead_artist": "Free Da Truth",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19319,
+      "title": "Nakutaka",
+      "chart_type": "singles",
+      "label": "Nakutaka - King Bubby",
+      "artist_id": 1085,
+      "lead_artist": "King Bubby",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19135,
+      "title": "Ndi Ready",
+      "chart_type": "singles",
+      "label": "Ndi Ready - Kevin Kade",
+      "artist_id": 647,
+      "lead_artist": "Kevin Kade",
+      "country": "RW",
+      "country_code": "RW",
+      "problem": "Country/code mismatch: RW is paired with RW (Rwanda)"
+    },
+    {
+      "id": 21711,
+      "title": "Niko Na Neema",
+      "chart_type": "singles",
+      "label": "Niko Na Neema - Lift Soul Records",
+      "artist_id": 2168,
+      "lead_artist": "Lift Soul Records",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19134,
+      "title": "Nikupe",
+      "chart_type": "singles",
+      "label": "Nikupe - Kassam",
+      "artist_id": 986,
+      "lead_artist": "Kassam",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19028,
+      "title": "Niseme Nini Bwana",
+      "chart_type": "singles",
+      "label": "Niseme Nini Bwana - Greenworld music",
+      "artist_id": 957,
+      "lead_artist": "Greenworld music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18405,
+      "title": "Nitaamini",
+      "chart_type": "singles",
+      "label": "Nitaamini - Emanuel Nicarios",
+      "artist_id": 611,
+      "lead_artist": "Emanuel Nicarios",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18953,
+      "title": "Nitolee",
+      "chart_type": "singles",
+      "label": "Nitolee - Peterbril",
+      "artist_id": 717,
+      "lead_artist": "Peterbril",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 21720,
+      "title": "NJOO",
+      "chart_type": "singles",
+      "label": "NJOO - Pelzy Never Mind",
+      "artist_id": 802,
+      "lead_artist": "Pelzy Never Mind",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18041,
+      "title": "Now or Never",
+      "chart_type": "singles",
+      "label": "Now or Never - Tkandz",
+      "artist_id": 516,
+      "lead_artist": "Tkandz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19161,
+      "title": "Oh No",
+      "chart_type": "singles",
+      "label": "Oh No - Oberz & FOLA",
+      "artist_id": 1002,
+      "lead_artist": "Oberz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19177,
+      "title": "Okwu (Remix)",
+      "chart_type": "singles",
+      "label": "Okwu (Remix) - Rord Kelly & Chella",
+      "artist_id": 1015,
+      "lead_artist": "Rord Kelly",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18245,
+      "title": "Ombi Langu | My Desire | Thandez' Lami",
+      "chart_type": "singles",
+      "label": "Ombi Langu | My Desire | Thandez' Lami - Sounds Of Afrika Music",
+      "artist_id": 519,
+      "lead_artist": "Sounds Of Afrika Music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18665,
+      "title": "ON YOU",
+      "chart_type": "singles",
+      "label": "ON YOU - Timi Dre",
+      "artist_id": 790,
+      "lead_artist": "Timi Dre",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18562,
+      "title": "Over the Vibes",
+      "chart_type": "singles",
+      "label": "Over the Vibes - Furryx",
+      "artist_id": 753,
+      "lead_artist": "Furryx",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17960,
+      "title": "Paid to Exist",
+      "chart_type": "singles",
+      "label": "Paid to Exist - brux XTN",
+      "artist_id": 486,
+      "lead_artist": "brux XTN",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17506,
+      "title": "Passenger Princess",
+      "chart_type": "singles",
+      "label": "Passenger Princess - Valiant & Rvssian",
+      "artist_id": 312,
+      "lead_artist": "Valiant",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19147,
+      "title": "Pole Pole",
+      "chart_type": "singles",
+      "label": "Pole Pole - Hildah Watiri",
+      "artist_id": 993,
+      "lead_artist": "Hildah Watiri",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19018,
+      "title": "Right By Your Side.",
+      "chart_type": "singles",
+      "label": "Right By Your Side. - Laflare",
+      "artist_id": 950,
+      "lead_artist": "Laflare",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 21764,
+      "title": "RUBBERZ",
+      "chart_type": "singles",
+      "label": "RUBBERZ - Fenix Flexin & Purps On The Beat",
+      "artist_id": 2202,
+      "lead_artist": "Fenix Flexin",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17952,
+      "title": "Sensational",
+      "chart_type": "singles",
+      "label": "Sensational - Drex D",
+      "artist_id": 362,
+      "lead_artist": "Drex D",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19027,
+      "title": "she goes by. (KayArchon Remix)",
+      "chart_type": "singles",
+      "label": "she goes by. (KayArchon Remix) - KayArchonn & where.t.at",
+      "artist_id": 956,
+      "lead_artist": "KayArchonn",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18558,
+      "title": "Simwachi",
+      "chart_type": "singles",
+      "label": "Simwachi - Jorh Creta",
+      "artist_id": 750,
+      "lead_artist": "Jorh Creta",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 17825,
+      "title": "Sina Raha",
+      "chart_type": "singles",
+      "label": "Sina Raha - Sam Wa Ukweli",
+      "artist_id": 427,
+      "lead_artist": "Sam Wa Ukweli",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18081,
+      "title": "So Mi Like It (Caine Remix)",
+      "chart_type": "singles",
+      "label": "So Mi Like It (Caine Remix) - Caine",
+      "artist_id": 544,
+      "lead_artist": "Caine",
+      "country": "GB",
+      "country_code": "GB",
+      "problem": "Country/code mismatch: GB is paired with GB (United Kingdom)"
+    },
+    {
+      "id": 21659,
+      "title": "Sorry I'm Different",
+      "chart_type": "singles",
+      "label": "Sorry I'm Different - Miracle LRE",
+      "artist_id": 2113,
+      "lead_artist": "Miracle LRE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18073,
+      "title": "SPIRIT",
+      "chart_type": "singles",
+      "label": "SPIRIT - Vicoka",
+      "artist_id": 538,
+      "lead_artist": "Vicoka",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19141,
+      "title": "Stamina",
+      "chart_type": "singles",
+      "label": "Stamina - Party Wright",
+      "artist_id": 989,
+      "lead_artist": "Party Wright",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18834,
+      "title": "Tell Me Nothing",
+      "chart_type": "singles",
+      "label": "Tell Me Nothing - T Peller",
+      "artist_id": 363,
+      "lead_artist": "T Peller",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18739,
+      "title": "Tell Me One Lie",
+      "chart_type": "singles",
+      "label": "Tell Me One Lie - Ronis Goliath",
+      "artist_id": 821,
+      "lead_artist": "Ronis Goliath",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19019,
+      "title": "Tell me what to do (Special Version)",
+      "chart_type": "singles",
+      "label": "Tell me what to do (Special Version) - Vailedmoon music",
+      "artist_id": 828,
+      "lead_artist": "Vailedmoon music",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18406,
+      "title": "Too Sweet to Share",
+      "chart_type": "singles",
+      "label": "Too Sweet to Share - Song Writer's Playbook",
+      "artist_id": 673,
+      "lead_artist": "Song Writer's Playbook",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19146,
+      "title": "Try Me",
+      "chart_type": "singles",
+      "label": "Try Me - Dolv Gvng",
+      "artist_id": 992,
+      "lead_artist": "Dolv Gvng",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 21640,
+      "title": "Tumaini Letu",
+      "chart_type": "singles",
+      "label": "Tumaini Letu - THE LIGHTBEARERS TZ",
+      "artist_id": 2087,
+      "lead_artist": "THE LIGHTBEARERS TZ",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18756,
+      "title": "UBAYA WA DHAMBI",
+      "chart_type": "singles",
+      "label": "UBAYA WA DHAMBI - GIFT MELODY",
+      "artist_id": 935,
+      "lead_artist": "GIFT MELODY",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18711,
+      "title": "Ushuhuda",
+      "chart_type": "singles",
+      "label": "Ushuhuda - Dj Kezz",
+      "artist_id": 808,
+      "lead_artist": "Dj Kezz",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18841,
+      "title": "Usimpe roho",
+      "chart_type": "singles",
+      "label": "Usimpe roho - Pam",
+      "artist_id": 867,
+      "lead_artist": "Pam",
+      "country": "JP",
+      "country_code": "JP",
+      "problem": "Country/code mismatch: JP is paired with JP (Japan)"
+    },
+    {
+      "id": 19056,
+      "title": "VALHALLA CALLING",
+      "chart_type": "singles",
+      "label": "VALHALLA CALLING - Ragal Ironbull",
+      "artist_id": 975,
+      "lead_artist": "Ragal Ironbull",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19152,
+      "title": "Venus",
+      "chart_type": "singles",
+      "label": "Venus - Faceless",
+      "artist_id": 997,
+      "lead_artist": "Faceless",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18421,
+      "title": "Vision",
+      "chart_type": "singles",
+      "label": "Vision - Time N Gold",
+      "artist_id": 685,
+      "lead_artist": "Time N Gold",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18757,
+      "title": "Vuva",
+      "chart_type": "singles",
+      "label": "Vuva - FRAH KE",
+      "artist_id": 834,
+      "lead_artist": "FRAH KE",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18249,
+      "title": "Wah Yuh",
+      "chart_type": "singles",
+      "label": "Wah Yuh - Eshconinco",
+      "artist_id": 600,
+      "lead_artist": "Eshconinco",
+      "country": "JM",
+      "country_code": "JM",
+      "problem": "Country/code mismatch: JM is paired with JM (Jamaica)"
+    },
+    {
+      "id": 18694,
+      "title": "Wajue",
+      "chart_type": "singles",
+      "label": "Wajue - Tipsy Gee",
+      "artist_id": 782,
+      "lead_artist": "Tipsy Gee",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 21634,
+      "title": "WAWILI",
+      "chart_type": "singles",
+      "label": "WAWILI - Nahsh kariuki Official",
+      "artist_id": 2082,
+      "lead_artist": "Nahsh kariuki Official",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18744,
+      "title": "Wewe ni Mungu",
+      "chart_type": "singles",
+      "label": "Wewe ni Mungu - WorshipWithCorry",
+      "artist_id": 721,
+      "lead_artist": "WorshipWithCorry",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18498,
+      "title": "Wewe ni Sababu ya Maisha yangu",
+      "chart_type": "singles",
+      "label": "Wewe ni Sababu ya Maisha yangu - WorshipWithCorry",
+      "artist_id": 721,
+      "lead_artist": "WorshipWithCorry",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 18477,
+      "title": "Wewe ni Sababu ya Maisha Yetu, Unastahili kuabudiwa Cover",
+      "chart_type": "singles",
+      "label": "Wewe ni Sababu ya Maisha Yetu, Unastahili kuabudiwa Cover - WorshipWithCorry",
+      "artist_id": 721,
+      "lead_artist": "WorshipWithCorry",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19308,
+      "title": "Woii",
+      "chart_type": "singles",
+      "label": "Woii - Valiant & Di Genius",
+      "artist_id": 312,
+      "lead_artist": "Valiant",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19024,
+      "title": "You & Me",
+      "chart_type": "singles",
+      "label": "You & Me - Solpulse",
+      "artist_id": 628,
+      "lead_artist": "Solpulse",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19070,
+      "title": "YoYo",
+      "chart_type": "singles",
+      "label": "YoYo - Virusi Mbaya",
+      "artist_id": 657,
+      "lead_artist": "Virusi Mbaya",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    },
+    {
+      "id": 19180,
+      "title": "Zagga Dat",
+      "chart_type": "singles",
+      "label": "Zagga Dat - Black Coco & Zagga",
+      "artist_id": 1018,
+      "lead_artist": "Black Coco",
+      "country": "",
+      "country_code": "",
+      "problem": "Missing country and country code"
+    }
+  ],
+  "news": [
+    {
+      "id": 38,
+      "title": "Ten Months In: How Ngoma Charts' Top 50 Has Actually Shifted",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 37,
+      "title": "Second Certification Round: 'Donjo Maber' and 'Taya' Upgrade to Platinum",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 36,
+      "title": "Asake Holds Albums #1 for a Second Month as Drake Debuts at #3",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 35,
+      "title": "'Finale' Extends Its #1 Run to Three Months, a New Ngoma Charts Record",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 34,
+      "title": "Ngoma Charts Awards Its First Gold and Platinum Certifications",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 33,
+      "title": "Ywaya Tajiri's 17-Place Jump Ties for the Chart's Second-Biggest Move",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 32,
+      "title": "Asake's 'M$NEY' Debuts at #1, Ending Bien's One-Month Stay at the Top",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 31,
+      "title": "'Finale' Holds #1 for a Second Month as Rwanda Debuts in the Top Five",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 30,
+      "title": "Bien's April: A Single at #1, an Album at #1, and a Feature in the Top Five",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 29,
+      "title": "Bien's 'Alusa' Finally Reaches #1, Ending Cardi B's Four-Month Reign",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 28,
+      "title": "Bien & Alikiba's 'Finale' Debuts at #1 as Kenya Claims Both Top Two Singles Spots",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 27,
+      "title": "Who Is Gradine Toto? The Story Behind Ngoma's Biggest Chart Jump",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 26,
+      "title": "Cardi B Ties the Record With a Fourth Straight Month at Albums #1",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 25,
+      "title": "Vybz Kartel & Shenseea's 'Panic' Debuts at #1 as Gradine Toto Leaps 41 Places",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Six Months, Never Below #5: Okello Max's Quiet Consistency",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 23,
+      "title": "Cardi B's Album Extends Its Run to Three Months at #1",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 22,
+      "title": "Lil Uzi Vert's 'What You Saying' Becomes Ngoma Charts' First Non-East-African #1",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Raindance's 13-Place Leap: How Big Is Big on Ngoma Charts?",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Cardi B Opens 2026 Still at #1; Marioo's 'The Godson' Jumps Six Places",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Joshua Baraka & JAE5's 'Wrong Places' Takes #1 as Dave & Tems Rocket 13 Places",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Cardi B Returns to #1 With 'Ultimate Edition' as Joshua Baraka Debuts at #2",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "'Pawa' Holds #1 as 2025 Closes; Joshua Baraka & JAE5 Surge to #3",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Coming in 2026: Ngoma Charts' Certification Program",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Bien's +4 Jump Is the Biggest Move Ngoma's Albums Chart Has Seen",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Gunna Reclaims Albums #1 as Bien's 'Alusa' Storms Into the Top Three",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Mbosso's 'Pawa' Ends 'Donjo Maber's Two-Month Reign at #1",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Two Months, One Spot: Inside 'Donjo Maber's Run at #1",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Cardi B Dethrones Gunna to Open Ngoma's Albums Chart's Second Month",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Donjo Maber Holds #1 for a Second Month as Ngoma Charts' October Table Sets",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "First Chart Week: What the Data Shows About Ngoma's Opening Table",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Gunna's 'The Last Wun' Debuts Atop Ngoma's First Albums Chart",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Iyanii & Dufla's 'Donjo Maber' Claims Ngoma Charts' Very First #1",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "How a Ngoma Charts Ranking Actually Gets Built",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Ngoma Charts Goes Live: A New Home for East Africa's Music Data",
+      "related_artist": null,
+      "related_release": null,
+      "missing": [
+        "cover_image"
+      ]
+    }
+  ],
+  "featuredText": []
+}

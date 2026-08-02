@@ -26,8 +26,16 @@ from charts.models import Artist, Release
 
 DEFAULT_PATH = os.path.join("scripts", "metadata_research_june2026.json")
 
-ARTIST_FIELDS = ["country", "country_code", "city_region", "genre", "biography"]
-RELEASE_COMMON_FIELDS = ["genre", "label", "distributor", "country", "country_code"]
+ARTIST_FIELDS = [
+    "country", "country_code", "city_region", "genre", "biography",
+    "spotify_url", "apple_music_url", "youtube_url", "boomplay_url",
+    "audiomack_url", "tiktok_url", "instagram_url", "x_url", "facebook_url", "website_url",
+]
+RELEASE_COMMON_FIELDS = [
+    "genre", "label", "distributor", "country", "country_code",
+    "spotify_url", "apple_music_url", "boomplay_url", "audiomack_url",
+    "youtube_url", "tiktok_url", "shazam_url",
+]
 
 
 class Command(BaseCommand):
@@ -83,6 +91,9 @@ class Command(BaseCommand):
             if artist is None:
                 misses.append(f"#{r['id']} {r['name']} -- no longer exists")
                 continue
+            if artist.name.strip().lower() != (r.get("name") or "").strip().lower():
+                misses.append(f"#{r['id']} {r['name']} -- id now belongs to a different artist ({artist.name!r}); skipped for safety")
+                continue
             fields = {}
             for field in ARTIST_FIELDS:
                 current = getattr(artist, field, "")
@@ -98,11 +109,14 @@ class Command(BaseCommand):
     def _plan_releases(self, rows, kind):
         changes, misses = [], []
         by_id = {rel.id: rel for rel in Release.objects.filter(id__in=[r["id"] for r in rows])}
-        extra_fields = ["songwriters", "producers"] if kind == "song" else ["number_of_tracks"]
+        extra_fields = ["songwriters", "producers", "isrc"] if kind == "song" else ["number_of_tracks", "upc"]
         for r in rows:
             release = by_id.get(r["id"])
             if release is None:
                 misses.append(f"#{r['id']} {r['title']} -- no longer exists")
+                continue
+            if release.title.strip().lower() != (r.get("title") or "").strip().lower():
+                misses.append(f"#{r['id']} {r['title']} -- id now belongs to a different release ({release.title!r}); skipped for safety")
                 continue
             fields = {}
             for field in RELEASE_COMMON_FIELDS + extra_fields:

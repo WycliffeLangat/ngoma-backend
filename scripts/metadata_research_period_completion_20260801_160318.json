@@ -1,0 +1,985 @@
+{
+  "applied": true,
+  "backend_release_ids_missing": [
+    22792,
+    22890,
+    22909,
+    22910,
+    22911,
+    22942,
+    22998
+  ],
+  "backend_releases_found": 1013,
+  "backup": "C:\\Users\\HP\\Desktop\\Ngoma Charts Folder\\files\\ngoma_charts_backend\\backend\\ngoma_charts.db.bak-metadata-period-20260801160318",
+  "generated_at": "2026-08-01T16:03:18",
+  "misses": [
+    {
+      "artist": "WorshipWithCorry",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18744,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Wewe ni Mungu"
+    },
+    {
+      "artist": "Popcaan",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18265,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "When You Wine Like That"
+    },
+    {
+      "artist": "DJ Lyta",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17665,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Worship Mix"
+    }
+  ],
+  "missing_counts_after": {
+    "apple_music_url": 241,
+    "distributor": 797,
+    "genre": 63,
+    "isrc": 54,
+    "label": 47,
+    "number_of_tracks": 13,
+    "producers": 633,
+    "release_date": 44,
+    "release_year": 44,
+    "songwriters": 625,
+    "upc": 96
+  },
+  "missing_counts_before": {
+    "apple_music_url": 249,
+    "distributor": 798,
+    "genre": 65,
+    "isrc": 64,
+    "label": 48,
+    "number_of_tracks": 13,
+    "producers": 633,
+    "release_date": 45,
+    "release_year": 45,
+    "songwriters": 625,
+    "upc": 106
+  },
+  "months": [
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
+    "January 2026",
+    "February 2026",
+    "March 2026",
+    "April 2026",
+    "May 2026",
+    "June 2026",
+    "July 2026"
+  ],
+  "public_unique_release_ids": 1020,
+  "release_order_limit": 100,
+  "release_order_start": 1000,
+  "script_version": "2026-08-01",
+  "selected_releases": 13,
+  "source": "Automated high-confidence metadata lookup using Deezer, iTunes/Apple, and Genius public endpoints.",
+  "source_hits": {
+    "Deezer API": 10,
+    "iTunes Search API": 8
+  },
+  "sources_mode": "catalog",
+  "targets_scanned": 13,
+  "updates": [
+    {
+      "artist": "Sammy Irungu",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "QT6FJ2532685",
+            "label": "10008764 Records DK",
+            "release_date": "2025-12-08",
+            "release_year": 2025,
+            "upc": "199945015733"
+          },
+          "raw_match": {
+            "album": "Weru Uyu",
+            "artist": "Sammy Irungu",
+            "title": "Weru Uyu"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3703979652",
+            "https://www.deezer.com/album/873291132"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/weru-uyu/1860041548?i=1860041741&uo=4",
+            "copyright": "℗ 2025 10008764 Records DK",
+            "genre": "Christian",
+            "label": "8764 Records DK",
+            "release_date": "2025-12-08",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Sammy Irungu",
+            "title": "Weru Uyu"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/weru-uyu/1860041548?i=1860041741&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/weru-uyu/1860041548?i=1860041741&uo=4",
+        "genre": "Christian",
+        "isrc": "QT6FJ2532685",
+        "upc": "199945015733"
+      },
+      "id": 18375,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "genre": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/weru-uyu/1860041548?i=1860041741&uo=4"
+        ],
+        "genre": [
+          "https://music.apple.com/us/album/weru-uyu/1860041548?i=1860041741&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/873291132",
+          "https://www.deezer.com/track/3703979652"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/873291132",
+          "https://www.deezer.com/track/3703979652"
+        ]
+      },
+      "title": "Weru Uyu"
+    },
+    {
+      "artist": "Kusah",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music",
+            "isrc": "USUYG1813474",
+            "label": "Winning Music",
+            "release_date": "2026-05-29",
+            "release_year": 2026,
+            "upc": "199316623031"
+          },
+          "raw_match": {
+            "album": "Yanamwagika",
+            "artist": "Kusah",
+            "title": "Yanamwagika"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/4028823131",
+            "https://www.deezer.com/album/985525551"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/yanamwagika/6770534515?i=6770534516&uo=4",
+            "copyright": "℗ 2026 Winning Music",
+            "genre": "African",
+            "label": "Winning Music",
+            "release_date": "2026-05-29",
+            "release_year": 2026
+          },
+          "raw_match": {
+            "artist": "Kusah & Jay Melody",
+            "title": "Yanamwagika"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/yanamwagika/6770534515?i=6770534516&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/yanamwagika/6770534515?i=6770534516&uo=4",
+        "isrc": "USUYG1813474",
+        "upc": "199316623031"
+      },
+      "id": 21682,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/yanamwagika/6770534515?i=6770534516&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/985525551",
+          "https://www.deezer.com/track/4028823131"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/985525551",
+          "https://www.deezer.com/track/4028823131"
+        ]
+      },
+      "title": "Yanamwagika"
+    },
+    {
+      "artist": "Harmonize",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "ZA40S2600431",
+            "label": "Ziiki Media",
+            "release_date": "2026-05-08",
+            "release_year": 2026,
+            "upc": "8718521278212"
+          },
+          "raw_match": {
+            "album": "Yazoee",
+            "artist": "Harmonize",
+            "title": "Yazoee"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/4000950731",
+            "https://www.deezer.com/album/975508961"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/yazoee/1896257424?i=6766262293&uo=4",
+            "copyright": "℗ 2026 Ziiki Media",
+            "genre": "Pop",
+            "label": "Ziiki Media",
+            "release_date": "2026-05-08",
+            "release_year": 2026
+          },
+          "raw_match": {
+            "artist": "Harmonize",
+            "title": "Yazoee"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/yazoee/1896257424?i=6766262293&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/yazoee/1896257424?i=6766262293&uo=4",
+        "isrc": "ZA40S2600431",
+        "upc": "8718521278212"
+      },
+      "id": 19131,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/yazoee/1896257424?i=6766262293&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/975508961",
+          "https://www.deezer.com/track/4000950731"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/975508961",
+          "https://www.deezer.com/track/4000950731"
+        ]
+      },
+      "title": "Yazoee"
+    },
+    {
+      "artist": "Burna Boy",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "USUYG1191736",
+            "label": "Spaceship Entertainment Ltd.",
+            "release_date": "2018-01-26",
+            "release_year": 2018,
+            "upc": "888915596760"
+          },
+          "raw_match": {
+            "album": "Outside",
+            "artist": "Burna Boy",
+            "title": "Ye"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/482470862",
+            "https://www.deezer.com/album/60614862"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/ye-mixed/1684656737?i=1684656792&uo=4",
+            "genre": "Afrobeats",
+            "release_date": "2023-05-05",
+            "release_year": 2023
+          },
+          "raw_match": {
+            "artist": "Burna Boy",
+            "title": "Ye (Mixed)"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/ye-mixed/1684656737?i=1684656792&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/ye-mixed/1684656737?i=1684656792&uo=4",
+        "genre": "Afrobeats",
+        "isrc": "USUYG1191736",
+        "label": "Spaceship Entertainment Ltd.",
+        "release_date": "2018-01-26",
+        "release_year": 2018,
+        "upc": "888915596760"
+      },
+      "id": 18797,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "genre": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "label": [
+          "Deezer API"
+        ],
+        "release_date": [
+          "Deezer API"
+        ],
+        "release_year": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/ye-mixed/1684656737?i=1684656792&uo=4"
+        ],
+        "genre": [
+          "https://music.apple.com/us/album/ye-mixed/1684656737?i=1684656792&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/60614862",
+          "https://www.deezer.com/track/482470862"
+        ],
+        "label": [
+          "https://www.deezer.com/album/60614862",
+          "https://www.deezer.com/track/482470862"
+        ],
+        "release_date": [
+          "https://www.deezer.com/album/60614862",
+          "https://www.deezer.com/track/482470862"
+        ],
+        "release_year": [
+          "https://www.deezer.com/album/60614862",
+          "https://www.deezer.com/track/482470862"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/60614862",
+          "https://www.deezer.com/track/482470862"
+        ]
+      },
+      "title": "Ye"
+    },
+    {
+      "artist": "Anne-Marie",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "isrc": "GBAHS2300831",
+            "label": "Atlantic Records UK",
+            "release_date": "2023-07-31",
+            "release_year": 2023,
+            "upc": "5054197751738"
+          },
+          "raw_match": {
+            "album": "SUPER UNHEALTHY (VOICENOTE EDITION)",
+            "artist": "Anne-Marie",
+            "title": "YOU & I (feat. Khalid) (Voicenote)"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/2374355845",
+            "https://www.deezer.com/album/466299255"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/you-i-feat-khalid/1698310651?i=1698311986&uo=4",
+            "copyright": "A Major Toms / Asylum Records release, ℗ 2023 Warner Music UK Limited.",
+            "genre": "Pop",
+            "label": "A Major Toms / Asylum Records release, ℗ 2023 Warner Music UK Limited",
+            "release_date": "2023-07-28",
+            "release_year": 2023
+          },
+          "raw_match": {
+            "artist": "Anne-Marie",
+            "title": "YOU & I (feat. Khalid)"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/you-i-feat-khalid/1698310651?i=1698311986&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/you-i-feat-khalid/1698310651?i=1698311986&uo=4",
+        "isrc": "GBAHS2300831",
+        "upc": "5054197751738"
+      },
+      "id": 18876,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/you-i-feat-khalid/1698310651?i=1698311986&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/466299255",
+          "https://www.deezer.com/track/2374355845"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/466299255",
+          "https://www.deezer.com/track/2374355845"
+        ]
+      },
+      "title": "YOU & I [Voicenote]"
+    },
+    {
+      "artist": "Virusi Mbaya",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap/Hip Hop",
+            "isrc": "QZWFJ2678419",
+            "label": "2109087 Records DK",
+            "release_date": "2026-04-18",
+            "release_year": 2026,
+            "upc": "825393737162"
+          },
+          "raw_match": {
+            "album": "YoYo (feat. Sewersydaa)",
+            "artist": "Virusi Mbaya",
+            "title": "YoYo (feat. Sewersydaa)"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3969838131",
+            "https://www.deezer.com/album/964454471"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "QZWFJ2678419",
+        "upc": "825393737162"
+      },
+      "id": 19070,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://www.deezer.com/album/964454471",
+          "https://www.deezer.com/track/3969838131"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/964454471",
+          "https://www.deezer.com/track/3969838131"
+        ]
+      },
+      "title": "YoYo"
+    },
+    {
+      "artist": "Black Coco",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Reggae",
+            "isrc": "QZAKB2521567",
+            "label": "Black Coco",
+            "release_date": "2025-09-26",
+            "release_year": 2025,
+            "upc": "199384088930"
+          },
+          "raw_match": {
+            "album": "Zagga Dat",
+            "artist": "Black Coco",
+            "title": "Zagga Dat"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3924376151",
+            "https://www.deezer.com/album/948479451"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "QZAKB2521567",
+        "upc": "199384088930"
+      },
+      "id": 19180,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://www.deezer.com/album/948479451",
+          "https://www.deezer.com/track/3924376151"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/948479451",
+          "https://www.deezer.com/track/3924376151"
+        ]
+      },
+      "title": "Zagga Dat"
+    },
+    {
+      "artist": "Kondela",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music",
+            "isrc": "QZAKB2536289",
+            "label": "Kondela",
+            "release_date": "2025-12-17",
+            "release_year": 2025,
+            "upc": "199384190800"
+          },
+          "raw_match": {
+            "album": "Love Mode",
+            "artist": "Kondela",
+            "title": "Zahar (Sugar)"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3876810491",
+            "https://www.deezer.com/album/930830611"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/zahar-sugar/1881655005?i=1881655009&uo=4",
+            "copyright": "℗ 2025 Gogumaga Music",
+            "genre": "Afro-Beat",
+            "label": "Gogumaga Music",
+            "release_date": "2025-12-17",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Kondela",
+            "title": "Zahar (Sugar)"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/zahar-sugar/1881655005?i=1881655009&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/zahar-sugar/1881655005?i=1881655009&uo=4",
+        "isrc": "QZAKB2536289",
+        "upc": "199384190800"
+      },
+      "id": 18339,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/zahar-sugar/1881655005?i=1881655009&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/930830611",
+          "https://www.deezer.com/track/3876810491"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/930830611",
+          "https://www.deezer.com/track/3876810491"
+        ]
+      },
+      "title": "Zahar (Sugar)"
+    },
+    {
+      "artist": "Shakira",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Films/Games; Film Scores",
+            "isrc": "USWD12539756",
+            "label": "Walt Disney Records",
+            "release_date": "2025-12-18",
+            "release_year": 2025,
+            "upc": "050087596279"
+          },
+          "raw_match": {
+            "album": "Zoo (From \"Zootopia 2\"/Japanese Single Version)",
+            "artist": "Shakira",
+            "title": "Zoo"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3720526402",
+            "https://www.deezer.com/album/878771522"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/zoo/1842202783?i=1842202784&uo=4",
+            "copyright": "℗ 2025 Walt Disney Records",
+            "genre": "Soundtrack",
+            "label": "Walt Disney Records",
+            "release_date": "2025-10-10",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Shakira",
+            "title": "Zoo"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/zoo/1842202783?i=1842202784&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/zoo/1842202783?i=1842202784&uo=4",
+        "isrc": "USWD12539756",
+        "upc": "050087596279"
+      },
+      "id": 18388,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/zoo/1842202783?i=1842202784&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/878771522",
+          "https://www.deezer.com/track/3720526402"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/878771522",
+          "https://www.deezer.com/track/3720526402"
+        ]
+      },
+      "title": "Zoo"
+    },
+    {
+      "artist": "Kedjevara",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music",
+            "isrc": "CI2DY2500209",
+            "label": "18 Avril Production",
+            "release_date": "2025-05-29",
+            "release_year": 2025,
+            "upc": "602478474231"
+          },
+          "raw_match": {
+            "album": "Ça fait mal",
+            "artist": "Kedjevara",
+            "title": "Ça fait mal"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3391387281",
+            "https://www.deezer.com/album/764726621"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/%C3%A7a-fait-mal/1817531819?i=1817531822&uo=4",
+            "copyright": "℗ 2025 18 Avril Production, Distributed By Virgin Music Africa",
+            "distributor": "Virgin Music Africa",
+            "genre": "Afro-Beat",
+            "label": "18 Avril Production",
+            "release_date": "2024-12-06",
+            "release_year": 2024
+          },
+          "raw_match": {
+            "artist": "Kedjevara",
+            "title": "Ça fait mal"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/%C3%A7a-fait-mal/1817531819?i=1817531822&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/%C3%A7a-fait-mal/1817531819?i=1817531822&uo=4",
+        "distributor": "Virgin Music Africa",
+        "isrc": "CI2DY2500209",
+        "upc": "602478474231"
+      },
+      "id": 17821,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "distributor": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/%C3%A7a-fait-mal/1817531819?i=1817531822&uo=4"
+        ],
+        "distributor": [
+          "https://music.apple.com/us/album/%C3%A7a-fait-mal/1817531819?i=1817531822&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/764726621",
+          "https://www.deezer.com/track/3391387281"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/764726621",
+          "https://www.deezer.com/track/3391387281"
+        ]
+      },
+      "title": "Ça fait mal"
+    }
+  ],
+  "updates_planned_or_applied": 10
+}

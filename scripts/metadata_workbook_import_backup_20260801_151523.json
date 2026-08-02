@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-08-01T15:15:23.034634+00:00",
+  "releases": [
+    {
+      "id": 22942,
+      "label": "#22942 Abantwana Bakho (feat. Thatohatsi, Young Stunna & Nkosazana Daughter) - DJ Maphorisa",
+      "current": {
+        "release_date": "2025-03-27"
+      },
+      "incoming": {
+        "release_date": "2025-03-28"
+      },
+      "workbook": {
+        "chart": "Singles",
+        "title": "Abantwana Bakho (feat. Thatohatsi, Young Stunna & Nkosazana Daughter)",
+        "artists": "DJ Maphorisa, Xduppy & Kabza De Small ft. Thatohatsi, Young Stunna & Nkosazana Daughter",
+        "precision": "exact"
+      }
+    }
+  ],
+  "artists": []
+}

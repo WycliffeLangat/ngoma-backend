@@ -1,0 +1,1850 @@
+{
+  "applied": true,
+  "backend_release_ids_missing": [
+    22792,
+    22890,
+    22909,
+    22910,
+    22911,
+    22942,
+    22998
+  ],
+  "backend_releases_found": 1013,
+  "backup": "C:\\Users\\HP\\Desktop\\Ngoma Charts Folder\\files\\ngoma_charts_backend\\backend\\ngoma_charts.db.bak-metadata-period-20260801160625",
+  "generated_at": "2026-08-01T16:06:25",
+  "misses": [
+    {
+      "artist": "Soul Touch Brand",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17393,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 17,
+      "title": "Mdomo uliponza kichwa"
+    },
+    {
+      "artist": "Brandy Maina",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17376,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 17,
+      "title": "Trust No 1"
+    },
+    {
+      "artist": "Wapendwa Muziki",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17640,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 16,
+      "title": "Amefanya Mungu"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17378,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 16,
+      "title": "Lowkey"
+    },
+    {
+      "artist": "Collo Blue",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19136,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "Dance Samawaah!"
+    },
+    {
+      "artist": "Kahuti",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17416,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "Feel The Love"
+    },
+    {
+      "artist": "VICTOR MUTHENYA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17997,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "HATUA ZANGU"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18158,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "Ngimana"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18155,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "Pedeshe (Ajawa Marwa)"
+    },
+    {
+      "artist": "Bensoul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17628,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "title": "Kautamu Flani"
+    },
+    {
+      "artist": "Kusslove",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17395,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "title": "Moyo"
+    },
+    {
+      "artist": "Nameless",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17390,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "title": "Nasinzia II"
+    },
+    {
+      "artist": "Joel Lwaga",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17298,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "title": "Olodumare"
+    },
+    {
+      "artist": "Savara",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17713,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "title": "Show You Off"
+    },
+    {
+      "artist": "Licky Tones",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17367,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 13,
+      "title": "Usiniache"
+    },
+    {
+      "artist": "Unspoken Salaton",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17371,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 12,
+      "title": "Frrmbanya"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18357,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 12,
+      "title": "Osiepe"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17657,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 11,
+      "title": "Confirmation"
+    },
+    {
+      "artist": "KODONGKLAN",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17719,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "title": "Disko"
+    },
+    {
+      "artist": "Matata",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17710,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "title": "Inakubalika"
+    },
+    {
+      "artist": "Mr.Tee",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17709,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 10,
+      "title": "DIGII III"
+    },
+    {
+      "artist": "PAPA NYOSTO",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19238,
+      "missing_before": [
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 10,
+      "title": "Go Down"
+    }
+  ],
+  "missing_counts_after": {
+    "apple_music_url": 241,
+    "distributor": 797,
+    "genre": 63,
+    "isrc": 54,
+    "label": 47,
+    "number_of_tracks": 13,
+    "producers": 566,
+    "release_date": 44,
+    "release_year": 44,
+    "songwriters": 580,
+    "upc": 96
+  },
+  "missing_counts_before": {
+    "apple_music_url": 241,
+    "distributor": 797,
+    "genre": 63,
+    "isrc": 54,
+    "label": 47,
+    "number_of_tracks": 13,
+    "producers": 596,
+    "release_date": 44,
+    "release_year": 44,
+    "songwriters": 600,
+    "upc": 96
+  },
+  "months": [
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
+    "January 2026",
+    "February 2026",
+    "March 2026",
+    "April 2026",
+    "May 2026",
+    "June 2026",
+    "July 2026"
+  ],
+  "public_unique_release_ids": 1020,
+  "release_order_limit": 100,
+  "release_order_start": 100,
+  "script_version": "2026-08-01",
+  "selected_releases": 100,
+  "source": "Automated high-confidence metadata lookup using Deezer, iTunes/Apple, and Genius public endpoints.",
+  "source_hits": {
+    "Genius API": 33
+  },
+  "sources_mode": "genius",
+  "targets_scanned": 52,
+  "updates": [
+    {
+      "artist": "Tyla",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "P2J; Ian Kirkpatrick",
+            "release_date": "2025-10-24",
+            "release_year": 2025,
+            "songwriters": "Tyla; Bibi Bourelly; Dougie F; P2J; Ian Kirkpatrick"
+          },
+          "raw_match": {
+            "artist": "Tyla",
+            "title": "CHANEL"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Tyla-chanel-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "P2J; Ian Kirkpatrick",
+        "songwriters": "Tyla; Bibi Bourelly; Dougie F; P2J; Ian Kirkpatrick"
+      },
+      "id": 17355,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 16,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Tyla-chanel-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Tyla-chanel-lyrics"
+        ]
+      },
+      "title": "CHANEL"
+    },
+    {
+      "artist": "Mbosso",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Ayo Lizer",
+            "release_date": "2025-06-13",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Mbosso",
+            "title": "Nusu Saa"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Mbosso-nusu-saa-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Ayo Lizer"
+      },
+      "id": 17318,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 16,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Mbosso-nusu-saa-lyrics"
+        ]
+      },
+      "title": "Nusu Saa"
+    },
+    {
+      "artist": "BURUKLYN BOYZ",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Clue Ashaivisha Track; Mxrgan187",
+            "release_date": "2026-02-14",
+            "release_year": 2026,
+            "songwriters": "Ajay (KE); Mr Right"
+          },
+          "raw_match": {
+            "artist": "BURUKLYN BOYZ",
+            "title": "Stima"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Buruklyn-boyz-stima-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Clue Ashaivisha Track; Mxrgan187",
+        "songwriters": "Ajay (KE); Mr Right"
+      },
+      "id": 17382,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 16,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Buruklyn-boyz-stima-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Buruklyn-boyz-stima-lyrics"
+        ]
+      },
+      "title": "Stima"
+    },
+    {
+      "artist": "Nyashinski",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Texnologos Weizmann Irakoze",
+            "release_date": "2025-09-19",
+            "release_year": 2025,
+            "songwriters": "Nyamari Ongegu"
+          },
+          "raw_match": {
+            "artist": "Nyashinski",
+            "title": "TAI CHI"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Nyashinski-tai-chi-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Texnologos Weizmann Irakoze",
+        "songwriters": "Nyamari Ongegu"
+      },
+      "id": 17305,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 16,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Nyashinski-tai-chi-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Nyashinski-tai-chi-lyrics"
+        ]
+      },
+      "title": "TAI CHI"
+    },
+    {
+      "artist": "Zuchu",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "S2Kizzy",
+            "release_date": "2025-07-31",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Zuchu",
+            "title": "Amanda"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Zuchu-amanda-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "S2Kizzy"
+      },
+      "id": 17314,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Zuchu-amanda-lyrics"
+        ]
+      },
+      "title": "Amanda"
+    },
+    {
+      "artist": "Mbosso",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "S2Kizzy",
+            "release_date": "2026-01-28",
+            "release_year": 2026
+          },
+          "raw_match": {
+            "artist": "Mbosso",
+            "title": "Darasa La Saba"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Mbosso-darasa-la-saba-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "S2Kizzy"
+      },
+      "id": 17375,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Mbosso-darasa-la-saba-lyrics"
+        ]
+      },
+      "title": "Darasa La Saba"
+    },
+    {
+      "artist": "MOLIY",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "silent addy; Disco Neil",
+            "release_date": "2025-02-21",
+            "release_year": 2025,
+            "songwriters": "MOLIY; silent addy; Disco Neil; Skillibeng; Shenseea"
+          },
+          "raw_match": {
+            "artist": "MOLIY, silent addy, Skillibeng & Shenseea",
+            "title": "SHAKE IT TO THE MAX (FLY) [REMIX]"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Moliy-silent-addy-skillibeng-and-shenseea-shake-it-to-the-max-fly-remix-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "silent addy; Disco Neil",
+        "songwriters": "MOLIY; silent addy; Disco Neil; Skillibeng; Shenseea"
+      },
+      "id": 17619,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Moliy-silent-addy-skillibeng-and-shenseea-shake-it-to-the-max-fly-remix-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Moliy-silent-addy-skillibeng-and-shenseea-shake-it-to-the-max-fly-remix-lyrics"
+        ]
+      },
+      "title": "Shake It To The Max (FLY) [Remix]"
+    },
+    {
+      "artist": "Wakadinali",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Big Beats Afriq",
+            "release_date": "2025-01-05",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Wakadinali (Ft. Katapilla, Skillo & Soudough Doss)",
+            "title": "Tamashani"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Wakadinali-tamashani-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Big Beats Afriq"
+      },
+      "id": 17708,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 15,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Wakadinali-tamashani-lyrics"
+        ]
+      },
+      "title": "Tamashani"
+    },
+    {
+      "artist": "Marioo",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "S2Kizzy",
+            "release_date": "2025-04-17",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Marioo",
+            "title": "Tete"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Marioo-tete-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "S2Kizzy"
+      },
+      "id": 17296,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Marioo-tete-lyrics"
+        ]
+      },
+      "title": "TETE"
+    },
+    {
+      "artist": "Marioo",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Blvcq Beatz Igbo",
+            "release_date": "2025-08-15",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Marioo",
+            "title": "Dunia"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Marioo-dunia-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Blvcq Beatz Igbo"
+      },
+      "id": 17303,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Marioo-dunia-lyrics"
+        ]
+      },
+      "title": "DUNIA"
+    },
+    {
+      "artist": "Wizkid",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "R-B",
+            "producers": "Magicsticks",
+            "release_date": "2026-01-16",
+            "release_year": 2026,
+            "songwriters": "Wizkid; Asake"
+          },
+          "raw_match": {
+            "artist": "Wizkid & Asake",
+            "title": "Jogodo"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Wizkid-and-asake-jogodo-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Magicsticks",
+        "songwriters": "Wizkid; Asake"
+      },
+      "id": 17379,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Wizkid-and-asake-jogodo-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Wizkid-and-asake-jogodo-lyrics"
+        ]
+      },
+      "title": "Jogodo"
+    },
+    {
+      "artist": "Diamond Platnumz",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "S2Kizzy",
+            "release_date": "2025-06-08",
+            "release_year": 2025,
+            "songwriters": "Diamond Platnumz"
+          },
+          "raw_match": {
+            "artist": "Diamond Platnumz (Ft. Bien (KEN))",
+            "title": "Katam"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Diamond-platnumz-katam-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "S2Kizzy",
+        "songwriters": "Diamond Platnumz"
+      },
+      "id": 17290,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Diamond-platnumz-katam-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Diamond-platnumz-katam-lyrics"
+        ]
+      },
+      "title": "Katam"
+    },
+    {
+      "artist": "Nigy Boy",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Rvssian",
+            "release_date": "2025-07-14",
+            "release_year": 2025,
+            "songwriters": "Nigy Boy; Tahjarie Bryan"
+          },
+          "raw_match": {
+            "artist": "Nigy Boy",
+            "title": "Options"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Nigy-boy-options-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Rvssian",
+        "songwriters": "Nigy Boy; Tahjarie Bryan"
+      },
+      "id": 17319,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Nigy-boy-options-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Nigy-boy-options-lyrics"
+        ]
+      },
+      "title": "Options"
+    },
+    {
+      "artist": "D Voice",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "R-B",
+            "producers": "Mafeeling",
+            "release_date": "2024-11-22",
+            "release_year": 2024
+          },
+          "raw_match": {
+            "artist": "D Voice (Ft. Mbosso)",
+            "title": "Tunapendana"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/D-voice-tunapendana-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Mafeeling"
+      },
+      "id": 17323,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/D-voice-tunapendana-lyrics"
+        ]
+      },
+      "title": "Tunapendana"
+    },
+    {
+      "artist": "Jay Melody",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "R-B",
+            "producers": "Genius jini x66",
+            "release_date": "2024-04-26",
+            "release_year": 2024
+          },
+          "raw_match": {
+            "artist": "Jay Melody",
+            "title": "Wa Peke Yangu"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Jay-melody-wa-peke-yangu-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Genius jini x66"
+      },
+      "id": 17551,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Jay-melody-wa-peke-yangu-lyrics"
+        ]
+      },
+      "title": "Wa Peke Yangu"
+    },
+    {
+      "artist": "Chella",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "GSticksz",
+            "release_date": "2025-05-14",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Chella (Ft. Diamond Platnumz)",
+            "title": "My Darling - Mpenzi Wangu"
+          },
+          "score": 0.957,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Chella-my-darling-mpenzi-wangu-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "GSticksz"
+      },
+      "id": 17320,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Chella-my-darling-mpenzi-wangu-lyrics"
+        ]
+      },
+      "title": "My Darling (Mpenzi Wangu)"
+    },
+    {
+      "artist": "Dyana Cods",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Big Beats Afriq",
+            "release_date": "2024-07-23",
+            "release_year": 2024,
+            "songwriters": "Dyana Cods; Ajay (KE)"
+          },
+          "raw_match": {
+            "artist": "Dyana Cods (Ft. Ajay (KE))",
+            "title": "Set It"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Dyana-cods-set-it-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Big Beats Afriq",
+        "songwriters": "Dyana Cods; Ajay (KE)"
+      },
+      "id": 17721,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Dyana-cods-set-it-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Dyana-cods-set-it-lyrics"
+        ]
+      },
+      "title": "Set It"
+    },
+    {
+      "artist": "2wentysixx",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "R-B",
+            "producers": "Zendaji",
+            "release_date": "2025-12-16",
+            "release_year": 2025,
+            "songwriters": "Phillip Mue"
+          },
+          "raw_match": {
+            "artist": "2wentysixx",
+            "title": "Wewe ni wangu"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/2wentysixx-wewe-ni-wangu-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Zendaji",
+        "songwriters": "Phillip Mue"
+      },
+      "id": 18442,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 13,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/2wentysixx-wewe-ni-wangu-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/2wentysixx-wewe-ni-wangu-lyrics"
+        ]
+      },
+      "title": "Wewe ni wangu"
+    },
+    {
+      "artist": "Vestine & Dorcas",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "M.Irene / M.I.E Music",
+            "release_date": "2025-03-02",
+            "release_year": 2025,
+            "songwriters": "Mugisha Irene Bosco"
+          },
+          "raw_match": {
+            "artist": "VESTINE AND DORCAS",
+            "title": "YEBO (Nitawale)"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Vestine-and-dorcas-yebo-nitawale-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "M.Irene / M.I.E Music",
+        "songwriters": "Mugisha Irene Bosco"
+      },
+      "id": 17310,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Vestine-and-dorcas-yebo-nitawale-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Vestine-and-dorcas-yebo-nitawale-lyrics"
+        ]
+      },
+      "title": "Yebo (Nitawale)"
+    },
+    {
+      "artist": "Drake",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Boi-1da; Allen Ritter; Di Genius; Supa Dups",
+            "release_date": "2016-04-29",
+            "release_year": 2016,
+            "songwriters": "Allen Ritter; Andrew Thomas; Aquaman; Beenie Man; Boi-1da; Di Genius; Donald “Bassie” Dennis; Drake; Gary Jackson; Patrick Roberts; Supa Dups"
+          },
+          "raw_match": {
+            "artist": "Drake",
+            "title": "Controlla"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Drake-controlla-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Boi-1da; Allen Ritter; Di Genius; Supa Dups",
+        "songwriters": "Allen Ritter; Andrew Thomas; Aquaman; Beenie Man; Boi-1da; Di Genius; Donald “Bassie” Dennis; Drake; Gary Jackson; Patrick Roberts; Supa Dups"
+      },
+      "id": 17430,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Drake-controlla-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Drake-controlla-lyrics"
+        ]
+      },
+      "title": "Controlla"
+    },
+    {
+      "artist": "Burna Boy",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Telz",
+            "release_date": "2025-07-11",
+            "release_year": 2025,
+            "songwriters": "Burna Boy; Telz"
+          },
+          "raw_match": {
+            "artist": "Burna Boy",
+            "title": "Dem Dey"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Burna-boy-dem-dey-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Telz",
+        "songwriters": "Burna Boy; Telz"
+      },
+      "id": 17427,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Burna-boy-dem-dey-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Burna-boy-dem-dey-lyrics"
+        ]
+      },
+      "title": "Dem Dey"
+    },
+    {
+      "artist": "HUNTR/X",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "IDO (KOR); 24; Teddy Park; Ian Eisendrath",
+            "release_date": "2025-06-20",
+            "release_year": 2025,
+            "songwriters": "EJAE; Mark Sonnenblick; IDO (KOR); 24; Teddy Park"
+          },
+          "raw_match": {
+            "artist": "HUNTR/X, EJAE, AUDREY NUNA, REI AMI & KPop Demon Hunters Cast",
+            "title": "Golden"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Huntr-x-ejae-audrey-nuna-rei-ami-and-kpop-demon-hunters-cast-golden-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "IDO (KOR); 24; Teddy Park; Ian Eisendrath",
+        "songwriters": "EJAE; Mark Sonnenblick; IDO (KOR); 24; Teddy Park"
+      },
+      "id": 21779,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Huntr-x-ejae-audrey-nuna-rei-ami-and-kpop-demon-hunters-cast-golden-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Huntr-x-ejae-audrey-nuna-rei-ami-and-kpop-demon-hunters-cast-golden-lyrics"
+        ]
+      },
+      "title": "Golden"
+    },
+    {
+      "artist": "Wizkid",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "NorthBoi",
+            "release_date": "2019-09-30",
+            "release_year": 2019
+          },
+          "raw_match": {
+            "artist": "Wizkid",
+            "title": "Joro"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Wizkid-joro-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "NorthBoi"
+      },
+      "id": 17450,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Wizkid-joro-lyrics"
+        ]
+      },
+      "title": "Joro"
+    },
+    {
+      "artist": "The Second Voice",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Electronic",
+            "producers": "Mwape",
+            "release_date": "2026-01-25",
+            "release_year": 2026,
+            "songwriters": "Mwape Chishinka"
+          },
+          "raw_match": {
+            "artist": "The Second Voice",
+            "title": "LET ME BE"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/The-second-voice-let-me-be-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Mwape",
+        "songwriters": "Mwape Chishinka"
+      },
+      "id": 17396,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/The-second-voice-let-me-be-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/The-second-voice-let-me-be-lyrics"
+        ]
+      },
+      "title": "LET ME BE"
+    },
+    {
+      "artist": "Kendrick Lamar",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Dahi",
+            "release_date": "2012-10-22",
+            "release_year": 2012,
+            "songwriters": "Alex Scally; Dahi; Jay Rock; Kendrick Lamar; Victoria Legrand"
+          },
+          "raw_match": {
+            "artist": "Kendrick Lamar (Ft. Jay Rock)",
+            "title": "Money Trees"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Kendrick-lamar-money-trees-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Dahi",
+        "songwriters": "Alex Scally; Dahi; Jay Rock; Kendrick Lamar; Victoria Legrand"
+      },
+      "id": 17436,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Kendrick-lamar-money-trees-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Kendrick-lamar-money-trees-lyrics"
+        ]
+      },
+      "title": "Money Trees"
+    },
+    {
+      "artist": "DJ Maphorisa",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Xduppy; Seun 1401; DJ Maphorisa",
+            "release_date": "2025-01-31",
+            "release_year": 2025,
+            "songwriters": "Scotts Maphuma; Leemckrazy; Blxckie; Kabelo Sings; Madumane; DJ Maphorisa; Seun 1401; Xduppy"
+          },
+          "raw_match": {
+            "artist": "DJ Maphorisa, Xduppy & Scotts Maphuma (Ft. Blxckie, Kabelo Sings, Leemckrazy, Madumane, Pcee & Seun 1401)",
+            "title": "Ngibolekeni"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Dj-maphorisa-xduppy-and-scotts-maphuma-ngibolekeni-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Xduppy; Seun 1401; DJ Maphorisa",
+        "songwriters": "Scotts Maphuma; Leemckrazy; Blxckie; Kabelo Sings; Madumane; DJ Maphorisa; Seun 1401; Xduppy"
+      },
+      "id": 22013,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Dj-maphorisa-xduppy-and-scotts-maphuma-ngibolekeni-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Dj-maphorisa-xduppy-and-scotts-maphuma-ngibolekeni-lyrics"
+        ]
+      },
+      "title": "Ngibolekeni (feat. Sean 1401, Leemckrazy, Blxckie, Pcee, Madumane & Kabelo Sings)"
+    },
+    {
+      "artist": "Burna Boy",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Kel-P",
+            "release_date": "2018-11-16",
+            "release_year": 2018,
+            "songwriters": "Burna Boy"
+          },
+          "raw_match": {
+            "artist": "Burna Boy",
+            "title": "On the Low"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Burna-boy-on-the-low-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Kel-P",
+        "songwriters": "Burna Boy"
+      },
+      "id": 17442,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Burna-boy-on-the-low-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Burna-boy-on-the-low-lyrics"
+        ]
+      },
+      "title": "On the Low"
+    },
+    {
+      "artist": "Dominic Fike",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "John Cunningham; Dominic Fike",
+            "release_date": "2025-11-14",
+            "release_year": 2025,
+            "songwriters": "Dominic Fike"
+          },
+          "raw_match": {
+            "artist": "Dominic Fike",
+            "title": "White Keys"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Dominic-fike-white-keys-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "John Cunningham; Dominic Fike",
+        "songwriters": "Dominic Fike"
+      },
+      "id": 17383,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Dominic-fike-white-keys-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Dominic-fike-white-keys-lyrics"
+        ]
+      },
+      "title": "White Keys"
+    },
+    {
+      "artist": "Asake",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Magicsticks",
+            "release_date": "2025-02-12",
+            "release_year": 2025,
+            "songwriters": "Asake; Magicsticks"
+          },
+          "raw_match": {
+            "artist": "Asake",
+            "title": "WHY LOVE"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Asake-why-love-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Magicsticks",
+        "songwriters": "Asake; Magicsticks"
+      },
+      "id": 17425,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Asake-why-love-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Asake-why-love-lyrics"
+        ]
+      },
+      "title": "WHY LOVE"
+    },
+    {
+      "artist": "Lil Baby",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Joseph DaVinci; Taz Taylor; JRHITMAKER; The Martianz; Hide Miyabi",
+            "release_date": "2017-11-05",
+            "release_year": 2017,
+            "songwriters": "Hide Miyabi; Joseph DaVinci; The Martianz; JRHITMAKER; Taz Taylor; Lil Baby"
+          },
+          "raw_match": {
+            "artist": "Lil Baby",
+            "title": "Freestyle"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Lil-baby-freestyle-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Joseph DaVinci; Taz Taylor; JRHITMAKER; The Martianz; Hide Miyabi",
+        "songwriters": "Hide Miyabi; Joseph DaVinci; The Martianz; JRHITMAKER; Taz Taylor; Lil Baby"
+      },
+      "id": 17448,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 10,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Lil-baby-freestyle-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Lil-baby-freestyle-lyrics"
+        ]
+      },
+      "title": "Freestyle"
+    }
+  ],
+  "updates_planned_or_applied": 30
+}

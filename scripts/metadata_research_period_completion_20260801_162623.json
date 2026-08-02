@@ -1,0 +1,6102 @@
+{
+  "applied": true,
+  "backend_release_ids_missing": [
+    22792,
+    22890,
+    22909,
+    22910,
+    22911,
+    22942,
+    22998
+  ],
+  "backend_releases_found": 1041,
+  "backup": "C:\\Users\\HP\\Desktop\\Ngoma Charts Folder\\files\\ngoma_charts_backend\\backend\\ngoma_charts.db.bak-metadata-period-20260801162623",
+  "db_chart_unique_release_ids": 1031,
+  "generated_at": "2026-08-01T16:26:23",
+  "misses": [
+    {
+      "artist": "Iyanii",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17281,
+      "missing_before": [
+        "producers"
+      ],
+      "placements": 64,
+      "title": "Donjo Maber"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17285,
+      "missing_before": [
+        "distributor",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 61,
+      "title": "Backbencher"
+    },
+    {
+      "artist": "Okello Max",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17283,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 61,
+      "title": "Taya"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17288,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 46,
+      "title": "Bud Flowers"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17345,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 44,
+      "title": "Rapudo"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17357,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 43,
+      "title": "Mfisadi"
+    },
+    {
+      "artist": "Devrix Da Fubu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22028,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 41,
+      "title": "Je?"
+    },
+    {
+      "artist": "Marioo",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17284,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 38,
+      "title": "Nairobi"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17349,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 32,
+      "title": "Mirima"
+    },
+    {
+      "artist": "Barnaba",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17292,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 32,
+      "title": "Salama"
+    },
+    {
+      "artist": "Wakadinali",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17299,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 29,
+      "title": "Kum Baba"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17348,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 29,
+      "title": "Ngima Dhano"
+    },
+    {
+      "artist": "Jay Melody",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17302,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 28,
+      "title": "Jirani"
+    },
+    {
+      "artist": "Harmonize",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17300,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 27,
+      "title": "Furaha"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17309,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 27,
+      "title": "Hood"
+    },
+    {
+      "artist": "Dufla",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17347,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 27,
+      "title": "Rumours"
+    },
+    {
+      "artist": "Wapendwa Muziki",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17346,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 26,
+      "title": "Bonge La Surprise"
+    },
+    {
+      "artist": "Gradine Toto",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17384,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 25,
+      "title": "MAYDAY RACHAEL"
+    },
+    {
+      "artist": "Calad",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17360,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 25,
+      "title": "TOTO"
+    },
+    {
+      "artist": "Mejja",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17392,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 24,
+      "title": "Siaka"
+    },
+    {
+      "artist": "We are Nubia",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17520,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 22,
+      "title": "Dnd"
+    },
+    {
+      "artist": "Harmonize",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17366,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 22,
+      "title": "Leo"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17372,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 22,
+      "title": "Nyi Luo"
+    },
+    {
+      "artist": "MAD G",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17358,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 22,
+      "title": "Shake That Thing"
+    },
+    {
+      "artist": "Watendawili",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17579,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 20,
+      "title": "Hadi Kesho"
+    },
+    {
+      "artist": "X.O",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18040,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 20,
+      "title": "M.O.T.O"
+    },
+    {
+      "artist": "Diamond Platnumz",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17339,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 20,
+      "title": "Nani"
+    },
+    {
+      "artist": "ELISHA TOTO",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17402,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 19,
+      "title": "Natafuta Doo"
+    },
+    {
+      "artist": "Iyanii",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17356,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 19,
+      "title": "Tamu"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18154,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 18,
+      "title": "Believe Me"
+    },
+    {
+      "artist": "BURUKLYN BOYZ",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17388,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 18,
+      "title": "GENJE SANA"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17387,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "apple_music_url"
+      ],
+      "placements": 17,
+      "title": "Dumpsite"
+    },
+    {
+      "artist": "Wakadinali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17407,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 17,
+      "title": "LAST DANCE"
+    },
+    {
+      "artist": "Aidonia",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17311,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 17,
+      "title": "Le Le Le"
+    },
+    {
+      "artist": "Matata",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17707,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 17,
+      "title": "Mangware"
+    },
+    {
+      "artist": "Soul Touch Brand",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17393,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 17,
+      "title": "Mdomo uliponza kichwa"
+    },
+    {
+      "artist": "Brandy Maina",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17376,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 17,
+      "title": "Trust No 1"
+    },
+    {
+      "artist": "Wapendwa Muziki",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17640,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 16,
+      "title": "Amefanya Mungu"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17378,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 16,
+      "title": "Lowkey"
+    },
+    {
+      "artist": "Mbosso",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17318,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 16,
+      "title": "Nusu Saa"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17314,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 15,
+      "title": "Amanda"
+    },
+    {
+      "artist": "Collo Blue",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19136,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "Dance Samawaah!"
+    },
+    {
+      "artist": "Mbosso",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17375,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 15,
+      "title": "Darasa La Saba"
+    },
+    {
+      "artist": "Kahuti",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17416,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "Feel The Love"
+    },
+    {
+      "artist": "VICTOR MUTHENYA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17997,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "HATUA ZANGU"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18158,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "Ngimana"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18155,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 15,
+      "title": "Pedeshe (Ajawa Marwa)"
+    },
+    {
+      "artist": "Wakadinali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17708,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "apple_music_url"
+      ],
+      "placements": 15,
+      "title": "Tamashani"
+    },
+    {
+      "artist": "Marioo",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17296,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 15,
+      "title": "TETE"
+    },
+    {
+      "artist": "Marioo",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17303,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 14,
+      "title": "DUNIA"
+    },
+    {
+      "artist": "Bensoul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17628,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "title": "Kautamu Flani"
+    },
+    {
+      "artist": "Kusslove",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17395,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 14,
+      "title": "Moyo"
+    },
+    {
+      "artist": "D Voice",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17323,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 14,
+      "title": "Tunapendana"
+    },
+    {
+      "artist": "Jay Melody",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17551,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 14,
+      "title": "Wa Peke Yangu"
+    },
+    {
+      "artist": "Chella",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17320,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 13,
+      "title": "My Darling (Mpenzi Wangu)"
+    },
+    {
+      "artist": "Nameless",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17390,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "title": "Nasinzia II"
+    },
+    {
+      "artist": "Joel Lwaga",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17298,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "title": "Olodumare"
+    },
+    {
+      "artist": "Savara",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17713,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 13,
+      "title": "Show You Off"
+    },
+    {
+      "artist": "Licky Tones",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17367,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 13,
+      "title": "Usiniache"
+    },
+    {
+      "artist": "Unspoken Salaton",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17371,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 12,
+      "title": "Frrmbanya"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18357,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 12,
+      "title": "Osiepe"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17657,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 11,
+      "title": "Confirmation"
+    },
+    {
+      "artist": "KODONGKLAN",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17719,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "title": "Disko"
+    },
+    {
+      "artist": "Matata",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17710,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 11,
+      "title": "Inakubalika"
+    },
+    {
+      "artist": "Wizkid",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17450,
+      "missing_before": [
+        "songwriters"
+      ],
+      "placements": 11,
+      "title": "Joro"
+    },
+    {
+      "artist": "Mr.Tee",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17709,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 10,
+      "title": "DIGII III"
+    },
+    {
+      "artist": "PAPA NYOSTO",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19238,
+      "missing_before": [
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 10,
+      "title": "Go Down"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17403,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 10,
+      "title": "I Love You"
+    },
+    {
+      "artist": "Watendawili",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18802,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 10,
+      "title": "Lavender"
+    },
+    {
+      "artist": "Iyanii",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17377,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 10,
+      "title": "Mali Safi"
+    },
+    {
+      "artist": "Marioo",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17307,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 10,
+      "title": "MVUA"
+    },
+    {
+      "artist": "Bien",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17614,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 10,
+      "title": "Safari"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17650,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 10,
+      "title": "Sick"
+    },
+    {
+      "artist": "Alikiba",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17547,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 10,
+      "title": "Top Notch"
+    },
+    {
+      "artist": "Nadia Mukami",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17370,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 10,
+      "title": "Woza"
+    },
+    {
+      "artist": "Skillibeng",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19466,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 9,
+      "title": "PRODIGY NONSTOP"
+    },
+    {
+      "artist": "Mbosso",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17326,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 9,
+      "title": "Aviola"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17385,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 9,
+      "title": "Bado Nakupenda"
+    },
+    {
+      "artist": "Dr Sarah K",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22677,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 9,
+      "title": "GACUMBIRI / PALE KILELE (Live)"
+    },
+    {
+      "artist": "Guardian Angel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17308,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 9,
+      "title": "Kimya"
+    },
+    {
+      "artist": "MSA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22616,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 9,
+      "title": "Lengoma (feat. sami kay & Misokuhle)"
+    },
+    {
+      "artist": "Darassa",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17301,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "apple_music_url"
+      ],
+      "placements": 9,
+      "title": "Looking For Love"
+    },
+    {
+      "artist": "Willy Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17331,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 9,
+      "title": "Ngunga"
+    },
+    {
+      "artist": "Wakadinali",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17739,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 9,
+      "title": "Za Kimotho"
+    },
+    {
+      "artist": "Seyi Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19421,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 8,
+      "title": "FUJI MOTO"
+    },
+    {
+      "artist": "OMAH LAY",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21526,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 8,
+      "title": "Get Layd"
+    },
+    {
+      "artist": "Emma Jalamo",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19750,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 8,
+      "title": "Safari Ya Muziki"
+    },
+    {
+      "artist": "Watendawili",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17715,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 8,
+      "title": "Beba"
+    },
+    {
+      "artist": "Uncle Eddy",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17317,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 8,
+      "title": "Jathum Chamo Jaba"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18156,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 8,
+      "title": "Jo Fitina"
+    },
+    {
+      "artist": "Fally Ipupa",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17655,
+      "missing_before": [
+        "distributor",
+        "producers"
+      ],
+      "placements": 8,
+      "title": "Mayday"
+    },
+    {
+      "artist": "Dyana Cods",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17766,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 8,
+      "title": "Mtu Wa Shughuli"
+    },
+    {
+      "artist": "Marioo",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17368,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 8,
+      "title": "OLUWA"
+    },
+    {
+      "artist": "Willy Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21617,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 8,
+      "title": "PM"
+    },
+    {
+      "artist": "LADY MAUREEN",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21784,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 8,
+      "title": "Raila Duogi Dala"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 21616,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "apple_music_url"
+      ],
+      "placements": 8,
+      "title": "Stone"
+    },
+    {
+      "artist": "HOOD BOYZ",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17633,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 8,
+      "title": "WAZIM"
+    },
+    {
+      "artist": "DJ Smallz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18328,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 8,
+      "title": "ZEP"
+    },
+    {
+      "artist": "The Ben",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17545,
+      "missing_before": [
+        "songwriters"
+      ],
+      "placements": 7,
+      "title": "Baby"
+    },
+    {
+      "artist": "Darkoo",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17578,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 7,
+      "title": "Favourite Girl (with Rema)"
+    },
+    {
+      "artist": "Jubet",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 19139,
+      "missing_before": [
+        "distributor",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 7,
+      "title": "Hardest Truth"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17550,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 7,
+      "title": "Mwizi"
+    },
+    {
+      "artist": "Willy Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17552,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 7,
+      "title": "Na Na Na"
+    },
+    {
+      "artist": "Israel Mbonyi",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17645,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 7,
+      "title": "NINA SIRI"
+    },
+    {
+      "artist": "Devrix Da Fubu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17328,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 7,
+      "title": "Ntaomoka"
+    },
+    {
+      "artist": "Vybz Kartel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18074,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 7,
+      "title": "Only Gets Better (Forever)"
+    },
+    {
+      "artist": "Mbosso",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17641,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 7,
+      "title": "Siko Single"
+    },
+    {
+      "artist": "Phina",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17652,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 7,
+      "title": "Sisi Ni Wale"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17574,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 7,
+      "title": "Step Sana"
+    },
+    {
+      "artist": "Frida Amani",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17546,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 7,
+      "title": "Wewe na mimi bongo Flava"
+    },
+    {
+      "artist": "OMAH LAY",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19477,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 6,
+      "title": "CLARITY OF MIND"
+    },
+    {
+      "artist": "Tml Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19415,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 6,
+      "title": "Pawon Boy, Vol. 1 (Deluxe)"
+    },
+    {
+      "artist": "Kusslove",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17401,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "Dance for me"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17649,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "Dichol"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17364,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 6,
+      "title": "Glitter Freestyle"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18159,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "Mama Love"
+    },
+    {
+      "artist": "Abigail Chams",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17730,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 6,
+      "title": "Me too"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18157,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "Nyasuba"
+    },
+    {
+      "artist": "Otile Brown",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17653,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "One Call"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17732,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "Rembo"
+    },
+    {
+      "artist": "Jay Melody",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17648,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 6,
+      "title": "Turudiane"
+    },
+    {
+      "artist": "Iyanii",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17602,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "Unanifaa"
+    },
+    {
+      "artist": "Collo Blue",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18814,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "Wakiuliza"
+    },
+    {
+      "artist": "Deejay MJ",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19297,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 6,
+      "title": "Well Done"
+    },
+    {
+      "artist": "T.I BLAZE",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19426,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 5,
+      "title": "Shakur (Deluxe)"
+    },
+    {
+      "artist": "Qing Madi",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17706,
+      "missing_before": [
+        "songwriters"
+      ],
+      "placements": 5,
+      "title": "American Love"
+    },
+    {
+      "artist": "Jay Melody",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17340,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 5,
+      "title": "Ankali"
+    },
+    {
+      "artist": "OnlyMoh",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18943,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 5,
+      "title": "Asake WYFL"
+    },
+    {
+      "artist": "Joel Lwaga",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17618,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 5,
+      "title": "Bila Bila"
+    },
+    {
+      "artist": "Diameter Pallet",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17418,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 5,
+      "title": "Fala"
+    },
+    {
+      "artist": "KunaTino Music",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17413,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 5,
+      "title": "Hallelujah"
+    },
+    {
+      "artist": "ELISHA TOTO",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21752,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 5,
+      "title": "LOVE PER DAY"
+    },
+    {
+      "artist": "OnlyMoh",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18942,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 5,
+      "title": "Robin Hood (Freestyle)"
+    },
+    {
+      "artist": "Alikiba",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17351,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 5,
+      "title": "Sella"
+    },
+    {
+      "artist": "Ndotz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17405,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 5,
+      "title": "Watch Me Now! (with NLE Choppa)"
+    },
+    {
+      "artist": "nk_njoroge",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17415,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 5,
+      "title": "Wema"
+    },
+    {
+      "artist": "Ivanny",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18497,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 5,
+      "title": "Wewe Hapo"
+    },
+    {
+      "artist": "Armanii",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 21652,
+      "missing_before": [
+        "songwriters"
+      ],
+      "placements": 5,
+      "title": "WUL UP"
+    },
+    {
+      "artist": "Tml Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19445,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "A Street Kid's Diary"
+    },
+    {
+      "artist": "Ruger",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19729,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "BlownBoy RU"
+    },
+    {
+      "artist": "Darassa",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19376,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Take Away The Pain"
+    },
+    {
+      "artist": "Victor Ivyic",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19042,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "ALL I HAVE"
+    },
+    {
+      "artist": "Koppa Gekon",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17996,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "Calender ya mungu"
+    },
+    {
+      "artist": "Madilu System",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18408,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "Franco de mi amor"
+    },
+    {
+      "artist": "Khalil Harrison",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17527,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "Jealousy"
+    },
+    {
+      "artist": "Criss MJ",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18555,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "Mon Bébé"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18363,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "Mummy Chulo"
+    },
+    {
+      "artist": "Nikita Kering'",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 21633,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 4,
+      "title": "Niwache"
+    },
+    {
+      "artist": "Valiant",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17506,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "Passenger Princess"
+    },
+    {
+      "artist": "Ruben Idy",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21639,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "Simba wa Yuda Ananguruma"
+    },
+    {
+      "artist": "DJ WIZZY 254",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18358,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Toxic Lyrikali mix"
+    },
+    {
+      "artist": "WorshipWithCorry",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18498,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Wewe ni Sababu ya Maisha yangu"
+    },
+    {
+      "artist": "Nadia Mukami",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17361,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 4,
+      "title": "Woyoyo"
+    },
+    {
+      "artist": "EMIN",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17819,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 4,
+      "title": "Камин"
+    },
+    {
+      "artist": "Ed Sheeran",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19755,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 3,
+      "title": "+-=÷× (Tour Collection: Live)"
+    },
+    {
+      "artist": "Papa T",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18868,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "AJAWA GIR JUOGI"
+    },
+    {
+      "artist": "Nandy",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18657,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 3,
+      "title": "Asante"
+    },
+    {
+      "artist": "Rudra Kartel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18722,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "Bruk It Dung 2"
+    },
+    {
+      "artist": "Kendi Kiremi",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17818,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "confirm remix"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17909,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 3,
+      "title": "Euphoria"
+    },
+    {
+      "artist": "Harmonize",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17914,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 3,
+      "title": "Friend Zone"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18160,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "I Love You"
+    },
+    {
+      "artist": "D Voice",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22250,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 3,
+      "title": "Kumbe"
+    },
+    {
+      "artist": "Rachats Classic",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18992,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "Mimi Ni Nani"
+    },
+    {
+      "artist": "Coconut Rootz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19023,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "My Everything"
+    },
+    {
+      "artist": "Young Roddo",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 21620,
+      "missing_before": [
+        "distributor",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "No Bad Grades"
+    },
+    {
+      "artist": "Diamond Platnumz",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17915,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 3,
+      "title": "Sasampa"
+    },
+    {
+      "artist": "Ronis Goliath",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18739,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "Tell Me One Lie"
+    },
+    {
+      "artist": "ELISHA TOTO",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17957,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "Tribute To Raila Amolo Odinga"
+    },
+    {
+      "artist": "Solpulse",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19024,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 3,
+      "title": "You & Me"
+    },
+    {
+      "artist": "Shashwat Sachdev",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20707,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Dhurandhar (Original Motion Picture Soundtrack)"
+    },
+    {
+      "artist": "Balloranking",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19736,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Lifestyle"
+    },
+    {
+      "artist": "Seyi Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19836,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Loseyi Professor"
+    },
+    {
+      "artist": "DJ Grauchi",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19551,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "The Sounds of Nairobi (DJ Mix)"
+    },
+    {
+      "artist": "Rybeena",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19772,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Virtuoso"
+    },
+    {
+      "artist": "JustBasweti",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19304,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Black Tax"
+    },
+    {
+      "artist": "Bella Shmurda",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17910,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Bounce"
+    },
+    {
+      "artist": "MAKAMANDA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21631,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "East"
+    },
+    {
+      "artist": "Faith Grey",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18742,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Electric Heat"
+    },
+    {
+      "artist": "Brayan Crist",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18557,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Fix The Ride"
+    },
+    {
+      "artist": "World hive",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17828,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "God of miracles"
+    },
+    {
+      "artist": "Alikiba",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18664,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 2,
+      "title": "Hatari"
+    },
+    {
+      "artist": "Broken Trails",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18559,
+      "missing_before": [
+        "distributor",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Hate Me All You Want"
+    },
+    {
+      "artist": "Phany Love",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18663,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Huyu"
+    },
+    {
+      "artist": "Jovial",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17741,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "I Got You"
+    },
+    {
+      "artist": "B2k Mnyama",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18340,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Ipo Siku"
+    },
+    {
+      "artist": "Toprock Gospel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18976,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "iwo ni"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18810,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Jaa Jaa"
+    },
+    {
+      "artist": "Victor Ivyic",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18991,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Joy is Coming"
+    },
+    {
+      "artist": "Willy Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17654,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Keki"
+    },
+    {
+      "artist": "Toprock Gospel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18840,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Kupendwa milele (Loved Forever)"
+    },
+    {
+      "artist": "Kabelo Tiro aka skavenja",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21699,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "KWANTLE KWAA"
+    },
+    {
+      "artist": "Chiktay",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 19021,
+      "missing_before": [
+        "distributor",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "La pli si tol"
+    },
+    {
+      "artist": "Bridget Blue",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17555,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Mapenzi"
+    },
+    {
+      "artist": "Roland MANTAMA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18556,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Mayday RDC"
+    },
+    {
+      "artist": "Mejja",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22296,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Mboka"
+    },
+    {
+      "artist": "Iyanii",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21741,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Mikono Juu"
+    },
+    {
+      "artist": "Diamond Platnumz",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17644,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 2,
+      "title": "Moyo"
+    },
+    {
+      "artist": "Patrick Kubuya",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17744,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Moyo Wangu (Live)"
+    },
+    {
+      "artist": "NG'ETHE STEVE",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17743,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Munyamaruri"
+    },
+    {
+      "artist": "Devrix Da Fubu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18506,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Mwaka Huu"
+    },
+    {
+      "artist": "King Bubby",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19319,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Nakutaka"
+    },
+    {
+      "artist": "Yammi",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18941,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 2,
+      "title": "Nichum"
+    },
+    {
+      "artist": "Neema Gospel Choir",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19066,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Nikurejeshee"
+    },
+    {
+      "artist": "Jay Melody",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17556,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 2,
+      "title": "Niwe"
+    },
+    {
+      "artist": "Fathermoh",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17956,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Nyadundo"
+    },
+    {
+      "artist": "Shane O",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 19020,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Riches"
+    },
+    {
+      "artist": "M'Du",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18865,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Sabela"
+    },
+    {
+      "artist": "Bahati",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17922,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Seti"
+    },
+    {
+      "artist": "Dayoo",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18806,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Siku Ya Mwisho"
+    },
+    {
+      "artist": "Kapitani",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21706,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Single"
+    },
+    {
+      "artist": "Vanillah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18483,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Tamu Chungu"
+    },
+    {
+      "artist": "Gajendra Verma",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18367,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Tera Ghata (Female)"
+    },
+    {
+      "artist": "Matata",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17737,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "TIKI TAKO"
+    },
+    {
+      "artist": "THE LIGHTBEARERS TZ",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21640,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Tumaini Letu"
+    },
+    {
+      "artist": "Pam",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18841,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Usimpe roho"
+    },
+    {
+      "artist": "Udede",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17363,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "Wadaima"
+    },
+    {
+      "artist": "Nahsh kariuki Official",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21634,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 2,
+      "title": "WAWILI"
+    },
+    {
+      "artist": "WorshipWithCorry",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18477,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 2,
+      "title": "Wewe ni Sababu ya Maisha Yetu, Unastahili kuabudiwa Cover"
+    },
+    {
+      "artist": "DJames",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 22548,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Africa Now: July 2026 (DJ Mix)"
+    },
+    {
+      "artist": "Burna Boy",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20016,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "African Giant"
+    },
+    {
+      "artist": "Young Jonn",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20233,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Blue Disco"
+    },
+    {
+      "artist": "BURUKLYN BOYZ",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20586,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "East Mpaka London"
+    },
+    {
+      "artist": "T.I BLAZE",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20608,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "El-Chapo"
+    },
+    {
+      "artist": "Rybeena",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20111,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Mr Bee"
+    },
+    {
+      "artist": "Bensoul",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21393,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NaEnjoy"
+    },
+    {
+      "artist": "Eunice Njeri",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19920,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nani Kama Wewe"
+    },
+    {
+      "artist": "YOUNG RAPPERS",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 21376,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NEED THE MONEY"
+    },
+    {
+      "artist": "GENIUSJINI X66",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19743,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Time Traveller"
+    },
+    {
+      "artist": "Tml Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19799,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Timileyin 2.0"
+    },
+    {
+      "artist": "Sean Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18770,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "(When You Gonna) Give It Up to Me [Radio Version]"
+    },
+    {
+      "artist": "Betty Bayo",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18177,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "11Th Hour"
+    },
+    {
+      "artist": "Dax Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19143,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Aeiou"
+    },
+    {
+      "artist": "Willy Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17595,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Ahere"
+    },
+    {
+      "artist": "Toprock Gospel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19267,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "All I Need Is You"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17549,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Amanda (Explicit)"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17920,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Amanda Remix"
+    },
+    {
+      "artist": "HBK Live Act",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18866,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Anginayo Imali"
+    },
+    {
+      "artist": "Yammi",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17560,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 1,
+      "title": "Arenare"
+    },
+    {
+      "artist": "Beniko",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18404,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Assinata"
+    },
+    {
+      "artist": "Official Baba Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19305,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Baba God"
+    },
+    {
+      "artist": "Urban Chords",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18044,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "badman gangsta"
+    },
+    {
+      "artist": "Kman 6ixx",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18970,
+      "missing_before": [
+        "distributor",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Bend Ova"
+    },
+    {
+      "artist": "KODONGKLAN",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18280,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Better Days"
+    },
+    {
+      "artist": "Timaya",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18360,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "BIG MAN TING"
+    },
+    {
+      "artist": "shewahdexta",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18560,
+      "missing_before": [
+        "distributor",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Birkin Bag"
+    },
+    {
+      "artist": "Harry Craze",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18867,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Bwagalaa"
+    },
+    {
+      "artist": "Frida Amani",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19144,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Celebrate"
+    },
+    {
+      "artist": "Watendawili",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17617,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Cham Thum (Atoti)"
+    },
+    {
+      "artist": "Wendy Shay",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19154,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Crazy Love"
+    },
+    {
+      "artist": "Kusslove",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19301,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Dance for Me [Acoustic]"
+    },
+    {
+      "artist": "T Peller",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19266,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Dey For You"
+    },
+    {
+      "artist": "SdoDiRoba",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18554,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Dibiri Dikae"
+    },
+    {
+      "artist": "Josh Kamba",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18356,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "DML"
+    },
+    {
+      "artist": "Yemi Alade",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 21724,
+      "missing_before": [
+        "distributor",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Don't Be Shy"
+    },
+    {
+      "artist": "ragerx",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19303,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Dream Chaser"
+    },
+    {
+      "artist": "Stahgee",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19165,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Dying Minute"
+    },
+    {
+      "artist": "The Wamagatas",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19299,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "EBENEZER"
+    },
+    {
+      "artist": "Mr Nice",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19055,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "First Lady"
+    },
+    {
+      "artist": "Otile Brown",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17598,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Furaha Yako"
+    },
+    {
+      "artist": "Fameye",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 19162,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Habit"
+    },
+    {
+      "artist": "Billnass",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22219,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Hallo"
+    },
+    {
+      "artist": "Vanillah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22217,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Hasira"
+    },
+    {
+      "artist": "Yammi",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18658,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 1,
+      "title": "Hayanogi"
+    },
+    {
+      "artist": "CJS",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19307,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Hebu Nieleze"
+    },
+    {
+      "artist": "Levelz UP",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 22046,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "How are you?"
+    },
+    {
+      "artist": "Mbosso",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17664,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 1,
+      "title": "Huyu Hapa"
+    },
+    {
+      "artist": "Delana Hope",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18871,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "I Speak Blessings"
+    },
+    {
+      "artist": "Urban Chords",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18042,
+      "missing_before": [
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "I'm a mess (Choir Version)"
+    },
+    {
+      "artist": "R.M.H",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19150,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Imbobo"
+    },
+    {
+      "artist": "English Audio Bible",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19025,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "In the Silence"
+    },
+    {
+      "artist": "Muyeez",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19170,
+      "missing_before": [
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Instagram"
+    },
+    {
+      "artist": "John Holt",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18043,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Jamaica Farewell"
+    },
+    {
+      "artist": "Trinix Remix",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18869,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Jeene Laga Hoon"
+    },
+    {
+      "artist": "Coster Ojwang",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17879,
+      "missing_before": [
+        "songwriters"
+      ],
+      "placements": 1,
+      "title": "Jowi"
+    },
+    {
+      "artist": "Barnaba",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19133,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Juju"
+    },
+    {
+      "artist": "Israel Mbonyi",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17736,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Kaa nami (Live)"
+    },
+    {
+      "artist": "Angélique Kidjo",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19132,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Kakua"
+    },
+    {
+      "artist": "Heavenly Echoes Ministers",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21644,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Kamanda Wa Vita"
+    },
+    {
+      "artist": "LR GLOBAL",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18564,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Kamwambie"
+    },
+    {
+      "artist": "DWAYNE SPIKES",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19017,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Kiuzombie"
+    },
+    {
+      "artist": "SIJI.",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18272,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "KOMSA"
+    },
+    {
+      "artist": "Sounds Of Afrika Music",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18874,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Kristo Wa Neema Yote Imbisha Moyo Wangu"
+    },
+    {
+      "artist": "Harmonize",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17553,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 1,
+      "title": "Lala"
+    },
+    {
+      "artist": "SAMAD",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19159,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Lameda"
+    },
+    {
+      "artist": "Mavoicetz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19026,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Limenoga"
+    },
+    {
+      "artist": "Toprock Gospel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18153,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Living Waters"
+    },
+    {
+      "artist": "Zuchu",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18986,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Love"
+    },
+    {
+      "artist": "Watendawili",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18804,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mafrrrmbanya"
+    },
+    {
+      "artist": "Khadeair",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17826,
+      "missing_before": [
+        "distributor",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Magumba"
+    },
+    {
+      "artist": "Jux",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 19271,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 1,
+      "title": "Majo"
+    },
+    {
+      "artist": "Choppa strings",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21627,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Malebo"
+    },
+    {
+      "artist": "Alijoma",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19145,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Malu"
+    },
+    {
+      "artist": "Ntombemhlope",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17837,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "MAMA"
+    },
+    {
+      "artist": "Emanuel Nicarios",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18487,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Mengi kwa ajili yangu."
+    },
+    {
+      "artist": "Official Tikiti",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19029,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mimina Neema"
+    },
+    {
+      "artist": "Dela Cuffy",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19306,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mind Your Business"
+    },
+    {
+      "artist": "Shift to Abundance",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18407,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mirror To Magic"
+    },
+    {
+      "artist": "Lony Bway",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17918,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mitano"
+    },
+    {
+      "artist": "MAKAMANDA",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18940,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mkuu Mamake"
+    },
+    {
+      "artist": "Moses Luka",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18807,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Moja"
+    },
+    {
+      "artist": "Rayvanny",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17559,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mon Amor"
+    },
+    {
+      "artist": "Lony Bway",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18937,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Moyo"
+    },
+    {
+      "artist": "Diameter Pallet",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18504,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Moyo Mjinga"
+    },
+    {
+      "artist": "Matata",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17832,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "MPISHI (Mixed)"
+    },
+    {
+      "artist": "Aloony",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18004,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Msumari"
+    },
+    {
+      "artist": "Kisii All Stars",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22777,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "MUKAYO"
+    },
+    {
+      "artist": "Sheebah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19138,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mummy Wange"
+    },
+    {
+      "artist": "Tabu Ley Rochereau",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18246,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Muzina"
+    },
+    {
+      "artist": "Aslam Tz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22633,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Mwambieni"
+    },
+    {
+      "artist": "Xouh",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19137,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "My Baby"
+    },
+    {
+      "artist": "BBO",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19173,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "MY GOD"
+    },
+    {
+      "artist": "Nahj",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17593,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "My Lady"
+    },
+    {
+      "artist": "Stella Mengele",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19290,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "My tamu tamu"
+    },
+    {
+      "artist": "Free Da Truth",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19298,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "MZEE WA HOVYO"
+    },
+    {
+      "artist": "JustBasweti",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19302,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nakupenda Ulivyo"
+    },
+    {
+      "artist": "D Voice",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17661,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 1,
+      "title": "Nani"
+    },
+    {
+      "artist": "Kevin Kade",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19135,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Ndi Ready"
+    },
+    {
+      "artist": "Sammy Irungu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19272,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NI NGAI UMAGIRAGIA"
+    },
+    {
+      "artist": "16Barz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19140,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Niko Bie"
+    },
+    {
+      "artist": "Lift Soul Records",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21711,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Niko Na Neema"
+    },
+    {
+      "artist": "Kassam",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19134,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Nikupe"
+    },
+    {
+      "artist": "Tuzo Jerome Tz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21636,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nina Neno Moja Tu Asante"
+    },
+    {
+      "artist": "Diameter Pallet",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21654,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Nisamehe"
+    },
+    {
+      "artist": "Greenworld music",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19028,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Niseme Nini Bwana"
+    },
+    {
+      "artist": "Emanuel Nicarios",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18405,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Nitaamini"
+    },
+    {
+      "artist": "Peterbril",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18953,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Nitolee"
+    },
+    {
+      "artist": "Chege",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18062,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Njoo"
+    },
+    {
+      "artist": "Pelzy Never Mind",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21720,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "NJOO"
+    },
+    {
+      "artist": "Koko Pee",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17642,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Not For Me"
+    },
+    {
+      "artist": "KODONGKLAN",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17882,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Nyaduse"
+    },
+    {
+      "artist": "Rord Kelly",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 19177,
+      "missing_before": [
+        "distributor",
+        "songwriters"
+      ],
+      "placements": 1,
+      "title": "Okwu (Remix)"
+    },
+    {
+      "artist": "Lasmid",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 19172,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Olivia"
+    },
+    {
+      "artist": "Sounds Of Afrika Music",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18245,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Ombi Langu My Desire Thandez' Lami"
+    },
+    {
+      "artist": "Victor Ivyic",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18566,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "On my side"
+    },
+    {
+      "artist": "Walter Chilambo",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18875,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Only You"
+    },
+    {
+      "artist": "OnlyMoh",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18999,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Osama"
+    },
+    {
+      "artist": "Furryx",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18562,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Over the Vibes"
+    },
+    {
+      "artist": "brux XTN",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17960,
+      "missing_before": [
+        "distributor",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Paid to Exist"
+    },
+    {
+      "artist": "Hildah Watiri",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19147,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Pole Pole"
+    },
+    {
+      "artist": "Toprock Gospel",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18693,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Restoring the Order"
+    },
+    {
+      "artist": "ALEX KASAU KATOMBI",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18718,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Retire"
+    },
+    {
+      "artist": "Laflare",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19018,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Right By Your Side."
+    },
+    {
+      "artist": "Bella Shmurda",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 17948,
+      "missing_before": [
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Sanity"
+    },
+    {
+      "artist": "Vanillah",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18947,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Searching for Love"
+    },
+    {
+      "artist": "Omega 256",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17824,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "See You Tonight"
+    },
+    {
+      "artist": "Drex D",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17952,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Sensational"
+    },
+    {
+      "artist": "Arrow Bwoy",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18966,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Side Chick"
+    },
+    {
+      "artist": "Jorh Creta",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18558,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Simwachi"
+    },
+    {
+      "artist": "Sam Wa Ukweli",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17825,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Sina Raha"
+    },
+    {
+      "artist": "Koko Pee",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21683,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Slim Girls"
+    },
+    {
+      "artist": "Caine",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18081,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "So Mi Like It (Caine Remix)"
+    },
+    {
+      "artist": "Willy Paul",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18743,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Society Pressure"
+    },
+    {
+      "artist": "Miracle LRE",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 21659,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Sorry I'm Different"
+    },
+    {
+      "artist": "Party Wright",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19141,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Stamina"
+    },
+    {
+      "artist": "Fena Gitu",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 18872,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Steam"
+    },
+    {
+      "artist": "Bam Boy",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19149,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Sumu"
+    },
+    {
+      "artist": "Christopher Martin",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19030,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Take My Love"
+    },
+    {
+      "artist": "T Peller",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18834,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Tell Me Nothing"
+    },
+    {
+      "artist": "Vailedmoon music",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19019,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Tell me what to do (Special Version)"
+    },
+    {
+      "artist": "Anko Ronie",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19142,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "TEZINUMA"
+    },
+    {
+      "artist": "I-Octane",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21663,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "The Season"
+    },
+    {
+      "artist": "Song Writer's Playbook",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18406,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Too Sweet to Share"
+    },
+    {
+      "artist": "Countree Hype",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17726,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Toyota Crown 2"
+    },
+    {
+      "artist": "OnlyMoh",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19228,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Trauma"
+    },
+    {
+      "artist": "Dolv Gvng",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19146,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Try Me"
+    },
+    {
+      "artist": "Soul Touch Brand",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18987,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Tuheshimiane Usinidharau"
+    },
+    {
+      "artist": "KMK MAKUBURI",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18702,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Tumaini Letu"
+    },
+    {
+      "artist": "GIFT MELODY",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18756,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "UBAYA WA DHAMBI"
+    },
+    {
+      "artist": "Obby Alpha",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17658,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Umenipima"
+    },
+    {
+      "artist": "Dj Kezz",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18711,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Ushuhuda"
+    },
+    {
+      "artist": "FRAH KE",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18757,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Vuva"
+    },
+    {
+      "artist": "Eshconinco",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18249,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Wah Yuh"
+    },
+    {
+      "artist": "Tipsy Gee",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18694,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Wajue"
+    },
+    {
+      "artist": "Khaligraph Jones",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18961,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Wakembeshe"
+    },
+    {
+      "artist": "Sammy Irungu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18375,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Weru Uyu"
+    },
+    {
+      "artist": "WorshipWithCorry",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18744,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Wewe ni Mungu"
+    },
+    {
+      "artist": "Popcaan",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18265,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "When You Wine Like That"
+    },
+    {
+      "artist": "DJ Lyta",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17665,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Worship Mix"
+    },
+    {
+      "artist": "Virusi Mbaya",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19070,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "YoYo"
+    },
+    {
+      "artist": "Black Coco",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19180,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Zagga Dat"
+    },
+    {
+      "artist": "Kedjevara",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17821,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Ça fait mal"
+    },
+    {
+      "artist": "Najeeriii",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19801,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Dutty Money Riddim"
+    },
+    {
+      "artist": "YOUNG RAPPERS",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 22572,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "number_of_tracks",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Money dey give man joy"
+    },
+    {
+      "artist": "Seyi Vibez",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 20620,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "NAHAMciaga"
+    },
+    {
+      "artist": "Balloranking",
+      "candidate_sources_seen": [],
+      "chart_type": "albums",
+      "id": 19791,
+      "missing_before": [
+        "genre",
+        "distributor",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Zero Panic, Vol. 2"
+    },
+    {
+      "artist": "LOVIXX STOSLIV",
+      "candidate_sources_seen": [
+        "Genius API"
+      ],
+      "chart_type": "singles",
+      "id": 21696,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Don't tell your dreams"
+    },
+    {
+      "artist": "David Madden",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22305,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "title": "Horny Horny"
+    },
+    {
+      "artist": "Dizompa Mr Killer",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21753,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Niko Mbali"
+    },
+    {
+      "artist": "Novex",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 21712,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "title": "SASEZOLA"
+    },
+    {
+      "artist": "OnlyMoh",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18954,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Trap"
+    },
+    {
+      "artist": "Frida Amani",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17827,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "title": "Wewe na mimi"
+    },
+    {
+      "artist": "Rave Son",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18131,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "Who’s Dat Girl"
+    },
+    {
+      "artist": "KITSCHKRIEG",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 22290,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "title": "ZW"
+    }
+  ],
+  "missing_counts_after": {
+    "apple_music_url": 253,
+    "distributor": 816,
+    "genre": 63,
+    "isrc": 58,
+    "label": 53,
+    "number_of_tracks": 15,
+    "producers": 309,
+    "release_date": 44,
+    "release_year": 44,
+    "songwriters": 349,
+    "upc": 104
+  },
+  "missing_counts_before": {
+    "apple_music_url": 253,
+    "distributor": 816,
+    "genre": 63,
+    "isrc": 58,
+    "label": 53,
+    "number_of_tracks": 15,
+    "producers": 318,
+    "release_date": 44,
+    "release_year": 44,
+    "songwriters": 358,
+    "upc": 104
+  },
+  "months": [
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
+    "January 2026",
+    "February 2026",
+    "March 2026",
+    "April 2026",
+    "May 2026",
+    "June 2026",
+    "July 2026"
+  ],
+  "public_unique_release_ids": 1020,
+  "release_order_limit": 0,
+  "release_order_start": 0,
+  "script_version": "2026-08-01",
+  "selected_releases": 1041,
+  "source": "Automated high-confidence metadata lookup using Deezer, iTunes/Apple, and Genius public endpoints.",
+  "source_hits": {
+    "Genius API": 101
+  },
+  "sources_mode": "genius",
+  "target_unique_release_ids": 1048,
+  "targets_scanned": 403,
+  "updates": [
+    {
+      "artist": "Joé Dwèt Filé",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "R-B",
+            "producers": "Aznvr; NatewKeys; Joé Dwèt Filé; Wligens",
+            "release_date": "2025-03-28",
+            "release_year": 2025,
+            "songwriters": "Joé Dwèt Filé; Burna Boy; Zoey Dollaz"
+          },
+          "raw_match": {
+            "artist": "Joé Dwèt Filé & Burna Boy",
+            "title": "4 Kampe II"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Joe-dwet-file-and-burna-boy-4-kampe-ii-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Aznvr; NatewKeys; Joé Dwèt Filé; Wligens",
+        "songwriters": "Joé Dwèt Filé; Burna Boy; Zoey Dollaz"
+      },
+      "id": 17455,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Joe-dwet-file-and-burna-boy-4-kampe-ii-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Joe-dwet-file-and-burna-boy-4-kampe-ii-lyrics"
+        ]
+      },
+      "title": "4 Kampé II"
+    },
+    {
+      "artist": "DJ Maphorisa",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Kabza De Small",
+            "release_date": "2025-03-28",
+            "release_year": 2025,
+            "songwriters": "Young Stunna; Thatohatsi; Nkosazana Daughter; Kabza De Small; Xduppy; DJ Maphorisa"
+          },
+          "raw_match": {
+            "artist": "DJ Maphorisa, Xduppy & Kabza De Small (Ft. Nkosazana Daughter, Thatohatsi & Young Stunna)",
+            "title": "Abantwana Bakho"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Dj-maphorisa-xduppy-and-kabza-de-small-abantwana-bakho-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Kabza De Small",
+        "songwriters": "Young Stunna; Thatohatsi; Nkosazana Daughter; Kabza De Small; Xduppy; DJ Maphorisa"
+      },
+      "id": 17421,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Dj-maphorisa-xduppy-and-kabza-de-small-abantwana-bakho-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Dj-maphorisa-xduppy-and-kabza-de-small-abantwana-bakho-lyrics"
+        ]
+      },
+      "title": "Abantwana Bakho"
+    },
+    {
+      "artist": "ShaunMusiq",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "ShaunMusiq",
+            "release_date": "2026-06-12",
+            "release_year": 2026,
+            "songwriters": "ShaunMusiq; Bassie; Leemckrazy; Mashudu"
+          },
+          "raw_match": {
+            "artist": "ShaunMusiq, Bassie & Leemckrazy (Ft. Mashudu)",
+            "title": "Ngiyak’cela"
+          },
+          "score": 0.966,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Shaunmusiq-bassie-and-leemckrazy-ngiyakcela-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "ShaunMusiq",
+        "songwriters": "ShaunMusiq; Bassie; Leemckrazy; Mashudu"
+      },
+      "id": 22048,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Shaunmusiq-bassie-and-leemckrazy-ngiyakcela-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Shaunmusiq-bassie-and-leemckrazy-ngiyakcela-lyrics"
+        ]
+      },
+      "title": "Ngiyak'cela (feat. Mashudu)"
+    },
+    {
+      "artist": "Future",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Bryan Yepes; Shndō; Wheezy",
+            "release_date": "2026-07-10",
+            "release_year": 2026,
+            "songwriters": "Future; Poo Bear; Shndō; Wheezy"
+          },
+          "raw_match": {
+            "artist": "Future",
+            "title": "No Misery"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Future-no-misery-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Bryan Yepes; Shndō; Wheezy",
+        "songwriters": "Future; Poo Bear; Shndō; Wheezy"
+      },
+      "id": 22592,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Future-no-misery-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Future-no-misery-lyrics"
+        ]
+      },
+      "title": "No Misery"
+    },
+    {
+      "artist": "Future",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Simmyauto; Smatt Sertified; Southside",
+            "release_date": "2026-07-10",
+            "release_year": 2026,
+            "songwriters": "Charles Bernstein; Future; Simmyauto; Smatt Sertified"
+          },
+          "raw_match": {
+            "artist": "Future",
+            "title": "One Two"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Future-one-two-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Simmyauto; Smatt Sertified; Southside",
+        "songwriters": "Charles Bernstein; Future; Simmyauto; Smatt Sertified"
+      },
+      "id": 22589,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Future-one-two-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Future-one-two-lyrics"
+        ]
+      },
+      "title": "One Two"
+    },
+    {
+      "artist": "Future",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "mtymusic; Shottie; Taurus; Wheezy",
+            "release_date": "2026-07-10",
+            "release_year": 2026,
+            "songwriters": "Future; Taurus; Wheezy"
+          },
+          "raw_match": {
+            "artist": "Future",
+            "title": "Snow in Skyami"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Future-snow-in-skyami-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "mtymusic; Shottie; Taurus; Wheezy",
+        "songwriters": "Future; Taurus; Wheezy"
+      },
+      "id": 22593,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Future-snow-in-skyami-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Future-snow-in-skyami-lyrics"
+        ]
+      },
+      "title": "Snow in Skyami"
+    },
+    {
+      "artist": "Future",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "DY Krazy; TrePounds",
+            "release_date": "2026-07-10",
+            "release_year": 2026,
+            "songwriters": "DY Krazy; Future; J Money World; TrePounds"
+          },
+          "raw_match": {
+            "artist": "Future",
+            "title": "Tank Top Pluto"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Future-tank-top-pluto-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "DY Krazy; TrePounds",
+        "songwriters": "DY Krazy; Future; J Money World; TrePounds"
+      },
+      "id": 22591,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Future-tank-top-pluto-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Future-tank-top-pluto-lyrics"
+        ]
+      },
+      "title": "Tank Top Pluto"
+    },
+    {
+      "artist": "Future",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "ATL Jacob",
+            "release_date": "2026-07-10",
+            "release_year": 2026,
+            "songwriters": "ATL Jacob; Future"
+          },
+          "raw_match": {
+            "artist": "Future",
+            "title": "Trench Coat"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Future-trench-coat-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "ATL Jacob",
+        "songwriters": "ATL Jacob; Future"
+      },
+      "id": 22595,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Future-trench-coat-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Future-trench-coat-lyrics"
+        ]
+      },
+      "title": "Trench Coat"
+    },
+    {
+      "artist": "Future",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "C$D Sid; Inferno; Kondo; Swamiq; TM88",
+            "release_date": "2026-07-10",
+            "release_year": 2026,
+            "songwriters": "Brian Potter; Dennis Lambert; Future; Inferno; Kondo; TM88"
+          },
+          "raw_match": {
+            "artist": "Future",
+            "title": "Weight Up"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Future-weight-up-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "C$D Sid; Inferno; Kondo; Swamiq; TM88",
+        "songwriters": "Brian Potter; Dennis Lambert; Future; Inferno; Kondo; TM88"
+      },
+      "id": 22594,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 0,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Future-weight-up-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Future-weight-up-lyrics"
+        ]
+      },
+      "title": "Weight Up"
+    }
+  ],
+  "updates_planned_or_applied": 9
+}

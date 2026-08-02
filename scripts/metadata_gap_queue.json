@@ -1,0 +1,1541 @@
+{
+  "generated_at": "2026-08-02T07:57:35.023476+00:00",
+  "artists": [
+    {
+      "id": 563,
+      "name": "-Prey",
+      "missing_fields": [
+        "city_region",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 2286,
+      "name": "031CHOPPA",
+      "missing_fields": [
+        "boomplay_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 2484,
+      "name": "1-Octane",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 432,
+      "name": "10Tik",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1402,
+      "name": "1300SAINT",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 862,
+      "name": "16Barz",
+      "missing_fields": [
+        "city_region",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 2690,
+      "name": "19",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1144,
+      "name": "1Spirit",
+      "missing_fields": [
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1316,
+      "name": "1oneam",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1599,
+      "name": "2 Chainz",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 196,
+      "name": "21 Savage",
+      "missing_fields": [
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 769,
+      "name": "254 music kenya",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1241,
+      "name": "2Baba",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1435,
+      "name": "2Pac",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 533,
+      "name": "2hz",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 595,
+      "name": "2nd Junior",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 408,
+      "name": "2nd Junior Kotestes",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 700,
+      "name": "2wentysixx",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 620,
+      "name": "4 Non Blondes",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1676,
+      "name": "42 Dugg",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 2704,
+      "name": "432 Hz Frequencies",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1219,
+      "name": "450",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1276,
+      "name": "4Mr Frank White",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 1153,
+      "name": "4batz",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    },
+    {
+      "id": 623,
+      "name": "50 Cent",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography",
+        "spotify_url",
+        "apple_music_url",
+        "youtube_url",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "instagram_url",
+        "x_url",
+        "facebook_url",
+        "website_url"
+      ]
+    }
+  ],
+  "songs": [
+    {
+      "id": 18651,
+      "title": "$ex Appeal",
+      "artist": "Baby Keem",
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "songwriters",
+        "producers",
+        "isrc"
+      ]
+    },
+    {
+      "id": 18770,
+      "title": "(When You Gonna) Give It Up to Me [Radio Version]",
+      "artist": "Sean Paul",
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "boomplay_url",
+        "tiktok_url"
+      ]
+    },
+    {
+      "id": 18177,
+      "title": "11Th Hour",
+      "artist": "Betty Bayo",
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "boomplay_url",
+        "tiktok_url",
+        "producers"
+      ]
+    },
+    {
+      "id": 22703,
+      "title": "12600 lettres",
+      "artist": "Franco",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18098,
+      "title": "175 Months",
+      "artist": "Dave",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 17752,
+      "title": "18",
+      "artist": "Jay Melody",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 17867,
+      "title": "1er Gaou",
+      "artist": "Magic System",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 19089,
+      "title": "2 Hard 4 The Radio",
+      "artist": "Drake",
+      "chart_type": "singles",
+      "missing_fields": [
+        "spotify_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url"
+      ]
+    },
+    {
+      "id": 18789,
+      "title": "2.0",
+      "artist": "BTS",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 22597,
+      "title": "2018",
+      "artist": "Future",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18502,
+      "title": "2025 Bongo mix",
+      "artist": "DJ WIZZY 254",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18494,
+      "title": "2026",
+      "artist": "Vybz Kartel",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 22665,
+      "title": "2026 Kenyan Club Ba...",
+      "artist": "DJ WIZZY 254",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21740,
+      "title": "2026 Kenyan Club Bangers",
+      "artist": "DJ WIZZY 254",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18621,
+      "title": "29 Intro",
+      "artist": "J. Cole",
+      "chart_type": "singles",
+      "missing_fields": [
+        "spotify_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18350,
+      "title": "2Factor",
+      "artist": "Young Jonn",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 17458,
+      "title": "30 For 30",
+      "artist": "SZA",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 17717,
+      "title": "4 Kampé",
+      "artist": "Joé Dwèt Filé",
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "spotify_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url"
+      ]
+    },
+    {
+      "id": 17455,
+      "title": "4 Kampé II",
+      "artist": "Joé Dwèt Filé",
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "spotify_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url"
+      ]
+    },
+    {
+      "id": 18488,
+      "title": "4L",
+      "artist": "NSG",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18365,
+      "title": "6ix Carz",
+      "artist": "Gody Tennor",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18855,
+      "title": "7 Years",
+      "artist": "Lukas Graham",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18895,
+      "title": "88 Bars 2",
+      "artist": "Moti the NRG",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 17528,
+      "title": "99",
+      "artist": "Olamide",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 18628,
+      "title": "A Couple Minutes",
+      "artist": "Olivia Dean",
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    }
+  ],
+  "albums": [
+    {
+      "id": 20044,
+      "title": "#F.E.B",
+      "artist": "Kankan",
+      "chart_type": "albums",
+      "missing_fields": [
+        "boomplay_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "upc"
+      ]
+    },
+    {
+      "id": 20277,
+      "title": "#FEDERAL",
+      "artist": "SINN6R",
+      "chart_type": "albums",
+      "missing_fields": [
+        "distributor",
+        "boomplay_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "upc"
+      ]
+    },
+    {
+      "id": 19751,
+      "title": "$exy Girl $ummer (Vol.1)",
+      "artist": "Darkoo",
+      "chart_type": "albums",
+      "missing_fields": [
+        "boomplay_url",
+        "audiomack_url",
+        "tiktok_url",
+        "shazam_url",
+        "upc"
+      ]
+    },
+    {
+      "id": 19355,
+      "title": "$ome $exy $ongs 4 U",
+      "artist": "PARTYNEXTDOOR",
+      "chart_type": "albums",
+      "missing_fields": [
+        "spotify_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url"
+      ]
+    },
+    {
+      "id": 20047,
+      "title": "(((((ultraSOUND)))))",
+      "artist": "The Neighbourhood",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21185,
+      "title": "(When You Gonna) Give It Up to Me",
+      "artist": "Sean Paul",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 19755,
+      "title": "+-=÷× (Tour Collection: Live)",
+      "artist": "Ed Sheeran",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "distributor",
+        "spotify_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc"
+      ]
+    },
+    {
+      "id": 21054,
+      "title": ".midnight",
+      "artist": "moneyraceshorty",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 20607,
+      "title": "010 CULTUR FM: DJames (DJ Mix)",
+      "artist": "DJames",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21362,
+      "title": "02",
+      "artist": "Xouh",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21078,
+      "title": "0303",
+      "artist": "Mr JazziQ",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 19621,
+      "title": "031 Studio Camp 2.0",
+      "artist": "Dlala Thukzin",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 20081,
+      "title": "100 Best Loved Hymns",
+      "artist": "The Joslin Grove Choral Society",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21551,
+      "title": "100 City World Tour",
+      "artist": "P-Square",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21243,
+      "title": "100 R&B Platinum Superstar Hits",
+      "artist": "Various Artists",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 20970,
+      "title": "100Fold Blessing",
+      "artist": "AICT Chang'ombe Choir (CVC)",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 20774,
+      "title": "1021",
+      "artist": "Rochelle Jordan",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 19511,
+      "title": "11:11 (Deluxe)",
+      "artist": "Chris Brown",
+      "chart_type": "albums",
+      "missing_fields": [
+        "distributor",
+        "spotify_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url"
+      ]
+    },
+    {
+      "id": 20182,
+      "title": "131 (EP)",
+      "artist": "KOJO BLAK",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 19789,
+      "title": "13Th Street Tape",
+      "artist": "Skeng",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 20765,
+      "title": "14 NIGHTS",
+      "artist": "Phantom Beats SA",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21406,
+      "title": "19 & Dangerous Deluxe",
+      "artist": "Ayra Starr",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 19957,
+      "title": "1989 (Taylor's Version)",
+      "artist": "Taylor Swift",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21224,
+      "title": "2 Alivë (Geëk Pack)",
+      "artist": "Yeat",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    {
+      "id": 21115,
+      "title": "20 Songs of Inspiration",
+      "artist": "Jim Reeves",
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "spotify_url",
+        "apple_music_url",
+        "boomplay_url",
+        "audiomack_url",
+        "youtube_url",
+        "tiktok_url",
+        "shazam_url",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    }
+  ]
+}

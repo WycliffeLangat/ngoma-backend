@@ -1,0 +1,1712 @@
+{
+  "applied": false,
+  "backend_release_ids_missing": [
+    22792,
+    22890,
+    22909,
+    22910,
+    22911,
+    22942,
+    22998
+  ],
+  "backend_releases_found": 1013,
+  "backup": null,
+  "generated_at": "2026-08-01T15:28:01",
+  "misses": [],
+  "missing_counts_after": {
+    "apple_music_url": 1013,
+    "distributor": 937,
+    "genre": 161,
+    "isrc": 658,
+    "label": 139,
+    "number_of_tracks": 78,
+    "producers": 633,
+    "release_date": 120,
+    "release_year": 116,
+    "songwriters": 625,
+    "upc": 1013
+  },
+  "missing_counts_before": {
+    "apple_music_url": 1013,
+    "distributor": 937,
+    "genre": 161,
+    "isrc": 658,
+    "label": 139,
+    "number_of_tracks": 78,
+    "producers": 633,
+    "release_date": 120,
+    "release_year": 116,
+    "songwriters": 625,
+    "upc": 1013
+  },
+  "months": [
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
+    "January 2026",
+    "February 2026",
+    "March 2026",
+    "April 2026",
+    "May 2026",
+    "June 2026",
+    "July 2026"
+  ],
+  "public_unique_release_ids": 1020,
+  "script_version": "2026-08-01",
+  "source": "Automated high-confidence metadata lookup using Deezer, iTunes/Apple, and Genius public endpoints.",
+  "source_hits": {
+    "Deezer API": 20,
+    "Genius API": 8,
+    "iTunes Search API": 11
+  },
+  "targets_scanned": 20,
+  "updates": [
+    {
+      "artist": "Iyanii",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Reggae; Dancehall/Ragga",
+            "isrc": "QZNJW2531033",
+            "label": "Iyanii",
+            "release_date": "2025-07-11",
+            "release_year": 2025,
+            "upc": "730941649821"
+          },
+          "raw_match": {
+            "album": "Donjo Maber",
+            "artist": "Iyanii",
+            "title": "Donjo Maber"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3392039631",
+            "https://www.deezer.com/album/764948811"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/donjo-maber/1817618036?i=1817618041&uo=4",
+            "copyright": "℗ 2025 Iyanii, with exclusive license to ONErpm",
+            "distributor": "ONErpm",
+            "genre": "Modern Dancehall",
+            "label": "Iyanii",
+            "release_date": "2025-07-11",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Iyanii & Dufla",
+            "title": "Donjo Maber"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/donjo-maber/1817618036?i=1817618041&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/donjo-maber/1817618036?i=1817618041&uo=4",
+        "distributor": "ONErpm",
+        "isrc": "QZNJW2531033",
+        "upc": "730941649821"
+      },
+      "id": 17281,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 64,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "distributor": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/donjo-maber/1817618036?i=1817618041&uo=4"
+        ],
+        "distributor": [
+          "https://music.apple.com/us/album/donjo-maber/1817618036?i=1817618041&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/764948811",
+          "https://www.deezer.com/track/3392039631"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/764948811",
+          "https://www.deezer.com/track/3392039631"
+        ]
+      },
+      "title": "Donjo Maber"
+    },
+    {
+      "artist": "Mbosso",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "ZA40S2500408",
+            "label": "Ziiki Media",
+            "release_date": "2025-05-09",
+            "release_year": 2025,
+            "upc": "5034644641188"
+          },
+          "raw_match": {
+            "album": "Room Number 3",
+            "artist": "Mbosso",
+            "title": "Pawa"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3338457731",
+            "https://www.deezer.com/album/747191031"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/pawa/1810459136?i=1810459138&uo=4",
+            "copyright": "℗ 2025 Ziiki Media",
+            "genre": "Afro-Pop",
+            "label": "Ziiki Media",
+            "release_date": "2025-06-13",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Mbosso",
+            "title": "Pawa"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/pawa/1810459136?i=1810459138&uo=4"
+          ]
+        },
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "S2Kizzy",
+            "release_date": "2025-06-13",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Mbosso",
+            "title": "Pawa"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Mbosso-pawa-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/pawa/1810459136?i=1810459138&uo=4",
+        "isrc": "ZA40S2500408",
+        "producers": "S2Kizzy",
+        "upc": "5034644641188"
+      },
+      "id": 17282,
+      "missing_before": [
+        "upc",
+        "isrc",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 62,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "producers": [
+          "Genius API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/pawa/1810459136?i=1810459138&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/747191031",
+          "https://www.deezer.com/track/3338457731"
+        ],
+        "producers": [
+          "https://genius.com/Mbosso-pawa-lyrics"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/747191031",
+          "https://www.deezer.com/track/3338457731"
+        ]
+      },
+      "title": "Pawa"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music; Reggae; Dancehall/Ragga",
+            "isrc": "QZNJW2539953",
+            "label": "Countree Hype Ent",
+            "release_date": "2025-06-20",
+            "release_year": 2025,
+            "upc": "730941718336"
+          },
+          "raw_match": {
+            "album": "Backbencher",
+            "artist": "Toxic Lyrikali",
+            "title": "Backbencher"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3396572611",
+            "https://www.deezer.com/album/766472851"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "QZNJW2539953",
+        "upc": "730941718336"
+      },
+      "id": 17285,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 61,
+      "source_names_by_field": {
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://www.deezer.com/album/766472851",
+          "https://www.deezer.com/track/3396572611"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/766472851",
+          "https://www.deezer.com/track/3396572611"
+        ]
+      },
+      "title": "Backbencher"
+    },
+    {
+      "artist": "Okello Max",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "TCAJV2538613",
+            "label": "JPT DONGE",
+            "release_date": "2025-07-04",
+            "release_year": 2025,
+            "upc": "859710971533"
+          },
+          "raw_match": {
+            "album": "Healing",
+            "artist": "Okello Max",
+            "title": "Taya"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3443415921",
+            "https://www.deezer.com/album/782394551"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/taya/1824501547?i=1824501743&uo=4",
+            "copyright": "℗ 2025 JPT DONGE",
+            "genre": "Afrobeats",
+            "label": "JPT DONGE",
+            "release_date": "2025-07-04",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Okello Max",
+            "title": "Taya"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/taya/1824501547?i=1824501743&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/taya/1824501547?i=1824501743&uo=4",
+        "isrc": "TCAJV2538613",
+        "upc": "859710971533"
+      },
+      "id": 17283,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 61,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/taya/1824501547?i=1824501743&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/782394551",
+          "https://www.deezer.com/track/3443415921"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/782394551",
+          "https://www.deezer.com/track/3443415921"
+        ]
+      },
+      "title": "Taya"
+    },
+    {
+      "artist": "Joshua Baraka",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music; Afro Pop",
+            "isrc": "GBX722530003",
+            "label": "moves recordings",
+            "release_date": "2025-05-16",
+            "release_year": 2025,
+            "upc": "8721215148029"
+          },
+          "raw_match": {
+            "album": "Wrong Places",
+            "artist": "Joshua Baraka",
+            "title": "Wrong Places"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3321105301",
+            "https://www.deezer.com/album/741155721"
+          ]
+        },
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "JAE5",
+            "release_date": "2025-05-16",
+            "release_year": 2025,
+            "songwriters": "Joshua Baraka"
+          },
+          "raw_match": {
+            "artist": "Joshua Baraka (Ft. JAE5)",
+            "title": "Wrong places"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Joshua-baraka-wrong-places-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "GBX722530003",
+        "producers": "JAE5",
+        "songwriters": "Joshua Baraka",
+        "upc": "8721215148029"
+      },
+      "id": 17286,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 55,
+      "source_names_by_field": {
+        "isrc": [
+          "Deezer API"
+        ],
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://www.deezer.com/album/741155721",
+          "https://www.deezer.com/track/3321105301"
+        ],
+        "producers": [
+          "https://genius.com/Joshua-baraka-wrong-places-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Joshua-baraka-wrong-places-lyrics"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/741155721",
+          "https://www.deezer.com/track/3321105301"
+        ]
+      },
+      "title": "Wrong Places"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Reggae; Ska",
+            "isrc": "QZWFW2583280",
+            "label": "Toxic Lyrikali / Mboka Doba Ltd",
+            "release_date": "2025-08-15",
+            "release_year": 2025,
+            "upc": "199327983490"
+          },
+          "raw_match": {
+            "album": "Bud Flowers",
+            "artist": "Toxic Lyrikali",
+            "title": "Bud Flowers"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3505791301",
+            "https://www.deezer.com/album/803865591"
+          ]
+        },
+        {
+          "fields": {
+            "genre": "Pop"
+          },
+          "raw_match": {
+            "artist": "Toxic Lyrikali",
+            "title": "Bud Flowers"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Toxic-lyrikali-bud-flowers-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "QZWFW2583280",
+        "upc": "199327983490"
+      },
+      "id": 17288,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 46,
+      "source_names_by_field": {
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://www.deezer.com/album/803865591",
+          "https://www.deezer.com/track/3505791301"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/803865591",
+          "https://www.deezer.com/track/3505791301"
+        ]
+      },
+      "title": "Bud Flowers"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "isrc": "QMFMG2512799",
+            "label": "EMC",
+            "release_date": "2025-11-07",
+            "release_year": 2025,
+            "upc": "199806280164"
+          },
+          "raw_match": {
+            "album": "Timeless Anthems",
+            "artist": "Prince Indah",
+            "title": "Rapudo"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3639464342",
+            "https://www.deezer.com/album/850811932"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/rapudo/1850927723?i=1850928384&uo=4",
+            "copyright": "℗ 2025 EMC",
+            "genre": "Pop",
+            "label": "EMC",
+            "release_date": "2025-11-08",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Prince Indah",
+            "title": "Rapudo"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/rapudo/1850927723?i=1850928384&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/rapudo/1850927723?i=1850928384&uo=4",
+        "isrc": "QMFMG2512799",
+        "upc": "199806280164"
+      },
+      "id": 17345,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 44,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/rapudo/1850927723?i=1850928384&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/850811932",
+          "https://www.deezer.com/track/3639464342"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/850811932",
+          "https://www.deezer.com/track/3639464342"
+        ]
+      },
+      "title": "Rapudo"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Reggae; Ska",
+            "isrc": "QT6FH2593584",
+            "label": "Toxic Lyrikali / Mboka Doba Ltd",
+            "release_date": "2025-12-12",
+            "release_year": 2025,
+            "upc": "199946256487"
+          },
+          "raw_match": {
+            "album": "Mfisadi (feat. Dyana Cods)",
+            "artist": "Toxic Lyrikali",
+            "title": "Mfisadi (feat. Dyana Cods)"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3702787162",
+            "https://www.deezer.com/album/872830692"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "QT6FH2593584",
+        "upc": "199946256487"
+      },
+      "id": 17357,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 43,
+      "source_names_by_field": {
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://www.deezer.com/album/872830692",
+          "https://www.deezer.com/track/3702787162"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/872830692",
+          "https://www.deezer.com/track/3702787162"
+        ]
+      },
+      "title": "Mfisadi"
+    },
+    {
+      "artist": "Abongo Jakabwana",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music",
+            "isrc": "GXHUT2515631",
+            "label": "Utawala Studio",
+            "release_date": "2025-10-11",
+            "release_year": 2025,
+            "upc": "5063807626991"
+          },
+          "raw_match": {
+            "album": "Digi Digi",
+            "artist": "Abongo Jakabwana",
+            "title": "Digi Digi"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3597342422",
+            "https://www.deezer.com/album/836187742"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/digi-digi/1845485348?i=1845485351&uo=4",
+            "copyright": "℗ 2025 TrackMusicInc Label",
+            "genre": "African Dancehall",
+            "label": "TrackMusicInc Label",
+            "release_date": "2025-10-11",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Abongo Jakabwana",
+            "title": "Digi Digi"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/digi-digi/1845485348?i=1845485351&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/digi-digi/1845485348?i=1845485351&uo=4",
+        "isrc": "GXHUT2515631",
+        "upc": "5063807626991"
+      },
+      "id": 17342,
+      "missing_before": [
+        "upc",
+        "isrc",
+        "apple_music_url"
+      ],
+      "placements": 41,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/digi-digi/1845485348?i=1845485351&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/836187742",
+          "https://www.deezer.com/track/3597342422"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/836187742",
+          "https://www.deezer.com/track/3597342422"
+        ]
+      },
+      "title": "Digi Digi"
+    },
+    {
+      "artist": "Devrix Da Fubu",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Soul & Funk",
+            "isrc": "GBLFP2531331",
+            "label": "Busy Republic",
+            "release_date": "2025-04-12",
+            "release_year": 2025,
+            "upc": "5063655177416"
+          },
+          "raw_match": {
+            "album": "Je ?",
+            "artist": "Devrix Da Fubu",
+            "title": "Je ?"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3973767331",
+            "https://www.deezer.com/album/965963651"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "GBLFP2531331",
+        "upc": "5063655177416"
+      },
+      "id": 22028,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 41,
+      "source_names_by_field": {
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://www.deezer.com/album/965963651",
+          "https://www.deezer.com/track/3973767331"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/965963651",
+          "https://www.deezer.com/track/3973767331"
+        ]
+      },
+      "title": "Je?"
+    },
+    {
+      "artist": "Bien",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music",
+            "label": "Warner Music Africa",
+            "number_of_tracks": 16,
+            "release_date": "2023-11-17",
+            "release_year": 2023,
+            "upc": "5054197899263"
+          },
+          "raw_match": {
+            "album": "Alusa Why Are You Topless?",
+            "artist": "Bien",
+            "title": "Alusa Why Are You Topless?"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/album/512129141",
+            "https://www.deezer.com/album/512129141"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "5054197899263"
+      },
+      "id": 19389,
+      "missing_before": [
+        "upc",
+        "apple_music_url"
+      ],
+      "placements": 40,
+      "source_names_by_field": {
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://www.deezer.com/album/512129141"
+        ]
+      },
+      "title": "Alusa Why Are You Topless?"
+    },
+    {
+      "artist": "Zuchu",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "ZA40S2500717",
+            "label": "Warner Music Africa",
+            "release_date": "2025-09-11",
+            "release_year": 2025,
+            "upc": "5021732974945"
+          },
+          "raw_match": {
+            "album": "Inama (feat. Diamond Platnumz)",
+            "artist": "Zuchu",
+            "title": "Inama (feat. Diamond Platnumz)"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3546531401",
+            "https://www.deezer.com/album/818092751"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/inama-feat-diamond-platnumz/1838508331?i=1838508336&uo=4",
+            "copyright": "℗ 2025 Ziiki Media",
+            "genre": "Bongo-Flava",
+            "label": "Ziiki Media",
+            "release_date": "2025-09-11",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Zuchu",
+            "title": "Inama (feat. Diamond Platnumz)"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/inama-feat-diamond-platnumz/1838508331?i=1838508336&uo=4"
+          ]
+        },
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Ayo Lizer",
+            "release_date": "2025-09-11",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Zuchu (Ft. Diamond Platnumz)",
+            "title": "Inama"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Zuchu-inama-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/inama-feat-diamond-platnumz/1838508331?i=1838508336&uo=4",
+        "isrc": "ZA40S2500717",
+        "producers": "Ayo Lizer",
+        "upc": "5021732974945"
+      },
+      "id": 17315,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 38,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "producers": [
+          "Genius API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/inama-feat-diamond-platnumz/1838508331?i=1838508336&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/818092751",
+          "https://www.deezer.com/track/3546531401"
+        ],
+        "producers": [
+          "https://genius.com/Zuchu-inama-lyrics"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/818092751",
+          "https://www.deezer.com/track/3546531401"
+        ]
+      },
+      "title": "Inama"
+    },
+    {
+      "artist": "Marioo",
+      "candidates": [
+        {
+          "fields": {
+            "isrc": "ZA56E2420399",
+            "label": "Bad Nation",
+            "release_date": "2024-11-29",
+            "release_year": 2024,
+            "upc": "766214672838"
+          },
+          "raw_match": {
+            "album": "The Godson",
+            "artist": "Marioo",
+            "title": "Nairobi"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3094483121",
+            "https://www.deezer.com/album/670807911"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/nairobi/1817719418?i=1817719849&uo=4",
+            "copyright": "℗ 2024 Bad Nation",
+            "genre": "Afro-Pop",
+            "label": "Bad Nation",
+            "release_date": "2025-11-20",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Marioo & Bien",
+            "title": "Nairobi"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/nairobi/1817719418?i=1817719849&uo=4"
+          ]
+        },
+        {
+          "fields": {
+            "genre": "R-B",
+            "producers": "Kaniba Creator",
+            "release_date": "2024-11-29",
+            "release_year": 2024
+          },
+          "raw_match": {
+            "artist": "Marioo (Ft. Bien (KEN))",
+            "title": "Nairobi"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Marioo-nairobi-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/nairobi/1817719418?i=1817719849&uo=4",
+        "isrc": "ZA56E2420399",
+        "producers": "Kaniba Creator",
+        "upc": "766214672838"
+      },
+      "id": 17284,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 38,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "producers": [
+          "Genius API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/nairobi/1817719418?i=1817719849&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/670807911",
+          "https://www.deezer.com/track/3094483121"
+        ],
+        "producers": [
+          "https://genius.com/Marioo-nairobi-lyrics"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/670807911",
+          "https://www.deezer.com/track/3094483121"
+        ]
+      },
+      "title": "Nairobi"
+    },
+    {
+      "artist": "Dave",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap/Hip Hop",
+            "isrc": "GBUM72506029",
+            "label": "Neighbourhood",
+            "release_date": "2025-10-23",
+            "release_year": 2025,
+            "upc": "602488273633"
+          },
+          "raw_match": {
+            "album": "The Boy Who Played the Harp",
+            "artist": "Dave",
+            "title": "Raindance"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3616144112",
+            "https://www.deezer.com/album/842707462"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/raindance/1847992481?i=1847992612&uo=4",
+            "copyright": "℗ 2025 Dave / Neighbourhood Recordings",
+            "genre": "Hip-Hop/Rap",
+            "label": "Dave / Neighbourhood Recordings",
+            "release_date": "2025-10-24",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Dave & Tems",
+            "title": "Raindance"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/raindance/1847992481?i=1847992612&uo=4"
+          ]
+        },
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "Kyle Evans; Jo Caleb; Jonny Leslie",
+            "release_date": "2025-10-24",
+            "release_year": 2025,
+            "songwriters": "Dave; Tems; Kyle Evans; Jo Caleb; Jonny Leslie; Elisa Caleb"
+          },
+          "raw_match": {
+            "artist": "Dave & Tems",
+            "title": "Raindance"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Dave-and-tems-raindance-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/raindance/1847992481?i=1847992612&uo=4",
+        "isrc": "GBUM72506029",
+        "producers": "Kyle Evans; Jo Caleb; Jonny Leslie",
+        "upc": "602488273633"
+      },
+      "id": 17343,
+      "missing_before": [
+        "upc",
+        "isrc",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 38,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "producers": [
+          "Genius API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/raindance/1847992481?i=1847992612&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/842707462",
+          "https://www.deezer.com/track/3616144112"
+        ],
+        "producers": [
+          "https://genius.com/Dave-and-tems-raindance-lyrics"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/842707462",
+          "https://www.deezer.com/track/3616144112"
+        ]
+      },
+      "title": "Raindance"
+    },
+    {
+      "artist": "Prince Indah",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "isrc": "QMFMG2506668",
+            "label": "EMC",
+            "release_date": "2025-11-07",
+            "release_year": 2025,
+            "upc": "199806280164"
+          },
+          "raw_match": {
+            "album": "Timeless Anthems",
+            "artist": "Prince Indah",
+            "title": "Berna"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3639464272",
+            "https://www.deezer.com/album/850811932"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/berna/1850927723?i=1850927728&uo=4",
+            "copyright": "℗ 2025 EMC",
+            "genre": "Pop",
+            "label": "EMC",
+            "release_date": "2025-11-08",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Prince Indah",
+            "title": "Berna"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/berna/1850927723?i=1850927728&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/berna/1850927723?i=1850927728&uo=4",
+        "isrc": "QMFMG2506668",
+        "upc": "199806280164"
+      },
+      "id": 17350,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "apple_music_url"
+      ],
+      "placements": 37,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/berna/1850927723?i=1850927728&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/850811932",
+          "https://www.deezer.com/track/3639464272"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/850811932",
+          "https://www.deezer.com/track/3639464272"
+        ]
+      },
+      "title": "Berna"
+    },
+    {
+      "artist": "Toxic Lyrikali",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Reggae; Ska",
+            "isrc": "QZZ782415950",
+            "label": "Toxic Lyrikali / Mboka Doba Ltd",
+            "release_date": "2024-11-10",
+            "release_year": 2024,
+            "upc": "198877244242"
+          },
+          "raw_match": {
+            "album": "Chinje",
+            "artist": "Toxic Lyrikali",
+            "title": "Chinje"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3086016771",
+            "https://www.deezer.com/album/668653481"
+          ]
+        },
+        {
+          "fields": {
+            "genre": "Rap",
+            "producers": "DreBarnes Beatz",
+            "release_date": "2024-10-31",
+            "release_year": 2024,
+            "songwriters": "Toxic Lyrikali"
+          },
+          "raw_match": {
+            "artist": "Toxic Lyrikali",
+            "title": "Chinje"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Toxic-lyrikali-chinje-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "QZZ782415950",
+        "producers": "DreBarnes Beatz",
+        "songwriters": "Toxic Lyrikali",
+        "upc": "198877244242"
+      },
+      "id": 17297,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 36,
+      "source_names_by_field": {
+        "isrc": [
+          "Deezer API"
+        ],
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "isrc": [
+          "https://www.deezer.com/album/668653481",
+          "https://www.deezer.com/track/3086016771"
+        ],
+        "producers": [
+          "https://genius.com/Toxic-lyrikali-chinje-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Toxic-lyrikali-chinje-lyrics"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/668653481",
+          "https://www.deezer.com/track/3086016771"
+        ]
+      },
+      "title": "Chinje"
+    },
+    {
+      "artist": "KODONGKLAN",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music; Afro Pop; Soul & Funk",
+            "label": "KODONG KLAN",
+            "number_of_tracks": 14,
+            "release_date": "2024-12-12",
+            "release_year": 2024,
+            "upc": "734691466035"
+          },
+          "raw_match": {
+            "album": "Disko",
+            "artist": "KODONGKLAN",
+            "title": "Disko"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/album/681660831",
+            "https://www.deezer.com/album/681660831"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "734691466035"
+      },
+      "id": 19368,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "apple_music_url"
+      ],
+      "placements": 35,
+      "source_names_by_field": {
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://www.deezer.com/album/681660831"
+        ]
+      },
+      "title": "Disko"
+    },
+    {
+      "artist": "Wakadinali",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Rap/Hip Hop",
+            "label": "2821688 Records DK",
+            "number_of_tracks": 22,
+            "release_date": "2025-06-27",
+            "release_year": 2025,
+            "upc": "199516973851"
+          },
+          "raw_match": {
+            "album": "Victims Of Madness 2.0",
+            "artist": "Wakadinali",
+            "title": "Victims Of Madness 2.0"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/album/779678091",
+            "https://www.deezer.com/album/779678091"
+          ]
+        }
+      ],
+      "chart_type": "albums",
+      "fields": {
+        "upc": "199516973851"
+      },
+      "id": 19356,
+      "missing_before": [
+        "upc",
+        "apple_music_url"
+      ],
+      "placements": 35,
+      "source_names_by_field": {
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "upc": [
+          "https://www.deezer.com/album/779678091"
+        ]
+      },
+      "title": "Victims Of Madness 2.0"
+    },
+    {
+      "artist": "Goon Flavour",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Dance",
+            "isrc": "ZA56E2527912",
+            "label": "Wanitwa Mos Entertainment",
+            "release_date": "2025-04-23",
+            "release_year": 2025,
+            "upc": "766214679691"
+          },
+          "raw_match": {
+            "album": "Ngishutheni",
+            "artist": "Goon Flavour",
+            "title": "Ngishutheni"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3335616951",
+            "https://www.deezer.com/album/746202701"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/ngishutheni/1816367837?i=1816367838&uo=4",
+            "copyright": "℗ 2025 Wanitwa Mos Entertainment",
+            "genre": "Dance",
+            "label": "Wanitwa Mos Entertainment",
+            "release_date": "2025-04-23",
+            "release_year": 2025
+          },
+          "raw_match": {
+            "artist": "Goon Flavour, Master KG & Eemoh",
+            "title": "Ngishutheni"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/ngishutheni/1816367837?i=1816367838&uo=4"
+          ]
+        },
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Goon Flavour; Master KG",
+            "release_date": "2025-04-23",
+            "release_year": 2025,
+            "songwriters": "Goon Flavour; Master KG; Eemoh"
+          },
+          "raw_match": {
+            "artist": "Goon Flavour, Master KG & Eemoh",
+            "title": "Ngishutheni"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Goon-flavour-master-kg-and-eemoh-ngishutheni-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/ngishutheni/1816367837?i=1816367838&uo=4",
+        "isrc": "ZA56E2527912",
+        "producers": "Goon Flavour; Master KG",
+        "songwriters": "Goon Flavour; Master KG; Eemoh",
+        "upc": "766214679691"
+      },
+      "id": 17287,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 34,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/ngishutheni/1816367837?i=1816367838&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/746202701",
+          "https://www.deezer.com/track/3335616951"
+        ],
+        "producers": [
+          "https://genius.com/Goon-flavour-master-kg-and-eemoh-ngishutheni-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Goon-flavour-master-kg-and-eemoh-ngishutheni-lyrics"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/746202701",
+          "https://www.deezer.com/track/3335616951"
+        ]
+      },
+      "title": "Ngishutheni"
+    },
+    {
+      "artist": "Collo Blue",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "African Music",
+            "isrc": "QZW9M2560104",
+            "label": "Colloblue",
+            "release_date": "2026-01-02",
+            "release_year": 2026,
+            "upc": "703325251156"
+          },
+          "raw_match": {
+            "album": "Up Burukanga",
+            "artist": "Collo Blue",
+            "title": "Up Burukanga"
+          },
+          "score": 1.0,
+          "source": "Deezer API",
+          "sources": [
+            "https://www.deezer.com/track/3747760012",
+            "https://www.deezer.com/album/887944152"
+          ]
+        },
+        {
+          "fields": {
+            "apple_music_url": "https://music.apple.com/us/album/up-burukanga/1865280607?i=1865280608&uo=4",
+            "copyright": "℗ 2026 ColloBlue / ONErpm",
+            "genre": "African",
+            "label": "ColloBlue / ONErpm",
+            "release_date": "2026-01-02",
+            "release_year": 2026
+          },
+          "raw_match": {
+            "artist": "Collo Blue & ADDEH PRINCE",
+            "title": "Up Burukanga"
+          },
+          "score": 1.0,
+          "source": "iTunes Search API",
+          "sources": [
+            "https://music.apple.com/us/album/up-burukanga/1865280607?i=1865280608&uo=4"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/album/up-burukanga/1865280607?i=1865280608&uo=4",
+        "isrc": "QZW9M2560104",
+        "upc": "703325251156"
+      },
+      "id": 17369,
+      "missing_before": [
+        "distributor",
+        "upc",
+        "isrc",
+        "apple_music_url"
+      ],
+      "placements": 34,
+      "source_names_by_field": {
+        "apple_music_url": [
+          "iTunes Search API"
+        ],
+        "isrc": [
+          "Deezer API"
+        ],
+        "upc": [
+          "Deezer API"
+        ]
+      },
+      "sources_by_field": {
+        "apple_music_url": [
+          "https://music.apple.com/us/album/up-burukanga/1865280607?i=1865280608&uo=4"
+        ],
+        "isrc": [
+          "https://www.deezer.com/album/887944152",
+          "https://www.deezer.com/track/3747760012"
+        ],
+        "upc": [
+          "https://www.deezer.com/album/887944152",
+          "https://www.deezer.com/track/3747760012"
+        ]
+      },
+      "title": "Up Burukanga"
+    }
+  ],
+  "updates_planned_or_applied": 20
+}

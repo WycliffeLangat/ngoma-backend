@@ -1,0 +1,495 @@
+{
+  "applied": true,
+  "backend_release_ids_missing": [
+    22792,
+    22890,
+    22909,
+    22910,
+    22911,
+    22942,
+    22998
+  ],
+  "backend_releases_found": 1013,
+  "backup": "C:\\Users\\HP\\Desktop\\Ngoma Charts Folder\\files\\ngoma_charts_backend\\backend\\ngoma_charts.db.bak-metadata-period-20260801162202",
+  "generated_at": "2026-08-01T16:22:02",
+  "misses": [
+    {
+      "artist": "Sammy Irungu",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18375,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Weru Uyu"
+    },
+    {
+      "artist": "WorshipWithCorry",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18744,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Wewe ni Mungu"
+    },
+    {
+      "artist": "Popcaan",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 18265,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "When You Wine Like That"
+    },
+    {
+      "artist": "DJ Lyta",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17665,
+      "missing_before": [
+        "release_date",
+        "release_year",
+        "genre",
+        "label",
+        "distributor",
+        "upc",
+        "isrc",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Worship Mix"
+    },
+    {
+      "artist": "Virusi Mbaya",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19070,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "YoYo"
+    },
+    {
+      "artist": "Black Coco",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 19180,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "apple_music_url"
+      ],
+      "placements": 1,
+      "title": "Zagga Dat"
+    },
+    {
+      "artist": "Kedjevara",
+      "candidate_sources_seen": [],
+      "chart_type": "singles",
+      "id": 17821,
+      "missing_before": [
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "title": "Ça fait mal"
+    }
+  ],
+  "missing_counts_after": {
+    "apple_music_url": 241,
+    "distributor": 797,
+    "genre": 56,
+    "isrc": 54,
+    "label": 47,
+    "number_of_tracks": 13,
+    "producers": 301,
+    "release_date": 39,
+    "release_year": 39,
+    "songwriters": 341,
+    "upc": 96
+  },
+  "missing_counts_before": {
+    "apple_music_url": 241,
+    "distributor": 797,
+    "genre": 56,
+    "isrc": 54,
+    "label": 47,
+    "number_of_tracks": 13,
+    "producers": 307,
+    "release_date": 39,
+    "release_year": 39,
+    "songwriters": 347,
+    "upc": 96
+  },
+  "months": [
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
+    "January 2026",
+    "February 2026",
+    "March 2026",
+    "April 2026",
+    "May 2026",
+    "June 2026",
+    "July 2026"
+  ],
+  "public_unique_release_ids": 1020,
+  "release_order_limit": 100,
+  "release_order_start": 1000,
+  "script_version": "2026-08-01",
+  "selected_releases": 13,
+  "source": "Automated high-confidence metadata lookup using Deezer, iTunes/Apple, and Genius public endpoints.",
+  "source_hits": {
+    "Genius API": 6
+  },
+  "sources_mode": "genius",
+  "targets_scanned": 13,
+  "updates": [
+    {
+      "artist": "Kusah",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "S2Kizzy",
+            "release_date": "2026-05-29",
+            "release_year": 2026,
+            "songwriters": "Jay Melody; Kusah"
+          },
+          "raw_match": {
+            "artist": "Kusah (Ft. Jay Melody)",
+            "title": "Yanamwagika"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Kusah-yanamwagika-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "S2Kizzy",
+        "songwriters": "Jay Melody; Kusah"
+      },
+      "id": 21682,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Kusah-yanamwagika-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Kusah-yanamwagika-lyrics"
+        ]
+      },
+      "title": "Yanamwagika"
+    },
+    {
+      "artist": "Harmonize",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "GM",
+            "release_date": "2026-05-08",
+            "release_year": 2026,
+            "songwriters": "Harmonize"
+          },
+          "raw_match": {
+            "artist": "Harmonize",
+            "title": "Yazoee"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Harmonize-yazoee-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "GM",
+        "songwriters": "Harmonize"
+      },
+      "id": 19131,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Harmonize-yazoee-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Harmonize-yazoee-lyrics"
+        ]
+      },
+      "title": "Yazoee"
+    },
+    {
+      "artist": "Burna Boy",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Phantom (NG)",
+            "release_date": "2018-01-26",
+            "release_year": 2018,
+            "songwriters": "Burna Boy"
+          },
+          "raw_match": {
+            "artist": "Burna Boy",
+            "title": "Ye"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Burna-boy-ye-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Phantom (NG)",
+        "songwriters": "Burna Boy"
+      },
+      "id": 18797,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Burna-boy-ye-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Burna-boy-ye-lyrics"
+        ]
+      },
+      "title": "Ye"
+    },
+    {
+      "artist": "Anne-Marie",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Mojam; RISC",
+            "release_date": "2023-07-31",
+            "release_year": 2023,
+            "songwriters": "Anne-Marie; Conor Blake; James Murray; kamille; Khalid; Mustafa Omer"
+          },
+          "raw_match": {
+            "artist": "Anne-Marie (Ft. Khalid)",
+            "title": "YOU & I (Voicenote)"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Anne-marie-you-and-i-voicenote-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Mojam; RISC",
+        "songwriters": "Anne-Marie; Conor Blake; James Murray; kamille; Khalid; Mustafa Omer"
+      },
+      "id": 18876,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Anne-marie-you-and-i-voicenote-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Anne-marie-you-and-i-voicenote-lyrics"
+        ]
+      },
+      "title": "YOU & I [Voicenote]"
+    },
+    {
+      "artist": "Kondela",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Ayo Lizer",
+            "release_date": "2025-12-17",
+            "release_year": 2025,
+            "songwriters": "Kondela"
+          },
+          "raw_match": {
+            "artist": "Kondela",
+            "title": "Zahar (Sugar)"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Kondela-zahar-sugar-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Ayo Lizer",
+        "songwriters": "Kondela"
+      },
+      "id": 18339,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Kondela-zahar-sugar-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Kondela-zahar-sugar-lyrics"
+        ]
+      },
+      "title": "Zahar (Sugar)"
+    },
+    {
+      "artist": "Shakira",
+      "candidates": [
+        {
+          "fields": {
+            "genre": "Pop",
+            "producers": "Shakira; Ed Sheeran; Blake Slatkin; Alexander “A.C.” Castillo",
+            "release_date": "2025-10-10",
+            "release_year": 2025,
+            "songwriters": "Shakira; Ed Sheeran; Blake Slatkin"
+          },
+          "raw_match": {
+            "artist": "Shakira",
+            "title": "Zoo"
+          },
+          "score": 1.0,
+          "source": "Genius API",
+          "sources": [
+            "https://genius.com/Shakira-zoo-lyrics"
+          ]
+        }
+      ],
+      "chart_type": "singles",
+      "fields": {
+        "producers": "Shakira; Ed Sheeran; Blake Slatkin; Alexander “A.C.” Castillo",
+        "songwriters": "Shakira; Ed Sheeran; Blake Slatkin"
+      },
+      "id": 18388,
+      "missing_before": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ],
+      "placements": 1,
+      "source_names_by_field": {
+        "producers": [
+          "Genius API"
+        ],
+        "songwriters": [
+          "Genius API"
+        ]
+      },
+      "sources_by_field": {
+        "producers": [
+          "https://genius.com/Shakira-zoo-lyrics"
+        ],
+        "songwriters": [
+          "https://genius.com/Shakira-zoo-lyrics"
+        ]
+      },
+      "title": "Zoo"
+    }
+  ],
+  "updates_planned_or_applied": 6
+}
