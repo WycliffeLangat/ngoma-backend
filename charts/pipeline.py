@@ -5,11 +5,12 @@ Converts raw xlsx weekly data into normalized chart entries.
 import re
 import openpyxl
 from collections import defaultdict, Counter
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from .artist_credits import format_artist_list, parse_artist_credit, should_preserve_registered_artist_name
 from .methodology import (
     PUBLIC_CHART_LIMIT,
     WEEKLY_CHART_LIMIT,
+    normalize_match_key,
     platform_max_for,
     platforms_for,
     public_points,
@@ -108,11 +109,24 @@ def normalize_entry(title, artist, artist_rules, title_rules, is_album=False):
     if canonical_title.lower() == 'lifestyle' and canonical_artist.lower() in ('bien', 'bien ft. scar', 'bien, scar'):
         canonical_artist = 'Bien ft. Scar'
 
-    key = (canonical_title.lower().strip(), canonical_artist.lower().strip())
+    key = (normalize_match_key(canonical_title), normalize_match_key(canonical_artist))
     return canonical_title, canonical_artist, key
 
 
 def get_or_create_artist(name):
+    try:
+        return Artist.objects.get(name=name)
+    except Artist.DoesNotExist:
+        pass
+
+    # Punctuation-insensitive fallback: "Don't Stop" and "Dont Stop" should
+    # resolve to the same artist rather than spawning a near-duplicate row.
+    existing = Artist.objects.filter(
+        name_key=normalize_match_key(name)
+    ).exclude(status='archived').first()
+    if existing:
+        return existing
+
     from django.utils.text import slugify
     base_slug = slugify(name)[:50]
     slug = base_slug
@@ -213,17 +227,33 @@ def get_or_create_release(title, artist_credit, chart_type):
     )
     artist_obj = get_or_create_artist(primary_names[0])
     canonical = title.lower().strip()
-    try:
-        release = Release.objects.get(
-            canonical_title=canonical,
-            artist=artist_obj,
-            chart_type=chart_type,
-        )
-    except Release.DoesNotExist:
-        release = Release.objects.create(
-            title=title, artist=artist_obj, chart_type=chart_type,
-            canonical_title=canonical
-        )
+
+    release = Release.objects.filter(
+        canonical_title=canonical, artist=artist_obj, chart_type=chart_type,
+    ).first()
+    if release is None:
+        # Punctuation-insensitive fallback: catches titles that differ only
+        # by commas/apostrophes/etc. from an already-existing release, even
+        # one whose stored canonical_title predates this normalization.
+        match_key = normalize_match_key(title)
+        for candidate in Release.objects.filter(artist=artist_obj, chart_type=chart_type):
+            if normalize_match_key(candidate.title) == match_key:
+                release = candidate
+                break
+    if release is None:
+        try:
+            with transaction.atomic():
+                release = Release.objects.create(
+                    title=title, artist=artist_obj, chart_type=chart_type,
+                    canonical_title=canonical,
+                )
+        except IntegrityError:
+            # Another concurrent call (or a stale canonical_title collision)
+            # beat us to it — use a savepoint so this doesn't poison the
+            # outer transaction, then fetch what actually landed.
+            release = Release.objects.get(
+                canonical_title=canonical, artist=artist_obj, chart_type=chart_type,
+            )
     _sync_release_credits(release, primary_names, featured_names)
     return release
 
@@ -318,7 +348,7 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None, harmonize=True) -
                 )
                 primary_names, featured_names = parsed_artist_names(canon_artist)
                 credit_key = tuple(sorted(
-                    name.casefold() for name in [*primary_names, *featured_names]
+                    normalize_match_key(name) for name in [*primary_names, *featured_names]
                 ))
                 canonical_key = (key[0], credit_key or (key[1],))
                 week_entries.append((
@@ -340,8 +370,8 @@ def process_weekly_upload(upload: WeeklyUpload, file_obj=None, harmonize=True) -
         # Save entries
         for key, (ct, ca, pts, pos, rt, ra) in seen.items():
             release_key = (
-                ct.casefold().strip(),
-                ca.casefold().strip(),
+                normalize_match_key(ct),
+                normalize_match_key(ca),
                 upload.chart_type,
             )
             release_obj = release_cache.get(release_key)

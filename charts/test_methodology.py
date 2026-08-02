@@ -24,7 +24,13 @@ from .models import (
     Release,
     WeeklyUpload,
 )
-from .pipeline import process_weekly_upload, rebuild_monthly_chart
+from .methodology import normalize_match_key
+from .pipeline import (
+    get_or_create_artist,
+    get_or_create_release,
+    process_weekly_upload,
+    rebuild_monthly_chart,
+)
 
 
 PLATFORM_NAMES = [
@@ -490,3 +496,47 @@ class CanonicalMethodologyTests(TestCase):
 
     def test_legitimate_group_name_is_not_split(self):
         self.assertEqual(parse_artist_credit("Years & Years"), (["Years & Years"], []))
+
+
+class PunctuationDeduplicationTests(TestCase):
+    """
+    Titles/names that only differ by punctuation (commas, apostrophes, etc.)
+    must resolve to the same Artist/Release instead of silently creating a
+    duplicate record.
+    """
+
+    def test_normalize_match_key_strips_punctuation_and_casefolds(self):
+        self.assertEqual(normalize_match_key("Don't Stop"), normalize_match_key("Dont Stop"))
+        self.assertEqual(
+            normalize_match_key("Rock, Paper & Scissors"),
+            normalize_match_key("Rock Paper Scissors"),
+        )
+        self.assertEqual(normalize_match_key("  Multiple   Spaces "), "multiple spaces")
+        self.assertEqual(normalize_match_key(""), "")
+
+    def test_get_or_create_artist_matches_punctuation_variant(self):
+        first = get_or_create_artist("Don't Stop Band")
+        second = get_or_create_artist("Dont Stop Band")
+        self.assertEqual(first.id, second.id)
+        self.assertEqual(
+            Artist.objects.filter(name_key=normalize_match_key("Don't Stop Band")).count(), 1
+        )
+
+    def test_get_or_create_artist_leaves_distinct_names_alone(self):
+        a = get_or_create_artist("Totally Different Artist One")
+        b = get_or_create_artist("Totally Different Artist Two")
+        self.assertNotEqual(a.id, b.id)
+
+    def test_get_or_create_release_matches_punctuation_variant(self):
+        first = get_or_create_release("Rock N' Roll", "Punctuation Test Artist", ChartType.SINGLES)
+        second = get_or_create_release("Rock N Roll", "Punctuation Test Artist", ChartType.SINGLES)
+        self.assertEqual(first.id, second.id)
+        self.assertEqual(
+            Release.objects.filter(artist=first.artist, chart_type=ChartType.SINGLES).count(), 1
+        )
+
+    def test_get_or_create_release_leaves_distinct_titles_alone(self):
+        artist = "Distinct Title Test Artist"
+        a = get_or_create_release("Song One", artist, ChartType.SINGLES)
+        b = get_or_create_release("Song Two", artist, ChartType.SINGLES)
+        self.assertNotEqual(a.id, b.id)

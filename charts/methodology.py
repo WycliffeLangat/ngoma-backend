@@ -30,6 +30,33 @@ HIDDEN_STATUSES = {"archived", "inactive", "rejected", "draft"}
 def is_public_status(value):
     return (value or "active").lower() not in HIDDEN_STATUSES
 
+
+_ELISION_MARKS = "'’‘`´ʻʼ\"“”"
+
+
+def normalize_match_key(text):
+    """
+    Punctuation-insensitive comparison key for release/artist deduplication.
+
+    Apostrophes/quotes are elisions *within* a word ("Don't" vs "Dont"), so
+    they're dropped outright rather than treated as a word boundary --
+    otherwise "Don't" would tokenize as "Don" + "t" and never match "Dont".
+    Every other punctuation mark (commas, hyphens, ampersands, ...) becomes
+    a space, then whitespace is collapsed and the result casefolded -- so
+    "Don't Stop", "Dont Stop" and "Rock, Paper & Scissors" / "Rock Paper
+    Scissors" all resolve to the same key instead of silently creating
+    duplicate records that only differ by punctuation style. Letters and
+    digits (including accented/non-Latin ones) are left untouched.
+    """
+    import unicodedata
+
+    if not text:
+        return ""
+    text = unicodedata.normalize("NFKC", text)
+    text = "".join(ch for ch in text if ch not in _ELISION_MARKS)
+    cleaned = "".join(ch if (ch.isalnum() or ch.isspace()) else " " for ch in text)
+    return " ".join(cleaned.split()).casefold()
+
 SINGLES_PLATFORMS = (
     "Apple Music",
     "Audiomack",

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from .methodology import CERTIFICATION_THRESHOLDS
+from .methodology import CERTIFICATION_THRESHOLDS, normalize_match_key
 
 
 class Platform(models.Model):
@@ -34,6 +34,12 @@ class ChartType(models.TextChoices):
 
 class Artist(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    name_key = models.CharField(
+        max_length=255, blank=True, default='', db_index=True,
+        help_text="Punctuation-insensitive match key, auto-derived from name. "
+                   "Used to catch near-duplicates (e.g. \"Don't\" vs \"Dont\") "
+                   "before a new Artist row gets created.",
+    )
     slug = models.SlugField(unique=True)
 
     # Artist origin fields.
@@ -71,6 +77,10 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.name_key = normalize_match_key(self.name)
+        super().save(*args, **kwargs)
 
     @property
     def flag(self):
