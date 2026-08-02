@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils import timezone
 from django.utils.html import format_html
 from django.urls import path
 from django.shortcuts import redirect
@@ -117,9 +118,29 @@ class MonthlyChartEntryInline(admin.TabularInline):
 
 @admin.register(MonthlyChart)
 class MonthlyChartAdmin(admin.ModelAdmin):
-    list_display = ['label', 'chart_type', 'year', 'month', 'entry_count', 'is_published', 'rebuild_button']
-    list_filter = ['chart_type', 'year', 'is_published']
+    list_display = ['label', 'chart_type', 'year', 'month', 'entry_count', 'is_published', 'status', 'rebuild_button']
+    list_filter = ['chart_type', 'year', 'is_published', 'status']
     list_editable = ['is_published']
+
+    def save_model(self, request, obj, form, change):
+        # is_published and status must move together — the public API requires both
+        # (see charts/app_data.py). Keep them in sync regardless of which field was
+        # edited (list-view inline edit only exposes is_published; the detail form
+        # exposes both).
+        changed = form.changed_data
+        if 'is_published' in changed and 'status' not in changed:
+            if obj.is_published:
+                obj.status = 'published'
+            elif obj.status == 'published':
+                obj.status = 'draft'
+        elif 'status' in changed:
+            obj.is_published = (obj.status == 'published')
+
+        if obj.is_published and obj.status == 'published' and not obj.published_at:
+            obj.published_at = timezone.now()
+            obj.published_by = obj.published_by or request.user
+
+        super().save_model(request, obj, form, change)
 
     def entry_count(self, obj):
         return obj.entries.filter(platform__isnull=True).count()

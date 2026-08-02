@@ -486,11 +486,15 @@ def rebuild_monthly_chart(
         from .cms_utils import harmonize_chart_history
         harmonization = harmonize_chart_history(chart_ids=[chart.id])
 
+    from .cms_utils import auto_publish_chart_if_ready
+    auto_published = auto_publish_chart_if_ready(chart)
+
     return {
         'chart': str(chart),
         'platform_entries': sum(len(platform_agg[p]) for p in platform_names),
         'combined_entries': len(ranked_combined),
         'harmonization': harmonization,
+        'auto_published': auto_published,
     }
 
 

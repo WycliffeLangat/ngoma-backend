@@ -123,6 +123,40 @@ def audit(request, action, module='', obj=None, old=None, new=None, reason=''):
         bump_public_revision()
 
 
+def chart_ready_for_publish(chart):
+    """Whether a MonthlyChart's Combined scope has a complete, gapless Top 50."""
+    combined = chart.entries.filter(platform__isnull=True)
+    top_ranks = list(
+        combined.filter(rank__range=(1, 50)).order_by('rank').values_list('rank', flat=True)
+    )
+    return bool(top_ranks) and top_ranks == list(range(1, len(top_ranks) + 1))
+
+
+def auto_publish_chart_if_ready(chart):
+    """
+    Automatically (re)publish a monthly chart right after it's rebuilt from a
+    weekly upload. Charts are meant to update live throughout the month as
+    each week's data comes in — there's no "final upload" for a month, so
+    every rebuild that produces a valid Top 50 is published immediately
+    rather than waiting for an editor to click Publish. Charts an editor has
+    deliberately taken out of circulation (archived/rejected) are left alone.
+    """
+    if chart.status in ('archived', 'rejected'):
+        return False
+    if not chart_ready_for_publish(chart):
+        return False
+    if chart.is_published and chart.status == 'published':
+        return False
+
+    chart.is_published = True
+    chart.status = 'published'
+    if not chart.published_at:
+        chart.published_at = timezone.now()
+    chart.save(update_fields=['is_published', 'status', 'published_at', 'updated_at'])
+    audit(None, 'auto_published_chart', module='charts', obj=chart)
+    return True
+
+
 def cms_exception_handler(exc, context):
     """
     Custom DRF exception handler.  Wraps the default handler so that any
