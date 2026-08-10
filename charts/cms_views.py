@@ -20,6 +20,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 import openpyxl
+from openpyxl.cell.cell import MergedCell
 from .models import *
 from .cms_serializers import *
 from .cms_permissions import CmsRolePermission, CmsAdminOnly, IsCmsUser, get_user_role
@@ -108,27 +109,36 @@ def _sheets_from_workbook_bytes(content):
             max_col = min(sheet.max_column or 1, WORKBOOK_MAX_COLS)
             rows = []
             for row in sheet.iter_rows(min_row=1, max_row=max_row, max_col=max_col):
-                values = [_json_cell(cell.value) for cell in row]
-                while values and values[-1] == '':
-                    values.pop()
-                rows.append(values)
-            while rows and not any(cell not in ('', None) for cell in rows[-1]):
-                rows.pop()
+                rows.append([_json_cell(cell.value) for cell in row])
             sheets.append({'name': sheet.title, 'rows': rows or [[]]})
         return sheets
     finally:
         workbook.close()
 
 
-def _workbook_bytes_from_sheets(sheets):
+def _keep_vba_for_filename(filename):
+    return str(filename or '').lower().endswith('.xlsm')
+
+
+def _load_editable_workbook(content, filename):
+    if not content:
+        return None
+    try:
+        return openpyxl.load_workbook(
+            NamedBytesIO(content, filename or 'workbook.xlsx'),
+            data_only=False,
+            keep_vba=_keep_vba_for_filename(filename),
+        )
+    except Exception:
+        return None
+
+
+def _validate_workbook_sheets(sheets):
     if not isinstance(sheets, list) or not sheets:
         raise DRFValidationError({'sheets': 'Provide at least one worksheet.'})
-
-    workbook = openpyxl.Workbook()
-    used_titles = set()
-    for index, sheet_data in enumerate(sheets):
-        worksheet = workbook.active if index == 0 else workbook.create_sheet()
-        worksheet.title = _sheet_title(sheet_data.get('name'), index, used_titles)
+    for sheet_data in sheets:
+        if not isinstance(sheet_data, dict):
+            raise DRFValidationError({'sheets': 'Worksheet payloads must be objects.'})
         rows = sheet_data.get('rows') or []
         if len(rows) > WORKBOOK_MAX_ROWS:
             raise DRFValidationError({'sheets': f'Each sheet can contain at most {WORKBOOK_MAX_ROWS} rows.'})
@@ -137,6 +147,40 @@ def _workbook_bytes_from_sheets(sheets):
                 raise DRFValidationError({'sheets': 'Worksheet rows must be arrays.'})
             if len(row) > WORKBOOK_MAX_COLS:
                 raise DRFValidationError({'sheets': f'Each sheet can contain at most {WORKBOOK_MAX_COLS} columns.'})
+
+
+def _apply_sheets_to_workbook(workbook, sheets):
+    used_titles = set()
+    for index, sheet_data in enumerate(sheets):
+        worksheet = workbook.worksheets[index] if index < len(workbook.worksheets) else workbook.create_sheet()
+        worksheet.title = _sheet_title(sheet_data.get('name'), index, used_titles)
+        for row_index, row in enumerate(sheet_data.get('rows') or [], start=1):
+            for col_index, cell in enumerate(row, start=1):
+                target = worksheet.cell(row=row_index, column=col_index)
+                if isinstance(target, MergedCell):
+                    continue
+                target.value = None if cell == '' else cell
+
+
+def _workbook_bytes_from_sheets(sheets, base_content=None, filename='workbook.xlsx'):
+    _validate_workbook_sheets(sheets)
+    workbook = _load_editable_workbook(base_content, filename)
+    if workbook:
+        try:
+            _apply_sheets_to_workbook(workbook, sheets)
+            output = io.BytesIO()
+            workbook.save(output)
+            return output.getvalue()
+        finally:
+            workbook.close()
+
+    workbook = openpyxl.Workbook()
+    used_titles = set()
+    for index, sheet_data in enumerate(sheets):
+        worksheet = workbook.active if index == 0 else workbook.create_sheet()
+        worksheet.title = _sheet_title(sheet_data.get('name'), index, used_titles)
+        rows = sheet_data.get('rows') or []
+        for row in rows:
             worksheet.append([None if cell == '' else cell for cell in row])
     output = io.BytesIO()
     workbook.save(output)
@@ -1434,7 +1478,7 @@ class CmsWeeklyUploadViewSet(CmsBaseViewSet):
 
         sheets = request.data.get('sheets')
         filename = _safe_workbook_filename(request.data.get('filename') or filename, f'{upload}.xlsx')
-        workbook_bytes = _workbook_bytes_from_sheets(sheets)
+        workbook_bytes = _workbook_bytes_from_sheets(sheets, base_content=content, filename=filename)
         upload.workbook_data = workbook_bytes
         upload.file = filename
         upload.processed = False
@@ -1555,7 +1599,7 @@ class ChartUploadViewSet(CmsBaseViewSet):
 
         sheets = request.data.get('sheets')
         filename = _safe_workbook_filename(request.data.get('filename') or filename, f'chart-upload-{upload.pk}.xlsx')
-        workbook_bytes = _workbook_bytes_from_sheets(sheets)
+        workbook_bytes = _workbook_bytes_from_sheets(sheets, base_content=content, filename=filename)
         was_published = upload.status == 'published'
         upload.workbook_data = workbook_bytes
         upload.original_filename = filename

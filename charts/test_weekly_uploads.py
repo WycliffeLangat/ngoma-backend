@@ -53,11 +53,29 @@ def single_column_workbook_bytes(value):
     return output.getvalue()
 
 
+def shaped_weekly_workbook_bytes(value):
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.title = 'Weekly Rankings'
+    sheet['A1'] = 'Apple Music'
+    sheet['A2'] = value
+    sheet['E10'] = 'Keep visible blank shape'
+    sheet['A501'] = 'Keep beyond edit window'
+    notes = workbook.create_sheet('Notes')
+    notes['C4'] = 'Keep notes sheet shape'
+    output = io.BytesIO()
+    workbook.save(output)
+    workbook.close()
+    return output.getvalue()
+
+
 def final_chart_workbook_bytes(title='Song A', artist='Artist A'):
     workbook = openpyxl.Workbook()
     sheet = workbook.active
     sheet.append(['rank', 'title', 'artist', 'total_points'])
     sheet.append([1, title, artist, 50])
+    notes = workbook.create_sheet('Notes')
+    notes['C501'] = 'Keep final chart tail'
     output = io.BytesIO()
     workbook.save(output)
     workbook.close()
@@ -199,7 +217,7 @@ class CmsWeeklyUploadTests(APITestCase):
                 'week': 3,
                 'file': SimpleUploadedFile(
                     'July 2026 Week 3 Singles.xlsx',
-                    single_column_workbook_bytes('Original Song - Artist A'),
+                    shaped_weekly_workbook_bytes('Original Song - Artist A'),
                     content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                 ),
             },
@@ -214,6 +232,11 @@ class CmsWeeklyUploadTests(APITestCase):
         )
         self.assertEqual(workbook_response.status_code, 200, workbook_response.data)
         self.assertEqual(workbook_response.data['sheets'][0]['rows'][1][0], 'Original Song - Artist A')
+        self.assertEqual(len(workbook_response.data['sheets']), 2)
+        self.assertEqual(len(workbook_response.data['sheets'][0]['rows']), 500)
+        self.assertEqual(len(workbook_response.data['sheets'][0]['rows'][0]), 5)
+        self.assertEqual(workbook_response.data['sheets'][0]['rows'][9][4], 'Keep visible blank shape')
+        self.assertEqual(workbook_response.data['sheets'][1]['rows'][3][2], 'Keep notes sheet shape')
 
         download_response = self.client.get(
             reverse('cms-weekly-uploads-download', args=[upload_id]),
@@ -234,6 +257,17 @@ class CmsWeeklyUploadTests(APITestCase):
         self.assertEqual(upload.entries_processed, 1)
         self.assertTrue(Release.objects.filter(title='Corrected Song', artist__name='Artist A').exists())
         self.assertFalse(Release.objects.filter(title='Original Song', artist__name='Artist A').exists())
+        saved_workbook = openpyxl.load_workbook(io.BytesIO(bytes(upload.workbook_data)), read_only=True)
+        try:
+            saved_sheet = saved_workbook['Weekly Rankings']
+            self.assertEqual(saved_sheet.max_row, 501)
+            self.assertEqual(saved_sheet.max_column, 5)
+            self.assertEqual(saved_sheet['A2'].value, 'Corrected Song - Artist A')
+            self.assertEqual(saved_sheet['E10'].value, 'Keep visible blank shape')
+            self.assertEqual(saved_sheet['A501'].value, 'Keep beyond edit window')
+            self.assertEqual(saved_workbook['Notes']['C4'].value, 'Keep notes sheet shape')
+        finally:
+            saved_workbook.close()
 
 
 class CmsChartUploadWorkbookTests(APITestCase):
@@ -270,6 +304,8 @@ class CmsChartUploadWorkbookTests(APITestCase):
         )
         self.assertEqual(workbook_response.status_code, 200, workbook_response.data)
         sheets = workbook_response.data['sheets']
+        self.assertEqual(len(sheets), 2)
+        self.assertEqual(len(sheets[1]['rows']), 500)
         sheets[0]['rows'][1][1] = 'Edited Song'
 
         edit_response = self.client.patch(
@@ -287,4 +323,10 @@ class CmsChartUploadWorkbookTests(APITestCase):
         )
         self.assertEqual(download_response.status_code, 200)
         self.assertIn('spreadsheetml.sheet', download_response['Content-Type'])
+        downloaded_workbook = openpyxl.load_workbook(io.BytesIO(download_response.content), read_only=True)
+        try:
+            self.assertEqual(downloaded_workbook.active['B2'].value, 'Edited Song')
+            self.assertEqual(downloaded_workbook['Notes']['C501'].value, 'Keep final chart tail')
+        finally:
+            downloaded_workbook.close()
 
