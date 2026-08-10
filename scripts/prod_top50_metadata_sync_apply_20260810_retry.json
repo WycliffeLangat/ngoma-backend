@@ -1,0 +1,95 @@
+{
+  "applied_at": "2026-08-10T11:56:23.891170+00:00",
+  "snapshot": "scripts\\public_top50_metadata_sync_snapshot_20260810.json",
+  "backup": "scripts\\prod_backup_before_top50_metadata_sync_apply_20260810_retry.json",
+  "apply": true,
+  "artist_records": 574,
+  "artist_fields": 1507,
+  "release_records": 708,
+  "release_fields": 2075,
+  "artist_misses": [
+    {
+      "id": 28,
+      "name": "Wadagliz",
+      "reason": "id now belongs to 'Wadaglizke'"
+    },
+    {
+      "id": 367,
+      "name": "Tyler",
+      "reason": "id now belongs to 'Tyler, The Creator'"
+    },
+    {
+      "id": 385,
+      "name": "G NAKO",
+      "reason": "missing"
+    },
+    {
+      "id": 2146,
+      "name": "LOVIXX STOSLIV",
+      "reason": "id now belongs to 'LOVIXX & STOSLIV'"
+    }
+  ],
+  "release_misses": [
+    {
+      "id": 17421,
+      "title": "Abantwana Bakho",
+      "reason": "missing"
+    },
+    {
+      "id": 17455,
+      "title": "4 Kampé II",
+      "reason": "missing"
+    },
+    {
+      "id": 17546,
+      "title": "Wewe na mimi bongo Flava",
+      "reason": "id now belongs to 'Wewe na mimi (bongo Flava)'"
+    },
+    {
+      "id": 17598,
+      "title": "Furaha Yako",
+      "reason": "id now belongs to 'Furaha'"
+    },
+    {
+      "id": 17743,
+      "title": "Munyamaruri",
+      "reason": "missing"
+    },
+    {
+      "id": 17827,
+      "title": "Wewe na mimi",
+      "reason": "missing"
+    },
+    {
+      "id": 18245,
+      "title": "Ombi Langu My Desire Thandez' Lami",
+      "reason": "id now belongs to \"Ombi Langu | My Desire | Thandez' Lami\""
+    },
+    {
+      "id": 19373,
+      "title": "Fast & Furious Riddim",
+      "field": "apple_music_url",
+      "reason": "value too long for model field (216 chars)"
+    },
+    {
+      "id": 19386,
+      "title": "WWP - Single",
+      "reason": "missing"
+    },
+    {
+      "id": 19434,
+      "title": "Favourite Girl",
+      "reason": "missing"
+    },
+    {
+      "id": 20200,
+      "title": "Saiyaara (Extended Album)",
+      "reason": "missing"
+    },
+    {
+      "id": 21696,
+      "title": "Don't tell your dreams",
+      "reason": "missing"
+    }
+  ]
+}

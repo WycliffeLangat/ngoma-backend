@@ -1,0 +1,752 @@
+{
+  "generated_at": "2026-08-10T08:56:06.528575+00:00",
+  "start_after": 466,
+  "limit": 300,
+  "last_processed_id": 781,
+  "stats": {
+    "skipped_no_match": 218,
+    "artists_updated": 25,
+    "field_biography": 25,
+    "matched_no_fields": 24,
+    "no_missing_target_fields": 33
+  },
+  "api_errors": 0,
+  "updates": [
+    {
+      "id": 468,
+      "name": "Young Thug",
+      "wikidata_id": "Q15637814",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q15637814",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Young_Thug",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Young Thug is an American singer, rapper and songwriter from Atlanta, United States. The artist is associated with Southern hip-hop, trap music and mumble rap."
+      },
+      "old_values": {
+        "biography": "Young Thug is an artist from United States tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 4 charted release credits."
+      },
+      "source_facts": {
+        "description": "American rapper and singer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "Southern hip-hop",
+          "trap music",
+          "mumble rap",
+          "progressive rap"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991
+      }
+    },
+    {
+      "id": 471,
+      "name": "Bella Shmurda",
+      "wikidata_id": "Q105565282",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q105565282",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Bella_Shmurda",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Bella Shmurda is a Nigerian singer, songwriter and musician from Ikorodu, Nigeria. The artist is associated with Afrobeat and street pop."
+      },
+      "old_values": {
+        "biography": "Bella Shmurda is an artist from Nigeria tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 8 charted release credits."
+      },
+      "source_facts": {
+        "description": "Nigerian singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Ikorodu, Nigeria",
+        "genres": [
+          "Afrobeat",
+          "street pop"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997
+      }
+    },
+    {
+      "id": 476,
+      "name": "Pia Pounds",
+      "wikidata_id": "Q94526544",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q94526544",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Pia_Pounds",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Pia Pounds is an Ugandan musician from Uganda. Public reference sources place the artist within Uganda's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Pia Pounds is a Ugandan musician from Uganda. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Ugandan musician",
+        "country": "Uganda",
+        "country_code": "UG",
+        "city_region": "Uganda",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1996
+      }
+    },
+    {
+      "id": 477,
+      "name": "T.I BLAZE",
+      "wikidata_id": "Q123059233",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q123059233",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/T.I_Blaze",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "T.I BLAZE is a Nigerian singer and songwriter born in 2000. Public reference sources place the artist within Nigeria's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "T.I BLAZE is an artist from Nigeria tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 6 charted release credits."
+      },
+      "source_facts": {
+        "description": "Nigerian singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000
+      }
+    },
+    {
+      "id": 492,
+      "name": "Henrick Mruma",
+      "wikidata_id": "Q137426482",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426482",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Henrick Mruma is a Tanzanian recording artist. Public reference sources place the artist within Tanzania's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Henrick Mruma is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Tanzanian religious singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null
+      }
+    },
+    {
+      "id": 493,
+      "name": "Lexnour",
+      "wikidata_id": "Q140934426",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q140934426",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Lexnour is a record producer from Ottawa. Public reference sources document the artist within contemporary popular music."
+      },
+      "old_values": {
+        "biography": "Lexnour is a record producer from Ottawa. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Music Producer and Artist",
+        "country": "",
+        "country_code": "",
+        "city_region": "Ottawa",
+        "genres": [],
+        "occupations": [
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1994
+      }
+    },
+    {
+      "id": 512,
+      "name": "JP Cooper",
+      "wikidata_id": "Q27807517",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q27807517",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/JP_Cooper",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "JP Cooper is a British singer-songwriter, singer and songwriter from Middleton, United Kingdom. Public reference sources place the artist within United Kingdom's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "JP Cooper is a British singer-songwriter, singer and songwriter from Middleton, United Kingdom. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "British musician",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "city_region": "Middleton, United Kingdom",
+        "genres": [],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1983
+      }
+    },
+    {
+      "id": 520,
+      "name": "MUSA JUMA",
+      "wikidata_id": "Q6939926",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q6939926",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Musa_Juma",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "MUSA JUMA is a Kenyan musician born in 1968. Public reference sources place the artist within Kenya's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "MUSA JUMA is a Kenyan musician born in 1968. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "rumba and Benga musician from Kenya.",
+        "country": "Kenya",
+        "country_code": "KE",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1968
+      }
+    },
+    {
+      "id": 528,
+      "name": "Tshala Muana",
+      "wikidata_id": "Q2620872",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q2620872",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tshala_Muana",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Tshala Muana is a Congolese singer and musician from Lubumbashi, Democratic Republic of the Congo. Public reference sources place the artist within Democratic Republic of the Congo's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Tshala Muana is a Congolese singer and musician from Lubumbashi, Democratic Republic of the Congo. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Congolese (DRC) singer",
+        "country": "Democratic Republic of the Congo",
+        "country_code": "CD",
+        "city_region": "Lubumbashi, Democratic Republic of the Congo",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1958
+      }
+    },
+    {
+      "id": 549,
+      "name": "Mighty King Kong",
+      "wikidata_id": "Q6844136",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q6844136",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mighty_King_Kong",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Mighty King Kong is a Kenyan musician born in 1973. Public reference sources place the artist within Kenya's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Mighty King Kong is a Kenyan musician born in 1973. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Kenyan musician",
+        "country": "Kenya",
+        "country_code": "KE",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1973
+      }
+    },
+    {
+      "id": 554,
+      "name": "Scotts Maphuma",
+      "wikidata_id": "Q131459047",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q131459047",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Scotts Maphuma is a South African musician from Daveyton, South Africa. The artist is associated with techno and house music."
+      },
+      "old_values": {
+        "biography": "Scotts Maphuma is an artist from South Africa tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 4 charted release credits."
+      },
+      "source_facts": {
+        "description": "South African musician",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Daveyton, South Africa",
+        "genres": [
+          "techno",
+          "house music"
+        ],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995
+      }
+    },
+    {
+      "id": 586,
+      "name": "PRAISE TEAM TAG FOREST YA KWANZA",
+      "wikidata_id": "Q137426673",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426673",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "PRAISE TEAM TAG FOREST YA KWANZA is a Tanzanian music group. Public reference sources place the act within Tanzania's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "PRAISE TEAM TAG FOREST YA KWANZA is a Tanzanian music group. The act is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Tanzanian religious music group",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null
+      }
+    },
+    {
+      "id": 592,
+      "name": "R. City",
+      "wikidata_id": "Q21261618",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q21261618",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/R._City_discography",
+      "match_score": 0.94,
+      "fields": {
+        "biography": "R. City is a music group. Public reference sources document the act within contemporary popular music."
+      },
+      "old_values": {
+        "biography": "R. City is a music group. The act is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Wikimedia band discography",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "Wikimedia artist discography"
+        ],
+        "birth_year": null
+      }
+    },
+    {
+      "id": 609,
+      "name": "Mishaal Tamer",
+      "wikidata_id": "Q130473617",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q130473617",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Mishaal Tamer is a musician from Saudi Arabia. Public reference sources place the artist within Saudi Arabia's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Mishaal Tamer is a musician from Saudi Arabia. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Saudi musician",
+        "country": "Saudi Arabia",
+        "country_code": "SA",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null
+      }
+    },
+    {
+      "id": 624,
+      "name": "Nasty C",
+      "wikidata_id": "Q22138550",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q22138550",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Nasty_C",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Nasty C is a South African rapper, songwriter and record producer from Durban, South Africa. The artist is associated with hip-hop."
+      },
+      "old_values": {
+        "biography": "Nasty C is an artist from South Africa tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 2 charted release credits."
+      },
+      "source_facts": {
+        "description": "South African rapper",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Durban, South Africa",
+        "genres": [
+          "hip-hop"
+        ],
+        "occupations": [
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997
+      }
+    },
+    {
+      "id": 636,
+      "name": "Kamo Mphela",
+      "wikidata_id": "Q110966777",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q110966777",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kamo_Mphela",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Kamo Mphela is a South African singer from Soweto, South Africa. Public reference sources place the artist within South Africa's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Kamo Mphela is a South African singer from Soweto, South Africa. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "South African dancer and singer",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Soweto, South Africa",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1999
+      }
+    },
+    {
+      "id": 644,
+      "name": "Skeng",
+      "wikidata_id": "Q133456300",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q133456300",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Skeng",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Skeng is a musician and reggae musician. Public reference sources document the artist within contemporary popular music."
+      },
+      "old_values": {
+        "biography": "Skeng is an artist from Jamaica tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 1 charted release credit."
+      },
+      "source_facts": {
+        "description": "Jamaican dancehall musician",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "musician",
+          "reggae musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null
+      }
+    },
+    {
+      "id": 645,
+      "name": "Bruce Melodie",
+      "wikidata_id": "Q94112918",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q94112918",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Bruce_Melodie",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Bruce Melodie is a Rwandan singer-songwriter born in 1992. Public reference sources place the artist within Rwanda's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Bruce Melodie is an artist from Rwanda tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 2 charted release credits."
+      },
+      "source_facts": {
+        "description": "Rwandan singer",
+        "country": "Rwanda",
+        "country_code": "RW",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1992
+      }
+    },
+    {
+      "id": 696,
+      "name": "Ava Veex",
+      "wikidata_id": "Q140456697",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q140456697",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Ava Veex is a musician. Public reference sources document the artist within contemporary popular music."
+      },
+      "old_values": {
+        "biography": "Ava Veex is a musician. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "musician",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null
+      }
+    },
+    {
+      "id": 705,
+      "name": "A$AP Rocky",
+      "wikidata_id": "Q129910",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q129910",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/ASAP_Rocky",
+      "match_score": 0.9,
+      "fields": {
+        "biography": "A$AP Rocky is an American singer, rapper and songwriter from Q189074, United States. The artist is associated with East Coast hip-hop, psychedelic rap and experimental hip-hop."
+      },
+      "old_values": {
+        "biography": "A$AP Rocky is an artist from United States tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 2 charted release credits."
+      },
+      "source_facts": {
+        "description": "American rapper (born 1988)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Q189074, United States",
+        "genres": [
+          "East Coast hip-hop",
+          "psychedelic rap",
+          "experimental hip-hop",
+          "alternative hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1988
+      }
+    },
+    {
+      "id": 709,
+      "name": "Daniel Caesar",
+      "wikidata_id": "Q29589083",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q29589083",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Daniel_Caesar",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Daniel Caesar is a Canadian singer-songwriter, singer and musician from Oshawa, Canada. The artist is associated with contemporary R&B, soul and neo soul."
+      },
+      "old_values": {
+        "biography": "Daniel Caesar is an artist from Canada tracked by Ngoma Charts. Their Ngoma Charts profile includes credited Top 50 activity across the September 2025 to July 2026 archive, with 2 charted release credits."
+      },
+      "source_facts": {
+        "description": "Canadian R&B singer",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "Oshawa, Canada",
+        "genres": [
+          "contemporary R&B",
+          "soul",
+          "neo soul"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "musician",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995
+      }
+    },
+    {
+      "id": 718,
+      "name": "Ava Peace",
+      "wikidata_id": "Q131362557",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q131362557",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Ava Peace is an Ugandan musician from Mengo Hospital, Uganda. Public reference sources place the artist within Uganda's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Ava Peace is a Ugandan musician from Mengo Hospital, Uganda. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Ugandan Musician",
+        "country": "Uganda",
+        "country_code": "UG",
+        "city_region": "Mengo Hospital, Uganda",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000
+      }
+    },
+    {
+      "id": 725,
+      "name": "Essence Of Worship",
+      "wikidata_id": "Q137426467",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426467",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Essence Of Worship is a Tanzanian music group. Public reference sources place the act within Tanzania's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Essence Of Worship is a Tanzanian music group. The act is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Tanzanian religious music group",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null
+      }
+    },
+    {
+      "id": 728,
+      "name": "Magixx",
+      "wikidata_id": "Q113662051",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q113662051",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Magixx_(singer)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Magixx is a Nigerian singer and songwriter from Lagos State, Nigeria. Public reference sources place the artist within Nigeria's contemporary music scene."
+      },
+      "old_values": {
+        "biography": "Magixx is a Nigerian singer and songwriter from Lagos State, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "Nigeran musician",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos State, Nigeria",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1999
+      }
+    },
+    {
+      "id": 776,
+      "name": "sosocamo",
+      "wikidata_id": "Q140395080",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q140395080",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sosocamo",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "sosocamo is a rapper and musician. Public reference sources document the artist within contemporary popular music."
+      },
+      "old_values": {
+        "biography": "sosocamo is a rapper and musician. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "source_facts": {
+        "description": "American rapper and singer",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "rapper",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null
+      }
+    }
+  ],
+  "source": "Strict Wikidata wbsearchentities + entity claims; Wikipedia sitelinks when available; biographies generated from structured facts."
+}

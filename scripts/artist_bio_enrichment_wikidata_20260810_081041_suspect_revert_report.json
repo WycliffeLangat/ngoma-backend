@@ -1,0 +1,65 @@
+{
+  "source": "scripts\\artist_bio_enrichment_wikidata_20260810_081041.progress.json",
+  "reverted": [
+    {
+      "id": 70,
+      "name": "Fido",
+      "fields": [
+        "genre",
+        "website_url"
+      ],
+      "bad_description": "2006 film by andrew currie"
+    },
+    {
+      "id": 133,
+      "name": "Guardian Angel",
+      "fields": [
+        "genre"
+      ],
+      "bad_description": "song written and composed by christopher evans-ironside and kurt gebegern, originally recorded by masquerade and released in 1983"
+    },
+    {
+      "id": 264,
+      "name": "HUNTR/X",
+      "fields": [
+        "genre"
+      ],
+      "bad_description": "fictional k-pop girl group"
+    },
+    {
+      "id": 271,
+      "name": "MAD G",
+      "fields": [
+        "genre"
+      ],
+      "bad_description": "album by ancient"
+    },
+    {
+      "id": 372,
+      "name": "Saja Boys",
+      "fields": [
+        "genre"
+      ],
+      "bad_description": "fictional k-pop boyband"
+    },
+    {
+      "id": 383,
+      "name": "Rumi",
+      "fields": [
+        "biography",
+        "country",
+        "country_code"
+      ],
+      "bad_description": "fictional character from kpop demon hunters"
+    },
+    {
+      "id": 462,
+      "name": "Full Blown",
+      "fields": [
+        "biography",
+        "genre"
+      ],
+      "bad_description": "extended play by phantom blue"
+    }
+  ]
+}

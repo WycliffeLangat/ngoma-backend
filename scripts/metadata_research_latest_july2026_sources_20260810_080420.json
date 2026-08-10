@@ -1,0 +1,351 @@
+{
+  "generated_at": "2026-08-10T08:04:20.219351+00:00",
+  "period": {
+    "year": 2026,
+    "month": 7,
+    "label": "July 2026"
+  },
+  "method": "Structured lookup against iTunes Search API, Deezer API, MusicBrainz API; local artist origin propagated to blank release origin fields only.",
+  "records": [
+    {
+      "id": 19228,
+      "title": "Trauma",
+      "artist": "OnlyMoh",
+      "chart_type": "singles",
+      "fields": {
+        "release_date": "2025-04-01"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/3303956141",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 3303956141
+          },
+          "value": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": 19537,
+      "title": "Unintentional",
+      "artist": "Njerae",
+      "chart_type": "albums",
+      "fields": {
+        "release_date": "2024-10-05"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/album/652560471",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 652560471
+          },
+          "value": "2024-10-05"
+        }
+      ]
+    },
+    {
+      "id": 19799,
+      "title": "Timileyin 2.0",
+      "artist": "Tml Vibez",
+      "chart_type": "albums",
+      "fields": {
+        "release_date": "2024-06-28"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/album/608252842",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 608252842
+          },
+          "value": "2024-06-28"
+        }
+      ]
+    },
+    {
+      "id": 21683,
+      "title": "Slim Girls",
+      "artist": "Koko Pee",
+      "chart_type": "singles",
+      "fields": {
+        "release_date": "2026-04-10"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/3930062041",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 3930062041
+          },
+          "value": "2026-04-10"
+        }
+      ]
+    },
+    {
+      "id": 21711,
+      "title": "Niko Na Neema",
+      "artist": "Lift Soul Records",
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "QZTBF2656635",
+        "release_date": "2026-04-12"
+      },
+      "sources": [
+        {
+          "field": "isrc",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/3955820571",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 3955820571
+          },
+          "value": "QZTBF2656635"
+        },
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/3955820571",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 3955820571
+          },
+          "value": "2026-04-12"
+        }
+      ]
+    },
+    {
+      "id": 21720,
+      "title": "NJOO",
+      "artist": "Pelzy Never Mind",
+      "chart_type": "singles",
+      "fields": {
+        "release_date": "2026-06-13"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/4085348771",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 4085348771
+          },
+          "value": "2026-06-13"
+        }
+      ]
+    },
+    {
+      "id": 21724,
+      "title": "Don't Be Shy",
+      "artist": "Yemi Alade",
+      "chart_type": "singles",
+      "fields": {
+        "release_date": "2026-06-19"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/4034287361",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 4034287361
+          },
+          "value": "2026-06-19"
+        }
+      ]
+    },
+    {
+      "id": 21764,
+      "title": "RUBBERZ",
+      "artist": "Fenix Flexin",
+      "chart_type": "singles",
+      "fields": {
+        "release_date": "2026-06-05"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/4059104551",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 4059104551
+          },
+          "value": "2026-06-05"
+        }
+      ]
+    },
+    {
+      "id": 22014,
+      "title": "Sohlala Sisonke (feat. Zeh McGeba & MK Productions)",
+      "artist": "Dlala Thukzin",
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "ZAVEH2400003"
+      },
+      "sources": [
+        {
+          "field": "isrc",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/3015543461",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 3015543461
+          },
+          "value": "ZAVEH2400003"
+        }
+      ]
+    },
+    {
+      "id": 22048,
+      "title": "Ngiyak'cela (feat. Mashudu)",
+      "artist": "ShaunMusiq",
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "ZB79M2600118"
+      },
+      "sources": [
+        {
+          "field": "isrc",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/4077212661",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 4077212661
+          },
+          "value": "ZB79M2600118"
+        }
+      ]
+    },
+    {
+      "id": 22217,
+      "title": "Hasira",
+      "artist": "Vanillah",
+      "chart_type": "singles",
+      "fields": {
+        "release_date": "2026-06-23"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/4088038721",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 4088038721
+          },
+          "value": "2026-06-23"
+        }
+      ]
+    },
+    {
+      "id": 22219,
+      "title": "Hallo",
+      "artist": "Billnass",
+      "chart_type": "singles",
+      "fields": {
+        "release_date": "2026-06-26"
+      },
+      "sources": [
+        {
+          "field": "release_date",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/4111465301",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 4111465301
+          },
+          "value": "2026-06-26"
+        }
+      ]
+    },
+    {
+      "id": 22616,
+      "title": "Lengoma (feat. sami kay & Misokuhle)",
+      "artist": "MSA",
+      "chart_type": "singles",
+      "fields": {
+        "isrc": "ZA65Q2500010"
+      },
+      "sources": [
+        {
+          "field": "isrc",
+          "source": {
+            "catalog": "Deezer API",
+            "url": "https://api.deezer.com/track/3803934712",
+            "match": {
+              "title_score": 1.0,
+              "artist_score": 1.0
+            },
+            "score": 1.0,
+            "result_id": 3803934712
+          },
+          "value": "ZA65Q2500010"
+        }
+      ]
+    }
+  ]
+}

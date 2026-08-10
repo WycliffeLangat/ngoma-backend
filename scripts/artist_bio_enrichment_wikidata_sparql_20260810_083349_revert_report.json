@@ -1,0 +1,54 @@
+{
+  "source": "scripts\\artist_bio_enrichment_wikidata_sparql_20260810_083349.json",
+  "reverted": [
+    {
+      "id": 2913,
+      "name": "Sleazy",
+      "fields": [
+        "biography",
+        "genre"
+      ]
+    },
+    {
+      "id": 2915,
+      "name": "Lace",
+      "fields": [
+        "biography",
+        "country",
+        "country_code",
+        "genre"
+      ]
+    },
+    {
+      "id": 2916,
+      "name": "Mellow",
+      "fields": [
+        "genre"
+      ]
+    },
+    {
+      "id": 2917,
+      "name": "Tommy Lee",
+      "fields": [
+        "biography",
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "website_url"
+      ]
+    },
+    {
+      "id": 2802,
+      "name": "KB",
+      "fields": [
+        "biography",
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "website_url"
+      ]
+    }
+  ]
+}

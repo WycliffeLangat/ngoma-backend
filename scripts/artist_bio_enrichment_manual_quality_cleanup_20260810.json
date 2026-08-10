@@ -1,0 +1,79 @@
+{
+  "reverted_conflicts": [
+    {
+      "id": 242,
+      "name": "Trio Mio",
+      "fields": [
+        "biography",
+        "genre",
+        "website_url"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Crayon",
+      "fields": [
+        "biography",
+        "genre"
+      ]
+    },
+    {
+      "id": 180,
+      "name": "Kell Kay",
+      "fields": [
+        "biography"
+      ]
+    },
+    {
+      "id": 122,
+      "name": "TitoM",
+      "fields": [
+        "biography",
+        "genre",
+        "website_url"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Charisma",
+      "fields": [
+        "city_region",
+        "genre",
+        "website_url"
+      ]
+    }
+  ],
+  "patched_city_labels": [
+    {
+      "id": 54,
+      "name": "Central Cee",
+      "fields": {
+        "city_region": "Shepherd's Bush, United Kingdom"
+      },
+      "old": {
+        "city_region": "Shepherd's Bush, English people"
+      }
+    },
+    {
+      "id": 353,
+      "name": "EMIN",
+      "fields": {
+        "city_region": "Baku, Azerbaijan"
+      },
+      "old": {
+        "city_region": "Baku, Russia"
+      }
+    },
+    {
+      "id": 384,
+      "name": "Klassik Frescobar",
+      "fields": {
+        "city_region": "The Bronx, United States"
+      },
+      "old": {
+        "city_region": "The Bronx, Jamaica"
+      }
+    }
+  ],
+  "source": "scripts\\artist_bio_enrichment_wikidata_20260810_081041.progress.json"
+}

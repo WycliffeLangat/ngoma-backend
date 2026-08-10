@@ -1,0 +1,112 @@
+{
+  "applied_at": "2026-08-10T08:07:21.764516+00:00",
+  "input": "scripts\\metadata_research_latest_july2026_structured_20260810_080420.json",
+  "updated": [
+    {
+      "id": 19228,
+      "title": "Trauma",
+      "artist": "OnlyMoh",
+      "fields": {
+        "release_date": "2025-04-01"
+      }
+    },
+    {
+      "id": 21683,
+      "title": "Slim Girls",
+      "artist": "Koko Pee",
+      "fields": {
+        "release_date": "2026-04-10"
+      }
+    },
+    {
+      "id": 21711,
+      "title": "Niko Na Neema",
+      "artist": "Lift Soul Records",
+      "fields": {
+        "isrc": "QZTBF2656635",
+        "release_date": "2026-04-12"
+      }
+    },
+    {
+      "id": 21720,
+      "title": "NJOO",
+      "artist": "Pelzy Never Mind",
+      "fields": {
+        "release_date": "2026-06-13"
+      }
+    },
+    {
+      "id": 21724,
+      "title": "Don't Be Shy",
+      "artist": "Yemi Alade",
+      "fields": {
+        "release_date": "2026-06-19"
+      }
+    },
+    {
+      "id": 21764,
+      "title": "RUBBERZ",
+      "artist": "Fenix Flexin",
+      "fields": {
+        "release_date": "2026-06-05"
+      }
+    },
+    {
+      "id": 22014,
+      "title": "Sohlala Sisonke (feat. Zeh McGeba & MK Productions)",
+      "artist": "Dlala Thukzin",
+      "fields": {
+        "isrc": "ZAVEH2400003"
+      }
+    },
+    {
+      "id": 22048,
+      "title": "Ngiyak'cela (feat. Mashudu)",
+      "artist": "ShaunMusiq",
+      "fields": {
+        "isrc": "ZB79M2600118"
+      }
+    },
+    {
+      "id": 22217,
+      "title": "Hasira",
+      "artist": "Vanillah",
+      "fields": {
+        "release_date": "2026-06-23"
+      }
+    },
+    {
+      "id": 22219,
+      "title": "Hallo",
+      "artist": "Billnass",
+      "fields": {
+        "release_date": "2026-06-26"
+      }
+    },
+    {
+      "id": 22616,
+      "title": "Lengoma (feat. sami kay & Misokuhle)",
+      "artist": "MSA",
+      "fields": {
+        "isrc": "ZA65Q2500010"
+      }
+    },
+    {
+      "id": 19537,
+      "title": "Unintentional",
+      "artist": "Njerae",
+      "fields": {
+        "release_date": "2024-10-05"
+      }
+    },
+    {
+      "id": 19799,
+      "title": "Timileyin 2.0",
+      "artist": "Tml Vibez",
+      "fields": {
+        "release_date": "2024-06-28"
+      }
+    }
+  ],
+  "misses": []
+}

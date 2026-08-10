@@ -1,0 +1,335 @@
+{
+  "generated_at": "2026-08-10T08:45:48.049535+00:00",
+  "source": "Batched Wikidata SPARQL exact-label lookup with English Wikipedia sitelinks where available; biography text generated from structured facts, not copied from Wikipedia.",
+  "target_artists": 2188,
+  "pair_variants": 6798,
+  "stats": {
+    "query_errors": 26,
+    "bindings": 71,
+    "rejected_candidates": 60,
+    "artists_updated": 5,
+    "field_biography": 4,
+    "field_genre": 5,
+    "field_country": 3,
+    "field_country_code": 3,
+    "field_city_region": 2,
+    "field_website_url": 2
+  },
+  "errors": [
+    {
+      "chunk": 1,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 2,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 3,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 4,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 5,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 6,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 7,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 8,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 9,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 10,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 11,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 12,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 13,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 14,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 15,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 16,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 17,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 18,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 19,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 20,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 21,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 22,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 23,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 24,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 25,
+      "error": "unknown_error",
+      "pairs": 260
+    },
+    {
+      "chunk": 26,
+      "error": "unknown_error",
+      "pairs": 260
+    }
+  ],
+  "updates": [
+    {
+      "id": 2913,
+      "name": "Sleazy",
+      "wikidata_id": "Q1578661",
+      "wikidata_url": "https://www.wikidata.org/entity/Q1578661",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sleazy_(song)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Sleazy is a recording artist. The artist is associated with hip-hop and dance-pop.",
+        "genre": "hip-hop, dance-pop"
+      },
+      "old_values": {
+        "biography": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Kesha song",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [
+          "hip-hop",
+          "dance-pop"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical work/composition"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 2915,
+      "name": "Lace",
+      "wikidata_id": "Q6468176",
+      "wikidata_url": "https://www.wikidata.org/entity/Q6468176",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lace_(group)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Lace is a Canadian musical group. The act is associated with country music.",
+        "country": "Canada",
+        "country_code": "CA",
+        "genre": "country music"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Canadian musical group",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "",
+        "genres": [
+          "country music"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 2916,
+      "name": "Mellow",
+      "wikidata_id": "Q6813189",
+      "wikidata_url": "https://www.wikidata.org/entity/Q6813189",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "genre": "pop music"
+      },
+      "old_values": {
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [
+          "pop music"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": 1997
+      }
+    },
+    {
+      "id": 2917,
+      "name": "Tommy Lee",
+      "wikidata_id": "Q331748",
+      "wikidata_url": "https://www.wikidata.org/entity/Q331748",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tommy_Lee",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Tommy Lee is a singer, musician and drummer from Greece from Athens, Greece. The artist is associated with rock music, heavy metal music and glam metal.",
+        "country": "Greece",
+        "country_code": "GR",
+        "city_region": "Athens, Greece",
+        "genre": "rock music, heavy metal music, glam metal",
+        "website_url": "http://www.tommylee.tv"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American drummer (born 1962)",
+        "country": "Greece",
+        "country_code": "GR",
+        "city_region": "Athens, Greece",
+        "genres": [
+          "rock music",
+          "heavy metal music",
+          "glam metal",
+          "nu metal"
+        ],
+        "occupations": [
+          "singer",
+          "musician",
+          "drummer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1962,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 2802,
+      "name": "KB",
+      "wikidata_id": "Q6326476",
+      "wikidata_url": "https://www.wikidata.org/entity/Q6326476",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/KB_(rapper)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "KB is a American rapper from St. Petersburg, United States. The artist is associated with Christian hip-hop.",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "St. Petersburg, United States",
+        "genre": "Christian hip-hop",
+        "website_url": "https://whoiskb.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "St. Petersburg, United States",
+        "genres": [
+          "Christian hip-hop"
+        ],
+        "occupations": [
+          "rapper"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1988,
+        "inception_year": null
+      }
+    }
+  ]
+}

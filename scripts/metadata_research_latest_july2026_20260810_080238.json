@@ -1,0 +1,869 @@
+{
+  "source": "Targeted latest-new-entry structured scrape using iTunes Search/Lookup API and Deezer API; carry-forward rows are from prior sourced local sweep files.",
+  "generated_at": "2026-08-10T07:52:25.592460+00:00",
+  "latest_period": {
+    "year": 2026,
+    "month": 7,
+    "label": "July 2026"
+  },
+  "artists": [
+    {
+      "id": 90,
+      "name": "Alikiba",
+      "apple_music_url": "https://music.apple.com/ke/artist/alikiba/578354001?uo=4"
+    },
+    {
+      "id": 1258,
+      "name": "Armanii",
+      "apple_music_url": "https://music.apple.com/ke/artist/armanii/1519476498?uo=4"
+    },
+    {
+      "id": 33,
+      "name": "Asake",
+      "apple_music_url": "https://music.apple.com/ke/artist/asake/1436064480?uo=4"
+    },
+    {
+      "id": 561,
+      "name": "Balloranking",
+      "city_region": "Lagos, Nigeria",
+      "apple_music_url": "https://music.apple.com/ke/artist/balloranking/1532678509?uo=4"
+    },
+    {
+      "id": 471,
+      "name": "Bella Shmurda",
+      "apple_music_url": "https://music.apple.com/ke/artist/bella-shmurda/1455517405?uo=4",
+      "genre": "Afrobeats"
+    },
+    {
+      "id": 194,
+      "name": "Beyoncé",
+      "apple_music_url": "https://music.apple.com/ke/artist/beyonc%C3%A9/1419227?uo=4",
+      "genre": "Pop"
+    },
+    {
+      "id": 155,
+      "name": "Billnass",
+      "apple_music_url": "https://music.apple.com/ke/artist/billnass/1201360697?uo=4",
+      "genre": "Bongo-Flava"
+    },
+    {
+      "id": 62,
+      "name": "Burna Boy",
+      "apple_music_url": "https://music.apple.com/ke/artist/burna-boy/591899010?uo=4"
+    },
+    {
+      "id": 15,
+      "name": "Chris Brown",
+      "apple_music_url": "https://music.apple.com/ke/artist/chris-brown/95705522?uo=4",
+      "genre": "R&B/Soul"
+    },
+    {
+      "id": 954,
+      "name": "Coconut Rootz",
+      "apple_music_url": "https://music.apple.com/ke/artist/coconut-rootz/1890439706?uo=4"
+    },
+    {
+      "id": 277,
+      "name": "Collo Blue",
+      "apple_music_url": "https://music.apple.com/ke/artist/collo-blue/1664256715?uo=4"
+    },
+    {
+      "id": 5,
+      "name": "D Voice",
+      "apple_music_url": "https://music.apple.com/ke/artist/d-voice/1551159641?uo=4"
+    },
+    {
+      "id": 1128,
+      "name": "DJ Grauchi",
+      "apple_music_url": "https://music.apple.com/ke/artist/dj-grauchi/1809245082?uo=4"
+    },
+    {
+      "id": 262,
+      "name": "DJ Maphorisa",
+      "apple_music_url": "https://music.apple.com/ke/artist/dj-maphorisa/956074379?uo=4"
+    },
+    {
+      "id": 1570,
+      "name": "DJames",
+      "apple_music_url": "https://music.apple.com/ke/artist/djames/1574614319?uo=4"
+    },
+    {
+      "id": 1897,
+      "name": "Darque",
+      "apple_music_url": "https://music.apple.com/ke/artist/darque/391598221?uo=4"
+    },
+    {
+      "id": 195,
+      "name": "Dave",
+      "apple_music_url": "https://music.apple.com/ke/artist/dave/1093500131?uo=4"
+    },
+    {
+      "id": 2483,
+      "name": "David Madden",
+      "apple_music_url": "https://music.apple.com/ke/artist/david-madden/30501827?uo=4"
+    },
+    {
+      "id": 12,
+      "name": "Diamond Platnumz",
+      "apple_music_url": "https://music.apple.com/ke/artist/diamond-platnumz/721552376?uo=4"
+    },
+    {
+      "id": 1222,
+      "name": "Didi B",
+      "apple_music_url": "https://music.apple.com/ke/artist/didi-b/549549219?uo=4"
+    },
+    {
+      "id": 2193,
+      "name": "Dizompa Mr Killer",
+      "apple_music_url": "https://music.apple.com/ke/artist/dizompa-mr-killer/1760920482?uo=4"
+    },
+    {
+      "id": 87,
+      "name": "Dlala Thukzin",
+      "apple_music_url": "https://music.apple.com/ke/artist/dlala-thukzin/1305671349?uo=4",
+      "genre": "Dance"
+    },
+    {
+      "id": 392,
+      "name": "Dr Sarah K",
+      "apple_music_url": "https://music.apple.com/ke/artist/dr-sarah-k/1678040414?uo=4"
+    },
+    {
+      "id": 81,
+      "name": "Drake",
+      "apple_music_url": "https://music.apple.com/ke/artist/drake/271256?uo=4"
+    },
+    {
+      "id": 292,
+      "name": "ELEMENT EleéeH",
+      "apple_music_url": "https://music.apple.com/ke/artist/element-ele%C3%A9eh/1534785570?uo=4"
+    },
+    {
+      "id": 291,
+      "name": "ELISHA TOTO",
+      "apple_music_url": "https://music.apple.com/ke/artist/elisha-toto/1611879583?uo=4"
+    },
+    {
+      "id": 2202,
+      "name": "Fenix Flexin",
+      "apple_music_url": "https://music.apple.com/ke/artist/fenix-flexin/1155380520?uo=4"
+    },
+    {
+      "id": 66,
+      "name": "Future",
+      "apple_music_url": "https://music.apple.com/ke/artist/future/128050210?uo=4"
+    },
+    {
+      "id": 172,
+      "name": "Gyptian",
+      "apple_music_url": "https://music.apple.com/ke/artist/gyptian/92722734?uo=4"
+    },
+    {
+      "id": 88,
+      "name": "Harmonize",
+      "apple_music_url": "https://music.apple.com/ke/artist/harmonize/81714549?uo=4"
+    },
+    {
+      "id": 92,
+      "name": "Ibraah",
+      "apple_music_url": "https://music.apple.com/ke/artist/ibraah/1507959934?uo=4"
+    },
+    {
+      "id": 42,
+      "name": "Iyanii",
+      "apple_music_url": "https://music.apple.com/ke/artist/iyanii/1530714842?uo=4"
+    },
+    {
+      "id": 25,
+      "name": "Jay Melody",
+      "apple_music_url": "https://music.apple.com/ke/artist/jay-melody/1210518995?uo=4"
+    },
+    {
+      "id": 4,
+      "name": "Jux",
+      "apple_music_url": "https://music.apple.com/ke/artist/jux/929123595?uo=4",
+      "genre": "Afro-Pop"
+    },
+    {
+      "id": 2142,
+      "name": "KITSCHKRIEG",
+      "city_region": "Berlin, Germany",
+      "apple_music_url": "https://music.apple.com/ke/artist/kitschkrieg/1121954545?uo=4"
+    },
+    {
+      "id": 190,
+      "name": "Kanye West",
+      "apple_music_url": "https://music.apple.com/ke/artist/kanye-west/2715720?uo=4"
+    },
+    {
+      "id": 2158,
+      "name": "Kapitani",
+      "apple_music_url": "https://music.apple.com/ke/artist/kapitani/1800751584?uo=4"
+    },
+    {
+      "id": 198,
+      "name": "Ken Carson",
+      "apple_music_url": "https://music.apple.com/ke/artist/ken-carson/1434801023?uo=4",
+      "genre": "Hip-Hop/Rap"
+    },
+    {
+      "id": 1085,
+      "name": "King Bubby",
+      "apple_music_url": "https://music.apple.com/ke/artist/king-bubby/1896700019?uo=4"
+    },
+    {
+      "id": 2699,
+      "name": "King Kaka",
+      "apple_music_url": "https://music.apple.com/ke/artist/king-kaka/1066360174?uo=4",
+      "genre": "Hip-Hop/Rap"
+    },
+    {
+      "id": 355,
+      "name": "Koko Pee",
+      "apple_music_url": "https://music.apple.com/ke/artist/koko-pee/1227408733?uo=4"
+    },
+    {
+      "id": 287,
+      "name": "Kusslove",
+      "apple_music_url": "https://music.apple.com/ke/artist/kusslove/1863614606?uo=4"
+    },
+    {
+      "id": 2168,
+      "name": "Lift Soul Records",
+      "apple_music_url": "https://music.apple.com/ke/artist/lift-soul-records/1892742815?uo=4"
+    },
+    {
+      "id": 803,
+      "name": "MAKAMANDA",
+      "apple_music_url": "https://music.apple.com/ke/artist/makamanda/1882356651?uo=4",
+      "genre": "Reggae"
+    },
+    {
+      "id": 822,
+      "name": "MSA",
+      "apple_music_url": "https://music.apple.com/ke/artist/msa/431475018?uo=4"
+    },
+    {
+      "id": 37,
+      "name": "Mbosso",
+      "apple_music_url": "https://music.apple.com/ke/artist/mbosso/1322513993?uo=4"
+    },
+    {
+      "id": 285,
+      "name": "Mejja",
+      "apple_music_url": "https://music.apple.com/ke/artist/mejja/979606924?uo=4"
+    },
+    {
+      "id": 51,
+      "name": "Ndotz",
+      "apple_music_url": "https://music.apple.com/ke/artist/ndotz/1436070284?uo=4",
+      "genre": "Hip-Hop/Rap"
+    },
+    {
+      "id": 132,
+      "name": "Neema Gospel Choir",
+      "apple_music_url": "https://music.apple.com/ke/artist/neema-gospel-choir/829842544?uo=4",
+      "genre": "Christian"
+    },
+    {
+      "id": 47,
+      "name": "Njerae",
+      "apple_music_url": "https://music.apple.com/ke/artist/njerae/1382230565?uo=4",
+      "genre": "Afro-Pop"
+    },
+    {
+      "id": 2169,
+      "name": "Novex",
+      "apple_music_url": "https://music.apple.com/ke/artist/novex/23317616?uo=4"
+    },
+    {
+      "id": 922,
+      "name": "OnlyMoh",
+      "apple_music_url": "https://music.apple.com/ke/artist/onlymoh/1755757349?uo=4"
+    },
+    {
+      "id": 1043,
+      "name": "PAPA NYOSTO",
+      "apple_music_url": "https://music.apple.com/ke/artist/papa-nyosto/1526410669?uo=4"
+    },
+    {
+      "id": 802,
+      "name": "Pelzy Never Mind",
+      "apple_music_url": "https://music.apple.com/us/artist/pelzy-never-mind/1850231474?uo=4"
+    },
+    {
+      "id": 35,
+      "name": "Prince Indah",
+      "apple_music_url": "https://music.apple.com/ke/artist/prince-indah/1526224571?uo=4"
+    },
+    {
+      "id": 938,
+      "name": "Rachats Classic",
+      "apple_music_url": "https://music.apple.com/ng/artist/les-rachats-classic-band/1889468058?uo=4"
+    },
+    {
+      "id": 95,
+      "name": "Rayvanny",
+      "apple_music_url": "https://music.apple.com/ke/artist/rayvanny/1156101857?uo=4",
+      "genre": "Pop"
+    },
+    {
+      "id": 2700,
+      "name": "Rylo Rodriguez",
+      "apple_music_url": "https://music.apple.com/jm/artist/rylo-rodriguez/1315498588?uo=4"
+    },
+    {
+      "id": 2702,
+      "name": "SIENNA SPIRO",
+      "apple_music_url": "https://music.apple.com/tz/artist/sienna-spiro/1745678083?uo=4"
+    },
+    {
+      "id": 2159,
+      "name": "ShaunMusiq",
+      "apple_music_url": "https://music.apple.com/ke/artist/shaunmusiq/1440586536?uo=4"
+    },
+    {
+      "id": 335,
+      "name": "Vanillah",
+      "city_region": "Tanzania"
+    },
+    {
+      "id": 2176,
+      "name": "Yemi Alade",
+      "city_region": "Lagos, Nigeria"
+    }
+  ],
+  "songs": [
+    {
+      "id": 22219,
+      "title": "Hallo",
+      "artist": "Billnass",
+      "release_date": "2026-06-26"
+    },
+    {
+      "id": 22014,
+      "title": "Sohlala Sisonke (feat. Zeh McGeba & MK Productions)",
+      "artist": "Dlala Thukzin",
+      "isrc": "ZAVEH2400003"
+    },
+    {
+      "id": 21764,
+      "title": "RUBBERZ",
+      "artist": "Fenix Flexin",
+      "release_date": "2026-06-05"
+    },
+    {
+      "id": 21683,
+      "title": "Slim Girls",
+      "artist": "Koko Pee",
+      "release_date": "2026-04-10"
+    },
+    {
+      "id": 21711,
+      "title": "Niko Na Neema",
+      "artist": "Lift Soul Records",
+      "release_date": "2026-04-12",
+      "isrc": "QZTBF2656635"
+    },
+    {
+      "id": 22616,
+      "title": "Lengoma (feat. sami kay & Misokuhle)",
+      "artist": "MSA",
+      "isrc": "ZA65Q2500010"
+    },
+    {
+      "id": 19228,
+      "title": "Trauma",
+      "artist": "OnlyMoh",
+      "release_date": "2025-04-01"
+    },
+    {
+      "id": 21720,
+      "title": "NJOO",
+      "artist": "Pelzy Never Mind",
+      "release_date": "2026-06-13"
+    },
+    {
+      "id": 22217,
+      "title": "Hasira",
+      "artist": "Vanillah",
+      "release_date": "2026-06-23"
+    },
+    {
+      "id": 21724,
+      "title": "Don't Be Shy",
+      "artist": "Yemi Alade",
+      "release_date": "2026-06-19"
+    }
+  ],
+  "albums": [
+    {
+      "id": 19537,
+      "title": "Unintentional",
+      "artist": "Njerae",
+      "release_date": "2024-10-05"
+    },
+    {
+      "id": 19799,
+      "title": "Timileyin 2.0",
+      "artist": "Tml Vibez",
+      "release_date": "2024-06-28"
+    }
+  ],
+  "sources_by_record": {
+    "artist:90": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/alikiba/578354001?uo=4"
+      ]
+    },
+    "artist:1258": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/armanii/1519476498?uo=4"
+      ]
+    },
+    "artist:33": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/asake/1436064480?uo=4"
+      ]
+    },
+    "artist:561": {
+      "city_region": [
+        "local prior sourced metadata sweep"
+      ],
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/balloranking/1532678509?uo=4"
+      ]
+    },
+    "artist:471": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/bella-shmurda/1455517405?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/bella-shmurda/1455517405?uo=4"
+      ]
+    },
+    "artist:194": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/beyonc%C3%A9/1419227?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/beyonc%C3%A9/1419227?uo=4"
+      ]
+    },
+    "artist:155": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/billnass/1201360697?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/billnass/1201360697?uo=4"
+      ]
+    },
+    "artist:62": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/burna-boy/591899010?uo=4"
+      ]
+    },
+    "artist:15": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/chris-brown/95705522?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/chris-brown/95705522?uo=4"
+      ]
+    },
+    "artist:954": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/coconut-rootz/1890439706?uo=4"
+      ]
+    },
+    "artist:277": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/collo-blue/1664256715?uo=4"
+      ]
+    },
+    "artist:5": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/d-voice/1551159641?uo=4"
+      ]
+    },
+    "artist:1128": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/dj-grauchi/1809245082?uo=4"
+      ]
+    },
+    "artist:262": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/dj-maphorisa/956074379?uo=4"
+      ]
+    },
+    "artist:1570": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/djames/1574614319?uo=4"
+      ]
+    },
+    "artist:1897": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/darque/391598221?uo=4"
+      ]
+    },
+    "artist:195": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/dave/1093500131?uo=4"
+      ]
+    },
+    "artist:2483": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/david-madden/30501827?uo=4"
+      ]
+    },
+    "artist:12": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/diamond-platnumz/721552376?uo=4"
+      ]
+    },
+    "artist:1222": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/didi-b/549549219?uo=4"
+      ]
+    },
+    "artist:2193": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/dizompa-mr-killer/1760920482?uo=4"
+      ]
+    },
+    "artist:87": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/dlala-thukzin/1305671349?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/dlala-thukzin/1305671349?uo=4"
+      ]
+    },
+    "artist:392": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/dr-sarah-k/1678040414?uo=4"
+      ]
+    },
+    "artist:81": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/drake/271256?uo=4"
+      ]
+    },
+    "artist:292": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/element-ele%C3%A9eh/1534785570?uo=4"
+      ]
+    },
+    "artist:291": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/elisha-toto/1611879583?uo=4"
+      ]
+    },
+    "artist:2202": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/fenix-flexin/1155380520?uo=4"
+      ]
+    },
+    "artist:66": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/future/128050210?uo=4"
+      ]
+    },
+    "artist:172": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/gyptian/92722734?uo=4"
+      ]
+    },
+    "artist:88": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/harmonize/81714549?uo=4"
+      ]
+    },
+    "artist:92": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/ibraah/1507959934?uo=4"
+      ]
+    },
+    "artist:42": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/iyanii/1530714842?uo=4"
+      ]
+    },
+    "artist:25": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/jay-melody/1210518995?uo=4"
+      ]
+    },
+    "artist:4": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/jux/929123595?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/jux/929123595?uo=4"
+      ]
+    },
+    "artist:2142": {
+      "city_region": [
+        "local prior sourced metadata sweep"
+      ],
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/kitschkrieg/1121954545?uo=4"
+      ]
+    },
+    "artist:190": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/kanye-west/2715720?uo=4"
+      ]
+    },
+    "artist:2158": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/kapitani/1800751584?uo=4"
+      ]
+    },
+    "artist:198": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/ken-carson/1434801023?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/ken-carson/1434801023?uo=4"
+      ]
+    },
+    "artist:1085": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/king-bubby/1896700019?uo=4"
+      ]
+    },
+    "artist:2699": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/king-kaka/1066360174?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/king-kaka/1066360174?uo=4"
+      ]
+    },
+    "artist:355": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/koko-pee/1227408733?uo=4"
+      ]
+    },
+    "artist:287": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/kusslove/1863614606?uo=4"
+      ]
+    },
+    "artist:2168": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/lift-soul-records/1892742815?uo=4"
+      ]
+    },
+    "artist:803": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/makamanda/1882356651?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/makamanda/1882356651?uo=4"
+      ]
+    },
+    "artist:822": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/msa/431475018?uo=4"
+      ]
+    },
+    "artist:37": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/mbosso/1322513993?uo=4"
+      ]
+    },
+    "artist:285": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/mejja/979606924?uo=4"
+      ]
+    },
+    "artist:51": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/ndotz/1436070284?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/ndotz/1436070284?uo=4"
+      ]
+    },
+    "artist:132": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/neema-gospel-choir/829842544?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/neema-gospel-choir/829842544?uo=4"
+      ]
+    },
+    "artist:47": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/njerae/1382230565?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/njerae/1382230565?uo=4"
+      ]
+    },
+    "artist:2169": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/novex/23317616?uo=4"
+      ]
+    },
+    "artist:922": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/onlymoh/1755757349?uo=4"
+      ]
+    },
+    "artist:1043": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/papa-nyosto/1526410669?uo=4"
+      ]
+    },
+    "artist:802": {
+      "apple_music_url": [
+        "https://music.apple.com/us/artist/pelzy-never-mind/1850231474?uo=4"
+      ]
+    },
+    "artist:35": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/prince-indah/1526224571?uo=4"
+      ]
+    },
+    "artist:938": {
+      "apple_music_url": [
+        "https://music.apple.com/ng/artist/les-rachats-classic-band/1889468058?uo=4"
+      ]
+    },
+    "artist:95": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/rayvanny/1156101857?uo=4"
+      ],
+      "genre": [
+        "https://music.apple.com/ke/artist/rayvanny/1156101857?uo=4"
+      ]
+    },
+    "artist:2700": {
+      "apple_music_url": [
+        "https://music.apple.com/jm/artist/rylo-rodriguez/1315498588?uo=4"
+      ]
+    },
+    "artist:2702": {
+      "apple_music_url": [
+        "https://music.apple.com/tz/artist/sienna-spiro/1745678083?uo=4"
+      ]
+    },
+    "artist:2159": {
+      "apple_music_url": [
+        "https://music.apple.com/ke/artist/shaunmusiq/1440586536?uo=4"
+      ]
+    },
+    "artist:335": {
+      "city_region": [
+        "local prior sourced metadata sweep"
+      ]
+    },
+    "artist:2176": {
+      "city_region": [
+        "local prior sourced metadata sweep"
+      ]
+    },
+    "albums:19537": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/652560471"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/652560471"
+      ]
+    },
+    "albums:19799": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/608252842"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/608252842"
+      ]
+    },
+    "singles:22219": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/1013572531"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/1013572531"
+      ]
+    },
+    "singles:22014": {
+      "isrc": [
+        "local prior sourced metadata sweep"
+      ]
+    },
+    "singles:21764": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/996526781"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/996526781"
+      ]
+    },
+    "singles:21683": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/950703271"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/950703271"
+      ]
+    },
+    "singles:21711": {
+      "release_date": [
+        "local prior sourced metadata sweep"
+      ],
+      "isrc": [
+        "local prior sourced metadata sweep"
+      ]
+    },
+    "singles:22616": {
+      "isrc": [
+        "local prior sourced metadata sweep"
+      ]
+    },
+    "singles:19228": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/736088951"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/736088951"
+      ]
+    },
+    "singles:21720": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/1005022191"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/1005022191"
+      ]
+    },
+    "singles:22217": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/1006046291"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/1006046291"
+      ]
+    },
+    "singles:21724": {
+      "release_date": [
+        "local prior sourced metadata sweep",
+        "https://www.deezer.com/album/987445531"
+      ],
+      "release_year": [
+        "https://www.deezer.com/album/987445531"
+      ]
+    }
+  }
+}

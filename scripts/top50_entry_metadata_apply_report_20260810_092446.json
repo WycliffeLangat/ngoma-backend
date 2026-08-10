@@ -1,0 +1,3877 @@
+{
+  "applied_at": "2026-08-10T09:54:17.366056+00:00",
+  "audit": "C:\\Users\\HP\\Desktop\\Ngoma Charts Folder\\files\\ngoma_charts_backend\\backend\\scripts\\top50_entry_metadata_structured_20260810_092446.json",
+  "updated_releases": [
+    {
+      "id": 17363,
+      "title": "Wadaima",
+      "artist": "Udede",
+      "fields": {
+        "release_date": "2025-11-14"
+      }
+    },
+    {
+      "id": 17381,
+      "title": "What I Like",
+      "artist": "Rvssian",
+      "fields": {
+        "isrc": "QZWA32201703"
+      }
+    },
+    {
+      "id": 17383,
+      "title": "White Keys",
+      "artist": "Dominic Fike",
+      "fields": {
+        "release_date": "2025-11-14"
+      }
+    },
+    {
+      "id": 17420,
+      "title": "wgft",
+      "artist": "Gunna",
+      "fields": {
+        "isrc": "USAT22505839"
+      }
+    },
+    {
+      "id": 17422,
+      "title": "uMA weNGANE",
+      "artist": "Thukuthela",
+      "fields": {
+        "isrc": "USUYG1736796"
+      }
+    },
+    {
+      "id": 17425,
+      "title": "WHY LOVE",
+      "artist": "Asake",
+      "fields": {
+        "release_date": "2026-05-20"
+      }
+    },
+    {
+      "id": 17437,
+      "title": "It Depends",
+      "artist": "Chris Brown",
+      "fields": {
+        "release_date": "2025-07-23"
+      }
+    },
+    {
+      "id": 17441,
+      "title": "DYNAMITE",
+      "artist": "Tyla",
+      "fields": {
+        "release_date": "2025-07-24"
+      }
+    },
+    {
+      "id": 17504,
+      "title": "One Condition",
+      "artist": "DJ Tunez",
+      "fields": {
+        "release_date": "2025-07-25"
+      }
+    },
+    {
+      "id": 17553,
+      "title": "Lala",
+      "artist": "Harmonize",
+      "fields": {
+        "release_date": "2025-08-15"
+      }
+    },
+    {
+      "id": 17559,
+      "title": "Mon Amor",
+      "artist": "Rayvanny",
+      "fields": {
+        "release_date": "2024-12-13"
+      }
+    },
+    {
+      "id": 17560,
+      "title": "Arenare",
+      "artist": "Yammi",
+      "fields": {
+        "release_date": "2025-08-22"
+      }
+    },
+    {
+      "id": 17562,
+      "title": "See me see God (SMSG)",
+      "artist": "Barry Jhay",
+      "fields": {
+        "release_date": "2025-04-11"
+      }
+    },
+    {
+      "id": 17563,
+      "title": "lost",
+      "artist": "FOLA",
+      "fields": {
+        "release_date": "2025-04-25"
+      }
+    },
+    {
+      "id": 17567,
+      "title": "Ewo",
+      "artist": "Famous Pluto",
+      "fields": {
+        "release_date": "2025-06-20"
+      }
+    },
+    {
+      "id": 17576,
+      "title": "Day by Day",
+      "artist": "Kondela",
+      "fields": {
+        "release_date": "2025-09-17"
+      }
+    },
+    {
+      "id": 17591,
+      "title": "Kidedea",
+      "artist": "Harmonize",
+      "fields": {
+        "release_date": "2025-09-19"
+      }
+    },
+    {
+      "id": 17593,
+      "title": "My Lady",
+      "artist": "Nahj",
+      "fields": {
+        "release_date": "2025-09-17"
+      }
+    },
+    {
+      "id": 17624,
+      "title": "Cash Flow",
+      "artist": "Young Jonn",
+      "fields": {
+        "release_date": "2025-08-29"
+      }
+    },
+    {
+      "id": 17642,
+      "title": "Not For Me",
+      "artist": "Koko Pee",
+      "fields": {
+        "release_date": "2025-08-15"
+      }
+    },
+    {
+      "id": 17658,
+      "title": "Umenipima",
+      "artist": "Obby Alpha",
+      "fields": {
+        "release_date": "2025-03-14"
+      }
+    },
+    {
+      "id": 17659,
+      "title": "Amepotea",
+      "artist": "Mbosso",
+      "fields": {
+        "release_date": "2023-05-10"
+      }
+    },
+    {
+      "id": 17660,
+      "title": "Wine To The Top",
+      "artist": "Vybz Kartel",
+      "fields": {
+        "release_date": "2017-02-24"
+      }
+    },
+    {
+      "id": 17661,
+      "title": "Nani",
+      "artist": "D Voice",
+      "fields": {
+        "release_date": "2024-08-06"
+      }
+    },
+    {
+      "id": 17664,
+      "title": "Huyu Hapa",
+      "artist": "Mbosso",
+      "fields": {
+        "release_date": "2022-10-21"
+      }
+    },
+    {
+      "id": 17699,
+      "title": "Wangu",
+      "artist": "Marioo",
+      "fields": {
+        "release_date": "2025-11-20"
+      }
+    },
+    {
+      "id": 17723,
+      "title": "ANGUKA NAYO",
+      "artist": "Wadagliz",
+      "fields": {
+        "isrc": "QZNWX2483612"
+      }
+    },
+    {
+      "id": 17726,
+      "title": "Toyota Crown 2",
+      "artist": "Countree Hype",
+      "fields": {
+        "isrc": "QZPYN2118508",
+        "release_date": "2022-03-04"
+      }
+    },
+    {
+      "id": 17736,
+      "title": "Kaa nami (Live)",
+      "artist": "Israel Mbonyi",
+      "fields": {
+        "release_date": "2024-10-02"
+      }
+    },
+    {
+      "id": 17737,
+      "title": "TIKI TAKO",
+      "artist": "Matata",
+      "fields": {
+        "release_date": "2025-06-06",
+        "isrc": "QZTAU2591214"
+      }
+    },
+    {
+      "id": 17755,
+      "title": "Dansa",
+      "artist": "Klassik Frescobar",
+      "fields": {
+        "release_date": "2025-01-24"
+      }
+    },
+    {
+      "id": 17821,
+      "title": "Ça fait mal",
+      "artist": "Kedjevara",
+      "fields": {
+        "release_date": "2024-12-06"
+      }
+    },
+    {
+      "id": 17822,
+      "title": "Remember Me",
+      "artist": "Lucky Dube",
+      "fields": {
+        "release_date": "1989-01-01"
+      }
+    },
+    {
+      "id": 17823,
+      "title": "Gimme Dat",
+      "artist": "Ayra Starr",
+      "fields": {
+        "release_date": "2025-04-25"
+      }
+    },
+    {
+      "id": 17824,
+      "title": "See You Tonight",
+      "artist": "Omega 256",
+      "fields": {
+        "release_date": "2025-08-16"
+      }
+    },
+    {
+      "id": 17825,
+      "title": "Sina Raha",
+      "artist": "Sam Wa Ukweli",
+      "fields": {
+        "release_date": "2019-04-19"
+      }
+    },
+    {
+      "id": 17826,
+      "title": "Magumba",
+      "artist": "Khadeair",
+      "fields": {
+        "release_date": "2025-07-17"
+      }
+    },
+    {
+      "id": 17835,
+      "title": "Watch Me",
+      "artist": "Busy Signal",
+      "fields": {
+        "release_date": "2020-09-10"
+      }
+    },
+    {
+      "id": 17837,
+      "title": "MAMA",
+      "artist": "Ntombemhlope",
+      "fields": {
+        "release_date": "2025-06-20"
+      }
+    },
+    {
+      "id": 17876,
+      "title": "uMoya",
+      "artist": "Thukuthela",
+      "fields": {
+        "release_date": "2025-09-19"
+      }
+    },
+    {
+      "id": 17881,
+      "title": "So Easy (To Fall In Love)",
+      "artist": "Olivia Dean",
+      "fields": {
+        "release_date": "2025-09-26"
+      }
+    },
+    {
+      "id": 17882,
+      "title": "Nyaduse",
+      "artist": "KODONGKLAN",
+      "fields": {
+        "release_date": "2024-12-12"
+      }
+    },
+    {
+      "id": 17897,
+      "title": "Jamaica Farewell",
+      "artist": "Harry Belafonte",
+      "fields": {
+        "release_date": "1956-01-01"
+      }
+    },
+    {
+      "id": 17911,
+      "title": "CELINE DION",
+      "artist": "Zinoleesky",
+      "fields": {
+        "release_date": "2025-10-03"
+      }
+    },
+    {
+      "id": 17918,
+      "title": "Mitano",
+      "artist": "Lony Bway",
+      "fields": {
+        "release_date": "2025-10-20"
+      }
+    },
+    {
+      "id": 17952,
+      "title": "Sensational",
+      "artist": "Drex D",
+      "fields": {
+        "release_date": "2025-10-09"
+      }
+    },
+    {
+      "id": 17960,
+      "title": "Paid to Exist",
+      "artist": "brux XTN",
+      "fields": {
+        "release_date": "2025-09-19"
+      }
+    },
+    {
+      "id": 18004,
+      "title": "Msumari",
+      "artist": "Aloony",
+      "fields": {
+        "release_date": "2025-10-11"
+      }
+    },
+    {
+      "id": 18012,
+      "title": "Mawazo",
+      "artist": "Diamond Platnumz",
+      "fields": {
+        "release_date": "2012-02-05"
+      }
+    },
+    {
+      "id": 18040,
+      "title": "M.O.T.O",
+      "artist": "X.O",
+      "fields": {
+        "isrc": "QZTB92560513"
+      }
+    },
+    {
+      "id": 18041,
+      "title": "Now or Never",
+      "artist": "Tkandz",
+      "fields": {
+        "release_date": "2025-10-02"
+      }
+    },
+    {
+      "id": 18043,
+      "title": "Jamaica Farewell",
+      "artist": "John Holt",
+      "fields": {
+        "release_date": "1997-04-21"
+      }
+    },
+    {
+      "id": 18062,
+      "title": "Njoo",
+      "artist": "Chege",
+      "fields": {
+        "release_date": "2015-08-20"
+      }
+    },
+    {
+      "id": 18073,
+      "title": "SPIRIT",
+      "artist": "Vicoka",
+      "fields": {
+        "release_date": "2025-07-28"
+      }
+    },
+    {
+      "id": 18081,
+      "title": "So Mi Like It (Caine Remix)",
+      "artist": "Caine",
+      "fields": {
+        "release_date": "2023-10-16"
+      }
+    },
+    {
+      "id": 18130,
+      "title": "HOW ARE YOU",
+      "artist": "Seyi Vibez",
+      "fields": {
+        "release_date": "2025-10-28"
+      }
+    },
+    {
+      "id": 18153,
+      "title": "Living Waters",
+      "artist": "Toprock Gospel",
+      "fields": {
+        "release_date": "2025-10-23"
+      }
+    },
+    {
+      "id": 18245,
+      "title": "Ombi Langu My Desire Thandez' Lami",
+      "artist": "Sounds Of Afrika Music",
+      "fields": {
+        "release_date": "2025-08-10"
+      }
+    },
+    {
+      "id": 18246,
+      "title": "Muzina",
+      "artist": "Tabu Ley Rochereau",
+      "fields": {
+        "release_date": "1994-01-01"
+      }
+    },
+    {
+      "id": 18249,
+      "title": "Wah Yuh",
+      "artist": "Eshconinco",
+      "fields": {
+        "release_date": "2016-07-16"
+      }
+    },
+    {
+      "id": 18272,
+      "title": "KOMSA",
+      "artist": "SIJI.",
+      "fields": {
+        "release_date": "2025-07-30"
+      }
+    },
+    {
+      "id": 18301,
+      "title": "Morocco",
+      "artist": "Joshua Baraka",
+      "fields": {
+        "release_date": "2026-02-13"
+      }
+    },
+    {
+      "id": 18339,
+      "title": "Zahar (Sugar)",
+      "artist": "Kondela",
+      "fields": {
+        "release_date": "2025-12-17"
+      }
+    },
+    {
+      "id": 18341,
+      "title": "Richer",
+      "artist": "J Hus",
+      "fields": {
+        "release_date": "2025-12-11"
+      }
+    },
+    {
+      "id": 18356,
+      "title": "DML",
+      "artist": "Josh Kamba",
+      "fields": {
+        "release_date": "2025-11-27"
+      }
+    },
+    {
+      "id": 18360,
+      "title": "BIG MAN TING",
+      "artist": "Timaya",
+      "fields": {
+        "release_date": "2025-12-05"
+      }
+    },
+    {
+      "id": 18367,
+      "title": "Tera Ghata (Female)",
+      "artist": "Gajendra Verma",
+      "fields": {
+        "release_date": "2019-02-01"
+      }
+    },
+    {
+      "id": 18375,
+      "title": "Weru Uyu",
+      "artist": "Sammy Irungu",
+      "fields": {
+        "release_date": "2025-12-08"
+      }
+    },
+    {
+      "id": 18388,
+      "title": "Zoo",
+      "artist": "Shakira",
+      "fields": {
+        "release_date": "2025-10-10"
+      }
+    },
+    {
+      "id": 18404,
+      "title": "Assinata",
+      "artist": "Beniko",
+      "fields": {
+        "release_date": "2013-10-23"
+      }
+    },
+    {
+      "id": 18405,
+      "title": "Nitaamini",
+      "artist": "Emanuel Nicarios",
+      "fields": {
+        "release_date": "2025-11-25"
+      }
+    },
+    {
+      "id": 18406,
+      "title": "Too Sweet to Share",
+      "artist": "Song Writer's Playbook",
+      "fields": {
+        "release_date": "2025-10-14"
+      }
+    },
+    {
+      "id": 18407,
+      "title": "Mirror To Magic",
+      "artist": "Shift to Abundance",
+      "fields": {
+        "release_date": "2025-11-27",
+        "isrc": "QT6F72509971"
+      }
+    },
+    {
+      "id": 18421,
+      "title": "Vision",
+      "artist": "Time N Gold",
+      "fields": {
+        "release_date": "2024-04-25"
+      }
+    },
+    {
+      "id": 18452,
+      "title": "Turbulence",
+      "artist": "Wizkid",
+      "fields": {
+        "release_date": "2026-01-23"
+      }
+    },
+    {
+      "id": 18474,
+      "title": "Pom Pom",
+      "artist": "Bruce Melodie",
+      "fields": {
+        "release_date": "2026-01-01"
+      }
+    },
+    {
+      "id": 18475,
+      "title": "Paparazzi",
+      "artist": "Shoday",
+      "fields": {
+        "release_date": "2026-01-02"
+      }
+    },
+    {
+      "id": 18483,
+      "title": "Tamu Chungu",
+      "artist": "Vanillah",
+      "fields": {
+        "release_date": "2026-01-21"
+      }
+    },
+    {
+      "id": 18504,
+      "title": "Moyo Mjinga",
+      "artist": "Diameter Pallet",
+      "fields": {
+        "release_date": "2025-12-13"
+      }
+    },
+    {
+      "id": 18554,
+      "title": "Dibiri Dikae",
+      "artist": "SdoDiRoba",
+      "fields": {
+        "release_date": "2026-02-28"
+      }
+    },
+    {
+      "id": 18558,
+      "title": "Simwachi",
+      "artist": "Jorh Creta",
+      "fields": {
+        "release_date": "2025-12-25"
+      }
+    },
+    {
+      "id": 18560,
+      "title": "Birkin Bag",
+      "artist": "shewahdexta",
+      "fields": {
+        "release_date": "2026-01-02"
+      }
+    },
+    {
+      "id": 18562,
+      "title": "Over the Vibes",
+      "artist": "Furryx",
+      "fields": {
+        "release_date": "2025-12-28"
+      }
+    },
+    {
+      "id": 18564,
+      "title": "Kamwambie",
+      "artist": "LR GLOBAL",
+      "fields": {
+        "release_date": "2026-01-10"
+      }
+    },
+    {
+      "id": 18566,
+      "title": "On my side",
+      "artist": "Victor Ivyic",
+      "fields": {
+        "release_date": "2025-12-23"
+      }
+    },
+    {
+      "id": 18607,
+      "title": "Bunce Road Blues",
+      "artist": "J. Cole",
+      "fields": {
+        "release_date": "2026-02-06"
+      }
+    },
+    {
+      "id": 18608,
+      "title": "E85",
+      "artist": "Don Toliver",
+      "fields": {
+        "release_date": "2026-01-22"
+      }
+    },
+    {
+      "id": 18609,
+      "title": "Poor Thang",
+      "artist": "J. Cole",
+      "fields": {
+        "release_date": "2026-02-05"
+      }
+    },
+    {
+      "id": 18610,
+      "title": "SAFETY",
+      "artist": "J. Cole",
+      "fields": {
+        "release_date": "2026-02-05"
+      }
+    },
+    {
+      "id": 18621,
+      "title": "29 Intro",
+      "artist": "J. Cole",
+      "fields": {
+        "release_date": "2026-02-05"
+      }
+    },
+    {
+      "id": 18658,
+      "title": "Hayanogi",
+      "artist": "Yammi",
+      "fields": {
+        "release_date": "2026-01-29"
+      }
+    },
+    {
+      "id": 18693,
+      "title": "Restoring the Order",
+      "artist": "Toprock Gospel",
+      "fields": {
+        "release_date": "2026-02-03"
+      }
+    },
+    {
+      "id": 18694,
+      "title": "Wajue",
+      "artist": "Tipsy Gee",
+      "fields": {
+        "release_date": "2026-01-21"
+      }
+    },
+    {
+      "id": 18703,
+      "title": "Manifest",
+      "artist": "Mejja",
+      "fields": {
+        "release_date": "2026-02-10"
+      }
+    },
+    {
+      "id": 18710,
+      "title": "Macmuga",
+      "artist": "Alikiba",
+      "fields": {
+        "release_date": "2006-06-01"
+      }
+    },
+    {
+      "id": 18711,
+      "title": "Ushuhuda",
+      "artist": "Dj Kezz",
+      "fields": {
+        "release_date": "2026-02-12"
+      }
+    },
+    {
+      "id": 18718,
+      "title": "Retire",
+      "artist": "ALEX KASAU KATOMBI",
+      "fields": {
+        "release_date": "2026-02-20"
+      }
+    },
+    {
+      "id": 18741,
+      "title": "Waiting so Long",
+      "artist": "Popcaan",
+      "fields": {
+        "release_date": "2014-06-10"
+      }
+    },
+    {
+      "id": 18743,
+      "title": "Society Pressure",
+      "artist": "Willy Paul",
+      "fields": {
+        "release_date": "2024-11-15"
+      }
+    },
+    {
+      "id": 18757,
+      "title": "Vuva",
+      "artist": "FRAH KE",
+      "fields": {
+        "release_date": "2025-07-06"
+      }
+    },
+    {
+      "id": 18782,
+      "title": "Risk It All",
+      "artist": "Bruno Mars",
+      "fields": {
+        "release_date": "2026-02-27"
+      }
+    },
+    {
+      "id": 18804,
+      "title": "Mafrrrmbanya",
+      "artist": "Watendawili",
+      "fields": {
+        "release_date": "2026-02-25"
+      }
+    },
+    {
+      "id": 18807,
+      "title": "Moja",
+      "artist": "Moses Luka",
+      "fields": {
+        "release_date": "2026-03-06"
+      }
+    },
+    {
+      "id": 18834,
+      "title": "Tell Me Nothing",
+      "artist": "T Peller",
+      "fields": {
+        "release_date": "2026-02-27"
+      }
+    },
+    {
+      "id": 18841,
+      "title": "Usimpe roho",
+      "artist": "Pam",
+      "fields": {
+        "release_date": "2025-05-01"
+      }
+    },
+    {
+      "id": 18866,
+      "title": "Anginayo Imali",
+      "artist": "HBK Live Act",
+      "fields": {
+        "release_date": "2026-02-20"
+      }
+    },
+    {
+      "id": 18867,
+      "title": "Bwagalaa",
+      "artist": "Harry Craze",
+      "fields": {
+        "release_date": "2026-02-13"
+      }
+    },
+    {
+      "id": 18869,
+      "title": "Jeene Laga Hoon",
+      "artist": "Trinix Remix",
+      "fields": {
+        "release_date": "2025-04-25"
+      }
+    },
+    {
+      "id": 18870,
+      "title": "Baba don do wam again",
+      "artist": "Prince Ben",
+      "fields": {
+        "release_date": "2026-01-21"
+      }
+    },
+    {
+      "id": 18871,
+      "title": "I Speak Blessings",
+      "artist": "Delana Hope",
+      "fields": {
+        "release_date": "2026-02-06"
+      }
+    },
+    {
+      "id": 18872,
+      "title": "Steam",
+      "artist": "Fena Gitu",
+      "fields": {
+        "release_date": "2019-01-25"
+      }
+    },
+    {
+      "id": 18874,
+      "title": "Kristo Wa Neema Yote Imbisha Moyo Wangu",
+      "artist": "Sounds Of Afrika Music",
+      "fields": {
+        "release_date": "2026-03-07"
+      }
+    },
+    {
+      "id": 18875,
+      "title": "Only You",
+      "artist": "Walter Chilambo",
+      "fields": {
+        "release_date": "2018-04-27"
+      }
+    },
+    {
+      "id": 18876,
+      "title": "YOU & I [Voicenote]",
+      "artist": "Anne-Marie",
+      "fields": {
+        "release_date": "2023-07-28"
+      }
+    },
+    {
+      "id": 18915,
+      "title": "Jam",
+      "artist": "Fally Ipupa",
+      "fields": {
+        "release_date": "2026-04-16"
+      }
+    },
+    {
+      "id": 18937,
+      "title": "Moyo",
+      "artist": "Lony Bway",
+      "fields": {
+        "release_date": "2026-03-27"
+      }
+    },
+    {
+      "id": 18940,
+      "title": "Mkuu Mamake",
+      "artist": "MAKAMANDA",
+      "fields": {
+        "release_date": "2026-03-24"
+      }
+    },
+    {
+      "id": 18947,
+      "title": "Searching for Love",
+      "artist": "Vanillah",
+      "fields": {
+        "release_date": "2026-04-20"
+      }
+    },
+    {
+      "id": 18953,
+      "title": "Nitolee",
+      "artist": "Peterbril",
+      "fields": {
+        "release_date": "2026-04-24"
+      }
+    },
+    {
+      "id": 18961,
+      "title": "Wakembeshe",
+      "artist": "Khaligraph Jones",
+      "fields": {
+        "release_date": "2026-04-24"
+      }
+    },
+    {
+      "id": 18966,
+      "title": "Side Chick",
+      "artist": "Arrow Bwoy",
+      "fields": {
+        "release_date": "2026-04-10"
+      }
+    },
+    {
+      "id": 18970,
+      "title": "Bend Ova",
+      "artist": "Kman 6ixx",
+      "fields": {
+        "release_date": "2026-03-06"
+      }
+    },
+    {
+      "id": 18986,
+      "title": "Love",
+      "artist": "Zuchu",
+      "fields": {
+        "release_date": "2022-09-30"
+      }
+    },
+    {
+      "id": 18987,
+      "title": "Tuheshimiane Usinidharau",
+      "artist": "Soul Touch Brand",
+      "fields": {
+        "release_date": "2026-02-08"
+      }
+    },
+    {
+      "id": 18999,
+      "title": "Osama",
+      "artist": "OnlyMoh",
+      "fields": {
+        "release_date": "2026-01-11"
+      }
+    },
+    {
+      "id": 19017,
+      "title": "Kiuzombie",
+      "artist": "DWAYNE SPIKES",
+      "fields": {
+        "release_date": "2025-09-30"
+      }
+    },
+    {
+      "id": 19018,
+      "title": "Right By Your Side.",
+      "artist": "Laflare",
+      "fields": {
+        "release_date": "2026-04-02"
+      }
+    },
+    {
+      "id": 19019,
+      "title": "Tell me what to do (Special Version)",
+      "artist": "Vailedmoon music",
+      "fields": {
+        "release_date": "2026-03-23"
+      }
+    },
+    {
+      "id": 19020,
+      "title": "Riches",
+      "artist": "Shane O",
+      "fields": {
+        "release_date": "2019-04-26"
+      }
+    },
+    {
+      "id": 19025,
+      "title": "In the Silence",
+      "artist": "English Audio Bible",
+      "fields": {
+        "release_date": "2026-04-08"
+      }
+    },
+    {
+      "id": 19026,
+      "title": "Limenoga",
+      "artist": "Mavoicetz",
+      "fields": {
+        "release_date": "2026-03-25"
+      }
+    },
+    {
+      "id": 19029,
+      "title": "Mimina Neema",
+      "artist": "Official Tikiti",
+      "fields": {
+        "release_date": "2026-04-10"
+      }
+    },
+    {
+      "id": 19030,
+      "title": "Take My Love",
+      "artist": "Christopher Martin",
+      "fields": {
+        "release_date": "2007-11-06"
+      }
+    },
+    {
+      "id": 19055,
+      "title": "First Lady",
+      "artist": "Mr Nice",
+      "fields": {
+        "release_date": "2008-04-04"
+      }
+    },
+    {
+      "id": 19056,
+      "title": "VALHALLA CALLING",
+      "artist": "Ragal Ironbull",
+      "fields": {
+        "release_date": "2026-04-03"
+      }
+    },
+    {
+      "id": 19070,
+      "title": "YoYo",
+      "artist": "Virusi Mbaya",
+      "fields": {
+        "release_date": "2026-04-18"
+      }
+    },
+    {
+      "id": 19131,
+      "title": "Yazoee",
+      "artist": "Harmonize",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19132,
+      "title": "Kakua",
+      "artist": "Angélique Kidjo",
+      "fields": {
+        "release_date": "2026-04-24"
+      }
+    },
+    {
+      "id": 19133,
+      "title": "Juju",
+      "artist": "Barnaba",
+      "fields": {
+        "release_date": "2026-04-30"
+      }
+    },
+    {
+      "id": 19134,
+      "title": "Nikupe",
+      "artist": "Kassam",
+      "fields": {
+        "release_date": "2026-04-18"
+      }
+    },
+    {
+      "id": 19135,
+      "title": "Ndi Ready",
+      "artist": "Kevin Kade",
+      "fields": {
+        "release_date": "2026-05-06"
+      }
+    },
+    {
+      "id": 19137,
+      "title": "My Baby",
+      "artist": "Xouh",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19138,
+      "title": "Mummy Wange",
+      "artist": "Sheebah",
+      "fields": {
+        "release_date": "2026-05-10"
+      }
+    },
+    {
+      "id": 19140,
+      "title": "Niko Bie",
+      "artist": "16Barz",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19141,
+      "title": "Stamina",
+      "artist": "Party Wright",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19142,
+      "title": "TEZINUMA",
+      "artist": "Anko Ronie",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19143,
+      "title": "Aeiou",
+      "artist": "Dax Vibez",
+      "fields": {
+        "release_date": "2026-04-24"
+      }
+    },
+    {
+      "id": 19144,
+      "title": "Celebrate",
+      "artist": "Frida Amani",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19145,
+      "title": "Malu",
+      "artist": "Alijoma",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19146,
+      "title": "Try Me",
+      "artist": "Dolv Gvng",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19147,
+      "title": "Pole Pole",
+      "artist": "Hildah Watiri",
+      "fields": {
+        "release_date": "2026-05-01"
+      }
+    },
+    {
+      "id": 19150,
+      "title": "Imbobo",
+      "artist": "R.M.H",
+      "fields": {
+        "isrc": "QT6632631244",
+        "release_date": "2026-05-04"
+      }
+    },
+    {
+      "id": 19152,
+      "title": "Venus",
+      "artist": "Faceless",
+      "fields": {
+        "release_date": "2024-11-28"
+      }
+    },
+    {
+      "id": 19154,
+      "title": "Crazy Love",
+      "artist": "Wendy Shay",
+      "fields": {
+        "release_date": "2025-08-08"
+      }
+    },
+    {
+      "id": 19156,
+      "title": "See What We've Done",
+      "artist": "King Promise",
+      "fields": {
+        "release_date": "2025-09-19"
+      }
+    },
+    {
+      "id": 19159,
+      "title": "Lameda",
+      "artist": "SAMAD",
+      "fields": {
+        "release_date": "2025-04-01"
+      }
+    },
+    {
+      "id": 19161,
+      "title": "Oh No",
+      "artist": "Oberz",
+      "fields": {
+        "release_date": "2024-10-11"
+      }
+    },
+    {
+      "id": 19162,
+      "title": "Habit",
+      "artist": "Fameye",
+      "fields": {
+        "release_date": "2025-08-28"
+      }
+    },
+    {
+      "id": 19165,
+      "title": "Dying Minute",
+      "artist": "Stahgee",
+      "fields": {
+        "release_date": "2025-09-10"
+      }
+    },
+    {
+      "id": 19170,
+      "title": "Instagram",
+      "artist": "Muyeez",
+      "fields": {
+        "release_date": "2024-04-30",
+        "isrc": "USA2P2421618"
+      }
+    },
+    {
+      "id": 19172,
+      "title": "Olivia",
+      "artist": "Lasmid",
+      "fields": {
+        "release_date": "2025-03-05"
+      }
+    },
+    {
+      "id": 19173,
+      "title": "MY GOD",
+      "artist": "BBO",
+      "fields": {
+        "release_date": "2025-02-21"
+      }
+    },
+    {
+      "id": 19174,
+      "title": "Shakabulizzy",
+      "artist": "Mavo",
+      "fields": {
+        "release_date": "2025-12-20"
+      }
+    },
+    {
+      "id": 19175,
+      "title": "Cartoon",
+      "artist": "Naira Marley",
+      "fields": {
+        "release_date": "2025-08-28"
+      }
+    },
+    {
+      "id": 19177,
+      "title": "Okwu (Remix)",
+      "artist": "Rord Kelly",
+      "fields": {
+        "release_date": "2025-09-26"
+      }
+    },
+    {
+      "id": 19179,
+      "title": "Constantly",
+      "artist": "Hyce",
+      "fields": {
+        "release_date": "2024-08-28"
+      }
+    },
+    {
+      "id": 19180,
+      "title": "Zagga Dat",
+      "artist": "Black Coco",
+      "fields": {
+        "release_date": "2025-09-26"
+      }
+    },
+    {
+      "id": 19181,
+      "title": "Rebel Music",
+      "artist": "Black Sherif",
+      "fields": {
+        "release_date": "2025-04-02"
+      }
+    },
+    {
+      "id": 19266,
+      "title": "Dey For You",
+      "artist": "T Peller",
+      "fields": {
+        "release_date": "2026-04-23"
+      }
+    },
+    {
+      "id": 19267,
+      "title": "All I Need Is You",
+      "artist": "Toprock Gospel",
+      "fields": {
+        "release_date": "2026-05-01"
+      }
+    },
+    {
+      "id": 19271,
+      "title": "Majo",
+      "artist": "Jux",
+      "fields": {
+        "release_date": "2025-12-02"
+      }
+    },
+    {
+      "id": 19290,
+      "title": "My tamu tamu",
+      "artist": "Stella Mengele",
+      "fields": {
+        "release_date": "2026-05-04"
+      }
+    },
+    {
+      "id": 19298,
+      "title": "MZEE WA HOVYO",
+      "artist": "Free Da Truth",
+      "fields": {
+        "release_date": "2026-05-08"
+      }
+    },
+    {
+      "id": 19299,
+      "title": "EBENEZER",
+      "artist": "The Wamagatas",
+      "fields": {
+        "release_date": "2026-04-26"
+      }
+    },
+    {
+      "id": 19301,
+      "title": "Dance for Me [Acoustic]",
+      "artist": "Kusslove",
+      "fields": {
+        "release_date": "2026-04-15"
+      }
+    },
+    {
+      "id": 19305,
+      "title": "Baba God",
+      "artist": "Official Baba Paul",
+      "fields": {
+        "release_date": "2026-06-29"
+      }
+    },
+    {
+      "id": 19306,
+      "title": "Mind Your Business",
+      "artist": "Dela Cuffy",
+      "fields": {
+        "release_date": "2026-05-01"
+      }
+    },
+    {
+      "id": 19307,
+      "title": "Hebu Nieleze",
+      "artist": "CJS",
+      "fields": {
+        "release_date": "2026-02-27"
+      }
+    },
+    {
+      "id": 19310,
+      "title": "Slip & Slide",
+      "artist": "Masicka",
+      "fields": {
+        "release_date": "2026-04-24"
+      }
+    },
+    {
+      "id": 19370,
+      "title": "Olamidé",
+      "artist": "Olamide",
+      "fields": {
+        "upc": "199316074352"
+      }
+    },
+    {
+      "id": 19408,
+      "title": "Unfolded",
+      "artist": "Xania Monet",
+      "fields": {
+        "release_date": "2025-08-08"
+      }
+    },
+    {
+      "id": 19486,
+      "title": "Rain Sounds",
+      "artist": "SleepTherapy",
+      "fields": {
+        "upc": "197368427713"
+      }
+    },
+    {
+      "id": 19519,
+      "title": "The Summer That Saved Me",
+      "artist": "Odeal",
+      "fields": {
+        "release_date": "2025-07-11"
+      }
+    },
+    {
+      "id": 19608,
+      "title": "To Whom It May Concern - EP",
+      "artist": "Nyashinski",
+      "fields": {
+        "release_date": "2024-09-13"
+      }
+    },
+    {
+      "id": 19623,
+      "title": "RENT'S DUE (DELUXE)",
+      "artist": "Nemzzz",
+      "fields": {
+        "release_date": "2025-03-31"
+      }
+    },
+    {
+      "id": 19639,
+      "title": "Good Old Days - EP",
+      "artist": "Nyashinski",
+      "fields": {
+        "release_date": "2024-01-26"
+      }
+    },
+    {
+      "id": 19743,
+      "title": "Time Traveller",
+      "artist": "GENIUSJINI X66",
+      "fields": {
+        "release_date": "2025-08-20"
+      }
+    },
+    {
+      "id": 19755,
+      "title": "+-=÷× (Tour Collection: Live)",
+      "artist": "Ed Sheeran",
+      "fields": {
+        "upc": "5021732586186"
+      }
+    },
+    {
+      "id": 19787,
+      "title": "Qwarantunes",
+      "artist": "Bensoul",
+      "fields": {
+        "release_date": "2020-05-29"
+      }
+    },
+    {
+      "id": 19815,
+      "title": "WAPOA SZN 2",
+      "artist": "Big yasa",
+      "fields": {
+        "release_date": "2025-07-30"
+      }
+    },
+    {
+      "id": 19823,
+      "title": "Souled Out",
+      "artist": "Virusi Mbaya",
+      "fields": {
+        "release_date": "2025-11-18"
+      }
+    },
+    {
+      "id": 19969,
+      "title": "THE CASTLE NEVER FALLS",
+      "artist": "Chris Grey",
+      "fields": {
+        "release_date": "2024-10-18"
+      }
+    },
+    {
+      "id": 20004,
+      "title": "Solace & The Vices",
+      "artist": "Bryson Tiller",
+      "fields": {
+        "release_date": "2025-10-02"
+      }
+    },
+    {
+      "id": 20241,
+      "title": "Layover",
+      "artist": "V",
+      "fields": {
+        "upc": "196922580031"
+      }
+    },
+    {
+      "id": 20738,
+      "title": "Niko",
+      "artist": "Kahu$h",
+      "fields": {
+        "release_date": "2020-03-20"
+      }
+    },
+    {
+      "id": 20941,
+      "title": "Tabasamu",
+      "artist": "Obby Alpha",
+      "fields": {
+        "release_date": "2022-12-24"
+      }
+    },
+    {
+      "id": 21147,
+      "title": "To Whom It May Concern",
+      "artist": "Trio Mio",
+      "fields": {
+        "release_date": "2024-11-22"
+      }
+    },
+    {
+      "id": 21203,
+      "title": "The Great Divide: The Last Of The Bugs",
+      "artist": "Noah Kahan",
+      "fields": {
+        "release_date": "2026-04-25"
+      }
+    },
+    {
+      "id": 21393,
+      "title": "NaEnjoy",
+      "artist": "Bensoul",
+      "fields": {
+        "release_date": "2026-04-20"
+      }
+    },
+    {
+      "id": 21560,
+      "title": "THE GENTLEMEN'S CLUB",
+      "artist": "YG",
+      "fields": {
+        "release_date": "2026-06-19"
+      }
+    },
+    {
+      "id": 21562,
+      "title": "THE WIZARD",
+      "artist": "M Huncho",
+      "fields": {
+        "release_date": "2026-06-19"
+      }
+    },
+    {
+      "id": 21618,
+      "title": "Utanionea",
+      "artist": "Alikiba",
+      "fields": {
+        "release_date": "2026-06-05"
+      }
+    },
+    {
+      "id": 21621,
+      "title": "Hate That I Love You",
+      "artist": "Nandy",
+      "fields": {
+        "release_date": "2026-06-12"
+      }
+    },
+    {
+      "id": 21622,
+      "title": "Feeling",
+      "artist": "FOLA",
+      "fields": {
+        "release_date": "2024-02-23"
+      }
+    },
+    {
+      "id": 21634,
+      "title": "WAWILI",
+      "artist": "Nahsh kariuki Official",
+      "fields": {
+        "release_date": "2026-01-15"
+      }
+    },
+    {
+      "id": 21638,
+      "title": "Champions (WC 26)",
+      "artist": "IShowSpeed",
+      "fields": {
+        "release_date": "2026-06-01"
+      }
+    },
+    {
+      "id": 21640,
+      "title": "Tumaini Letu",
+      "artist": "THE LIGHTBEARERS TZ",
+      "fields": {
+        "release_date": "2025-03-05"
+      }
+    },
+    {
+      "id": 21653,
+      "title": "DNA (More Than A Game)",
+      "artist": "Andrea Bocelli",
+      "fields": {
+        "release_date": "2026-06-10"
+      }
+    },
+    {
+      "id": 21654,
+      "title": "Nisamehe",
+      "artist": "Diameter Pallet",
+      "fields": {
+        "release_date": "2026-06-07"
+      }
+    },
+    {
+      "id": 21659,
+      "title": "Sorry I'm Different",
+      "artist": "Miracle LRE",
+      "fields": {
+        "release_date": "2026-06-07"
+      }
+    },
+    {
+      "id": 21663,
+      "title": "The Season",
+      "artist": "I-Octane",
+      "fields": {
+        "release_date": "2016-07-15"
+      }
+    },
+    {
+      "id": 21682,
+      "title": "Yanamwagika",
+      "artist": "Kusah",
+      "fields": {
+        "release_date": "2026-05-29"
+      }
+    },
+    {
+      "id": 22006,
+      "title": "Nakupenda (feat. Al Xapo & Zlatan)",
+      "artist": "TxC",
+      "fields": {
+        "isrc": "QMFMG2582261"
+      }
+    },
+    {
+      "id": 22011,
+      "title": "Tholukuthi (Clap Song) [feat. MaWhoo]",
+      "artist": "JAZZWRLD",
+      "fields": {
+        "isrc": "USUYG1736799"
+      }
+    },
+    {
+      "id": 22021,
+      "title": "iPlan (feat. Zaba & Sykes)",
+      "artist": "Dlala Thukzin",
+      "fields": {
+        "isrc": "ZAVEH2300002"
+      }
+    },
+    {
+      "id": 22046,
+      "title": "How are you?",
+      "artist": "Levelz UP",
+      "fields": {
+        "release_date": "2026-07-14"
+      }
+    },
+    {
+      "id": 22102,
+      "title": "The Game Needs Us",
+      "artist": "BNXN",
+      "fields": {
+        "release_date": "2026-05-12"
+      }
+    }
+  ],
+  "updated_artists": [
+    {
+      "id": 1,
+      "name": "Bensoul",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/bensoul/1180877137?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Dyana Cods",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dyana-cods/1713436650?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Ruger",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ruger/1548965965?uo=4"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Ssaru",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ssaru/1491367131?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Ayra Starr",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ayra-starr/1536429348?uo=4"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Darassa",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/darassa/1038026019?uo=4"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Marioo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/marioo/1469946990?uo=4"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Nandy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nandy/1436898418?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Bien",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/bien/1588944195?uo=4"
+      }
+    },
+    {
+      "id": 26,
+      "name": "Fathermoh",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/fathermoh/1538360430?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 27,
+      "name": "Shenseea",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/shenseea/1132311326?uo=4"
+      }
+    },
+    {
+      "id": 29,
+      "name": "Zuchu",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/zuchu/1507830113?uo=4"
+      }
+    },
+    {
+      "id": 30,
+      "name": "Davido",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/davido/254654363?uo=4"
+      }
+    },
+    {
+      "id": 31,
+      "name": "Otile Brown",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/otile-brown/1122129311?uo=4"
+      }
+    },
+    {
+      "id": 39,
+      "name": "Tems",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/tems/1413909060?uo=4"
+      }
+    },
+    {
+      "id": 45,
+      "name": "Charisma",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/charisma/3652931?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 46,
+      "name": "Bridget Blue",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/bridget-blue/1433794785?uo=4"
+      }
+    },
+    {
+      "id": 56,
+      "name": "Savara",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/savara/206679796?uo=4"
+      }
+    },
+    {
+      "id": 58,
+      "name": "Kendrick Lamar",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kendrick-lamar/368183298?uo=4"
+      }
+    },
+    {
+      "id": 60,
+      "name": "HOOD BOYZ",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/hood-boyz/1767790320?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 61,
+      "name": "Wizkid",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/wizkid/309335750?uo=4"
+      }
+    },
+    {
+      "id": 68,
+      "name": "SZA",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sza/605800394?uo=4"
+      }
+    },
+    {
+      "id": 70,
+      "name": "Fido",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/fido/1628856647?uo=4",
+        "genre": "Modern Dancehall"
+      }
+    },
+    {
+      "id": 72,
+      "name": "Adekunle Gold",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/adekunle-gold/1035126760?uo=4"
+      }
+    },
+    {
+      "id": 73,
+      "name": "Fireboy DML",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/fireboy-dml/1437009453?uo=4"
+      }
+    },
+    {
+      "id": 74,
+      "name": "Khalil Harrison",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/khalil-harrison/1554719458?uo=4",
+        "genre": "Amapiano"
+      }
+    },
+    {
+      "id": 79,
+      "name": "Mr Pilato",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/mr-pilato/1591239318?uo=4",
+        "genre": "Amapiano"
+      }
+    },
+    {
+      "id": 80,
+      "name": "Rihanna",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/rihanna/63346553?uo=4"
+      }
+    },
+    {
+      "id": 82,
+      "name": "Kabza De Small",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kabza-de-small/1021730955?uo=4"
+      }
+    },
+    {
+      "id": 84,
+      "name": "Gunna",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/gunna/1236267297?uo=4"
+      }
+    },
+    {
+      "id": 85,
+      "name": "Travis Scott",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/travis-scott/549236696?uo=4"
+      }
+    },
+    {
+      "id": 89,
+      "name": "Chege",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/chege/321001392?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 93,
+      "name": "Vybz Kartel",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/vybz-kartel/79371544?uo=4"
+      }
+    },
+    {
+      "id": 94,
+      "name": "DJ WIZZY 254",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dj-wizzy-254/1638630819?uo=4"
+      }
+    },
+    {
+      "id": 99,
+      "name": "YBW Smith",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ybw-smith/1571728536?uo=4",
+        "genre": "Dance"
+      }
+    },
+    {
+      "id": 100,
+      "name": "Kizz Daniel",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kizz-daniel/981220084?uo=4"
+      }
+    },
+    {
+      "id": 102,
+      "name": "Lilmaina",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lilmaina/1534272288?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 103,
+      "name": "Breeder LW",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/breeder-lw/1436587835?uo=4"
+      }
+    },
+    {
+      "id": 104,
+      "name": "Dayoo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dayoo/1565844634?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 107,
+      "name": "SEAN MMG",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sean-mmg/1683564174?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 108,
+      "name": "Lony Bway",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lony-bway/1583247511?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 109,
+      "name": "Christina Shusho",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/christina-shusho/650547117?uo=4",
+        "genre": "African"
+      }
+    },
+    {
+      "id": 114,
+      "name": "Playboi Carti",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/playboi-carti/982372505?uo=4"
+      }
+    },
+    {
+      "id": 115,
+      "name": "Sabrina Carpenter",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sabrina-carpenter/390647681?uo=4"
+      }
+    },
+    {
+      "id": 118,
+      "name": "Sauti Sol",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sauti-sol/319063256?uo=4"
+      }
+    },
+    {
+      "id": 120,
+      "name": "Victony",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/victony/1456464026?uo=4",
+        "genre": "Worldwide"
+      }
+    },
+    {
+      "id": 131,
+      "name": "Bahati",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/bahati/432536641?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 133,
+      "name": "Guardian Angel",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/guardian-angel/65528711?uo=4",
+        "genre": "Christian"
+      }
+    },
+    {
+      "id": 170,
+      "name": "Odongo Swagg",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/odongo-swagg/1599477523?uo=4",
+        "genre": "Pop"
+      }
+    },
+    {
+      "id": 173,
+      "name": "Joé Dwèt Filé",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/jo%C3%A9-dw%C3%A8t-fil%C3%A9/1059364184?uo=4"
+      }
+    },
+    {
+      "id": 176,
+      "name": "Koppa Gekon",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/koppa-gekon/1662296198?uo=4",
+        "genre": "Christian"
+      }
+    },
+    {
+      "id": 186,
+      "name": "Don Toliver",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/don-toliver/1237012992?uo=4"
+      }
+    },
+    {
+      "id": 189,
+      "name": "Frank Ocean",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/frank-ocean/442122051?uo=4"
+      }
+    },
+    {
+      "id": 192,
+      "name": "SleepTherapy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sleeptherapy/993038489?uo=4"
+      }
+    },
+    {
+      "id": 199,
+      "name": "Yeat",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/yeat/1318094493?uo=4"
+      }
+    },
+    {
+      "id": 201,
+      "name": "Lil Uzi Vert",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lil-uzi-vert/940710524?uo=4"
+      }
+    },
+    {
+      "id": 202,
+      "name": "BURUKLYN BOYZ",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/buruklyn-boyz/1548716034?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 206,
+      "name": "Sosa The Prodigy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sosa-the-prodigy/1518834979?uo=4",
+        "genre": "Rap"
+      }
+    },
+    {
+      "id": 207,
+      "name": "YoungBoy Never Broke Again",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/youngboy-never-broke-again/1168822104?uo=4"
+      }
+    },
+    {
+      "id": 210,
+      "name": "J. Cole",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/j-cole/73705833?uo=4"
+      }
+    },
+    {
+      "id": 212,
+      "name": "Boutross",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/boutross/1423910617?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 221,
+      "name": "Dunsin Oyekan",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dunsin-oyekan/1082662055?uo=4",
+        "genre": "Christian"
+      }
+    },
+    {
+      "id": 224,
+      "name": "Uncle Eddy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/uncle-eddy/1484179404?uo=4",
+        "genre": "African"
+      }
+    },
+    {
+      "id": 227,
+      "name": "Big yasa",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/big-yasa/1530734958?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 229,
+      "name": "Skillibeng",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/skillibeng/1036011142?uo=4",
+        "genre": "Reggae"
+      }
+    },
+    {
+      "id": 230,
+      "name": "Seyi Vibez",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/seyi-vibez/1466080951?uo=4"
+      }
+    },
+    {
+      "id": 234,
+      "name": "Najeeriii",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/najeeriii/1535550683?uo=4",
+        "genre": "Modern Dancehall"
+      }
+    },
+    {
+      "id": 242,
+      "name": "Trio Mio",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/trio-mio/1543753592?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 248,
+      "name": "Okello Max",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/okello-max/1479695937?uo=4"
+      }
+    },
+    {
+      "id": 252,
+      "name": "Ciza",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ciza/1472059692?uo=4",
+        "genre": "Dance"
+      }
+    },
+    {
+      "id": 256,
+      "name": "MaWhoo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/mawhoo/1474310340?uo=4",
+        "genre": "Dance"
+      }
+    },
+    {
+      "id": 257,
+      "name": "Nigy Boy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nigy-boy/1553531169?uo=4",
+        "genre": "Modern Dancehall"
+      }
+    },
+    {
+      "id": 258,
+      "name": "JELEEL!",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/jeleel/1334860468?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 259,
+      "name": "FloyyMenor",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/floyymenor/1676497551?uo=4"
+      }
+    },
+    {
+      "id": 264,
+      "name": "HUNTR/X",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/huntr-x/1478164763?uo=4",
+        "genre": "K-Pop"
+      }
+    },
+    {
+      "id": 266,
+      "name": "Maandy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/maandy/1490696206?uo=4",
+        "genre": "Worldwide"
+      }
+    },
+    {
+      "id": 267,
+      "name": "Wapendwa Muziki",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/wapendwa-muziki/1508730386?uo=4",
+        "genre": "Christian"
+      }
+    },
+    {
+      "id": 269,
+      "name": "Gajendra Verma",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/gajendra-verma/523490730?uo=4",
+        "genre": "Pop"
+      }
+    },
+    {
+      "id": 271,
+      "name": "MAD G",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/mad-g/705668042?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 272,
+      "name": "Myztro",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/myztro/1497290446?uo=4",
+        "genre": "Amapiano"
+      }
+    },
+    {
+      "id": 274,
+      "name": "FAVE",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/fave/1493050702?uo=4",
+        "genre": "Afro-fusion"
+      }
+    },
+    {
+      "id": 276,
+      "name": "Licky Tones",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/licky-tones/1828966916?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 278,
+      "name": "Unspoken Salaton",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/unspoken-salaton/1605803010?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 281,
+      "name": "Rvssian",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/rvssian/628716915?uo=4"
+      }
+    },
+    {
+      "id": 284,
+      "name": "Nameless",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nameless/1496360442?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 286,
+      "name": "Soul Touch Brand",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/soul-touch-brand/1875756902?uo=4"
+      }
+    },
+    {
+      "id": 288,
+      "name": "The Second Voice",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/the-second-voice/1870069508?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 290,
+      "name": "JETTI",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/jetti/1619832066?uo=4"
+      }
+    },
+    {
+      "id": 293,
+      "name": "BNXN",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/bnxn/1347142581?uo=4"
+      }
+    },
+    {
+      "id": 294,
+      "name": "KunaTino Music",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kunatino-music/1861854541?uo=4",
+        "genre": "Christian"
+      }
+    },
+    {
+      "id": 295,
+      "name": "nk_njoroge",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nk-njoroge/1896331669?uo=4"
+      }
+    },
+    {
+      "id": 296,
+      "name": "Kahuti",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kahuti/1735373857?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 297,
+      "name": "Diameter Pallet",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/diameter-pallet/1614091617?uo=4",
+        "genre": "Pop"
+      }
+    },
+    {
+      "id": 299,
+      "name": "Thukuthela",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/thukuthela/1768801647?uo=4",
+        "genre": "Dance"
+      }
+    },
+    {
+      "id": 300,
+      "name": "Oscar Mbo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/oscar-mbo/1477963718?uo=4"
+      }
+    },
+    {
+      "id": 301,
+      "name": "Kehlani",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kehlani/690126399?uo=4"
+      }
+    },
+    {
+      "id": 302,
+      "name": "Uncle Waffles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/uncle-waffles/1612263083?uo=4"
+      }
+    },
+    {
+      "id": 304,
+      "name": "Lil Baby",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lil-baby/1276656483?uo=4"
+      }
+    },
+    {
+      "id": 305,
+      "name": "Olivia Dean",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/olivia-dean/1487253329?uo=4"
+      }
+    },
+    {
+      "id": 309,
+      "name": "Elevation Worship",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/elevation-worship/287874918?uo=4"
+      }
+    },
+    {
+      "id": 310,
+      "name": "DJ Khaled",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dj-khaled/157749142?uo=4"
+      }
+    },
+    {
+      "id": 311,
+      "name": "DJ Tunez",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dj-tunez/956139690?uo=4"
+      }
+    },
+    {
+      "id": 314,
+      "name": "We are Nubia",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/we-are-nubia/1615123096?uo=4",
+        "genre": "R&B/Soul"
+      }
+    },
+    {
+      "id": 315,
+      "name": "Shallipopi",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/shallipopi/1566146722?uo=4",
+        "genre": "Afrobeats"
+      }
+    },
+    {
+      "id": 316,
+      "name": "Justin Bieber",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/justin-bieber/320569549?uo=4"
+      }
+    },
+    {
+      "id": 318,
+      "name": "Olamide",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/olamide/389401008?uo=4",
+        "genre": "Afrobeats"
+      }
+    },
+    {
+      "id": 320,
+      "name": "The Ben",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/the-ben/343631056?uo=4"
+      }
+    },
+    {
+      "id": 321,
+      "name": "Frida Amani",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/frida-amani/1394391918?uo=4"
+      }
+    },
+    {
+      "id": 325,
+      "name": "Barry Jhay",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/barry-jhay/1415029476?uo=4"
+      }
+    },
+    {
+      "id": 328,
+      "name": "Famous Pluto",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/famous-pluto/1777898981?uo=4"
+      }
+    },
+    {
+      "id": 329,
+      "name": "Lava Lava",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lava-lava/333451808?uo=4",
+        "genre": "Afro-Pop"
+      }
+    },
+    {
+      "id": 337,
+      "name": "Masicka",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/masicka/378932635?uo=4"
+      }
+    },
+    {
+      "id": 342,
+      "name": "Black Sherif",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/black-sherif/1485819772?uo=4"
+      }
+    },
+    {
+      "id": 346,
+      "name": "Rybeena",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/rybeena/1331258843?uo=4"
+      }
+    },
+    {
+      "id": 347,
+      "name": "Young Jonn",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/young-jonn/1300912716?uo=4",
+        "genre": "Afrobeats"
+      }
+    },
+    {
+      "id": 350,
+      "name": "Ayo Maff",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ayo-maff/1689533724?uo=4"
+      }
+    },
+    {
+      "id": 353,
+      "name": "EMIN",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/emin/275351904?uo=4"
+      }
+    },
+    {
+      "id": 357,
+      "name": "Phany Love",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/phany-love/1654388516?uo=4"
+      }
+    },
+    {
+      "id": 362,
+      "name": "Drex D",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/drex-d/1834253867?uo=4"
+      }
+    },
+    {
+      "id": 363,
+      "name": "T Peller",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/t-peller/1641933707?uo=4"
+      }
+    },
+    {
+      "id": 372,
+      "name": "Saja Boys",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/saja-boys/1820264141?uo=4",
+        "genre": "K-Pop"
+      }
+    },
+    {
+      "id": 373,
+      "name": "Abigail Chams",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/abigail-chams/1474194821?uo=4"
+      }
+    },
+    {
+      "id": 374,
+      "name": "Gaise Baba",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/gaise-baba/1151857674?uo=4"
+      }
+    },
+    {
+      "id": 375,
+      "name": "Popcaan",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/popcaan/1098276161?uo=4"
+      }
+    },
+    {
+      "id": 376,
+      "name": "Jovial",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/jovial/1476716502?uo=4"
+      }
+    },
+    {
+      "id": 377,
+      "name": "NG'ETHE STEVE",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ngethe-steve/1770467065?uo=4"
+      }
+    },
+    {
+      "id": 378,
+      "name": "Patrick Kubuya",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/patrick-kubuya/1503519555?uo=4"
+      }
+    },
+    {
+      "id": 388,
+      "name": "Nathaniel Bassey",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nathaniel-bassey/393295944?uo=4",
+        "genre": "Christian"
+      }
+    },
+    {
+      "id": 407,
+      "name": "Arrow Bwoy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/arrow-bwoy/1288073090?uo=4"
+      }
+    },
+    {
+      "id": 421,
+      "name": "Kusah",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kusah/1445682172?uo=4"
+      }
+    },
+    {
+      "id": 424,
+      "name": "Kedjevara",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kedjevara/521170647?uo=4"
+      }
+    },
+    {
+      "id": 425,
+      "name": "Lucky Dube",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lucky-dube/5352135?uo=4"
+      }
+    },
+    {
+      "id": 426,
+      "name": "Omega 256",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/omega-256/1584495599?uo=4"
+      }
+    },
+    {
+      "id": 428,
+      "name": "Khadeair",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/khadeair/1757047463?uo=4"
+      }
+    },
+    {
+      "id": 429,
+      "name": "World hive",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/world-hive/1834172359?uo=4"
+      }
+    },
+    {
+      "id": 436,
+      "name": "Ntombemhlope",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ntombemhlope/1780342424?uo=4"
+      }
+    },
+    {
+      "id": 438,
+      "name": "GENIUSJINI X66",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/geniusjini-x66/1562178281?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 466,
+      "name": "Sarz",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sarz/563919383?uo=4",
+        "genre": "Worldwide"
+      }
+    },
+    {
+      "id": 467,
+      "name": "ODUMODUBLVCK",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/odumodublvck/1447195099?uo=4"
+      }
+    },
+    {
+      "id": 470,
+      "name": "Harry Belafonte",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/harry-belafonte/184622?uo=4"
+      }
+    },
+    {
+      "id": 472,
+      "name": "Zinoleesky",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/zinoleesky/1464018453?uo=4"
+      }
+    },
+    {
+      "id": 477,
+      "name": "T.I BLAZE",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/t-i-blaze/1525349313?uo=4",
+        "genre": "Afrobeats"
+      }
+    },
+    {
+      "id": 479,
+      "name": "Urban Chords",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/urban-chords/1829083152?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 482,
+      "name": "Dax Vibez",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dax-vibez/1585221498?uo=4"
+      }
+    },
+    {
+      "id": 498,
+      "name": "Aloony",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/aloony/1682283750?uo=4"
+      }
+    },
+    {
+      "id": 515,
+      "name": "X.O",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/x-o/1640336274?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 516,
+      "name": "Tkandz",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/tkandz/1596651878?uo=4"
+      }
+    },
+    {
+      "id": 538,
+      "name": "Vicoka",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/vicoka/1704068866?uo=4"
+      }
+    },
+    {
+      "id": 541,
+      "name": "LADY MAUREEN",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lady-maureen/1687470311?uo=4",
+        "genre": "Alternative"
+      }
+    },
+    {
+      "id": 544,
+      "name": "Caine",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/caine/1460493942?uo=4"
+      }
+    },
+    {
+      "id": 553,
+      "name": "Odeal",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/odeal/1221904128?uo=4"
+      }
+    },
+    {
+      "id": 554,
+      "name": "Scotts Maphuma",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/scotts-maphuma/1541193578?uo=4"
+      }
+    },
+    {
+      "id": 572,
+      "name": "Betty Bayo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/betty-bayo/706690920?uo=4"
+      }
+    },
+    {
+      "id": 598,
+      "name": "Christopher Martin",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/christopher-martin/28444588?uo=4"
+      }
+    },
+    {
+      "id": 599,
+      "name": "Ice Prince",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ice-prince/309335658?uo=4"
+      }
+    },
+    {
+      "id": 611,
+      "name": "Emanuel Nicarios",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/emanuel-nicarios/1645802903?uo=4"
+      }
+    },
+    {
+      "id": 612,
+      "name": "NF",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nf/898094630?uo=4"
+      }
+    },
+    {
+      "id": 616,
+      "name": "SIJI.",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/siji/1828250479?uo=4"
+      }
+    },
+    {
+      "id": 624,
+      "name": "Nasty C",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nasty-c/1041347781?uo=4"
+      }
+    },
+    {
+      "id": 628,
+      "name": "Solpulse",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/solpulse/1815990909?uo=4"
+      }
+    },
+    {
+      "id": 634,
+      "name": "Madilu System",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/madilu-system/120547111?uo=4"
+      }
+    },
+    {
+      "id": 640,
+      "name": "TxC",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/txc/1626508795?uo=4"
+      }
+    },
+    {
+      "id": 641,
+      "name": "B2k Mnyama",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/b2k-mnyama/1584285687?uo=4"
+      }
+    },
+    {
+      "id": 647,
+      "name": "Kevin Kade",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kevin-kade/1609816295?uo=4"
+      }
+    },
+    {
+      "id": 651,
+      "name": "Timaya",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/timaya/282132704?uo=4"
+      }
+    },
+    {
+      "id": 656,
+      "name": "Sammy Irungu",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sammy-irungu/706646907?uo=4"
+      }
+    },
+    {
+      "id": 657,
+      "name": "Virusi Mbaya",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/virusi-mbaya/1525380007?uo=4"
+      }
+    },
+    {
+      "id": 660,
+      "name": "Ice Spice",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ice-spice/1552372505?uo=4"
+      }
+    },
+    {
+      "id": 664,
+      "name": "Shakira",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/shakira/889327?uo=4"
+      }
+    },
+    {
+      "id": 672,
+      "name": "Beniko",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/beniko/730864149?uo=4"
+      }
+    },
+    {
+      "id": 673,
+      "name": "Song Writer's Playbook",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/song-writers-playbook/1831653433?uo=4"
+      }
+    },
+    {
+      "id": 674,
+      "name": "Shift to Abundance",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/shift-to-abundance/1852151320?uo=4"
+      }
+    },
+    {
+      "id": 685,
+      "name": "Time N Gold",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/time-n-gold/1740946847?uo=4"
+      }
+    },
+    {
+      "id": 704,
+      "name": "NO11",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/no11/1613593299?uo=4"
+      }
+    },
+    {
+      "id": 707,
+      "name": "R2Bees",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/r2bees/412690484?uo=4"
+      }
+    },
+    {
+      "id": 709,
+      "name": "Daniel Caesar",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/daniel-caesar/1019899019?uo=4"
+      }
+    },
+    {
+      "id": 710,
+      "name": "Shoday",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/shoday/1592883497?uo=4"
+      }
+    },
+    {
+      "id": 745,
+      "name": "Indila",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/indila/365001429?uo=4"
+      }
+    },
+    {
+      "id": 746,
+      "name": "SdoDiRoba",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sdodiroba/1808518725?uo=4"
+      }
+    },
+    {
+      "id": 748,
+      "name": "Roland MANTAMA",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/roland-mantama/1822301275?uo=4"
+      }
+    },
+    {
+      "id": 749,
+      "name": "Brayan Crist",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/brayan-crist/1865249521?uo=4"
+      }
+    },
+    {
+      "id": 750,
+      "name": "Jorh Creta",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/jorh-creta/1805579261?uo=4"
+      }
+    },
+    {
+      "id": 751,
+      "name": "Broken Trails",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/broken-trails/1850428773?uo=4"
+      }
+    },
+    {
+      "id": 752,
+      "name": "shewahdexta",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/shewahdexta/1752671615?uo=4"
+      }
+    },
+    {
+      "id": 753,
+      "name": "Furryx",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/furryx/1656291364?uo=4"
+      }
+    },
+    {
+      "id": 754,
+      "name": "Djo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/djo/1473178582?uo=4"
+      }
+    },
+    {
+      "id": 755,
+      "name": "LR GLOBAL",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lr-global/1868171908?uo=4"
+      }
+    },
+    {
+      "id": 782,
+      "name": "Tipsy Gee",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/tipsy-gee/1689005982?uo=4"
+      }
+    },
+    {
+      "id": 786,
+      "name": "Brent Faiyaz",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/brent-faiyaz/960127446?uo=4"
+      }
+    },
+    {
+      "id": 787,
+      "name": "Baby Keem",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/baby-keem/1413572916?uo=4"
+      }
+    },
+    {
+      "id": 790,
+      "name": "Timi Dre",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/timi-dre/1608210784?uo=4"
+      }
+    },
+    {
+      "id": 792,
+      "name": "Various Artists",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/v%C3%A1rios-artistas/198595859?uo=4",
+        "genre": "Latin"
+      }
+    },
+    {
+      "id": 794,
+      "name": "Ed Sheeran",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ed-sheeran/183313439?uo=4"
+      }
+    },
+    {
+      "id": 795,
+      "name": "Nikita Kering'",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nikita-kering/1439931517?uo=4",
+        "genre": "Pop"
+      }
+    },
+    {
+      "id": 796,
+      "name": "Xouh",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/xouh/1666025285?uo=4"
+      }
+    },
+    {
+      "id": 799,
+      "name": "Thirtyfourbrick",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/thirtyfourbrick/1707665264?uo=4"
+      }
+    },
+    {
+      "id": 804,
+      "name": "KMK MAKUBURI",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kmk-makuburi/1744972774?uo=4"
+      }
+    },
+    {
+      "id": 810,
+      "name": "Alkaline",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/alkaline/210610033?uo=4"
+      }
+    },
+    {
+      "id": 814,
+      "name": "Rudra Kartel",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/rudra-kartel/1580820483?uo=4",
+        "genre": "Modern Dancehall"
+      }
+    },
+    {
+      "id": 821,
+      "name": "Ronis Goliath",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ronis-goliath/1502674957?uo=4"
+      }
+    },
+    {
+      "id": 828,
+      "name": "Vailedmoon music",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/vailedmoon-music/1873474460?uo=4"
+      }
+    },
+    {
+      "id": 830,
+      "name": "English Audio Bible",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/english-audio-bible/1823859090?uo=4"
+      }
+    },
+    {
+      "id": 834,
+      "name": "FRAH KE",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/frah-ke/1653250392?uo=4"
+      }
+    },
+    {
+      "id": 849,
+      "name": "BTS",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/bts/883131348?uo=4"
+      }
+    },
+    {
+      "id": 852,
+      "name": "Moses Luka",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/moses-luka/1771908702?uo=4"
+      }
+    },
+    {
+      "id": 868,
+      "name": "Spice",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/spice/62804092?uo=4"
+      }
+    },
+    {
+      "id": 879,
+      "name": "HBK Live Act",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/hbk-live-act/1587865822?uo=4"
+      }
+    },
+    {
+      "id": 880,
+      "name": "Harry Craze",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/harry-craze/316155672?uo=4"
+      }
+    },
+    {
+      "id": 918,
+      "name": "Michael Jackson",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/michael-jackson/32940?uo=4"
+      }
+    },
+    {
+      "id": 919,
+      "name": "Xduppy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/xduppy/1553381176?uo=4",
+        "genre": "Amapiano"
+      }
+    },
+    {
+      "id": 921,
+      "name": "Bryson Tiller",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/bryson-tiller/642591128?uo=4"
+      }
+    },
+    {
+      "id": 929,
+      "name": "Kman 6ixx",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kman-6ixx/1675708083?uo=4"
+      }
+    },
+    {
+      "id": 935,
+      "name": "GIFT MELODY",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/gift-melody/1763496850?uo=4"
+      }
+    },
+    {
+      "id": 950,
+      "name": "Laflare",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/laflare/1860531722?uo=4"
+      }
+    },
+    {
+      "id": 951,
+      "name": "Shane O",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/shane-o/168503481?uo=4"
+      }
+    },
+    {
+      "id": 952,
+      "name": "Chiktay",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/chiktay/268800174?uo=4"
+      }
+    },
+    {
+      "id": 956,
+      "name": "KayArchonn",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kayarchonn/1807105965?uo=4"
+      }
+    },
+    {
+      "id": 958,
+      "name": "Official Tikiti",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/official-tikiti/1845113230?uo=4"
+      }
+    },
+    {
+      "id": 969,
+      "name": "Minister James",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/minister-james/1861990551?uo=4",
+        "genre": "Christian"
+      }
+    },
+    {
+      "id": 974,
+      "name": "Mr Nice",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/mr-nice/432896779?uo=4"
+      }
+    },
+    {
+      "id": 975,
+      "name": "Ragal Ironbull",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ragal-ironbull/1886048262?uo=4"
+      }
+    },
+    {
+      "id": 981,
+      "name": "Chronixx",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/chronixx/446244433?uo=4"
+      }
+    },
+    {
+      "id": 986,
+      "name": "Kassam",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kassam/1547113415?uo=4"
+      }
+    },
+    {
+      "id": 987,
+      "name": "Sheebah",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sheebah/721552120?uo=4"
+      }
+    },
+    {
+      "id": 988,
+      "name": "Jubet",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/jubet/1672813107?uo=4"
+      }
+    },
+    {
+      "id": 991,
+      "name": "Alijoma",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/alijoma/1405286400?uo=4"
+      }
+    },
+    {
+      "id": 992,
+      "name": "Dolv Gvng",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dolv-gvng/1530640342?uo=4"
+      }
+    },
+    {
+      "id": 1000,
+      "name": "SAMAD",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/samad/1758818320?uo=4"
+      }
+    },
+    {
+      "id": 1002,
+      "name": "Oberz",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/oberz/1065516880?uo=4"
+      }
+    },
+    {
+      "id": 1006,
+      "name": "Stahgee",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/stahgee/1576936544?uo=4"
+      }
+    },
+    {
+      "id": 1011,
+      "name": "Lasmid",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lasmid/1520421387?uo=4"
+      }
+    },
+    {
+      "id": 1015,
+      "name": "Rord Kelly",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/rord-kelly/1602602676?uo=4"
+      }
+    },
+    {
+      "id": 1017,
+      "name": "Hyce",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/hyce/1083512992?uo=4"
+      }
+    },
+    {
+      "id": 1018,
+      "name": "Black Coco",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/black-coco/1551157237?uo=4"
+      }
+    },
+    {
+      "id": 1046,
+      "name": "King Soundboi",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/king-soundboi/1558999841?uo=4"
+      }
+    },
+    {
+      "id": 1062,
+      "name": "Brick & Lace",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/brick-lace/163320584?uo=4"
+      }
+    },
+    {
+      "id": 1067,
+      "name": "Deejay MJ",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/deejay-mj/1587039428?uo=4"
+      }
+    },
+    {
+      "id": 1070,
+      "name": "AlunaGeorge",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/alunageorge/425686769?uo=4"
+      }
+    },
+    {
+      "id": 1071,
+      "name": "JustBasweti",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/justbasweti/1895949898?uo=4"
+      }
+    },
+    {
+      "id": 1073,
+      "name": "Official Baba Paul",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/official-baba-paul/1896158354?uo=4"
+      }
+    },
+    {
+      "id": 1074,
+      "name": "Dela Cuffy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dela-cuffy/1757067910?uo=4"
+      }
+    },
+    {
+      "id": 1075,
+      "name": "CJS",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/cjs/327883931?uo=4"
+      }
+    },
+    {
+      "id": 1091,
+      "name": "Levelz UP",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/levelz-up/1896323662?uo=4"
+      }
+    },
+    {
+      "id": 1094,
+      "name": "Harry Styles",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/harry-styles/471260289?uo=4",
+        "genre": "Pop"
+      }
+    },
+    {
+      "id": 1106,
+      "name": "Clipse",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/clipse/627567?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 1107,
+      "name": "Intence",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/intence/65581095?uo=4"
+      }
+    },
+    {
+      "id": 1108,
+      "name": "Zaituni",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/zaituni/1832606898?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 1109,
+      "name": "JACKBOYS",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/jackboys/1492785998?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 1111,
+      "name": "Doja Cat",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/doja-cat/830588310?uo=4"
+      }
+    },
+    {
+      "id": 1114,
+      "name": "Nine Vicious",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nine-vicious/1772456174?uo=4"
+      }
+    },
+    {
+      "id": 1115,
+      "name": "Sun-El Musician",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/sun-el-musician/1240936356?uo=4",
+        "genre": "Afro House"
+      }
+    },
+    {
+      "id": 1116,
+      "name": "RAYE",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/raye/261686?uo=4",
+        "genre": "Pop"
+      }
+    },
+    {
+      "id": 1117,
+      "name": "Isaiah Rashad",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/isaiah-rashad/605391263?uo=4"
+      }
+    },
+    {
+      "id": 1118,
+      "name": "Freddie Gibbs",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/freddie-gibbs/302166615?uo=4"
+      }
+    },
+    {
+      "id": 1119,
+      "name": "Lecrae",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lecrae/130043072?uo=4"
+      }
+    },
+    {
+      "id": 1121,
+      "name": "Key Glock",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/key-glock/1199258326?uo=4"
+      }
+    },
+    {
+      "id": 1126,
+      "name": "Destroy Lonely",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/destroy-lonely/1344665482?uo=4"
+      }
+    },
+    {
+      "id": 1138,
+      "name": "Kahu$h",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kahu%24h/1472690987?uo=4"
+      }
+    },
+    {
+      "id": 1171,
+      "name": "kwn",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kwn/1629656232?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 1182,
+      "name": "Tame Impala",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/tame-impala/290242959?uo=4"
+      }
+    },
+    {
+      "id": 1199,
+      "name": "Bhadboi OML",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/bhadboi-oml/1548010465?uo=4"
+      }
+    },
+    {
+      "id": 1201,
+      "name": "Diamond Jimma",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/diamond-jimma/1448280308?uo=4"
+      }
+    },
+    {
+      "id": 1304,
+      "name": "YFN Lucci",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/yfn-lucci/957498371?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 1345,
+      "name": "Usmanial Vibez",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/usmanial-vibez/1686235808?uo=4"
+      }
+    },
+    {
+      "id": 1410,
+      "name": "V",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/v/1191852113?uo=4"
+      }
+    },
+    {
+      "id": 1462,
+      "name": "Kelvin Momo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kelvin-momo/1406309020?uo=4"
+      }
+    },
+    {
+      "id": 1549,
+      "name": "Nas",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nas/35307?uo=4"
+      }
+    },
+    {
+      "id": 1551,
+      "name": "Dj Boat",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/dj-boat/1398890717?uo=4",
+        "genre": "Afro-Beat"
+      }
+    },
+    {
+      "id": 1569,
+      "name": "GIVĒON",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/giv%C4%93on/1070668868?uo=4"
+      }
+    },
+    {
+      "id": 1600,
+      "name": "slayr",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/slayr/1676805496?uo=4"
+      }
+    },
+    {
+      "id": 1655,
+      "name": "Shashwat Sachdev",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/shashwat-sachdev/1206967804?uo=4"
+      }
+    },
+    {
+      "id": 1691,
+      "name": "Ella Mai",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ella-mai/1160482144?uo=4"
+      }
+    },
+    {
+      "id": 1720,
+      "name": "Muthaka",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/muthaka/1549539972?uo=4",
+        "genre": "Pop"
+      }
+    },
+    {
+      "id": 1724,
+      "name": "Olivia Rodrigo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/olivia-rodrigo/979458609?uo=4"
+      }
+    },
+    {
+      "id": 1808,
+      "name": "Pimmie",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/pimmie/1796919434?uo=4"
+      }
+    },
+    {
+      "id": 1809,
+      "name": "Karun",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/karun/646221425?uo=4",
+        "genre": "R&B/Soul"
+      }
+    },
+    {
+      "id": 1859,
+      "name": "M'Du",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/mdu/1407254289?uo=4"
+      }
+    },
+    {
+      "id": 1916,
+      "name": "Catholic Church Songs",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/catholic-church-songs/1885018482?uo=4"
+      }
+    },
+    {
+      "id": 1951,
+      "name": "ABBAS DOOBEEZ",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/abbas-doobeez/865926195?uo=4",
+        "genre": "Hip-Hop/Rap"
+      }
+    },
+    {
+      "id": 1954,
+      "name": "Daddy Lumba",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/daddy-lumba/383017116?uo=4"
+      }
+    },
+    {
+      "id": 2016,
+      "name": "M Huncho",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/m-huncho/1258948935?uo=4"
+      }
+    },
+    {
+      "id": 2066,
+      "name": "Young Roddo",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/young-roddo/1802301844?uo=4"
+      }
+    },
+    {
+      "id": 2082,
+      "name": "Nahsh kariuki Official",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/nahsh-kariuki-official/1782185510?uo=4"
+      }
+    },
+    {
+      "id": 2085,
+      "name": "IShowSpeed",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ishowspeed/1574723975?uo=4"
+      }
+    },
+    {
+      "id": 2086,
+      "name": "Ruben Idy",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/ruben-idy/1869777106?uo=4"
+      }
+    },
+    {
+      "id": 2113,
+      "name": "Miracle LRE",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/miracle-lre/1803963627?uo=4"
+      }
+    },
+    {
+      "id": 2120,
+      "name": "I-Octane",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/i-octane/274294781?uo=4"
+      }
+    },
+    {
+      "id": 2146,
+      "name": "LOVIXX STOSLIV",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/lovixx-stosliv/6780238795?uo=4"
+      }
+    },
+    {
+      "id": 2147,
+      "name": "Kabelo Tiro aka skavenja",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/kabelo-tiro-aka-skavenja/1648355680?uo=4"
+      }
+    },
+    {
+      "id": 2176,
+      "name": "Yemi Alade",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/yemi-alade/481383337?uo=4"
+      }
+    },
+    {
+      "id": 2827,
+      "name": "Toxic Lyrikali",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/toxic-lyrikali/1667118048?uo=4"
+      }
+    },
+    {
+      "id": 2907,
+      "name": "Vestine & Dorcas",
+      "fields": {
+        "apple_music_url": "https://music.apple.com/us/artist/vestine-and-dorcas/1545055758?uo=4",
+        "genre": "Christian"
+      }
+    }
+  ],
+  "errors": {
+    "HTTPError": 207
+  }
+}

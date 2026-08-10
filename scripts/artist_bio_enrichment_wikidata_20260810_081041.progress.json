@@ -1,0 +1,6637 @@
+{
+  "generated_at": "2026-08-10T08:10:41.329025+00:00",
+  "source": "Wikidata API with English Wikipedia sitelinks where available; biography text generated from structured facts, not copied from Wikipedia.",
+  "total_active_artists": 2272,
+  "updates": [
+    {
+      "id": 3,
+      "name": "Ruger",
+      "wikidata_id": "Q110661297",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q110661297",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ruger_(musician)",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Lagos, Nigeria",
+        "genre": "Afrobeat"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Nigerian musician and songwriter",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria",
+        "genres": [
+          "Afrobeat"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1999,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 5,
+      "name": "D Voice",
+      "wikidata_id": "Q129033469",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q129033469",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "D Voice is a Tanzanian singer-songwriter from Temeke District, Tanzania. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Tanzanian singer Abdul Hamisi Mtambo, a Singeli artist signed to WCB Wasafi and known for melodic vocals."
+      },
+      "source_facts": {
+        "description": "Tanzanian singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Temeke District, Tanzania",
+        "genres": [],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2004,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 8,
+      "name": "Ayra Starr",
+      "wikidata_id": "Q106462586",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q106462586",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ayra_Starr",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Cotonou, Benin",
+        "genre": "African popular music, Nigerian hip hop, alté",
+        "website_url": "https://ayrastarr.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Beninese-Nigerian singer",
+        "country": "Benin",
+        "country_code": "BJ",
+        "city_region": "Cotonou, Benin",
+        "genres": [
+          "African popular music",
+          "Nigerian hip hop",
+          "alté",
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2002,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 10,
+      "name": "Willy Paul",
+      "wikidata_id": "Q18211800",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q18211800",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Willy_Paul",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Willy Paul is a Kenyan singer from Mathare, Kenya. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Kenyan singer-songwriter Wilson Abubakar Radido, whose catalogue spans gospel roots, Afropop and dancehall."
+      },
+      "source_facts": {
+        "description": "Kenyan musician",
+        "country": "Kenya",
+        "country_code": "KE",
+        "city_region": "Mathare, Kenya",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 11,
+      "name": "Qing Madi",
+      "wikidata_id": "Q120001835",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q120001835",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Qing_Madi",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Benin City, Nigeria",
+        "website_url": "https://www.qingmadi.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer, songwriter and dancer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Benin City, Nigeria",
+        "genres": [],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2006,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 12,
+      "name": "Diamond Platnumz",
+      "wikidata_id": "Q15429574",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q15429574",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Diamond_Platnumz",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Diamond Platnumz is a Tanzanian singer and songwriter from Dar es Salaam, Tanzania. The artist is associated with bongo flava, Afrobeat and rhumba."
+      },
+      "old_values": {
+        "biography": "Tanzanian singer, songwriter and WCB Wasafi founder, one of East Africa’s most commercially prominent artists."
+      },
+      "source_facts": {
+        "description": "Tanzanian artist, dancer, philanthropist and businessman",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Dar es Salaam, Tanzania",
+        "genres": [
+          "bongo flava",
+          "Afrobeat",
+          "rhumba",
+          "rhythm and blues"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1989,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 13,
+      "name": "Marioo",
+      "wikidata_id": "Q97487703",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q97487703",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Marioo",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Marioo is a Tanzanian singer and songwriter from Pwani Region, Tanzania. The artist is associated with bongo flava, Amapiano and African popular music."
+      },
+      "old_values": {
+        "biography": "Tanzanian singer-songwriter and producer known for melodic Bongo Flava and East African pop collaborations."
+      },
+      "source_facts": {
+        "description": "Tanzanian musician",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Pwani Region, Tanzania",
+        "genres": [
+          "bongo flava",
+          "Amapiano",
+          "African popular music"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 15,
+      "name": "Chris Brown",
+      "wikidata_id": "Q155700",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q155700",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Chris_Brown",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Tappahannock, United States",
+        "genre": "contemporary R&B, pop music, hip-hop",
+        "website_url": "http://www.chrisbrownworld.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer and rapper (born 1989)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Tappahannock, United States",
+        "genres": [
+          "contemporary R&B",
+          "pop music",
+          "hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1989,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 17,
+      "name": "Wakadinali",
+      "wikidata_id": "Q126094982",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q126094982",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Wakadinali",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Wakadinali is a musical group. The act is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Kenyan hip-hop group from Nairobi’s Eastlands, known for Sheng lyricism and street-centred storytelling."
+      },
+      "source_facts": {
+        "description": "Kenyan hip hop group",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 21,
+      "name": "Nadia Mukami",
+      "wikidata_id": "Q106368187",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q106368187",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Nadia_Mukami",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Nairobi"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Kenyan singer",
+        "country": "",
+        "country_code": "",
+        "city_region": "Nairobi",
+        "genres": [],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1996,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 30,
+      "name": "Davido",
+      "wikidata_id": "Q16234484",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q16234484",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Davido",
+      "match_score": 1.0,
+      "fields": {
+        "website_url": "https://www.iamdavido.com/"
+      },
+      "old_values": {
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Atlanta, Nigeria",
+        "genres": [
+          "screamo",
+          "pop music",
+          "African popular music",
+          "screamo rap"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "record producer",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1992,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 31,
+      "name": "Otile Brown",
+      "wikidata_id": "Q61747584",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q61747584",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Otile_Brown",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Otile Brown is a singer from Kisumu. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Kenyan singer-songwriter known for romantic Swahili R&B and Afropop hits."
+      },
+      "source_facts": {
+        "description": "Kenyan singer and songwriter",
+        "country": "",
+        "country_code": "",
+        "city_region": "Kisumu",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 33,
+      "name": "Asake",
+      "wikidata_id": "Q112861798",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q112861798",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Asake",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Asake is a Nigerian singer, rapper and songwriter from Lagos, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Nigerian singer and songwriter whose percussive fusion of Afrobeats, fuji and amapiano brought international success."
+      },
+      "source_facts": {
+        "description": "Nigerian singer and songwriter",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 35,
+      "name": "Prince Indah",
+      "wikidata_id": "Q134184135",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q134184135",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Prince_Indah",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Prince Indah is a recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Kenyan singer-songwriter Evans Ochieng Owino, a prominent modern Ohangla performer and bandleader."
+      },
+      "source_facts": {
+        "description": "Kenyan singer and songwriter",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 37,
+      "name": "Mbosso",
+      "wikidata_id": "Q106808963",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q106808963",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mbosso",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Mbosso is a Tanzanian singer, songwriter and musician from Tanzania. The artist is associated with bongo flava, African popular music and Afrobeats."
+      },
+      "old_values": {
+        "biography": "Tanzanian singer-songwriter Mbwana Yusuph Kilungi, formerly of Yamoto Band and signed to WCB Wasafi."
+      },
+      "source_facts": {
+        "description": "Tanzanian singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Tanzania",
+        "genres": [
+          "bongo flava",
+          "African popular music",
+          "Afrobeats"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 39,
+      "name": "Tems",
+      "wikidata_id": "Q72759173",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q72759173",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tems",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Lagos, Nigeria",
+        "genre": "alternative R&B, Afrobeats",
+        "website_url": "https://www.leadingvibe.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer-songwriter (born 1995)",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria",
+        "genres": [
+          "alternative R&B",
+          "Afrobeats"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 41,
+      "name": "Fally Ipupa",
+      "wikidata_id": "Q3064804",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3064804",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Fally_Ipupa",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Kinshasa, Democratic Republic of the Congo",
+        "website_url": "https://fally-ipupa.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Congolese musician",
+        "country": "Democratic Republic of the Congo",
+        "country_code": "CD",
+        "city_region": "Kinshasa, Democratic Republic of the Congo",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "guitarist"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1977,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 43,
+      "name": "Joel Lwaga",
+      "wikidata_id": "Q137162752",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137162752",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Dar es Salaam, Tanzania"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Gospel Singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Dar es Salaam, Tanzania",
+        "genres": [],
+        "occupations": [
+          "gospel singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 45,
+      "name": "Charisma",
+      "wikidata_id": "Q1063242",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q1063242",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Charisma_Records",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "England, United Kingdom",
+        "genre": "progressive rock, comedy",
+        "website_url": "http://charismalabel.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "British record label",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "city_region": "England, United Kingdom",
+        "genres": [
+          "progressive rock",
+          "comedy"
+        ],
+        "occupations": [],
+        "instances": [
+          "record label"
+        ],
+        "birth_year": null,
+        "inception_year": 1969
+      }
+    },
+    {
+      "id": 49,
+      "name": "The Weeknd",
+      "wikidata_id": "Q2121062",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q2121062",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/The_Weeknd",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "The Weeknd is a Canadian singer, songwriter and record producer from Toronto, Canada. The artist is associated with alternative R&B, pop music and electropop.",
+        "city_region": "Toronto, Canada",
+        "genre": "alternative R&B, pop music, electropop",
+        "website_url": "https://www.theweeknd.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Canadian singer and songwriter (born 1990)",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "Toronto, Canada",
+        "genres": [
+          "alternative R&B",
+          "pop music",
+          "electropop"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "record producer",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1990,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 51,
+      "name": "Ndotz",
+      "wikidata_id": "Q131404977",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q131404977",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "North London, United Kingdom"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "British rapper",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "city_region": "North London, United Kingdom",
+        "genres": [],
+        "occupations": [
+          "rapper"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 52,
+      "name": "ROSÉ",
+      "wikidata_id": "Q27655344",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q27655344",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ros%C3%A9_(singer)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "ROSÉ is a New Zealand singer-songwriter, singer and composer from Auckland, New Zealand. The artist is associated with K-pop, dance-pop and hip-hop.",
+        "city_region": "Auckland, New Zealand",
+        "genre": "K-pop, dance-pop, hip-hop",
+        "website_url": "https://www.rosesarerosie.com"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "South Korean-New Zealand singer (born 1997)",
+        "country": "New Zealand",
+        "country_code": "NZ",
+        "city_region": "Auckland, New Zealand",
+        "genres": [
+          "K-pop",
+          "dance-pop",
+          "hip-hop",
+          "electronic dance music"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 53,
+      "name": "Rema",
+      "wikidata_id": "Q65071082",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q65071082",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Rema_(musician)",
+      "match_score": 1.0,
+      "fields": {
+        "website_url": "https://www.heisrema.com/"
+      },
+      "old_values": {
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer-songwriter and rapper (2000–)",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Benin City, Nigeria",
+        "genres": [
+          "Afrobeats"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 54,
+      "name": "Central Cee",
+      "wikidata_id": "Q106078330",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q106078330",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Central_Cee",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Shepherd's Bush, English people",
+        "genre": "UK drill, UK rap, trap music",
+        "website_url": "https://centralcee.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "British rapper (born 1998)",
+        "country": "English people",
+        "country_code": "",
+        "city_region": "Shepherd's Bush, English people",
+        "genres": [
+          "UK drill",
+          "UK rap",
+          "trap music",
+          "pop rap"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 55,
+      "name": "Tyla",
+      "wikidata_id": "Q118105408",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q118105408",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tyla",
+      "match_score": 1.0,
+      "fields": {
+        "website_url": "https://tylaworld.com"
+      },
+      "old_values": {
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "South African singer-songwriter",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Edenvale, South Africa",
+        "genres": [
+          "contemporary R&B",
+          "pop music",
+          "Amapiano",
+          "new jack swing"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2002,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 56,
+      "name": "Savara",
+      "wikidata_id": "Q135055775",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q135055775",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "genre": "action roguelike"
+      },
+      "old_values": {
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "2025 video game developed by Doryah Games",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [
+          "action roguelike"
+        ],
+        "occupations": [],
+        "instances": [
+          "video game"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 58,
+      "name": "Kendrick Lamar",
+      "wikidata_id": "Q130798",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q130798",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kendrick_Lamar",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Compton, United States",
+        "genre": "West Coast hip-hop, progressive rap, alternative hip-hop",
+        "website_url": "https://oklama.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper (born 1987)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Compton, United States",
+        "genres": [
+          "West Coast hip-hop",
+          "progressive rap",
+          "alternative hip-hop",
+          "jazz rap"
+        ],
+        "occupations": [
+          "rapper",
+          "songwriter",
+          "record producer",
+          "pop singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1987,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 59,
+      "name": "MOLIY",
+      "wikidata_id": "Q113459671",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q113459671",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Moliy",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Accra, Ghana",
+        "genre": "Afro fusion, pop music, contemporary R&B",
+        "website_url": "https://moliymusic.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Ghanaian-American singer (born 2001)",
+        "country": "Ghana",
+        "country_code": "GH",
+        "city_region": "Accra, Ghana",
+        "genres": [
+          "Afro fusion",
+          "pop music",
+          "contemporary R&B",
+          "dancehall"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2001,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 61,
+      "name": "Wizkid",
+      "wikidata_id": "Q16233663",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q16233663",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Wizkid",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Wizkid is a Nigerian singer, songwriter and musician from Lagos, Nigeria. The artist is associated with Afrobeats, dancehall and rhythm and blues.",
+        "website_url": "https://www.wizkidofficial.com/"
+      },
+      "old_values": {
+        "biography": "Nigerian singer-songwriter Ayodeji Balogun, a central figure in the global expansion of Afrobeats.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer and songwriter (born 1990)",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria",
+        "genres": [
+          "Afrobeats",
+          "dancehall",
+          "rhythm and blues"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1990,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 62,
+      "name": "Burna Boy",
+      "wikidata_id": "Q17305712",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q17305712",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Burna_Boy",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Burna Boy is a Nigerian singer, songwriter and record producer from Port Harcourt, Nigeria. The artist is associated with Afrobeat, dancehall and reggae.",
+        "website_url": "https://www.onaspaceship.com/"
+      },
+      "old_values": {
+        "biography": "Nigerian singer-songwriter known for globally successful Afro-fusion drawing from Afrobeats, dancehall and hip-hop.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer and songwriter (born 1991)",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Port Harcourt, Nigeria",
+        "genres": [
+          "Afrobeat",
+          "dancehall",
+          "reggae",
+          "hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "record producer",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 63,
+      "name": "Billie Eilish",
+      "wikidata_id": "Q29564107",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q29564107",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+      "match_score": 1.0,
+      "fields": {
+        "website_url": "https://billieeilish.com"
+      },
+      "old_values": {
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer-songwriter (born 2001)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Los Angeles, United States",
+        "genres": [
+          "electropop",
+          "indie pop",
+          "alternative pop"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2001,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 66,
+      "name": "Future",
+      "wikidata_id": "Q3445057",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3445057",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Future_(rapper)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Future is a American singer, rapper and songwriter from Atlanta, United States. The artist is associated with Southern hip-hop, trap music and mumble rap.",
+        "website_url": "http://futurefreebandz.com/"
+      },
+      "old_values": {
+        "biography": "American rapper and singer whose Auto-Tuned melodic style helped shape modern trap music.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper (born 1983)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "Southern hip-hop",
+          "trap music",
+          "mumble rap",
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1983,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 67,
+      "name": "Crayon",
+      "wikidata_id": "Q5183048",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q5183048",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Crayon_(band)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Crayon is a American musical group. The act is associated with indie pop.",
+        "genre": "indie pop"
+      },
+      "old_values": {
+        "biography": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "band",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "",
+        "genres": [
+          "indie pop"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 68,
+      "name": "SZA",
+      "wikidata_id": "Q16210722",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q16210722",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/SZA",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "SZA is a American singer-songwriter, singer and songwriter from St. Louis, United States. The artist is associated with contemporary R&B, alternative R&B and neo soul."
+      },
+      "old_values": {
+        "biography": "American singer-songwriter Solána Rowe, known for candid alternative R&B and acclaimed albums including Ctrl and SOS."
+      },
+      "source_facts": {
+        "description": "American singer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "St. Louis, United States",
+        "genres": [
+          "contemporary R&B",
+          "alternative R&B",
+          "neo soul",
+          "pop music"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "songwriter",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1989,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 70,
+      "name": "Fido",
+      "wikidata_id": "Q1411365",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q1411365",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Fido_(film)",
+      "match_score": 1.0,
+      "fields": {
+        "genre": "zombie comedy, comedy horror",
+        "website_url": "http://fidothemovie.com/"
+      },
+      "old_values": {
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "2006 film by Andrew Currie",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "",
+        "genres": [
+          "zombie comedy",
+          "comedy horror"
+        ],
+        "occupations": [],
+        "instances": [
+          "film"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 71,
+      "name": "Tyler ICU",
+      "wikidata_id": "Q121820034",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q121820034",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tyler_ICU",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Tyler ICU is a South African record producer from Thembisa, South Africa. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "city_region": "Thembisa, South Africa"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "South African record producer",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Thembisa, South Africa",
+        "genres": [],
+        "occupations": [
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1989,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 72,
+      "name": "Adekunle Gold",
+      "wikidata_id": "Q21280581",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q21280581",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Adekunle_Gold",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Lagos State, Nigeria",
+        "genre": "African popular music, Afrobeat",
+        "website_url": "http://wwww.adekunlegold.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos State, Nigeria",
+        "genres": [
+          "African popular music",
+          "Afrobeat"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1987,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 73,
+      "name": "Fireboy DML",
+      "wikidata_id": "Q82759301",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q82759301",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Fireboy_DML",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Ogun State, Nigeria",
+        "genre": "contemporary R&B, Afrobeat",
+        "website_url": "https://fireboydml.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Ogun State, Nigeria",
+        "genres": [
+          "contemporary R&B",
+          "Afrobeat"
+        ],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 77,
+      "name": "GloRilla",
+      "wikidata_id": "Q114132368",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q114132368",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/GloRilla",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "GloRilla is a American rapper and songwriter from Memphis, United States. The artist is associated with hip-hop, trap music and crunk.",
+        "city_region": "Memphis, United States",
+        "genre": "hip-hop, trap music, crunk",
+        "website_url": "https://www.glorillaofficial.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Memphis, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "crunk",
+          "Memphis rap"
+        ],
+        "occupations": [
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1999,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 80,
+      "name": "Rihanna",
+      "wikidata_id": "Q36844",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q36844",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Rihanna",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Saint Michael, Barbados",
+        "genre": "pop music, dancehall, contemporary R&B",
+        "website_url": "https://www.rihanna.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Barbadian singer (born 1988)",
+        "country": "Barbados",
+        "country_code": "BB",
+        "city_region": "Saint Michael, Barbados",
+        "genres": [
+          "pop music",
+          "dancehall",
+          "contemporary R&B",
+          "electronic dance music"
+        ],
+        "occupations": [
+          "singer",
+          "musician",
+          "pop singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1988,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 81,
+      "name": "Drake",
+      "wikidata_id": "Q33240",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q33240",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Drake_(musician)",
+      "match_score": 1.0,
+      "fields": {
+        "website_url": "https://drakerelated.com"
+      },
+      "old_values": {
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Canadian-American rapper and singer",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "Toronto, Canada",
+        "genres": [
+          "hip-hop",
+          "contemporary R&B",
+          "pop music",
+          "trap music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1986,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 84,
+      "name": "Gunna",
+      "wikidata_id": "Q55613105",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q55613105",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gunna_(rapper)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Gunna is a American singer, rapper and songwriter from College Park, United States. The artist is associated with hip-hop, trap music and Southern hip-hop.",
+        "website_url": "https://only1gunna.com/"
+      },
+      "old_values": {
+        "biography": "American rapper known for fluid melodic trap and a long-running association with Atlanta’s rap scene.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper (born 1993)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "College Park, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "Southern hip-hop",
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 85,
+      "name": "Travis Scott",
+      "wikidata_id": "Q13605596",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q13605596",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Travis_Scott",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Houston, United States",
+        "genre": "hip-hop, trap music, pop rap",
+        "website_url": "https://www.travisscott.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper, singer and record producer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Houston, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "pop rap",
+          "psychedelic rap"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 87,
+      "name": "Dlala Thukzin",
+      "wikidata_id": "Q112247417",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q112247417",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Dlala_Thukzin",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Lamontville, South Africa"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "South African Dance Music Producer",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Lamontville, South Africa",
+        "genres": [],
+        "occupations": [
+          "songwriter",
+          "record producer",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 88,
+      "name": "Harmonize",
+      "wikidata_id": "Q38902387",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q38902387",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Harmonize_(musician)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Harmonize is a Tanzanian songwriter and musician from Mtwara Region, Tanzania. The artist is associated with bongo flava and African popular music."
+      },
+      "old_values": {
+        "biography": "Tanzanian singer-songwriter and Konde Music Worldwide founder known for Bongo Flava and Afropop hits."
+      },
+      "source_facts": {
+        "description": "Tanzanian artist and music entrepreneur",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Mtwara Region, Tanzania",
+        "genres": [
+          "bongo flava",
+          "African popular music"
+        ],
+        "occupations": [
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1994,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 92,
+      "name": "Ibraah",
+      "wikidata_id": "Q112262045",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q112262045",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Ibraah is a Tanzanian singer born in 1998. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Tanzanian singer-songwriter signed to Konde Music Worldwide, known for melodic Bongo Flava releases."
+      },
+      "source_facts": {
+        "description": "Tanzania songwriter and musician",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 93,
+      "name": "Vybz Kartel",
+      "wikidata_id": "Q1357035",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q1357035",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Vybz_Kartel",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Vybz Kartel is a Jamaican singer, songwriter and record producer from Kingston, Jamaica. The artist is associated with dancehall, reggae fusion and hip-hop."
+      },
+      "old_values": {
+        "biography": "Jamaican dancehall artist Adidja Palmer, one of the genre’s most influential and prolific lyricists."
+      },
+      "source_facts": {
+        "description": "Jamaican musician",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Kingston, Jamaica",
+        "genres": [
+          "dancehall",
+          "reggae fusion",
+          "hip-hop",
+          "reggae"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "record producer",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1976,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 95,
+      "name": "Rayvanny",
+      "wikidata_id": "Q41555515",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q41555515",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Rayvanny",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Mbeya Region, Tanzania",
+        "genre": "African popular music"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian musician and songwriter from WCB Wasafi Record label",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Mbeya Region, Tanzania",
+        "genres": [
+          "African popular music"
+        ],
+        "occupations": [
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 100,
+      "name": "Kizz Daniel",
+      "wikidata_id": "Q20684384",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q20684384",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kizz_Daniel",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Ogun State, Nigeria",
+        "genre": "African popular music, pop music, contemporary R&B",
+        "website_url": "http://www.gworldwideent.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer-songwriter",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Ogun State, Nigeria",
+        "genres": [
+          "African popular music",
+          "pop music",
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1994,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 114,
+      "name": "Playboi Carti",
+      "wikidata_id": "Q27671080",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q27671080",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Playboi_Carti",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Atlanta, United States",
+        "genre": "Southern hip-hop, trap music, SoundCloud rap",
+        "website_url": "https://www.playboicarti.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "Southern hip-hop",
+          "trap music",
+          "SoundCloud rap",
+          "cloud rap"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1996,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 115,
+      "name": "Sabrina Carpenter",
+      "wikidata_id": "Q7396400",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q7396400",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sabrina_Carpenter",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Quakertown, United States",
+        "genre": "pop music, teen pop, dance-pop",
+        "website_url": "http://www.sabrinacarpenter.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer-songwriter and actress (born 1999)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Quakertown, United States",
+        "genres": [
+          "pop music",
+          "teen pop",
+          "dance-pop",
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1999,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 116,
+      "name": "Megan Thee Stallion",
+      "wikidata_id": "Q59268408",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q59268408",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Megan_Thee_Stallion",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "San Antonio, United States",
+        "genre": "hip-hop, trap music, dirty rap",
+        "website_url": "https://megantheestallion.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper, singer and songwriter",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "San Antonio, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "dirty rap",
+          "pop rap"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 119,
+      "name": "Patoranking",
+      "wikidata_id": "Q17198434",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q17198434",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Patoranking",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Patoranking is a Nigerian singer and songwriter from Lagos, Nigeria. The artist is associated with reggae.",
+        "city_region": "Lagos, Nigeria",
+        "genre": "reggae"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer-songwriter",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria",
+        "genres": [
+          "reggae"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1990,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 120,
+      "name": "Victony",
+      "wikidata_id": "Q112120810",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q112120810",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Victony",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Imo State, Nigeria"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer and rapper",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Imo State, Nigeria",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2001,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 121,
+      "name": "King Promise",
+      "wikidata_id": "Q45349965",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q45349965",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Nungua, Ghana"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Ghanaian singer and songwriter",
+        "country": "Ghana",
+        "country_code": "GH",
+        "city_region": "Nungua, Ghana",
+        "genres": [],
+        "occupations": [
+          "musician",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 122,
+      "name": "TitoM",
+      "wikidata_id": "Q3527974",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3527974",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "TitoM is a French musician born in 1983. The artist is associated with music of Brittany.",
+        "genre": "music of Brittany",
+        "website_url": "https://www.titom.fr/"
+      },
+      "old_values": {
+        "biography": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "French musician",
+        "country": "France",
+        "country_code": "FR",
+        "city_region": "",
+        "genres": [
+          "music of Brittany"
+        ],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1983,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 124,
+      "name": "Quavo",
+      "wikidata_id": "Q30072039",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q30072039",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Quavo",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Quavo is a American singer, rapper and songwriter from Athens, United States. The artist is associated with hip-hop and trap music.",
+        "city_region": "Athens, United States",
+        "genre": "hip-hop, trap music",
+        "website_url": "https://www.quavohuncho.net/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Athens, United States",
+        "genres": [
+          "hip-hop",
+          "trap music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 126,
+      "name": "Bella Kombo",
+      "wikidata_id": "Q137398781",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137398781",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Bella Kombo is a Tanzanian singer. The artist is associated with urban contemporary gospel.",
+        "genre": "urban contemporary gospel"
+      },
+      "old_values": {
+        "biography": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Gospel Minister",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [
+          "urban contemporary gospel"
+        ],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 127,
+      "name": "Zabron Singers",
+      "wikidata_id": "Q137426726",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426726",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Zabron Singers is a Tanzanian musical group. The act is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian religious music group",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 133,
+      "name": "Guardian Angel",
+      "wikidata_id": "Q204841",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q204841",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Guardian_Angel_(Drafi_Deutscher_song)",
+      "match_score": 1.0,
+      "fields": {
+        "genre": "pop music"
+      },
+      "old_values": {
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "song written and composed by Christopher Evans-Ironside and Kurt Gebegern, originally recorded by Masquerade and released in 1983",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [
+          "pop music"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical work/composition"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 150,
+      "name": "Loreen",
+      "wikidata_id": "Q483376",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q483376",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Loreen",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Loreen is a Swedish singer from Danderyd, Sweden. The artist is associated with pop music, dance-pop and indie pop.",
+        "city_region": "Danderyd, Sweden",
+        "genre": "pop music, dance-pop, indie pop",
+        "website_url": "http://loreenofficial.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Swedish singer",
+        "country": "Sweden",
+        "country_code": "SE",
+        "city_region": "Danderyd, Sweden",
+        "genres": [
+          "pop music",
+          "dance-pop",
+          "indie pop",
+          "indie rock"
+        ],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1983,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 157,
+      "name": "Chike",
+      "wikidata_id": "Q27830782",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q27830782",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Chike_(singer)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Chike is a Nigerian singer and songwriter from Lagos, Nigeria. The artist is associated with highlife and rhythm and blues.",
+        "city_region": "Lagos, Nigeria",
+        "genre": "highlife, rhythm and blues"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Nigerian ace music singer, songwriter, entertainer, music entrepreneur and actor",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria",
+        "genres": [
+          "highlife",
+          "rhythm and blues"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 166,
+      "name": "Nicki Minaj",
+      "wikidata_id": "Q162202",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q162202",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Nicki_Minaj",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Nicki Minaj is a singer, rapper and songwriter from Trinidad and Tobago from Saint James, Trinidad and Tobago. The artist is associated with hip-hop, pop music and contemporary R&B.",
+        "city_region": "Saint James, Trinidad and Tobago",
+        "genre": "hip-hop, pop music, contemporary R&B",
+        "website_url": "http://www.nickiminajofficial.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Trinidadian rapper (born 1982)",
+        "country": "Trinidad and Tobago",
+        "country_code": "TT",
+        "city_region": "Saint James, Trinidad and Tobago",
+        "genres": [
+          "hip-hop",
+          "pop music",
+          "contemporary R&B",
+          "trap music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1982,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 172,
+      "name": "Gyptian",
+      "wikidata_id": "Q1558502",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q1558502",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gyptian",
+      "match_score": 1.0,
+      "fields": {
+        "website_url": "http://gyptian.com"
+      },
+      "old_values": {
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Jamaican reggae singer",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Saint Andrew Parish, Jamaica",
+        "genres": [
+          "reggae"
+        ],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1983,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 173,
+      "name": "Joé Dwèt Filé",
+      "wikidata_id": "Q106686744",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q106686744",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Jo%C3%A9_Dw%C3%A8t_Fil%C3%A9",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "12th arrondissement of Paris, France",
+        "genre": "French contemporary R&B, pop urbaine, konpa",
+        "website_url": "https://www.joedwetfile.fr/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "French-Haitian singer",
+        "country": "France",
+        "country_code": "FR",
+        "city_region": "12th arrondissement of Paris, France",
+        "genres": [
+          "French contemporary R&B",
+          "pop urbaine",
+          "konpa",
+          "gospel music"
+        ],
+        "occupations": [
+          "singer",
+          "record producer",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 178,
+      "name": "Preston Pablo",
+      "wikidata_id": "Q116547033",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q116547033",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Preston_Pablo",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Preston Pablo is a Canadian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": ""
+      },
+      "source_facts": {
+        "description": "Canadian singer and songwriter",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 180,
+      "name": "Kell Kay",
+      "wikidata_id": "Q125134734",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q125134734",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kell_Kay",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Kell Kay is a songwriter and musician from Malawi born in 1993. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": ""
+      },
+      "source_facts": {
+        "description": "Malawian musician and songwriter",
+        "country": "Malawi",
+        "country_code": "MW",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 182,
+      "name": "OSKIDO",
+      "wikidata_id": "Q20981843",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q20981843",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Oskido",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "OSKIDO is a South African musician from Brits, South Africa. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "city_region": "Brits, South Africa",
+        "website_url": "http://www.oskidoibelieve.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "South African musician",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Brits, South Africa",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1967,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 184,
+      "name": "PARTYNEXTDOOR",
+      "wikidata_id": "Q15929398",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q15929398",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/PartyNextDoor",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "PARTYNEXTDOOR is a Canadian singer, rapper and songwriter from Mississauga, Canada. The artist is associated with Canadian hip-hop and alternative R&B.",
+        "website_url": "https://www.partyomo.com"
+      },
+      "old_values": {
+        "biography": "Canadian singer-songwriter and producer Jahron Brathwaite, an OVO Sound artist known for moody contemporary R&B.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Canadian singer (born 1993)",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "Mississauga, Canada",
+        "genres": [
+          "Canadian hip-hop",
+          "alternative R&B"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 186,
+      "name": "Don Toliver",
+      "wikidata_id": "Q56513383",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q56513383",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Don_Toliver",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Don Toliver is a American singer, rapper and songwriter from Houston, United States. The artist is associated with hip-hop, trap music and contemporary R&B.",
+        "website_url": "https://www.dontolivermusic.com/"
+      },
+      "old_values": {
+        "biography": "American rapper and singer known for melodic trap and psychedelic R&B textures.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer and rapper (born 1994)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Houston, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1994,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 188,
+      "name": "Lil Tecca",
+      "wikidata_id": "Q65054660",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q65054660",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lil_Tecca",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Lil Tecca is a American singer, rapper and songwriter from Queens, United States. The artist is associated with hip-hop and trap music.",
+        "city_region": "Queens, United States",
+        "genre": "hip-hop, trap music",
+        "website_url": "https://tecca.co/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper and singer-songwriter",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Queens, United States",
+        "genres": [
+          "hip-hop",
+          "trap music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2002,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 189,
+      "name": "Frank Ocean",
+      "wikidata_id": "Q357645",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q357645",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Frank_Ocean",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Long Beach, United States",
+        "genre": "alternative R&B, psychedelic soul, progressive soul",
+        "website_url": "https://blonded.co/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer, songwriter, and rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Long Beach, United States",
+        "genres": [
+          "alternative R&B",
+          "psychedelic soul",
+          "progressive soul",
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1987,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 190,
+      "name": "Kanye West",
+      "wikidata_id": "Q15935",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q15935",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kanye_West",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Kanye West is a American singer, rapper and songwriter from Atlanta, United States. The artist is associated with hip-hop, pop music and electro.",
+        "website_url": "https://yeezy.com/"
+      },
+      "old_values": {
+        "biography": "American rapper, producer and fashion entrepreneur whose influential catalogue spans hip-hop, pop and gospel.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper and record producer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "hip-hop",
+          "pop music",
+          "electro",
+          "soul"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1977,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 191,
+      "name": "Eminem",
+      "wikidata_id": "Q5608",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q5608",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Eminem",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Eminem is a American singer, rapper and songwriter from St. Joseph, United States. The artist is associated with hip-hop, horrorcore and hardcore hip-hop.",
+        "city_region": "St. Joseph, United States",
+        "genre": "hip-hop, horrorcore, hardcore hip-hop",
+        "website_url": "https://eminem.com"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper, record producer and actor",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "St. Joseph, United States",
+        "genres": [
+          "hip-hop",
+          "horrorcore",
+          "hardcore hip-hop",
+          "comedy hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1972,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 193,
+      "name": "Metro Boomin",
+      "wikidata_id": "Q16235273",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q16235273",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Metro_Boomin",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "St. Louis, United States",
+        "genre": "hip-hop, trap music",
+        "website_url": "https://www.boominatiworldwide.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American record producer (born 1993)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "St. Louis, United States",
+        "genres": [
+          "hip-hop",
+          "trap music"
+        ],
+        "occupations": [
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 194,
+      "name": "Beyoncé",
+      "wikidata_id": "Q36153",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q36153",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Beyonc%C3%A9",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Houston, United States",
+        "genre": "pop music, contemporary R&B, country music",
+        "website_url": "https://beyonce.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer, songwriter, record producer, and dancer (born 1981)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Houston, United States",
+        "genres": [
+          "pop music",
+          "contemporary R&B",
+          "country music"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "record producer",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1981,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 195,
+      "name": "Dave",
+      "wikidata_id": "Q27909736",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q27909736",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Dave_(rapper)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Dave is a British singer, rapper and songwriter from London, United Kingdom. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "website_url": "https://santandave.com"
+      },
+      "old_values": {
+        "biography": "British rapper, singer and pianist known for narrative, socially observant songwriting and acclaimed albums.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "British rapper",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "city_region": "London, United Kingdom",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 197,
+      "name": "BigXthaPlug",
+      "wikidata_id": "Q124750337",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q124750337",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/BigXthaPlug",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "BigXthaPlug is a American rapper from Dallas, United States. The artist is associated with rapping and hip-hop.",
+        "city_region": "Dallas, United States",
+        "genre": "rapping, hip-hop",
+        "website_url": "https://www.bigxthaplugofficial.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Dallas, United States",
+        "genres": [
+          "rapping",
+          "hip-hop"
+        ],
+        "occupations": [
+          "rapper"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 198,
+      "name": "Ken Carson",
+      "wikidata_id": "Q114050700",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q114050700",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ken_Carson",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Atlanta, United States",
+        "genre": "Southern hip-hop, trap music, rage",
+        "website_url": "https://www.kencarson.xyz/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper (born 2000)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "Southern hip-hop",
+          "trap music",
+          "rage",
+          "cloud rap"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 199,
+      "name": "Yeat",
+      "wikidata_id": "Q108761978",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q108761978",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Yeat",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Irvine, United States",
+        "genre": "experimental hip-hop, rage, trap music",
+        "website_url": "https://www.yeatofficial.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper, singer-songwriter, and record producer (born 2000)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Irvine, United States",
+        "genres": [
+          "experimental hip-hop",
+          "rage",
+          "trap music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 200,
+      "name": "SahBabii",
+      "wikidata_id": "Q39086692",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q39086692",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/SahBabii",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "SahBabii is a American singer, rapper and songwriter from Chicago, United States. The artist is associated with hip-hop.",
+        "city_region": "Chicago, United States",
+        "genre": "hip-hop"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "American rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Chicago, United States",
+        "genres": [
+          "hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 201,
+      "name": "Lil Uzi Vert",
+      "wikidata_id": "Q23771950",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q23771950",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lil_Uzi_Vert",
+      "match_score": 1.0,
+      "fields": {
+        "website_url": "https://liluziofficial.com"
+      },
+      "old_values": {
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Philadelphia, United States",
+        "genres": [
+          "hip-hop",
+          "emo rap",
+          "trap music",
+          "SoundCloud rap"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 203,
+      "name": "Ada Ehi",
+      "wikidata_id": "Q39054685",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q39054685",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ada_Ehi",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Ada Ehi is a Nigerian singer, songwriter and recording artist from Lagos State, Nigeria. The artist is associated with contemporary Christian music, pop music and Afrobeats.",
+        "city_region": "Lagos State, Nigeria",
+        "genre": "contemporary Christian music, pop music, Afrobeats",
+        "website_url": "http://adaehi.com"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian Gospel Singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos State, Nigeria",
+        "genres": [
+          "contemporary Christian music",
+          "pop music",
+          "Afrobeats"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "recording artist"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1987,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 204,
+      "name": "Rod Wave",
+      "wikidata_id": "Q78754352",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q78754352",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Rod_Wave",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Rod Wave is a American singer, rapper and songwriter from St. Petersburg, United States. The artist is associated with hip-hop, contemporary R&B and soul.",
+        "city_region": "St. Petersburg, United States",
+        "genre": "hip-hop, contemporary R&B, soul",
+        "website_url": "https://www.officialrodwave.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper and singer-songwriter (born 1998)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "St. Petersburg, United States",
+        "genres": [
+          "hip-hop",
+          "contemporary R&B",
+          "soul",
+          "trap music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 207,
+      "name": "YoungBoy Never Broke Again",
+      "wikidata_id": "Q36490532",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q36490532",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/YoungBoy_Never_Broke_Again",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "YoungBoy Never Broke Again is a American rapper and songwriter from Baton Rouge, United States. The artist is associated with hip-hop, Southern hip-hop and gangsta rap.",
+        "website_url": "https://www.youngboynba.com/"
+      },
+      "old_values": {
+        "biography": "American rapper Kentrell Gaulden, known for emotionally raw Southern rap and an exceptionally prolific release history.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper (born 1999)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Baton Rouge, United States",
+        "genres": [
+          "hip-hop",
+          "Southern hip-hop",
+          "gangsta rap",
+          "trap music"
+        ],
+        "occupations": [
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1999,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 208,
+      "name": "Juice WRLD",
+      "wikidata_id": "Q52151598",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q52151598",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Juice_Wrld",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Juice WRLD is a American singer, rapper and songwriter from Chicago, United States. The artist is associated with hip-hop, emo rap and alternative rock.",
+        "city_region": "Chicago, United States",
+        "genre": "hip-hop, emo rap, alternative rock"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "American rapper and singer (1998–2019)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Chicago, United States",
+        "genres": [
+          "hip-hop",
+          "emo rap",
+          "alternative rock",
+          "trap music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 210,
+      "name": "J. Cole",
+      "wikidata_id": "Q204018",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q204018",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/J._Cole",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "J. Cole is a American singer, rapper and songwriter from Frankfurt, United States. The artist is associated with hip-hop, Southern hip-hop and pop rap."
+      },
+      "old_values": {
+        "biography": "American rapper, producer and Dreamville founder known for introspective, narrative-driven hip-hop."
+      },
+      "source_facts": {
+        "description": "American rapper and record producer (born 1985)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Frankfurt, United States",
+        "genres": [
+          "hip-hop",
+          "Southern hip-hop",
+          "pop rap",
+          "East Coast hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1985,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 211,
+      "name": "Maua Sama",
+      "wikidata_id": "Q130383034",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q130383034",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Maua_Sama",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Maua Sama is a Tanzanian singer born in 1990. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian singer and songwriter",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1990,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 213,
+      "name": "Coldplay",
+      "wikidata_id": "Q45188",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q45188",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Coldplay",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Coldplay is a British musical group from London, United Kingdom. The act is associated with alternative rock and pop music.",
+        "city_region": "London, United Kingdom",
+        "genre": "alternative rock, pop music",
+        "website_url": "https://coldplay.com"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "British rock band",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "city_region": "London, United Kingdom",
+        "genres": [
+          "alternative rock",
+          "pop music"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": 1999
+      }
+    },
+    {
+      "id": 215,
+      "name": "Summer Walker",
+      "wikidata_id": "Q61959478",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q61959478",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Summer_Walker",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Atlanta, United States",
+        "genre": "contemporary R&B",
+        "website_url": "https://www.summerwalkermusic.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American R&B singer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "recording artist"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1996,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 216,
+      "name": "Chandler Moore",
+      "wikidata_id": "Q106641042",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q106641042",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Chandler_Moore",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Chandler Moore is a American singer and songwriter from Charleston, United States. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "city_region": "Charleston, United States",
+        "website_url": "https://chandlerdmoore.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American Christian singer, songwriter and worship leader",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Charleston, United States",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 217,
+      "name": "Khalid",
+      "wikidata_id": "Q28816483",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q28816483",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Khalid is a American singer, songwriter and record producer from Fort Stewart, United States. The artist is associated with contemporary R&B.",
+        "city_region": "Fort Stewart, United States",
+        "genre": "contemporary R&B",
+        "website_url": "https://www.khalidofficial.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer (born 1998)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Fort Stewart, United States",
+        "genres": [
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "record producer",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 219,
+      "name": "Alan Walker",
+      "wikidata_id": "Q21808729",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q21808729",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Alan_Walker",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Northampton",
+        "genre": "electronic dance music, progressive house, electropop",
+        "website_url": "http://alanwalker.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Norwegian electronic dance music producer (born 1997)",
+        "country": "",
+        "country_code": "",
+        "city_region": "Northampton",
+        "genres": [
+          "electronic dance music",
+          "progressive house",
+          "electropop"
+        ],
+        "occupations": [
+          "record producer",
+          "DJ",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 220,
+      "name": "Mercy Chinwo",
+      "wikidata_id": "Q41694090",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q41694090",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mercy_Chinwo",
+      "match_score": 0.94,
+      "fields": {
+        "biography": "Mercy Chinwo is a Nigerian singer-songwriter from Port Harcourt, Nigeria. The artist is associated with gospel music, contemporary music and contemporary worship music.",
+        "city_region": "Port Harcourt, Nigeria",
+        "genre": "gospel music, contemporary music, contemporary worship music"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Nigerian Gospel Musician",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Port Harcourt, Nigeria",
+        "genres": [
+          "gospel music",
+          "contemporary music",
+          "contemporary worship music",
+          "African gospel"
+        ],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1990,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 221,
+      "name": "Dunsin Oyekan",
+      "wikidata_id": "Q123908642",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q123908642",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Kwara State, Nigeria",
+        "website_url": "https://dunsinoyekan.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian gospel musician",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Kwara State, Nigeria",
+        "genres": [],
+        "occupations": [
+          "gospel singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1984,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 229,
+      "name": "Skillibeng",
+      "wikidata_id": "Q116890354",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q116890354",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Skillibeng",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Saint Thomas Parish"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Jamaican dancehall singer and rapper (born 1996)",
+        "country": "",
+        "country_code": "",
+        "city_region": "Saint Thomas Parish",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1996,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 230,
+      "name": "Seyi Vibez",
+      "wikidata_id": "Q108180746",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q108180746",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Seyi_Vibez",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Seyi Vibez is a Nigerian musician from Lagos State, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Nigerian singer-songwriter Balogun Afolabi Oluwaloseyi, known for emotionally direct street-pop and prolific projects."
+      },
+      "source_facts": {
+        "description": "Nigerian singer and songwriter",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos State, Nigeria",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 233,
+      "name": "Sasha Alex Sloan",
+      "wikidata_id": "Q51084672",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q51084672",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sasha_Alex_Sloan",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Sasha Alex Sloan is a American singer-songwriter, singer and songwriter from Boston, United States. The artist is associated with electropop.",
+        "city_region": "Boston, United States",
+        "genre": "electropop",
+        "website_url": "https://www.sadgirlsloan.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer-songwriter",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Boston, United States",
+        "genres": [
+          "electropop"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 239,
+      "name": "Sexyy Red",
+      "wikidata_id": "Q119842023",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q119842023",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sexyy_Red",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Sexyy Red is a American singer, rapper and songwriter from St. Louis, United States. The artist is associated with hip-hop, trap music and dirty rap.",
+        "city_region": "St. Louis, United States",
+        "genre": "hip-hop, trap music, dirty rap",
+        "website_url": "https://sexyy4president.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper (born 1998)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "St. Louis, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "dirty rap",
+          "Midwest hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 240,
+      "name": "Angela Chibalonza",
+      "wikidata_id": "Q137165469",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137165469",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Kinshasa, Democratic Republic of the Congo"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Gospel Singer",
+        "country": "Democratic Republic of the Congo",
+        "country_code": "CD",
+        "city_region": "Kinshasa, Democratic Republic of the Congo",
+        "genres": [],
+        "occupations": [
+          "gospel singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1976,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 241,
+      "name": "Stamina Shorwebwenzi",
+      "wikidata_id": "Q137426685",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426685",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Stamina Shorwebwenzi is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian hip hop artist",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 242,
+      "name": "Trio Mio",
+      "wikidata_id": "Q12339779",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q12339779",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Trio_Mio",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Trio Mio is a Danish recording artist. The artist is associated with traditional folk music.",
+        "genre": "traditional folk music",
+        "website_url": "http://www.triomio.dk/"
+      },
+      "old_values": {
+        "biography": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Kenyan rapper (born 2004)",
+        "country": "Denmark",
+        "country_code": "DK",
+        "city_region": "",
+        "genres": [
+          "traditional folk music"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical trio"
+        ],
+        "birth_year": null,
+        "inception_year": 2004
+      }
+    },
+    {
+      "id": 243,
+      "name": "Minister GUC",
+      "wikidata_id": "Q117192012",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q117192012",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Minister_GUC",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Minister GUC is a Nigerian songwriter, musician and gospel musician from Port Harcourt, Nigeria. The artist is associated with gospel music and contemporary worship music.",
+        "city_region": "Port Harcourt, Nigeria",
+        "genre": "gospel music, contemporary worship music"
+      },
+      "old_values": {
+        "biography": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "musical artist",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Port Harcourt, Nigeria",
+        "genres": [
+          "gospel music",
+          "contemporary worship music"
+        ],
+        "occupations": [
+          "songwriter",
+          "musician",
+          "gospel musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 251,
+      "name": "Alex Warren",
+      "wikidata_id": "Q121842162",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q121842162",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Alex_Warren",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Carlsbad, United States",
+        "genre": "pop music",
+        "website_url": "https://www.alexwarrenofficial.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer, songwriter, YouTuber, and influencer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Carlsbad, United States",
+        "genres": [
+          "pop music"
+        ],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 255,
+      "name": "Aidonia",
+      "wikidata_id": "Q404068",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q404068",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Aidonia",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Kingston, Jamaica",
+        "genre": "reggae"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Jamaican reggae and dancehall musician",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Kingston, Jamaica",
+        "genres": [
+          "reggae"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1981,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 259,
+      "name": "FloyyMenor",
+      "wikidata_id": "Q125819969",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q125819969",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/FloyyMenor",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Vicuña, Chile",
+        "genre": "reggaeton"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Chilean singer-songwriter",
+        "country": "Chile",
+        "country_code": "CL",
+        "city_region": "Vicuña, Chile",
+        "genres": [
+          "reggaeton"
+        ],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2005,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 264,
+      "name": "HUNTR/X",
+      "wikidata_id": "Q135921763",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q135921763",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Huntrix",
+      "match_score": 1.0,
+      "fields": {
+        "genre": "K-pop"
+      },
+      "old_values": {
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "fictional K-pop girl group",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [
+          "K-pop"
+        ],
+        "occupations": [],
+        "instances": [
+          "virtual band",
+          "girl group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 269,
+      "name": "Gajendra Verma",
+      "wikidata_id": "Q17994542",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q17994542",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gajendra_Verma",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Sirsa, India",
+        "website_url": "http://www.gajendraverma.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Indian Playback singer",
+        "country": "India",
+        "country_code": "IN",
+        "city_region": "Sirsa, India",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1990,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 271,
+      "name": "MAD G",
+      "wikidata_id": "Q3842214",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3842214",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mad_Grandiose_Bloodfiends",
+      "match_score": 0.94,
+      "fields": {
+        "genre": "black metal"
+      },
+      "old_values": {
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "album by Ancient",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [
+          "black metal"
+        ],
+        "occupations": [],
+        "instances": [
+          "album"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 272,
+      "name": "Myztro",
+      "wikidata_id": "Q122956422",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q122956422",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Myztro",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Soshanguve, South Africa"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "South African DJ and record producer",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Soshanguve, South Africa",
+        "genres": [],
+        "occupations": [
+          "record producer",
+          "DJ",
+          "composer",
+          "recording artist"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 281,
+      "name": "Rvssian",
+      "wikidata_id": "Q19968637",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q19968637",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Rvssian",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Kingston, Jamaica",
+        "genre": "reggaeton, dancehall, contemporary R&B"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Jamaican record producer (born 1988)",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Kingston, Jamaica",
+        "genres": [
+          "reggaeton",
+          "dancehall",
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1988,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 282,
+      "name": "Dominic Fike",
+      "wikidata_id": "Q61906153",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q61906153",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Dominic_Fike",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Naples, United States",
+        "genre": "alternative hip-hop, rap rock, pop rock",
+        "website_url": "http://dominicfike.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American musician (born 1995)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Naples, United States",
+        "genres": [
+          "alternative hip-hop",
+          "rap rock",
+          "pop rock",
+          "alternative rock"
+        ],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 285,
+      "name": "Mejja",
+      "wikidata_id": "Q106570642",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q106570642",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mejja",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Mejja is a Kenyan rapper from Nyeri, Kenya. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Kenyan rapper Major Nameye Khadija, a leading Genge artist known for humorous, conversational storytelling."
+      },
+      "source_facts": {
+        "description": "Kenyan Genge Artist",
+        "country": "Kenya",
+        "country_code": "KE",
+        "city_region": "Nyeri, Kenya",
+        "genres": [],
+        "occupations": [
+          "rapper"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1979,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 300,
+      "name": "Oscar Mbo",
+      "wikidata_id": "Q107750824",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q107750824",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Oscar_Mbo",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Pretoria, South Africa"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "South African record producer",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Pretoria, South Africa",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1990,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 301,
+      "name": "Kehlani",
+      "wikidata_id": "Q20657541",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q20657541",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Kehlani",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Oakland, United States",
+        "genre": "contemporary R&B, pop music, neo soul",
+        "website_url": "https://kehlani.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer-songwriter (born 1995)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Oakland, United States",
+        "genres": [
+          "contemporary R&B",
+          "pop music",
+          "neo soul",
+          "hip-hop"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "composer",
+          "recording artist"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 302,
+      "name": "Uncle Waffles",
+      "wikidata_id": "Q109406884",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q109406884",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Uncle_Waffles",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Eswatini",
+        "website_url": "https://bookwaffles.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Swazi DJ",
+        "country": "Eswatini",
+        "country_code": "SZ",
+        "city_region": "Eswatini",
+        "genres": [
+          "Amapiano"
+        ],
+        "occupations": [
+          "singer",
+          "DJ"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 303,
+      "name": "Offset",
+      "wikidata_id": "Q30612480",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q30612480",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Offset_(rapper)",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Lawrenceville, United States",
+        "genre": "hip-hop, trap music, Southern hip-hop",
+        "website_url": "http://offsetofficial.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Lawrenceville, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "Southern hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 304,
+      "name": "Lil Baby",
+      "wikidata_id": "Q50527563",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q50527563",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lil_Baby",
+      "match_score": 1.0,
+      "fields": {
+        "website_url": "http://iamlilbaby.com/"
+      },
+      "old_values": {
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper (born 1994)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "Southern hip-hop"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1994,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 305,
+      "name": "Olivia Dean",
+      "wikidata_id": "Q108106738",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q108106738",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Olivia_Dean",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Olivia Dean is a British singer-songwriter, singer and composer from Walthamstow, United Kingdom. The artist is associated with pop soul and neo soul.",
+        "website_url": "https://www.oliviadeano.com/"
+      },
+      "old_values": {
+        "biography": "British singer-songwriter known for warm, classic-soul-influenced pop and intimate lyricism.",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "British singer",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "city_region": "Walthamstow, United Kingdom",
+        "genres": [
+          "pop soul",
+          "neo soul"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "composer",
+          "soul musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1999,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 306,
+      "name": "Maverick City Music",
+      "wikidata_id": "Q100276699",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q100276699",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Maverick_City_Music",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Maverick City Music is a American musical group from Atlanta, United States. The act is associated with contemporary worship music, contemporary Christian music and gospel music.",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genre": "contemporary worship music, contemporary Christian music, gospel music",
+        "website_url": "https://www.maverickcitymusic.com"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American contemporary worship collective",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "contemporary worship music",
+          "contemporary Christian music",
+          "gospel music"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": 2018
+      }
+    },
+    {
+      "id": 307,
+      "name": "Mariah the Scientist",
+      "wikidata_id": "Q84356665",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q84356665",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Mariah_the_Scientist",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Atlanta, United States",
+        "genre": "alternative R&B",
+        "website_url": "https://www.mariahthescientist.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer (born 1997)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Atlanta, United States",
+        "genres": [
+          "alternative R&B"
+        ],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 308,
+      "name": "Cardi B",
+      "wikidata_id": "Q29033668",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q29033668",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Cardi_B",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Bronx County, United States",
+        "genre": "hip-hop, pop music, pop rap",
+        "website_url": "https://www.cardibofficial.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper (born 1992)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Bronx County, United States",
+        "genres": [
+          "hip-hop",
+          "pop music",
+          "pop rap"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "rapper",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1992,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 309,
+      "name": "Elevation Worship",
+      "wikidata_id": "Q10271783",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q10271783",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Elevation_Worship",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Charlotte, United States",
+        "genre": "Christian music",
+        "website_url": "http://www.elevationworship.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American musical group; contemporary worship band",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Charlotte, United States",
+        "genres": [
+          "Christian music"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": 2007
+      }
+    },
+    {
+      "id": 310,
+      "name": "DJ Khaled",
+      "wikidata_id": "Q80805",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q80805",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/DJ_Khaled",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "New Orleans, United States",
+        "website_url": "https://www.djkhaledofficial.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American DJ and rapper (born 1975)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "New Orleans, United States",
+        "genres": [
+          "hip-hop",
+          "pop rap"
+        ],
+        "occupations": [
+          "rapper",
+          "record producer",
+          "musician",
+          "DJ"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1975,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 315,
+      "name": "Shallipopi",
+      "wikidata_id": "Q120943157",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q120943157",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Shallipopi",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Benin City, Nigeria",
+        "website_url": "https://www.theycallmeshallipopi.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer and rapper",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Benin City, Nigeria",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2000,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 316,
+      "name": "Justin Bieber",
+      "wikidata_id": "Q34086",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q34086",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Justin_Bieber",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "London, Canada",
+        "website_url": "https://www.justinbiebermusic.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Canadian singer-songwriter (born 1994)",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "London, Canada",
+        "genres": [
+          "pop music",
+          "contemporary R&B",
+          "tropical house",
+          "reggaeton"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1994,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 319,
+      "name": "Soa Mattrix",
+      "wikidata_id": "Q123149021",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q123149021",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Soa_Mattrix",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Soa Mattrix is a record producer born in 1998. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": ""
+      },
+      "source_facts": {
+        "description": "South African DJ and Music Producer",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 320,
+      "name": "The Ben",
+      "wikidata_id": "Q41410530",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q41410530",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/The_Ben",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Kampala, Rwanda",
+        "genre": "Afrobeats"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Rwandan singer",
+        "country": "Rwanda",
+        "country_code": "RW",
+        "city_region": "Kampala, Rwanda",
+        "genres": [
+          "Afrobeats"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "composer",
+          "guitarist"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1987,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 321,
+      "name": "Frida Amani",
+      "wikidata_id": "Q130287368",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q130287368",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Frida_Amani",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Arusha, Tanzania",
+        "website_url": "https://fridaamani.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian rapper, media personality, environmental advocate and social activis",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Arusha, Tanzania",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 325,
+      "name": "Barry Jhay",
+      "wikidata_id": "Q112454642",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q112454642",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Barry_Jhay",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Ibadan, Nigeria",
+        "genre": "Afrobeats"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Ibadan, Nigeria",
+        "genres": [
+          "Afrobeats"
+        ],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 327,
+      "name": "KiDi",
+      "wikidata_id": "Q52802465",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q52802465",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/KiDi",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Accra, Ghana"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Ghanaian musician",
+        "country": "Ghana",
+        "country_code": "GH",
+        "city_region": "Accra, Ghana",
+        "genres": [
+          "Afrobeats",
+          "African popular music",
+          "highlife"
+        ],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 329,
+      "name": "Lava Lava",
+      "wikidata_id": "Q85978300",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q85978300",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lava_Lava_(singer)",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Tanzania"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "Tanzania",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1993,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 333,
+      "name": "Ciara",
+      "wikidata_id": "Q203223",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q203223",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ciara",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Fort Hood, United States",
+        "genre": "contemporary R&B, pop music",
+        "website_url": "https://www.officialciara.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer, songwriter, and dancer (born 1985)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Fort Hood, United States",
+        "genres": [
+          "contemporary R&B",
+          "pop music"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "musician",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1985,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 341,
+      "name": "John Blaq",
+      "wikidata_id": "Q96270510",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q96270510",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/John_Blaq",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "John Blaq is a Ugandan singer born in 1996. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Uganda",
+        "country_code": "UG"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Ugandan singer",
+        "country": "Uganda",
+        "country_code": "UG",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1996,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 342,
+      "name": "Black Sherif",
+      "wikidata_id": "Q107740983",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q107740983",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Black_Sherif",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Black Sherif is a Ghanaian singer and rapper from Konongo, Ghana. The artist is associated with highlife, pop rap and Afrobeats."
+      },
+      "old_values": {
+        "biography": "Ghanaian singer and rapper known for introspective songwriting that blends hip-hop, highlife and Afrobeats."
+      },
+      "source_facts": {
+        "description": "Ghanaian singer and rapper",
+        "country": "Ghana",
+        "country_code": "GH",
+        "city_region": "Konongo, Ghana",
+        "genres": [
+          "highlife",
+          "pop rap",
+          "Afrobeats",
+          "drill"
+        ],
+        "occupations": [
+          "singer",
+          "rapper"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2002,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 345,
+      "name": "Bite Starr",
+      "wikidata_id": "Q137425203",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137425203",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Bite Starr is a Tanzanian singer-songwriter. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Tanzania",
+        "country_code": "TZ"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian musician",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 347,
+      "name": "Young Jonn",
+      "wikidata_id": "Q21574887",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q21574887",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Young_Jonn",
+      "match_score": 0.94,
+      "fields": {
+        "city_region": "Ibadan, Nigeria"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer, songwriter and record producer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Ibadan, Nigeria",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 350,
+      "name": "Ayo Maff",
+      "wikidata_id": "Q130558726",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q130558726",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Ayo_Maff",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Ayo Maff is a Nigerian singer, rapper and songwriter born in 2005. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Nigerian singer-songwriter who broke through with “Dealer” and released the seven-track MAFFIAN project."
+      },
+      "source_facts": {
+        "description": "Nigerian musician",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2005,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 351,
+      "name": "Asagwile",
+      "wikidata_id": "Q137426396",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426396",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Asagwile is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Tanzania",
+        "country_code": "TZ"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian religious singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 353,
+      "name": "EMIN",
+      "wikidata_id": "Q983419",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q983419",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Emin_(singer)",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Baku, Russia",
+        "website_url": "https://emin-music.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Azerbaijani-Russian singer and businessman",
+        "country": "Russia",
+        "country_code": "RU",
+        "city_region": "Baku, Russia",
+        "genres": [
+          "dance-pop"
+        ],
+        "occupations": [
+          "singer-songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1979,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 356,
+      "name": "Lawrence Oyor",
+      "wikidata_id": "Q100597983",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q100597983",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Lawrence Oyor is a Nigerian musician from Ibadan, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Ibadan, Nigeria"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Music Minister",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Ibadan, Nigeria",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 359,
+      "name": "Modola",
+      "wikidata_id": "Q135785413",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q135785413",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Modola",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Modola is a songwriter and musician from Italy from Lagos State, Italy. The artist is associated with Afrobeats, Afro fusion and African popular music.",
+        "country": "Italy",
+        "country_code": "IT",
+        "city_region": "Lagos State, Italy",
+        "genre": "Afrobeats, Afro fusion, African popular music"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer-songwriter",
+        "country": "Italy",
+        "country_code": "IT",
+        "city_region": "Lagos State, Italy",
+        "genres": [
+          "Afrobeats",
+          "Afro fusion",
+          "African popular music"
+        ],
+        "occupations": [
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2005,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 364,
+      "name": "Sabrina",
+      "wikidata_id": "Q114444504",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q114444504",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Sabrina is a Spanish recording artist. The artist is associated with side-scrolling beat 'em up.",
+        "country": "Spain",
+        "country_code": "ES",
+        "genre": "side-scrolling beat 'em up"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "1989 video game",
+        "country": "Spain",
+        "country_code": "ES",
+        "city_region": "",
+        "genres": [
+          "side-scrolling beat 'em up"
+        ],
+        "occupations": [],
+        "instances": [
+          "video game"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 372,
+      "name": "Saja Boys",
+      "wikidata_id": "Q135921764",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q135921764",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Saja_Boys",
+      "match_score": 1.0,
+      "fields": {
+        "genre": "K-pop"
+      },
+      "old_values": {
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "fictional K-pop boyband",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [
+          "K-pop"
+        ],
+        "occupations": [],
+        "instances": [
+          "virtual band",
+          "boy band"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 374,
+      "name": "Gaise Baba",
+      "wikidata_id": "Q134732653",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q134732653",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gaise_Baba",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Ile Ife"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer, songwriter, and culture advocate",
+        "country": "",
+        "country_code": "",
+        "city_region": "Ile Ife",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1986,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 375,
+      "name": "Popcaan",
+      "wikidata_id": "Q7229119",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q7229119",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Popcaan",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Saint Thomas Parish, Jamaica",
+        "genre": "dancehall",
+        "website_url": "https://officialpopcaan.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Jamaican singer",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Saint Thomas Parish, Jamaica",
+        "genres": [
+          "dancehall"
+        ],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 381,
+      "name": "Khaligraph Jones",
+      "wikidata_id": "Q106572559",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q106572559",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Khaligraph_Jones",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Mbooni, Kenya"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Kenyan rapper",
+        "country": "Kenya",
+        "country_code": "KE",
+        "city_region": "Mbooni, Kenya",
+        "genres": [],
+        "occupations": [
+          "rapper"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1990,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 383,
+      "name": "Rumi",
+      "wikidata_id": "Q136644350",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q136644350",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Rumi_(KPop_Demon_Hunters)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Rumi is a South Korean lead vocalist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "South Korea",
+        "country_code": "KR"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "fictional character from KPop Demon Hunters",
+        "country": "South Korea",
+        "country_code": "KR",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "lead vocalist"
+        ],
+        "instances": [
+          "fictional human hybrid",
+          "fictional orphan",
+          "film character",
+          "animated character",
+          "half-demon in a work of fiction"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 384,
+      "name": "Klassik Frescobar",
+      "wikidata_id": "Q98974111",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q98974111",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "The Bronx, Jamaica",
+        "website_url": "https://www.klassikfrescobar.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Jamaican-American Singer",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "The Bronx, Jamaica",
+        "genres": [
+          "soca music",
+          "dancehall",
+          "reggae"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1989,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 385,
+      "name": "G NAKO",
+      "wikidata_id": "Q137426471",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426471",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "G NAKO is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": "Tanzanian rapper and songwriter George Sixtus Mdemu, a founding member of the hip-hop collective Weusi."
+      },
+      "source_facts": {
+        "description": "Tanzanian hip hop artist",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 386,
+      "name": "CeCe Winans",
+      "wikidata_id": "Q538696",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q538696",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/CeCe_Winans",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Detroit, United States",
+        "website_url": "http://www.cecewinans.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American gospel singer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Detroit, United States",
+        "genres": [
+          "gospel music"
+        ],
+        "occupations": [
+          "singer",
+          "musician",
+          "recording artist"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1964,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 388,
+      "name": "Nathaniel Bassey",
+      "wikidata_id": "Q64746310",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q64746310",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Nathaniel_Bassey",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Lagos, Nigeria"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Nigerian gospel singer and songwriter",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1981,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 391,
+      "name": "Christopher Mwahangila",
+      "wikidata_id": "Q137426438",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426438",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Christopher Mwahangila is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Tanzania",
+        "country_code": "TZ"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian religious singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 393,
+      "name": "Bahati Bukuku",
+      "wikidata_id": "Q113842683",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q113842683",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Bahati_Bukuku",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Bahati Bukuku is a Tanzanian singer born in 1981. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Tanzania",
+        "country_code": "TZ"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian gospel singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1981,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 394,
+      "name": "Tim Godfrey",
+      "wikidata_id": "Q61467100",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q61467100",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tim_Godfrey_(musician)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Tim Godfrey is a Nigerian singer, songwriter and musician from Kaduna, Nigeria. The artist is associated with Christian hip-hop, urban contemporary gospel and contemporary Christian music.",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Kaduna, Nigeria",
+        "genre": "Christian hip-hop, urban contemporary gospel, contemporary Christian music"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Nigerian gospel singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Kaduna, Nigeria",
+        "genres": [
+          "Christian hip-hop",
+          "urban contemporary gospel",
+          "contemporary Christian music",
+          "contemporary worship music"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "musician",
+          "gospel singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1980,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 398,
+      "name": "Sifaeli Mwabuka",
+      "wikidata_id": "Q137398810",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137398810",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Sifaeli Mwabuka is a Tanzanian singer. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Tanzania",
+        "country_code": "TZ"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian Gospel Recording Artist",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 403,
+      "name": "Aslay",
+      "wikidata_id": "Q47513959",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q47513959",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Aslay",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Aslay is a Tanzanian musician born in 1995. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Tanzania",
+        "country_code": "TZ"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian musician",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1995,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 406,
+      "name": "J blessing",
+      "wikidata_id": "Q26436184",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q26436184",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/J_Blessing",
+      "match_score": 0.947,
+      "fields": {
+        "biography": "J blessing is a television producer born in 1988. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": ""
+      },
+      "source_facts": {
+        "description": "Kenyan media personality",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "television producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1988,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 410,
+      "name": "Bayanni",
+      "wikidata_id": "Q123914544",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q123914544",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Bayanni",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Bayanni is a Nigerian singer from Lagos, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Nigerian singer",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Lagos, Nigeria",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 411,
+      "name": "Busy Signal",
+      "wikidata_id": "Q390035",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q390035",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Busy_Signal",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Saint Ann Parish, Jamaica"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Jamaican dancehall reggae artist",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Saint Ann Parish, Jamaica",
+        "genres": [
+          "reggae"
+        ],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1979,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 414,
+      "name": "Martha Baraka",
+      "wikidata_id": "Q137426526",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426526",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Martha Baraka is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Tanzania",
+        "country_code": "TZ"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian religious singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 419,
+      "name": "TWICE",
+      "wikidata_id": "Q20645861",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q20645861",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Twice",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "TWICE is a South Korean girl group from Seoul, South Korea. The act is associated with K-pop, pop music and J-pop.",
+        "country": "South Korea",
+        "country_code": "KR",
+        "city_region": "Seoul, South Korea",
+        "genre": "K-pop, pop music, J-pop",
+        "website_url": "https://twice.jype.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "South Korean girl group",
+        "country": "South Korea",
+        "country_code": "KR",
+        "city_region": "Seoul, South Korea",
+        "genres": [
+          "K-pop",
+          "pop music",
+          "J-pop"
+        ],
+        "occupations": [],
+        "instances": [
+          "girl group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 425,
+      "name": "Lucky Dube",
+      "wikidata_id": "Q380147",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q380147",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lucky_Dube",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Ermelo, South Africa",
+        "website_url": "https://luckydubelegacy.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "South African reggae musician (1964–2007)",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "city_region": "Ermelo, South Africa",
+        "genres": [
+          "reggae"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "musician",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1964,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 426,
+      "name": "Omega 256",
+      "wikidata_id": "Q134267589",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q134267589",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Shamim_Murerwa",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Kampala, Uganda"
+      },
+      "old_values": {
+        "city_region": ""
+      },
+      "source_facts": {
+        "description": "Ugandan musician",
+        "country": "Uganda",
+        "country_code": "UG",
+        "city_region": "Kampala, Uganda",
+        "genres": [],
+        "occupations": [
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1999,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 433,
+      "name": "Lutan Fyah",
+      "wikidata_id": "Q745330",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q745330",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Lutan_Fyah",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Lutan Fyah is a Jamaican singer and reggae musician from Saint Catherine Parish, Jamaica. The artist is associated with reggae.",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Saint Catherine Parish, Jamaica",
+        "genre": "reggae"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Jamaican reggae musician",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Saint Catherine Parish, Jamaica",
+        "genres": [
+          "reggae"
+        ],
+        "occupations": [
+          "singer",
+          "reggae musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1975,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 434,
+      "name": "Tito El Bambino",
+      "wikidata_id": "Q2117613",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q2117613",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tito_el_Bambino",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Tito El Bambino is a American singer and songwriter from Carolina, United States. The artist is associated with reggaeton.",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Carolina, United States",
+        "genre": "reggaeton",
+        "website_url": "http://www.titoelbambinoonline.com/portal/hgxpp001.aspx"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Puerto Rican reggaeton singer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Carolina, United States",
+        "genres": [
+          "reggaeton"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1981,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 435,
+      "name": "SALIMA CHICA",
+      "wikidata_id": "Q136786289",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q136786289",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "SALIMA CHICA is a singer. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog."
+      },
+      "old_values": {
+        "biography": ""
+      },
+      "source_facts": {
+        "description": "Singer",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 437,
+      "name": "Alison Hinds",
+      "wikidata_id": "Q4727094",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q4727094",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Alison_Hinds",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Alison Hinds is a singer and songwriter from Barbados from London, Barbados. The artist is associated with soca music.",
+        "country": "Barbados",
+        "country_code": "BB",
+        "city_region": "London, Barbados",
+        "genre": "soca music",
+        "website_url": "http://www.alisonhinds.com"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Barbadian singer",
+        "country": "Barbados",
+        "country_code": "BB",
+        "city_region": "London, Barbados",
+        "genres": [
+          "soca music"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1970,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 439,
+      "name": "Nèg' Marrons",
+      "wikidata_id": "Q3346785",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3346785",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Nèg' Marrons is a French musical group. The act is associated with hip-hop.",
+        "country": "France",
+        "country_code": "FR",
+        "genre": "hip-hop"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "French hip hop band",
+        "country": "France",
+        "country_code": "FR",
+        "city_region": "",
+        "genres": [
+          "hip-hop"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 441,
+      "name": "SKAI ISYOURGOD",
+      "wikidata_id": "Q133259688",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q133259688",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Skai_Isyourgod",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "SKAI ISYOURGOD is a rapper from People's Republic of China from Huizhou, People's Republic of China. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "People's Republic of China",
+        "country_code": "CN",
+        "city_region": "Huizhou, People's Republic of China",
+        "website_url": "https://www.lanlao.info"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Chinese rapper",
+        "country": "People's Republic of China",
+        "country_code": "CN",
+        "city_region": "Huizhou, People's Republic of China",
+        "genres": [],
+        "occupations": [
+          "rapper"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1998,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 442,
+      "name": "Jorja Smith",
+      "wikidata_id": "Q29452199",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q29452199",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Jorja_Smith",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Jorja Smith is a British singer-songwriter and musician from Walsall, United Kingdom. The artist is associated with contemporary R&B.",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "city_region": "Walsall, United Kingdom",
+        "genre": "contemporary R&B",
+        "website_url": "https://jorjasmith.com"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "British singer, songwriter and musician",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "city_region": "Walsall, United Kingdom",
+        "genres": [
+          "contemporary R&B"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1997,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 443,
+      "name": "Gregory Isaacs",
+      "wikidata_id": "Q440898",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q440898",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Gregory_Isaacs",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Gregory Isaacs is a Jamaican singer from Kingston, Jamaica. The artist is associated with reggae.",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Kingston, Jamaica",
+        "genre": "reggae"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "Jamaican singer (1951–2010)",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Kingston, Jamaica",
+        "genres": [
+          "reggae"
+        ],
+        "occupations": [
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1951,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 444,
+      "name": "T.O.K",
+      "wikidata_id": "Q1383312",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q1383312",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/T.O.K.",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "T.O.K is a Jamaican musical group from Kingston, Jamaica. The act is associated with reggae.",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Kingston, Jamaica",
+        "genre": "reggae"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "band",
+        "country": "Jamaica",
+        "country_code": "JM",
+        "city_region": "Kingston, Jamaica",
+        "genres": [
+          "reggae"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 445,
+      "name": "Zoe Wees",
+      "wikidata_id": "Q96119730",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q96119730",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Zoe_Wees",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Zoe Wees is a German singer-songwriter, singer and songwriter from Hamburg, Germany. The artist is associated with pop music.",
+        "country": "Germany",
+        "country_code": "DE",
+        "city_region": "Hamburg, Germany",
+        "genre": "pop music",
+        "website_url": "https://www.zoewees.com"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "German singer-songwriter",
+        "country": "Germany",
+        "country_code": "DE",
+        "city_region": "Hamburg, Germany",
+        "genres": [
+          "pop music"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 2002,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 446,
+      "name": "Céline Dion",
+      "wikidata_id": "Q5105",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q5105",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Celine_Dion",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Céline Dion is a Canadian singer, composer and pianist from Charlemagne, Canada. The artist is associated with pop music, electronic dance music and rock music.",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "Charlemagne, Canada",
+        "genre": "pop music, electronic dance music, rock music",
+        "website_url": "https://celinedion.com"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "French Canadian singer (born 1968)",
+        "country": "Canada",
+        "country_code": "CA",
+        "city_region": "Charlemagne, Canada",
+        "genres": [
+          "pop music",
+          "electronic dance music",
+          "rock music",
+          "adult contemporary music"
+        ],
+        "occupations": [
+          "singer",
+          "composer",
+          "pianist",
+          "recording artist"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1968,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 447,
+      "name": "Fetty Wap",
+      "wikidata_id": "Q19361511",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q19361511",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Fetty_Wap",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Fetty Wap is a American singer, rapper and songwriter from Paterson, United States. The artist is associated with hip-hop, trap music and pop rap.",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Paterson, United States",
+        "genre": "hip-hop, trap music, pop rap",
+        "website_url": "https://fettywap.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper and singer (born 1991)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Paterson, United States",
+        "genres": [
+          "hip-hop",
+          "trap music",
+          "pop rap"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1991,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 448,
+      "name": "CNCO",
+      "wikidata_id": "Q26270552",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q26270552",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/CNCO",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "CNCO is a American musical group from Miami, United States. The act is associated with Latin pop.",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Miami, United States",
+        "genre": "Latin pop",
+        "website_url": "https://www.cncomusic.com/"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Latin American musical group",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Miami, United States",
+        "genres": [
+          "Latin pop"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": 2015
+      }
+    },
+    {
+      "id": 453,
+      "name": "Tasha Cobbs Leonard",
+      "wikidata_id": "Q19667887",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q19667887",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Tasha_Cobbs_Leonard",
+      "match_score": 0.94,
+      "fields": {
+        "biography": "Tasha Cobbs Leonard is a American singer, songwriter and gospel singer from Jesup, United States. The artist is associated with gospel music.",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Jesup, United States",
+        "genre": "gospel music",
+        "website_url": "http://tashacobbs.org/"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American urban contemporary gospel singer",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Jesup, United States",
+        "genres": [
+          "gospel music"
+        ],
+        "occupations": [
+          "singer",
+          "songwriter",
+          "gospel singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1981,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 454,
+      "name": "Godfrey Steven",
+      "wikidata_id": "Q137426473",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137426473",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Godfrey Steven is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Tanzania",
+        "country_code": "TZ"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian religious singer",
+        "country": "Tanzania",
+        "country_code": "TZ",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 456,
+      "name": "Driemo Mw",
+      "wikidata_id": "Q123668158",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q123668158",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Driemo",
+      "match_score": 0.94,
+      "fields": {
+        "biography": "Driemo Mw is a musical group from Malawi. The act is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Malawi",
+        "country_code": "MW"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Malawian musician",
+        "country": "Malawi",
+        "country_code": "MW",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 457,
+      "name": "T-Pain",
+      "wikidata_id": "Q221155",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q221155",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/T-Pain",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "T-Pain is a American singer, rapper and songwriter from Tallahassee, United States. The artist is associated with contemporary R&B, hip-hop and pop rap.",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Tallahassee, United States",
+        "genre": "contemporary R&B, hip-hop, pop rap",
+        "website_url": "http://tpain.com"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer, songwriter, and record producer (born 1984)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Tallahassee, United States",
+        "genres": [
+          "contemporary R&B",
+          "hip-hop",
+          "pop rap",
+          "pop music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "record producer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1984,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 458,
+      "name": "Magic System",
+      "wikidata_id": "Q1663028",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q1663028",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Magic_System",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Magic System is a Ivorian musical group. The act is associated with zouglou.",
+        "country": "Ivory Coast",
+        "country_code": "CI",
+        "genre": "zouglou",
+        "website_url": "http://www.magic-system.fr/"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Ivorian zouglou band",
+        "country": "Ivory Coast",
+        "country_code": "CI",
+        "city_region": "",
+        "genres": [
+          "zouglou"
+        ],
+        "occupations": [],
+        "instances": [
+          "musical group"
+        ],
+        "birth_year": null,
+        "inception_year": 1996
+      }
+    },
+    {
+      "id": 461,
+      "name": "Nelly",
+      "wikidata_id": "Q218992",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q218992",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Nelly",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Nelly is a American singer, rapper and songwriter from Austin, United States. The artist is associated with Midwest hip-hop, pop rap and contemporary R&B.",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Austin, United States",
+        "genre": "Midwest hip-hop, pop rap, contemporary R&B",
+        "website_url": "https://www.realnelly.com"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American rapper, singer and actor (born 1974)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "Austin, United States",
+        "genres": [
+          "Midwest hip-hop",
+          "pop rap",
+          "contemporary R&B",
+          "pop music"
+        ],
+        "occupations": [
+          "singer",
+          "rapper",
+          "songwriter",
+          "musician"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1974,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 462,
+      "name": "Full Blown",
+      "wikidata_id": "Q5507990",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q5507990",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Full_Blown_(Phantom_Blue_album)",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Full Blown is a recording artist. The artist is associated with heavy metal music.",
+        "genre": "heavy metal music"
+      },
+      "old_values": {
+        "biography": "",
+        "genre": ""
+      },
+      "source_facts": {
+        "description": "extended play by Phantom Blue",
+        "country": "",
+        "country_code": "",
+        "city_region": "",
+        "genres": [
+          "heavy metal music"
+        ],
+        "occupations": [],
+        "instances": [
+          "extended play"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 464,
+      "name": "Vedastus",
+      "wikidata_id": "Q137425277",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q137425277",
+      "wikipedia_url": "",
+      "match_score": 1.0,
+      "fields": {
+        "biography": "Vedastus is a Zimbabwean recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+        "country": "Zimbabwe",
+        "country_code": "ZW"
+      },
+      "old_values": {
+        "biography": "",
+        "country": "",
+        "country_code": ""
+      },
+      "source_facts": {
+        "description": "Tanzanian gospel singer",
+        "country": "Zimbabwe",
+        "country_code": "ZW",
+        "city_region": "",
+        "genres": [],
+        "occupations": [],
+        "instances": [
+          "human"
+        ],
+        "birth_year": null,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 465,
+      "name": "Taylor Swift",
+      "wikidata_id": "Q26876",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q26876",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "West Reading, United States",
+        "genre": "pop music, country music",
+        "website_url": "https://taylorswift.com"
+      },
+      "old_values": {
+        "city_region": "",
+        "genre": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "American singer-songwriter (born 1989)",
+        "country": "United States",
+        "country_code": "US",
+        "city_region": "West Reading, United States",
+        "genres": [
+          "pop music",
+          "country music"
+        ],
+        "occupations": [
+          "singer-songwriter",
+          "singer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1989,
+        "inception_year": null
+      }
+    },
+    {
+      "id": 466,
+      "name": "Sarz",
+      "wikidata_id": "Q20685445",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q20685445",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/Sarz",
+      "match_score": 1.0,
+      "fields": {
+        "city_region": "Benin City, Nigeria",
+        "website_url": "http://www.beatsbysarz.com/"
+      },
+      "old_values": {
+        "city_region": "",
+        "website_url": ""
+      },
+      "source_facts": {
+        "description": "Nigerian record producer and musician",
+        "country": "Nigeria",
+        "country_code": "NG",
+        "city_region": "Benin City, Nigeria",
+        "genres": [],
+        "occupations": [
+          "record producer",
+          "composer"
+        ],
+        "instances": [
+          "human"
+        ],
+        "birth_year": 1989,
+        "inception_year": null
+      }
+    }
+  ],
+  "stats": {
+    "matched_no_new_fields": 36,
+    "skipped_no_high_confidence_match": 175,
+    "artists_updated": 187,
+    "field_city_region": 116,
+    "field_genre": 92,
+    "field_biography": 101,
+    "field_website_url": 99,
+    "no_missing_target_fields": 2,
+    "field_country": 35,
+    "field_country_code": 35
+  },
+  "skip_reasons": {
+    "no_high_confidence_match": 175
+  },
+  "processed": 400,
+  "api_errors": 0
+}

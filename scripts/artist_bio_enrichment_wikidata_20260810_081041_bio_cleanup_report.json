@@ -1,0 +1,383 @@
+{
+  "source": "scripts\\artist_bio_enrichment_wikidata_20260810_081041.progress.json",
+  "changed": [
+    {
+      "id": 5,
+      "name": "D Voice",
+      "old": "D Voice is a Tanzanian singer-songwriter from Temeke District, Tanzania. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "D Voice is a Tanzanian singer-songwriter from Temeke District, Tanzania. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 10,
+      "name": "Willy Paul",
+      "old": "Willy Paul is a Kenyan singer from Mathare, Kenya. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Willy Paul is a Kenyan singer from Mathare, Kenya. Public reference sources place the artist within Kenya's contemporary music scene."
+    },
+    {
+      "id": 17,
+      "name": "Wakadinali",
+      "old": "Wakadinali is a musical group. The act is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Wakadinali is a music group. Public reference sources document the act within contemporary popular music."
+    },
+    {
+      "id": 31,
+      "name": "Otile Brown",
+      "old": "Otile Brown is a singer from Kisumu. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Otile Brown is a singer from Kisumu. Public reference sources document the artist within contemporary popular music."
+    },
+    {
+      "id": 33,
+      "name": "Asake",
+      "old": "Asake is a Nigerian singer, rapper and songwriter from Lagos, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Asake is a Nigerian singer, rapper and songwriter from Lagos, Nigeria. Public reference sources place the artist within Nigeria's contemporary music scene."
+    },
+    {
+      "id": 35,
+      "name": "Prince Indah",
+      "old": "Prince Indah is a recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Prince Indah is a recording artist. Public reference sources document the artist within contemporary popular music."
+    },
+    {
+      "id": 66,
+      "name": "Future",
+      "old": "Future is a American singer, rapper and songwriter from Atlanta, United States. The artist is associated with Southern hip-hop, trap music and mumble rap.",
+      "new": "Future is an American singer, rapper and songwriter from Atlanta, United States. The artist is associated with Southern hip-hop, trap music and mumble rap."
+    },
+    {
+      "id": 67,
+      "name": "Crayon",
+      "old": "Crayon is a American musical group. The act is associated with indie pop.",
+      "new": "Crayon is an American music group. The act is associated with indie pop."
+    },
+    {
+      "id": 68,
+      "name": "SZA",
+      "old": "SZA is a American singer-songwriter, singer and songwriter from St. Louis, United States. The artist is associated with contemporary R&B, alternative R&B and neo soul.",
+      "new": "SZA is an American singer-songwriter, singer and songwriter from St. Louis, United States. The artist is associated with contemporary R&B, alternative R&B and neo soul."
+    },
+    {
+      "id": 71,
+      "name": "Tyler ICU",
+      "old": "Tyler ICU is a South African record producer from Thembisa, South Africa. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Tyler ICU is a South African record producer from Thembisa, South Africa. Public reference sources place the artist within South Africa's contemporary music scene."
+    },
+    {
+      "id": 77,
+      "name": "GloRilla",
+      "old": "GloRilla is a American rapper and songwriter from Memphis, United States. The artist is associated with hip-hop, trap music and crunk.",
+      "new": "GloRilla is an American rapper and songwriter from Memphis, United States. The artist is associated with hip-hop, trap music and crunk."
+    },
+    {
+      "id": 84,
+      "name": "Gunna",
+      "old": "Gunna is a American singer, rapper and songwriter from College Park, United States. The artist is associated with hip-hop, trap music and Southern hip-hop.",
+      "new": "Gunna is an American singer, rapper and songwriter from College Park, United States. The artist is associated with hip-hop, trap music and Southern hip-hop."
+    },
+    {
+      "id": 92,
+      "name": "Ibraah",
+      "old": "Ibraah is a Tanzanian singer born in 1998. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Ibraah is a Tanzanian singer born in 1998. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 124,
+      "name": "Quavo",
+      "old": "Quavo is a American singer, rapper and songwriter from Athens, United States. The artist is associated with hip-hop and trap music.",
+      "new": "Quavo is an American singer, rapper and songwriter from Athens, United States. The artist is associated with hip-hop and trap music."
+    },
+    {
+      "id": 127,
+      "name": "Zabron Singers",
+      "old": "Zabron Singers is a Tanzanian musical group. The act is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Zabron Singers is a Tanzanian music group. Public reference sources place the act within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 178,
+      "name": "Preston Pablo",
+      "old": "Preston Pablo is a Canadian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Preston Pablo is a Canadian recording artist. Public reference sources place the artist within Canada's contemporary music scene."
+    },
+    {
+      "id": 180,
+      "name": "Kell Kay",
+      "old": "Kell Kay is a songwriter and musician from Malawi born in 1993. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Kell Kay is a songwriter and musician from Malawi born in 1993. Public reference sources place the artist within Malawi's contemporary music scene."
+    },
+    {
+      "id": 182,
+      "name": "OSKIDO",
+      "old": "OSKIDO is a South African musician from Brits, South Africa. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "OSKIDO is a South African musician from Brits, South Africa. Public reference sources place the artist within South Africa's contemporary music scene."
+    },
+    {
+      "id": 186,
+      "name": "Don Toliver",
+      "old": "Don Toliver is a American singer, rapper and songwriter from Houston, United States. The artist is associated with hip-hop, trap music and contemporary R&B.",
+      "new": "Don Toliver is an American singer, rapper and songwriter from Houston, United States. The artist is associated with hip-hop, trap music and contemporary R&B."
+    },
+    {
+      "id": 188,
+      "name": "Lil Tecca",
+      "old": "Lil Tecca is a American singer, rapper and songwriter from Queens, United States. The artist is associated with hip-hop and trap music.",
+      "new": "Lil Tecca is an American singer, rapper and songwriter from Queens, United States. The artist is associated with hip-hop and trap music."
+    },
+    {
+      "id": 190,
+      "name": "Kanye West",
+      "old": "Kanye West is a American singer, rapper and songwriter from Atlanta, United States. The artist is associated with hip-hop, pop music and electro.",
+      "new": "Kanye West is an American singer, rapper and songwriter from Atlanta, United States. The artist is associated with hip-hop, pop music and electro."
+    },
+    {
+      "id": 191,
+      "name": "Eminem",
+      "old": "Eminem is a American singer, rapper and songwriter from St. Joseph, United States. The artist is associated with hip-hop, horrorcore and hardcore hip-hop.",
+      "new": "Eminem is an American singer, rapper and songwriter from St. Joseph, United States. The artist is associated with hip-hop, horrorcore and hardcore hip-hop."
+    },
+    {
+      "id": 195,
+      "name": "Dave",
+      "old": "Dave is a British singer, rapper and songwriter from London, United Kingdom. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Dave is a British singer, rapper and songwriter from London, United Kingdom. Public reference sources place the artist within United Kingdom's contemporary music scene."
+    },
+    {
+      "id": 197,
+      "name": "BigXthaPlug",
+      "old": "BigXthaPlug is a American rapper from Dallas, United States. The artist is associated with rapping and hip-hop.",
+      "new": "BigXthaPlug is an American rapper from Dallas, United States. The artist is associated with rapping and hip-hop."
+    },
+    {
+      "id": 200,
+      "name": "SahBabii",
+      "old": "SahBabii is a American singer, rapper and songwriter from Chicago, United States. The artist is associated with hip-hop.",
+      "new": "SahBabii is an American singer, rapper and songwriter from Chicago, United States. The artist is associated with hip-hop."
+    },
+    {
+      "id": 204,
+      "name": "Rod Wave",
+      "old": "Rod Wave is a American singer, rapper and songwriter from St. Petersburg, United States. The artist is associated with hip-hop, contemporary R&B and soul.",
+      "new": "Rod Wave is an American singer, rapper and songwriter from St. Petersburg, United States. The artist is associated with hip-hop, contemporary R&B and soul."
+    },
+    {
+      "id": 207,
+      "name": "YoungBoy Never Broke Again",
+      "old": "YoungBoy Never Broke Again is a American rapper and songwriter from Baton Rouge, United States. The artist is associated with hip-hop, Southern hip-hop and gangsta rap.",
+      "new": "YoungBoy Never Broke Again is an American rapper and songwriter from Baton Rouge, United States. The artist is associated with hip-hop, Southern hip-hop and gangsta rap."
+    },
+    {
+      "id": 208,
+      "name": "Juice WRLD",
+      "old": "Juice WRLD is a American singer, rapper and songwriter from Chicago, United States. The artist is associated with hip-hop, emo rap and alternative rock.",
+      "new": "Juice WRLD is an American singer, rapper and songwriter from Chicago, United States. The artist is associated with hip-hop, emo rap and alternative rock."
+    },
+    {
+      "id": 210,
+      "name": "J. Cole",
+      "old": "J. Cole is a American singer, rapper and songwriter from Frankfurt, United States. The artist is associated with hip-hop, Southern hip-hop and pop rap.",
+      "new": "J. Cole is an American singer, rapper and songwriter from Frankfurt, United States. The artist is associated with hip-hop, Southern hip-hop and pop rap."
+    },
+    {
+      "id": 211,
+      "name": "Maua Sama",
+      "old": "Maua Sama is a Tanzanian singer born in 1990. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Maua Sama is a Tanzanian singer born in 1990. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 216,
+      "name": "Chandler Moore",
+      "old": "Chandler Moore is a American singer and songwriter from Charleston, United States. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Chandler Moore is an American singer and songwriter from Charleston, United States. Public reference sources place the artist within United States' contemporary music scene."
+    },
+    {
+      "id": 217,
+      "name": "Khalid",
+      "old": "Khalid is a American singer, songwriter and record producer from Fort Stewart, United States. The artist is associated with contemporary R&B.",
+      "new": "Khalid is an American singer, songwriter and record producer from Fort Stewart, United States. The artist is associated with contemporary R&B."
+    },
+    {
+      "id": 230,
+      "name": "Seyi Vibez",
+      "old": "Seyi Vibez is a Nigerian musician from Lagos State, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Seyi Vibez is a Nigerian musician from Lagos State, Nigeria. Public reference sources place the artist within Nigeria's contemporary music scene."
+    },
+    {
+      "id": 233,
+      "name": "Sasha Alex Sloan",
+      "old": "Sasha Alex Sloan is a American singer-songwriter, singer and songwriter from Boston, United States. The artist is associated with electropop.",
+      "new": "Sasha Alex Sloan is an American singer-songwriter, singer and songwriter from Boston, United States. The artist is associated with electropop."
+    },
+    {
+      "id": 239,
+      "name": "Sexyy Red",
+      "old": "Sexyy Red is a American singer, rapper and songwriter from St. Louis, United States. The artist is associated with hip-hop, trap music and dirty rap.",
+      "new": "Sexyy Red is an American singer, rapper and songwriter from St. Louis, United States. The artist is associated with hip-hop, trap music and dirty rap."
+    },
+    {
+      "id": 241,
+      "name": "Stamina Shorwebwenzi",
+      "old": "Stamina Shorwebwenzi is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Stamina Shorwebwenzi is a Tanzanian recording artist. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 285,
+      "name": "Mejja",
+      "old": "Mejja is a Kenyan rapper from Nyeri, Kenya. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Mejja is a Kenyan rapper from Nyeri, Kenya. Public reference sources place the artist within Kenya's contemporary music scene."
+    },
+    {
+      "id": 306,
+      "name": "Maverick City Music",
+      "old": "Maverick City Music is a American musical group from Atlanta, United States. The act is associated with contemporary worship music, contemporary Christian music and gospel music.",
+      "new": "Maverick City Music is an American music group from Atlanta, United States. The act is associated with contemporary worship music, contemporary Christian music and gospel music."
+    },
+    {
+      "id": 319,
+      "name": "Soa Mattrix",
+      "old": "Soa Mattrix is a record producer born in 1998. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Soa Mattrix is a record producer born in 1998. Public reference sources document the artist within contemporary popular music."
+    },
+    {
+      "id": 341,
+      "name": "John Blaq",
+      "old": "John Blaq is a Ugandan singer born in 1996. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "John Blaq is an Ugandan singer born in 1996. Public reference sources place the artist within Uganda's contemporary music scene."
+    },
+    {
+      "id": 345,
+      "name": "Bite Starr",
+      "old": "Bite Starr is a Tanzanian singer-songwriter. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Bite Starr is a Tanzanian singer-songwriter. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 350,
+      "name": "Ayo Maff",
+      "old": "Ayo Maff is a Nigerian singer, rapper and songwriter born in 2005. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Ayo Maff is a Nigerian singer, rapper and songwriter born in 2005. Public reference sources place the artist within Nigeria's contemporary music scene."
+    },
+    {
+      "id": 351,
+      "name": "Asagwile",
+      "old": "Asagwile is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Asagwile is a Tanzanian recording artist. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 356,
+      "name": "Lawrence Oyor",
+      "old": "Lawrence Oyor is a Nigerian musician from Ibadan, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Lawrence Oyor is a Nigerian musician from Ibadan, Nigeria. Public reference sources place the artist within Nigeria's contemporary music scene."
+    },
+    {
+      "id": 385,
+      "name": "G NAKO",
+      "old": "G NAKO is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "G NAKO is a Tanzanian recording artist. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 391,
+      "name": "Christopher Mwahangila",
+      "old": "Christopher Mwahangila is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Christopher Mwahangila is a Tanzanian recording artist. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 393,
+      "name": "Bahati Bukuku",
+      "old": "Bahati Bukuku is a Tanzanian singer born in 1981. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Bahati Bukuku is a Tanzanian singer born in 1981. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 398,
+      "name": "Sifaeli Mwabuka",
+      "old": "Sifaeli Mwabuka is a Tanzanian singer. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Sifaeli Mwabuka is a Tanzanian singer. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 403,
+      "name": "Aslay",
+      "old": "Aslay is a Tanzanian musician born in 1995. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Aslay is a Tanzanian musician born in 1995. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 406,
+      "name": "J blessing",
+      "old": "J blessing is a television producer born in 1988. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "J blessing is a television producer born in 1988. Public reference sources document the artist within contemporary popular music."
+    },
+    {
+      "id": 410,
+      "name": "Bayanni",
+      "old": "Bayanni is a Nigerian singer from Lagos, Nigeria. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Bayanni is a Nigerian singer from Lagos, Nigeria. Public reference sources place the artist within Nigeria's contemporary music scene."
+    },
+    {
+      "id": 414,
+      "name": "Martha Baraka",
+      "old": "Martha Baraka is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Martha Baraka is a Tanzanian recording artist. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 434,
+      "name": "Tito El Bambino",
+      "old": "Tito El Bambino is a American singer and songwriter from Carolina, United States. The artist is associated with reggaeton.",
+      "new": "Tito El Bambino is an American singer and songwriter from Carolina, United States. The artist is associated with reggaeton."
+    },
+    {
+      "id": 435,
+      "name": "SALIMA CHICA",
+      "old": "SALIMA CHICA is a singer. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "SALIMA CHICA is a singer. Public reference sources document the artist within contemporary popular music."
+    },
+    {
+      "id": 441,
+      "name": "SKAI ISYOURGOD",
+      "old": "SKAI ISYOURGOD is a rapper from People's Republic of China from Huizhou, People's Republic of China. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "SKAI ISYOURGOD is a rapper from People's Republic of China from Huizhou, People's Republic of China. Public reference sources place the artist within People's Republic of China's contemporary music scene."
+    },
+    {
+      "id": 447,
+      "name": "Fetty Wap",
+      "old": "Fetty Wap is a American singer, rapper and songwriter from Paterson, United States. The artist is associated with hip-hop, trap music and pop rap.",
+      "new": "Fetty Wap is an American singer, rapper and songwriter from Paterson, United States. The artist is associated with hip-hop, trap music and pop rap."
+    },
+    {
+      "id": 448,
+      "name": "CNCO",
+      "old": "CNCO is a American musical group from Miami, United States. The act is associated with Latin pop.",
+      "new": "CNCO is an American music group from Miami, United States. The act is associated with Latin pop."
+    },
+    {
+      "id": 453,
+      "name": "Tasha Cobbs Leonard",
+      "old": "Tasha Cobbs Leonard is a American singer, songwriter and gospel singer from Jesup, United States. The artist is associated with gospel music.",
+      "new": "Tasha Cobbs Leonard is an American singer, songwriter and gospel singer from Jesup, United States. The artist is associated with gospel music."
+    },
+    {
+      "id": 454,
+      "name": "Godfrey Steven",
+      "old": "Godfrey Steven is a Tanzanian recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Godfrey Steven is a Tanzanian recording artist. Public reference sources place the artist within Tanzania's contemporary music scene."
+    },
+    {
+      "id": 456,
+      "name": "Driemo Mw",
+      "old": "Driemo Mw is a musical group from Malawi. The act is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Driemo Mw is a music group. Public reference sources place the act within Malawi's contemporary music scene."
+    },
+    {
+      "id": 457,
+      "name": "T-Pain",
+      "old": "T-Pain is a American singer, rapper and songwriter from Tallahassee, United States. The artist is associated with contemporary R&B, hip-hop and pop rap.",
+      "new": "T-Pain is an American singer, rapper and songwriter from Tallahassee, United States. The artist is associated with contemporary R&B, hip-hop and pop rap."
+    },
+    {
+      "id": 461,
+      "name": "Nelly",
+      "old": "Nelly is a American singer, rapper and songwriter from Austin, United States. The artist is associated with Midwest hip-hop, pop rap and contemporary R&B.",
+      "new": "Nelly is an American singer, rapper and songwriter from Austin, United States. The artist is associated with Midwest hip-hop, pop rap and contemporary R&B."
+    },
+    {
+      "id": 464,
+      "name": "Vedastus",
+      "old": "Vedastus is a Zimbabwean recording artist. The artist is documented in public music reference sources and charted in the Ngoma Charts catalog.",
+      "new": "Vedastus is a recording artist from Zimbabwe. Public reference sources place the artist within Zimbabwe's contemporary music scene."
+    }
+  ]
+}
