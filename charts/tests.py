@@ -9,6 +9,7 @@ from django.db import connection
 from django.db.models import Q
 from django.test import TestCase
 from django.test.utils import CaptureQueriesContext
+from django.utils import timezone
 from rest_framework.test import APIClient
 
 from .cms_utils import harmonize_chart_history, validate_chart_rows
@@ -444,6 +445,28 @@ class PublicAppDataSyncTests(TestCase):
         self.assertEqual(certification["total_points"], 50)
         self.assertEqual(rule["threshold"], 7000)
         self.assertEqual(methodology["name"], "Updated method")
+
+    def test_action_revision_does_not_mask_artist_or_release_metadata_updates(self):
+        SiteSetting.objects.update_or_create(
+            key="_cms_action_revision",
+            defaults={"value": {"ts": "2026-08-10T07:41:33.835891+00:00"}},
+        )
+        initial_revision = self.app_data()["revision"]
+
+        self.artist.genre = "Afro-Pop"
+        self.artist.updated_at = timezone.now()
+        self.artist.save(update_fields=["genre", "updated_at"])
+        self.release.label = "Fresh Metadata Records"
+        self.release.updated_at = timezone.now()
+        self.release.save(update_fields=["label", "updated_at"])
+
+        data = self.app_data()
+        self.assertNotEqual(data["revision"], initial_revision)
+        self.assertIn("x:2026-08-10T07:41:33.835891+00:00", data["revision"])
+        artist = next(item for item in data["artists"] if item["id"] == self.artist.id)
+        release = next(item for item in data["releases"] if item["id"] == self.release.id)
+        self.assertEqual(artist["genre"], "Afro-Pop")
+        self.assertEqual(release["label"], "Fresh Metadata Records")
 
     def test_hidden_or_unpublished_records_do_not_leak_to_public_app(self):
         self.certification.is_hidden = True

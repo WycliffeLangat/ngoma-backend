@@ -60,8 +60,6 @@ def _public_data_revision():
         .values_list('value', flat=True)
         .first()
     )
-    if action_rev and isinstance(action_rev, dict) and action_rev.get('ts'):
-        return f"x:{action_rev.get('ts')}"
 
     latest_log = (
         AuditLog.objects.filter(module__in=PUBLIC_DATA_AUDIT_MODULES)
