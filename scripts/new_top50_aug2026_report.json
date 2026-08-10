@@ -1,0 +1,1731 @@
+{
+  "scopes": {
+    "singles - Combined": [
+      22945,
+      22911,
+      22993,
+      23057,
+      21724,
+      17770,
+      22296
+    ],
+    "singles - Kenya": [
+      22945,
+      23057,
+      22890,
+      17288,
+      23075
+    ],
+    "singles - Apple Music": [
+      22945,
+      23036,
+      22943,
+      23038,
+      23039,
+      22055,
+      23040,
+      22536,
+      22864,
+      17406,
+      22013,
+      17491
+    ],
+    "singles - Audiomack": [
+      22993,
+      17407,
+      22302,
+      23055,
+      23057,
+      22875,
+      22296,
+      23005,
+      18664,
+      19308
+    ],
+    "singles - Boomplay": [
+      23062,
+      22761,
+      22945,
+      22959,
+      23057,
+      21627,
+      18074,
+      19319,
+      22890
+    ],
+    "singles - Shazam": [
+      22945,
+      22996,
+      23090,
+      23004,
+      23091,
+      21636,
+      22993,
+      22721,
+      22917,
+      23092,
+      22989,
+      22913
+    ],
+    "singles - Spotify": [
+      22911,
+      22945
+    ],
+    "singles - YouTube": [
+      17395,
+      17744,
+      17697,
+      22905,
+      18198,
+      18527,
+      22975,
+      18181,
+      18509,
+      22900,
+      17777
+    ],
+    "albums - Combined": [
+      19476,
+      21573,
+      23104,
+      23105,
+      21563,
+      23106,
+      23107,
+      22792,
+      23108,
+      23011,
+      21359,
+      19790,
+      21584,
+      23109,
+      23120,
+      21363,
+      23110,
+      19424
+    ],
+    "albums - Kenya": [
+      21359,
+      23120
+    ],
+    "albums - Apple Music": [
+      21573,
+      23104,
+      23105,
+      21563,
+      23106,
+      23107,
+      23108,
+      23011,
+      23109,
+      23110,
+      23012,
+      19549,
+      23112,
+      19510,
+      19530,
+      23113,
+      19476
+    ],
+    "albums - Audiomack": [
+      19456,
+      19350,
+      21359,
+      19403,
+      19476,
+      23120,
+      20108
+    ]
+  },
+  "releases": {
+    "22905": {
+      "title": "Kiwanza",
+      "artist": "ALEX KASAU KATOMBI",
+      "artist_id": 395,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "18664": {
+      "title": "Hatari",
+      "artist": "Alikiba",
+      "artist_id": 90,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters"
+      ]
+    },
+    "19549": {
+      "title": "eternal sunshine deluxe: brighter days ahead",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23036": {
+      "title": "hate that i made you love me",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23039": {
+      "title": "kiss me",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21573": {
+      "title": "petal",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23038": {
+      "title": "petal",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23011": {
+      "title": "M$NEY Live in London (Spotify Live)",
+      "artist": "Asake",
+      "artist_id": 33,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "18527": {
+      "title": "Moyo Mashine",
+      "artist": "Ben Pol",
+      "artist_id": 732,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22989": {
+      "title": "Donkanye",
+      "artist": "BevranZ",
+      "artist_id": 3065,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "19530": {
+      "title": "HIT ME HARD AND SOFT",
+      "artist": "Billie Eilish",
+      "artist_id": 63,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22875": {
+      "title": "Sukuma Dole (feat. Mtalibani Halisi)",
+      "artist": "Bizze",
+      "artist_id": 2930,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23040": {
+      "title": "Eja Meja",
+      "artist": "BNXN",
+      "artist_id": 293,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23120": {
+      "title": "Bread Winner",
+      "artist": "Breeder LW",
+      "artist_id": 103,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21627": {
+      "title": "Malebo",
+      "artist": "Choppa strings",
+      "artist_id": 2072,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "22890": {
+      "title": "Top Shotta",
+      "artist": "Collo Blue",
+      "artist_id": 277,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc"
+      ]
+    },
+    "22993": {
+      "title": "Love Design",
+      "artist": "Darassa",
+      "artist_id": 9,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22055": {
+      "title": "I Know Who I Be",
+      "artist": "Davido",
+      "artist_id": 30,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23105": {
+      "title": "Oriadé",
+      "artist": "Davido",
+      "artist_id": 30,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22013": {
+      "title": "Ngibolekeni (feat. Sean 1401, Leemckrazy, Blxckie, Pcee, Madumane & Kabelo Sings)",
+      "artist": "DJ Maphorisa",
+      "artist_id": 262,
+      "chart_type": "singles",
+      "missing_fields": [
+        "isrc"
+      ]
+    },
+    "22959": {
+      "title": "2026 Bongo mix",
+      "artist": "DJ WIZZY 254",
+      "artist_id": 94,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23091": {
+      "title": "Pink Blush",
+      "artist": "dolly babe",
+      "artist_id": 3131,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17777": {
+      "title": "Bado Naendelea",
+      "artist": "Enock Jonas",
+      "artist_id": 397,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23005": {
+      "title": "Denda Ni Denda",
+      "artist": "Gody Tennor",
+      "artist_id": 106,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17770": {
+      "title": "Stunta",
+      "artist": "Gyptian",
+      "artist_id": 172,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor"
+      ]
+    },
+    "23055": {
+      "title": "Hisia",
+      "artist": "Jay Melody",
+      "artist_id": 25,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23106": {
+      "title": "Secrets of the WRLD",
+      "artist": "JAZZWRLD",
+      "artist_id": 263,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17491": {
+      "title": "Abalele",
+      "artist": "Kabza De Small",
+      "artist_id": 82,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23113": {
+      "title": "Tutu",
+      "artist": "Kabza De Small",
+      "artist_id": 82,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22975": {
+      "title": "Mararirira Kioro",
+      "artist": "Kamande Wa Kioi",
+      "artist_id": 937,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22945": {
+      "title": "Kitemeo",
+      "artist": "Kapitani",
+      "artist_id": 2158,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23004": {
+      "title": "Masterpiece",
+      "artist": "Kes",
+      "artist_id": 3074,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23092": {
+      "title": "Ghanere mix song",
+      "artist": "Kimkot",
+      "artist_id": 3132,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "19319": {
+      "title": "Nakutaka",
+      "artist": "King Bubby",
+      "artist_id": 1085,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "23062": {
+      "title": "Ogogoro",
+      "artist": "Koko Pee",
+      "artist_id": 355,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17395": {
+      "title": "Moyo",
+      "artist": "Kusslove",
+      "artist_id": 287,
+      "chart_type": "singles",
+      "missing_fields": [
+        "label",
+        "distributor",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "22864": {
+      "title": "Dead Fresh",
+      "artist": "Lil Baby",
+      "artist_id": 304,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23107": {
+      "title": "Maverick “Almost Forever” Ep",
+      "artist": "Lil Uzi Vert",
+      "artist_id": 201,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22792": {
+      "title": "Fix Your Face",
+      "artist": "Masego",
+      "artist_id": 603,
+      "chart_type": "albums",
+      "missing_fields": [
+        "upc"
+      ]
+    },
+    "23012": {
+      "title": "Business",
+      "artist": "Mavo",
+      "artist_id": 1013,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "18198": {
+      "title": "Tamu",
+      "artist": "Mbosso",
+      "artist_id": 37,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22296": {
+      "title": "Mboka",
+      "artist": "Mejja",
+      "artist_id": 285,
+      "chart_type": "singles",
+      "missing_fields": [
+        "label",
+        "distributor",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "23110": {
+      "title": "Asante IV",
+      "artist": "MORDA",
+      "artist_id": 3144,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17697": {
+      "title": "Mtuliza Bahari",
+      "artist": "Msanii Music Group",
+      "artist_id": 365,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22917": {
+      "title": "Zwiya Deeper",
+      "artist": "Mukololo",
+      "artist_id": 758,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23075": {
+      "title": "Munyamurui",
+      "artist": "NG'ETHE STEVE",
+      "artist_id": 377,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "23104": {
+      "title": "For A Good Time...",
+      "artist": "Odeal",
+      "artist_id": 553,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21359": {
+      "title": "Up Next",
+      "artist": "OnlyMoh",
+      "artist_id": 922,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks"
+      ]
+    },
+    "17744": {
+      "title": "Moyo Wangu (Live)",
+      "artist": "Patrick Kubuya",
+      "artist_id": 378,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "19424": {
+      "title": "Timeless Anthems",
+      "artist": "Prince Indah",
+      "artist_id": 35,
+      "chart_type": "albums",
+      "missing_fields": [
+        "distributor"
+      ]
+    },
+    "18181": {
+      "title": "Ombi Langu",
+      "artist": "Rose Muhando",
+      "artist_id": 413,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22721": {
+      "title": "Mad over You",
+      "artist": "Runtown",
+      "artist_id": 459,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23109": {
+      "title": "The Outlaw Cherie Lee & Other Western Tales",
+      "artist": "Shaboozey",
+      "artist_id": 1228,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23112": {
+      "title": "Never Gets Late Here",
+      "artist": "Shenseea",
+      "artist_id": 27,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22900": {
+      "title": "Wathi Wa Muvea",
+      "artist": "Stephen Kasolo",
+      "artist_id": 135,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21584": {
+      "title": "Oh yeah?",
+      "artist": "Steve Lacy",
+      "artist_id": 1603,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks"
+      ]
+    },
+    "21363": {
+      "title": "THE TORCHER",
+      "artist": "Stonebwoy",
+      "artist_id": 1952,
+      "chart_type": "albums",
+      "missing_fields": [
+        "distributor"
+      ]
+    },
+    "23090": {
+      "title": "THIS IS NOT THE FIRST TIME",
+      "artist": "Sunvera Scott",
+      "artist_id": 3130,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22996": {
+      "title": "Money",
+      "artist": "Teni",
+      "artist_id": 2012,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "19790": {
+      "title": "NO GUIDANCE",
+      "artist": "Thirtyfourbrick",
+      "artist_id": 799,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks"
+      ]
+    },
+    "17288": {
+      "title": "Bud Flowers",
+      "artist": "Toxic Lyrikali",
+      "artist_id": 2827,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "producers"
+      ]
+    },
+    "21636": {
+      "title": "Nina Neno Moja Tu Asante",
+      "artist": "Tuzo Jerome Tz",
+      "artist_id": 2084,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc"
+      ]
+    },
+    "21563": {
+      "title": "A*POP",
+      "artist": "Tyla",
+      "artist_id": 55,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22943": {
+      "title": "THAT GIRL",
+      "artist": "Tyla",
+      "artist_id": 55,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "20108": {
+      "title": "BOOK OF HOPE",
+      "artist": "Usmanial Vibez",
+      "artist_id": 1345,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks"
+      ]
+    },
+    "19308": {
+      "title": "Woii",
+      "artist": "Valiant",
+      "artist_id": 312,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code"
+      ]
+    },
+    "22913": {
+      "title": "when you belong",
+      "artist": "Valtieri Silva Serpa",
+      "artist_id": 2972,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "18074": {
+      "title": "Only Gets Better (Forever)",
+      "artist": "Vybz Kartel",
+      "artist_id": 93,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "17407": {
+      "title": "LAST DANCE",
+      "artist": "Wakadinali",
+      "artist_id": 17,
+      "chart_type": "singles",
+      "missing_fields": [
+        "songwriters",
+        "producers"
+      ]
+    },
+    "22911": {
+      "title": "Kupendwa Na We",
+      "artist": "Watendawili",
+      "artist_id": 57,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "isrc"
+      ]
+    },
+    "23108": {
+      "title": "Dreams, Revelations & Moments",
+      "artist": "William McDowell",
+      "artist_id": 1677,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23057": {
+      "title": "Kangaroo/Komasava",
+      "artist": "Willy Paul",
+      "artist_id": 10,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "18509": {
+      "title": "Tiririka (Acoustic)",
+      "artist": "Yammi",
+      "artist_id": 18,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21724": {
+      "title": "Don't Be Shy",
+      "artist": "Yemi Alade",
+      "artist_id": 2176,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "producers",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22536": {
+      "title": "Ngithathiwe",
+      "artist": "Zee Nxumalo",
+      "artist_id": 313,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    }
+  },
+  "artists": {
+    "395": {
+      "name": "ALEX KASAU KATOMBI",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "1076": {
+      "name": "Ariana Grande",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "732": {
+      "name": "Ben Pol",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3065": {
+      "name": "BevranZ",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "63": {
+      "name": "Billie Eilish",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2930": {
+      "name": "Bizze",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "103": {
+      "name": "Breeder LW",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2072": {
+      "name": "Choppa strings",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "9": {
+      "name": "Darassa",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "30": {
+      "name": "Davido",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "262": {
+      "name": "DJ Maphorisa",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "94": {
+      "name": "DJ WIZZY 254",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3131": {
+      "name": "dolly babe",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "397": {
+      "name": "Enock Jonas",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "106": {
+      "name": "Gody Tennor",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "172": {
+      "name": "Gyptian",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "25": {
+      "name": "Jay Melody",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "82": {
+      "name": "Kabza De Small",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "937": {
+      "name": "Kamande Wa Kioi",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2158": {
+      "name": "Kapitani",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3074": {
+      "name": "Kes",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3132": {
+      "name": "Kimkot",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1085": {
+      "name": "King Bubby",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "355": {
+      "name": "Koko Pee",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "287": {
+      "name": "Kusslove",
+      "missing_fields": [
+        "city_region"
+      ]
+    },
+    "304": {
+      "name": "Lil Baby",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "201": {
+      "name": "Lil Uzi Vert",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "603": {
+      "name": "Masego",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "3144": {
+      "name": "MORDA",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "365": {
+      "name": "Msanii Music Group",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "758": {
+      "name": "Mukololo",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "377": {
+      "name": "NG'ETHE STEVE",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "553": {
+      "name": "Odeal",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "922": {
+      "name": "OnlyMoh",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "378": {
+      "name": "Patrick Kubuya",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "413": {
+      "name": "Rose Muhando",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "459": {
+      "name": "Runtown",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1228": {
+      "name": "Shaboozey",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "27": {
+      "name": "Shenseea",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "135": {
+      "name": "Stephen Kasolo",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1603": {
+      "name": "Steve Lacy",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "3130": {
+      "name": "Sunvera Scott",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2012": {
+      "name": "Teni",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "799": {
+      "name": "Thirtyfourbrick",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2827": {
+      "name": "Toxic Lyrikali",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2084": {
+      "name": "Tuzo Jerome Tz",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "55": {
+      "name": "Tyla",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1345": {
+      "name": "Usmanial Vibez",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "312": {
+      "name": "Valiant",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2972": {
+      "name": "Valtieri Silva Serpa",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "120": {
+      "name": "Victony",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "57": {
+      "name": "Watendawili",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1677": {
+      "name": "William McDowell",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "18": {
+      "name": "Yammi",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2176": {
+      "name": "Yemi Alade",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "313": {
+      "name": "Zee Nxumalo",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    }
+  }
+}

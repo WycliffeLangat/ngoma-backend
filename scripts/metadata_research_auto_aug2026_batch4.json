@@ -1,0 +1,288 @@
+{
+  "artists": [
+    {
+      "id": 55,
+      "name": "Tyla",
+      "city_region": "East Rand, Johannesburg",
+      "genre": "Pop/Amapiano (Popiano)",
+      "biography": "Tyla Laura Seethal (born 30 January 2002) is a South African singer and songwriter from the East Rand of Johannesburg. Her sound fuses pop with amapiano, a style she is credited with popularizing internationally and which earned her the nickname 'Queen of Popiano.' She signed to Epic Records in 2021, and her 2023 single 'Water' became the first song by a South African soloist to enter the US Billboard Hot 100 in 55 years, later winning the inaugural Grammy Award for Best African Music Performance."
+    },
+    {
+      "id": 3065,
+      "name": "BevranZ",
+      "country": "Kenya",
+      "country_code": "KE"
+    },
+    {
+      "id": 103,
+      "name": "Breeder LW",
+      "city_region": "Dagoretti, Nairobi",
+      "genre": "Hip-Hop/Gengetone",
+      "biography": "Paul Baraka, known professionally as Breeder LW, is a Kenyan rapper born 11 July 1997 in Mathare, Nairobi, and raised in Dagoretti. He began rapping in 2014 and turned professional around 2017, releasing the EP Nairobi State of Mind followed by the albums Kabla Kuosa (2019), Bazenga Mentality (2021), and Midas Touch (2023). His music blends old-school rap influences with modern Kenyan styles such as Arbantone and Gengetone."
+    },
+    {
+      "id": 94,
+      "name": "DJ WIZZY 254",
+      "city_region": "Kakamega, Kenya",
+      "genre": "Afrobeat/DJ mixes",
+      "biography": "DJ WIZZY 254 is a Kenyan disc jockey based in Kakamega and affiliated with Swizzy Entertainment. He is known for genre-blending mixtapes that combine Afrobeat, Bongo Flava, and other African dance styles for Kenyan and regional audiences, and has been active on digital platforms such as Audiomack since April 2020."
+    },
+    {
+      "id": 172,
+      "name": "Gyptian",
+      "city_region": "Kingston, Jamaica",
+      "genre": "Reggae/Dancehall",
+      "biography": "Windel Beneto Edwards, known professionally as Gyptian, is a Jamaican reggae singer born 25 October 1983 in Kingston. He began singing in church at age seven and was later mentored by producers Mr. Wong and Earl Chinna Smith. His 2010 single 'Hold Yuh' became an international hit, establishing him as a leading figure in modern reggae and lovers rock."
+    },
+    {
+      "id": 2158,
+      "name": "Kapitani",
+      "city_region": "Kayole, Nairobi",
+      "genre": "Gengetone",
+      "biography": "Kapitani is a Kenyan rapper and Gengetone artist from Kayole, Nairobi. His single 'Kitemeo,' produced by Capo, reached number one on Kenya's YouTube Music Trending chart within days of its 23 July 2026 release, before being taken down from the platform amid a rights dispute."
+    },
+    {
+      "id": 355,
+      "name": "Koko Pee",
+      "city_region": "Isoko North, Delta State, Nigeria",
+      "genre": "Afrobeats",
+      "biography": "Okokowa Ogaga, known as Koko Pee, is a Nigerian musician of Isoko ethnicity from the Oghara-Iyede community in Isoko North, Delta State. Born 11 December 1994, he studied at Igbinedion University, Okada, and broke into music in 2013 with his debut single 'Party Till The End.' His music blends Afrobeat rhythms with contemporary Nigerian sounds."
+    },
+    {
+      "id": 603,
+      "name": "Masego",
+      "biography": "Micah Davis, known professionally as Masego, is a Jamaican-American musician born 8 June 1993 in Kingston, Jamaica, and raised largely in Newport News, Virginia. He coined the term 'TrapHouseJazz' to describe his fusion of saxophone, trap beats, R&B, and hip-hop. He gained wide attention for his 2017 collaboration with FKJ, 'Tadow,' and released his debut album Lady Lady in 2018."
+    },
+    {
+      "id": 758,
+      "name": "Mukololo",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "genre": "Amapiano/Afro-house"
+    },
+    {
+      "id": 378,
+      "name": "Patrick Kubuya",
+      "city_region": "Goma, DR Congo",
+      "genre": "Gospel",
+      "biography": "Patrick Kubuya is a gospel music minister born in and based in Goma, Democratic Republic of the Congo. Before pursuing music, he worked for an NGO for 13 years after studying economics. He is best known for his 2020 single 'Moyo Wangu,' which has drawn tens of millions of views on YouTube, and was nominated African Artist of the Year at the 2020 HTA Impact Gospel Awards."
+    },
+    {
+      "id": 27,
+      "name": "Shenseea",
+      "city_region": "Kingston, Jamaica",
+      "genre": "Dancehall/Pop",
+      "biography": "Shenseea, born Chinsea Linda Lee on 1 October 1996 in Mandeville, Jamaica, is a Jamaican dancehall and pop artist raised primarily in Kingston. She rose to prominence with her remix of Vybz Kartel's 'Loodi' and gained wider international attention through a featured appearance on Kanye West's 2021 album Donda. Her albums Alpha (2022) and Never Gets Late Here (2024) have helped expand dancehall's global audience."
+    },
+    {
+      "id": 3130,
+      "name": "Sunvera Scott",
+      "genre": "Gospel"
+    },
+    {
+      "id": 2084,
+      "name": "Tuzo Jerome Tz",
+      "city_region": "Dar es Salaam, Tanzania",
+      "genre": "Gospel",
+      "biography": "Tuzo Jerome is a Tanzania-based gospel artist known for Swahili-language worship music. Based in Dar es Salaam, he has released a large catalog of gospel tracks and has been active on digital platforms such as Audiomack since December 2024."
+    },
+    {
+      "id": 57,
+      "name": "Watendawili",
+      "city_region": "Nairobi, Kenya",
+      "genre": "Afropop/Afro-fusion",
+      "biography": "Watendawili is a Kenyan Afro-fusion duo from Nairobi made up of Israel Onyach and Ywaya Tajiri, who are uncle and nephew. They began performing together on Nairobi's open-mic circuit and later signed with Sol Generation Records as part of the trio Kaskazini before departing to form Watendawili. Their sound blends R&B, soul, and Afrobeat with traditional Luo rhythms."
+    },
+    {
+      "id": 313,
+      "name": "Zee Nxumalo",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "Alexandra, Johannesburg",
+      "genre": "Amapiano",
+      "biography": "Zandile Nxumalo, known as Zee Nxumalo, is a Swazi-South African singer and songwriter born 6 January 2003 in Eswatini, whose family relocated to Alexandra, Johannesburg, where she grew up. She gained early attention in 2018 with a viral cover of 'AmaBlesser,' and released her debut EP KwaNxumalo in 2022. Her 2023 single 'Funk 55' was certified five-times platinum in South Africa."
+    }
+  ],
+  "songs": [
+    {
+      "id": 22943,
+      "title": "THAT GIRL",
+      "artist": "Tyla",
+      "genre": "Pop",
+      "label": "FAX Records/Epic Records",
+      "producers": "P2J, Cole",
+      "isrc": "USSM12601378",
+      "release_year": 2026,
+      "release_date": "2026-07-24"
+    },
+    {
+      "id": 22989,
+      "title": "Donkanye",
+      "artist": "BevranZ",
+      "genre": "African",
+      "label": "Music Machine",
+      "country": "Kenya",
+      "country_code": "KE",
+      "songwriters": "Brian Kibet",
+      "producers": "Bevranz",
+      "isrc": "QZMZ92689220",
+      "release_year": 2026,
+      "release_date": "2026-07-14"
+    },
+    {
+      "id": 22959,
+      "title": "2026 Bongo mix",
+      "artist": "DJ WIZZY 254",
+      "label": "Swizzy Entertainment"
+    },
+    {
+      "id": 17770,
+      "title": "Stunta",
+      "artist": "Gyptian",
+      "genre": "Dancehall/Reggae",
+      "label": "FME Recordings"
+    },
+    {
+      "id": 22945,
+      "title": "Kitemeo",
+      "artist": "Kapitani",
+      "genre": "Gengetone",
+      "label": "10312829 Records DK",
+      "producers": "Capo",
+      "isrc": "QT6FF2696468",
+      "release_year": 2026,
+      "release_date": "2026-07-22"
+    },
+    {
+      "id": 23062,
+      "title": "Ogogoro",
+      "artist": "Koko Pee",
+      "label": "Aqua Malu records",
+      "isrc": "QT6FF2691927",
+      "release_year": 2026,
+      "release_date": "2026-07-24"
+    },
+    {
+      "id": 22917,
+      "title": "Zwiya Deeper",
+      "artist": "Mukololo",
+      "genre": "Amapiano/Afro-house",
+      "label": "CK MAQ ENT/Billionaire Media",
+      "distributor": "Africa Grooves (Pty) Ltd",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "isrc": "DGA0Q2469464",
+      "release_year": 2024,
+      "release_date": "2024-11-08"
+    },
+    {
+      "id": 17744,
+      "title": "Moyo Wangu (Live)",
+      "artist": "Patrick Kubuya",
+      "genre": "Gospel",
+      "country": "Democratic Republic of the Congo",
+      "country_code": "CD"
+    },
+    {
+      "id": 23090,
+      "title": "THIS IS NOT THE FIRST TIME",
+      "artist": "Sunvera Scott",
+      "genre": "Gospel",
+      "label": "Scott Music",
+      "isrc": "QT6FH2658365",
+      "release_year": 2026,
+      "release_date": "2026-07-24"
+    },
+    {
+      "id": 21636,
+      "title": "Nina Neno Moja Tu Asante",
+      "artist": "Tuzo Jerome Tz",
+      "producers": "Tonnie dee"
+    },
+    {
+      "id": 18074,
+      "title": "Only Gets Better (Forever)",
+      "artist": "Vybz Kartel",
+      "genre": "Dancehall",
+      "label": "Greedy Lion, Vybz Kartel Muzik, Slingerz Records",
+      "producers": "Greedy Lion, Vybz Kartel Muzik, Slingerz Records"
+    },
+    {
+      "id": 22911,
+      "title": "Kupendwa Na We",
+      "artist": "Watendawili",
+      "distributor": "ONErpm",
+      "isrc": "QZGLM2454257"
+    },
+    {
+      "id": 22536,
+      "title": "Ngithathiwe",
+      "artist": "Zee Nxumalo",
+      "genre": "Amapiano",
+      "label": "KwaNxumalo",
+      "distributor": "Platoon",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "producers": "Funky Qla, KwaNxumalo",
+      "isrc": "US23A9668478",
+      "release_year": 2026,
+      "release_date": "2026-04-24"
+    }
+  ],
+  "albums": [
+    {
+      "id": 21563,
+      "title": "A*POP",
+      "artist": "Tyla",
+      "genre": "Pop/Amapiano",
+      "label": "FAX Records/Epic Records",
+      "distributor": "Sony Music Entertainment",
+      "number_of_tracks": 14,
+      "upc": "196874296929",
+      "release_year": 2026,
+      "release_date": "2026-07-24"
+    },
+    {
+      "id": 23011,
+      "title": "M$NEY Live in London (Spotify Live)",
+      "artist": "Asake",
+      "genre": "Afrobeats/Afrosounds",
+      "label": "Giran Republic",
+      "distributor": "EMPIRE",
+      "number_of_tracks": 18,
+      "upc": "199316686104",
+      "release_year": 2026,
+      "release_date": "2026-07-24"
+    },
+    {
+      "id": 23120,
+      "title": "Bread Winner",
+      "artist": "Breeder LW",
+      "genre": "Hip-Hop/Gengetone",
+      "label": "Breeder LW",
+      "distributor": "ONErpm",
+      "number_of_tracks": 15,
+      "upc": "736084774178",
+      "release_year": 2026,
+      "release_date": "2026-07-29"
+    },
+    {
+      "id": 22792,
+      "title": "Fix Your Face",
+      "artist": "Masego",
+      "upc": "881061163503"
+    },
+    {
+      "id": 23112,
+      "title": "Never Gets Late Here",
+      "artist": "Shenseea",
+      "genre": "Dancehall/R&B/Pop",
+      "label": "Rich Immigrants",
+      "distributor": "Interscope Records",
+      "number_of_tracks": 14,
+      "upc": "602458569728",
+      "release_year": 2024,
+      "release_date": "2024-05-24"
+    }
+  ]
+}

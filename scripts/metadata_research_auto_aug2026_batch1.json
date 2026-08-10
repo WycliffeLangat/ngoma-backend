@@ -1,0 +1,296 @@
+{
+  "artists": [
+    {
+      "id": 1076,
+      "name": "Ariana Grande",
+      "city_region": "Boca Raton, Florida",
+      "genre": "Pop/R&B",
+      "biography": "Ariana Grande is an American singer, songwriter, and actress born June 26, 1993, in Boca Raton, Florida. She rose to prominence through Broadway and the Nickelodeon series Victorious before establishing herself as one of the best-selling pop and R&B artists of her generation. Known for her wide vocal range, she has released chart-topping albums including Sweetener, thank u, next, Positions, Eternal Sunshine, and Petal."
+    },
+    {
+      "id": 2930,
+      "name": "Bizze",
+      "country": "Kenya",
+      "country_code": "KE",
+      "city_region": "Coast Region, Kenya",
+      "genre": "Afropop/R&B",
+      "biography": "Bizze is a Kenyan singer from the coastal region of Kenya, known for Swahili R&B and Afropop delivered through smooth vocals and heartfelt, storytelling-driven songs about love and heartbreak. His 2026 single \"Sukuma Dole,\" featuring Mombasa rapper Mtalibani Halisi, gained wider attention across East Africa, including via TikTok dance trends."
+    },
+    {
+      "id": 9,
+      "name": "Darassa",
+      "city_region": "Dar es Salaam",
+      "genre": "Hip Hop/Afropop",
+      "biography": "Darassa, born Shariff Thabit Ramadhan on September 3, 1988, is a Tanzanian hip hop artist raised in Dar es Salaam. He launched his solo career in 2014 with \"Sikati Tamaa\" and rose to regional prominence in 2016 with \"Utanipenda\" (featuring Rich Mavoko) and \"Muziki\" (featuring Ben Pol). He has since released numerous singles and the 2020 album Slave Becomes a King, frequently collaborating with other East African artists."
+    },
+    {
+      "id": 397,
+      "name": "Enock Jonas",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "genre": "Gospel",
+      "biography": "Enock Jonas, also known as Mzee wa Zunguka, is a Tanzanian gospel singer, songwriter, and audio producer. He has built a following in the East African gospel scene with songs including \"Bado Naendelea\" and \"Wema Wa Mungu.\""
+    },
+    {
+      "id": 3074,
+      "name": "Kes",
+      "country": "Trinidad and Tobago",
+      "country_code": "TT",
+      "city_region": "San Fernando",
+      "genre": "Soca",
+      "biography": "Kes, also known as Kes the Band, is a Trinidadian soca band formed in 2005 by brothers Kees, Hans, and Jon Dieffenthaller together with Riad Boochoon, all alumni of Presentation College in San Fernando. Fronted by lead vocalist Kees Dieffenthaller, the band blends soca with R&B, pop, rock, and EDM influences. They gained wider international recognition with songs such as \"Wotless,\" which earned a BET Soul Train Music Award nomination."
+    },
+    {
+      "id": 377,
+      "name": "NG'ETHE STEVE",
+      "city_region": "Murang'a County",
+      "genre": "Gospel",
+      "biography": "Ng'ethe Steve is a Kenyan gospel artist from Murang'a County known for Kikuyu-language worship music. He writes and produces his own songs, part of a younger generation of artists redefining vernacular Kikuyu gospel presentation, with releases including \"Munyamaruri.\""
+    },
+    {
+      "id": 413,
+      "name": "Rose Muhando",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "city_region": "Kilosa District, Morogoro Region",
+      "genre": "Gospel",
+      "biography": "Rose Muhando was born in 1976 in Dumila village, Kilosa District, Morogoro Region, Tanzania. Known widely as the \"Queen of Gospel\" in East and Central Africa, she began her career as a choir teacher in Dodoma before establishing herself as a leading solo gospel artist. In February 2011 she signed a multi-album deal with Sony Music, and her albums include Mteule Uwe Macho, Kitimutimu, and Jipange Sawasawa."
+    },
+    {
+      "id": 135,
+      "name": "Stephen Kasolo",
+      "genre": "Kamba Gospel",
+      "biography": "Stephen Kasolo, also known as Kasolomoni or Kitole, is a Kenyan gospel recording artist, songwriter, and dancer known for Kamba-language gospel and contemporary worship music. His releases, including \"Kitole,\" \"Vai Kuthama,\" and \"Ni Wa Ngai,\" carry messages of faith, hope, and praise."
+    },
+    {
+      "id": 799,
+      "name": "Thirtyfourbrick",
+      "genre": "Hip Hop/Trap",
+      "biography": "Thirtyfourbrick is a Kenyan trap collective known for raw, street-driven lyricism over hard-hitting trap production. Emerging from Kenya's underground hip hop scene, the group has released singles such as \"Kuna Ngori\" and the project NO GUIDANCE, frequently collaborating with fellow Kenyan rappers."
+    },
+    {
+      "id": 312,
+      "name": "Valiant",
+      "city_region": "St. Andrew",
+      "genre": "Dancehall",
+      "biography": "Valiant, born Raheem Bowes, is a Jamaican dancehall artist from St. Andrew, Jamaica. He began singing at age five and writing songs at age seven, gaining international attention in 2022 after a viral video moment. He signed with Sony Music UK/Epic Records UK in 2023 and is regarded as one of dancehall's leading new-generation voices."
+    },
+    {
+      "id": 1677,
+      "name": "William McDowell",
+      "country": "United States",
+      "country_code": "US",
+      "city_region": "Cincinnati, Ohio",
+      "genre": "Gospel/Praise & Worship",
+      "biography": "William McDowell, born August 31, 1976, in Cincinnati, Ohio, is an American gospel and worship artist and pastor based in Orlando, Florida. He began playing piano at age five and later led worship at his home church before launching a recording career that has earned Dove and Stellar Awards, Grammy nominations, and multiple Billboard gospel chart No. 1 albums."
+    }
+  ],
+  "songs": [
+    {
+      "id": 23036,
+      "title": "hate that i made you love me",
+      "artist": "Ariana Grande",
+      "genre": "Pop/R&B",
+      "label": "BabyDoll Music",
+      "distributor": "Republic Records",
+      "songwriters": "Ariana Grande, Max Martin, Ilya Salmanzadeh",
+      "producers": "Ariana Grande, Ilya Salmanzadeh, Max Martin",
+      "release_year": 2026,
+      "release_date": "2026-05-29"
+    },
+    {
+      "id": 23039,
+      "title": "kiss me",
+      "artist": "Ariana Grande",
+      "genre": "Pop",
+      "label": "BabyDoll Music",
+      "distributor": "Republic Records",
+      "songwriters": "Ariana Grande, Ilya Salmanzadeh",
+      "producers": "Ariana Grande, Ilya Salmanzadeh",
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    },
+    {
+      "id": 23038,
+      "title": "petal",
+      "artist": "Ariana Grande",
+      "genre": "Pop",
+      "label": "BabyDoll Music",
+      "distributor": "Republic Records",
+      "songwriters": "Ariana Grande",
+      "producers": "Ariana Grande, Ilya Salmanzadeh, Max Martin",
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    },
+    {
+      "id": 22875,
+      "title": "Sukuma Dole (feat. Mtalibani Halisi)",
+      "artist": "Bizze",
+      "genre": "Hip-Hop/Rap",
+      "label": "12830278 Records DK",
+      "distributor": "DistroKid",
+      "country": "Kenya",
+      "country_code": "KE",
+      "songwriters": "Mtalibani Halisi, Thomas Ogake",
+      "producers": "Muzo (Muzobeatz Ke)",
+      "release_year": 2026,
+      "release_date": "2026-06-29"
+    },
+    {
+      "id": 22993,
+      "title": "Love Design",
+      "artist": "Darassa",
+      "genre": "Afro-Pop",
+      "label": "CMG",
+      "songwriters": "Ramadhani Thabit Shariff, Rajabu Abdulkahali Ibrahim",
+      "producers": "Abbah",
+      "release_year": 2026,
+      "release_date": "2026-07-23"
+    },
+    {
+      "id": 17777,
+      "title": "Bado Naendelea",
+      "artist": "Enock Jonas",
+      "genre": "Gospel",
+      "distributor": "DistroKid",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "release_year": 2020,
+      "release_date": "2020-09-30"
+    },
+    {
+      "id": 23004,
+      "title": "Masterpiece",
+      "artist": "Kes",
+      "genre": "Dancehall/Soca",
+      "label": "Di Genius Production",
+      "country": "Trinidad and Tobago",
+      "country_code": "TT",
+      "songwriters": "Kees Dieffenthaller, Kern Rose",
+      "producers": "Di Genius",
+      "release_year": 2026,
+      "release_date": "2026-05-10"
+    },
+    {
+      "id": 17395,
+      "title": "Moyo",
+      "artist": "Kusslove",
+      "label": "Next Level Music",
+      "songwriters": "Christian Jobu Magedenge, Raymond Shaban Mwakyusa",
+      "producers": "S2Kizzy"
+    },
+    {
+      "id": 22296,
+      "title": "Mboka",
+      "artist": "Mejja",
+      "label": "Mejja Music",
+      "songwriters": "Major Nemeye Khadija",
+      "producers": "Sappy"
+    },
+    {
+      "id": 23075,
+      "title": "Munyamurui",
+      "artist": "NG'ETHE STEVE",
+      "genre": "Gospel",
+      "country": "Kenya",
+      "country_code": "KE",
+      "songwriters": "Ng'ethe Steve",
+      "producers": "Ng'ethe Steve"
+    },
+    {
+      "id": 18181,
+      "title": "Ombi Langu",
+      "artist": "Rose Muhando",
+      "genre": "Gospel",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "release_year": 2022,
+      "release_date": "2022-01-01"
+    },
+    {
+      "id": 22900,
+      "title": "Wathi Wa Muvea",
+      "artist": "Stephen Kasolo",
+      "genre": "Kamba Gospel",
+      "release_year": 2026,
+      "release_date": "2026-07-13"
+    },
+    {
+      "id": 19308,
+      "title": "Woii",
+      "artist": "Valiant",
+      "genre": "Dancehall",
+      "country": "Jamaica",
+      "country_code": "JM"
+    }
+  ],
+  "albums": [
+    {
+      "id": 19549,
+      "title": "eternal sunshine deluxe: brighter days ahead",
+      "artist": "Ariana Grande",
+      "genre": "Pop/R&B",
+      "label": "Republic Records",
+      "distributor": "UMG Recordings, Inc.",
+      "release_year": 2025,
+      "release_date": "2025-03-28"
+    },
+    {
+      "id": 21573,
+      "title": "petal",
+      "artist": "Ariana Grande",
+      "genre": "Pop/R&B",
+      "label": "BabyDoll Music",
+      "distributor": "Republic Records",
+      "number_of_tracks": 12,
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    },
+    {
+      "id": 23106,
+      "title": "Secrets of the WRLD",
+      "artist": "JAZZWRLD",
+      "genre": "Amapiano/Dance",
+      "label": "Waltz Music Group",
+      "distributor": "EMPIRE",
+      "number_of_tracks": 13,
+      "release_year": 2026,
+      "release_date": "2026-07-30"
+    },
+    {
+      "id": 23012,
+      "title": "Business",
+      "artist": "Mavo",
+      "genre": "Afrobeats",
+      "label": "Kilogbede Records",
+      "distributor": "Inner Circle Entertainment",
+      "number_of_tracks": 13,
+      "release_year": 2026,
+      "release_date": "2026-07-24"
+    },
+    {
+      "id": 19424,
+      "title": "Timeless Anthems",
+      "artist": "Prince Indah",
+      "distributor": "EMC"
+    },
+    {
+      "id": 19790,
+      "title": "NO GUIDANCE",
+      "artist": "Thirtyfourbrick",
+      "genre": "Hip-Hop/Trap"
+    },
+    {
+      "id": 23108,
+      "title": "Dreams, Revelations & Moments",
+      "artist": "William McDowell",
+      "genre": "Gospel/Praise & Worship",
+      "label": "Integrity Music",
+      "country": "United States",
+      "country_code": "US",
+      "number_of_tracks": 18,
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    }
+  ]
+}

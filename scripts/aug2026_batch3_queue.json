@@ -1,0 +1,388 @@
+{
+  "artists": {
+    "82": {
+      "name": "Kabza De Small",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "732": {
+      "name": "Ben Pol",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "262": {
+      "name": "DJ Maphorisa",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "106": {
+      "name": "Gody Tennor",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "937": {
+      "name": "Kamande Wa Kioi",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1085": {
+      "name": "King Bubby",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "201": {
+      "name": "Lil Uzi Vert",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "365": {
+      "name": "Msanii Music Group",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "922": {
+      "name": "OnlyMoh",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1228": {
+      "name": "Shaboozey",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2012": {
+      "name": "Teni",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1345": {
+      "name": "Usmanial Vibez",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "18": {
+      "name": "Yammi",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    }
+  },
+  "releases": {
+    "17491": {
+      "title": "Abalele",
+      "artist": "Kabza De Small",
+      "artist_id": 82,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23113": {
+      "title": "Tutu",
+      "artist": "Kabza De Small",
+      "artist_id": 82,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "18664": {
+      "title": "Hatari",
+      "artist": "Alikiba",
+      "artist_id": 90,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters"
+      ]
+    },
+    "18527": {
+      "title": "Moyo Mashine",
+      "artist": "Ben Pol",
+      "artist_id": 732,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23040": {
+      "title": "Eja Meja",
+      "artist": "BNXN",
+      "artist_id": 293,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22890": {
+      "title": "Top Shotta",
+      "artist": "Collo Blue",
+      "artist_id": 277,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc"
+      ]
+    },
+    "22013": {
+      "title": "Ngibolekeni (feat. Sean 1401, Leemckrazy, Blxckie, Pcee, Madumane & Kabelo Sings)",
+      "artist": "DJ Maphorisa",
+      "artist_id": 262,
+      "chart_type": "singles",
+      "missing_fields": [
+        "isrc"
+      ]
+    },
+    "23005": {
+      "title": "Denda Ni Denda",
+      "artist": "Gody Tennor",
+      "artist_id": 106,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22975": {
+      "title": "Mararirira Kioro",
+      "artist": "Kamande Wa Kioi",
+      "artist_id": 937,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "19319": {
+      "title": "Nakutaka",
+      "artist": "King Bubby",
+      "artist_id": 1085,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "23107": {
+      "title": "Maverick “Almost Forever” Ep",
+      "artist": "Lil Uzi Vert",
+      "artist_id": 201,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17697": {
+      "title": "Mtuliza Bahari",
+      "artist": "Msanii Music Group",
+      "artist_id": 365,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21359": {
+      "title": "Up Next",
+      "artist": "OnlyMoh",
+      "artist_id": 922,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks"
+      ]
+    },
+    "23109": {
+      "title": "The Outlaw Cherie Lee & Other Western Tales",
+      "artist": "Shaboozey",
+      "artist_id": 1228,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21363": {
+      "title": "THE TORCHER",
+      "artist": "Stonebwoy",
+      "artist_id": 1952,
+      "chart_type": "albums",
+      "missing_fields": [
+        "distributor"
+      ]
+    },
+    "22996": {
+      "title": "Money",
+      "artist": "Teni",
+      "artist_id": 2012,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "20108": {
+      "title": "BOOK OF HOPE",
+      "artist": "Usmanial Vibez",
+      "artist_id": 1345,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks"
+      ]
+    },
+    "17407": {
+      "title": "LAST DANCE",
+      "artist": "Wakadinali",
+      "artist_id": 17,
+      "chart_type": "singles",
+      "missing_fields": [
+        "songwriters",
+        "producers"
+      ]
+    },
+    "18509": {
+      "title": "Tiririka (Acoustic)",
+      "artist": "Yammi",
+      "artist_id": 18,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    }
+  }
+}

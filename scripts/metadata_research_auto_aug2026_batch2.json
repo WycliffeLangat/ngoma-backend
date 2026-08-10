@@ -1,0 +1,262 @@
+{
+  "artists": [
+    {
+      "id": 30,
+      "name": "Davido",
+      "city_region": "Lagos",
+      "genre": "Afrobeats",
+      "biography": "David Adedeji Adeleke, known professionally as Davido, is a Nigerian singer, songwriter and record executive born November 21, 1992 in Atlanta, Georgia, and raised in Lagos, Nigeria. He rose to prominence in 2011 with the single \"Dami Duro\" and founded the record label Davido Music Worldwide (DMW). His 2023 album Timeless became the first African album to top the US iTunes charts, and he has won multiple BET Awards, MTV Africa Music Awards, and Headies."
+    },
+    {
+      "id": 395,
+      "name": "ALEX KASAU KATOMBI",
+      "biography": "Alex Kasau, known by the stage name Katombi, is a Kenyan Kamba Benga musician born April 19, 1983. He began his music career in 2000 and later formed his own band, Nguuni Lovers, in 2006. He has composed more than 200 songs over a career spanning more than two decades, known for fusing traditional Kamba rhythms with modern instrumentation."
+    },
+    {
+      "id": 63,
+      "name": "Billie Eilish",
+      "city_region": "Los Angeles, California",
+      "genre": "Pop, Alternative Pop",
+      "biography": "Billie Eilish Pirate Baird O'Connell is an American singer-songwriter born December 18, 2001 in Los Angeles and raised in the city's Highland Park neighborhood. She rose to prominence with her 2019 debut album When We All Fall Asleep, Where Do We Go?, largely written and produced with her brother Finneas O'Connell. She has since won multiple Grammy Awards and an Academy Award for her music."
+    },
+    {
+      "id": 2072,
+      "name": "Choppa strings",
+      "city_region": "Nairobi",
+      "genre": "Hip-Hop/R&B",
+      "biography": "Choppa Strings, born John Ndung'u Kihara, is a Kenyan violinist and producer from Nairobi. He has released several instrumental albums, including Electro Respawn and Galactic Groove, blending hip-hop and R&B with violin performance. He also founded Treetone Music Services, a music education and consultation center that has trained over 200 violin students."
+    },
+    {
+      "id": 3131,
+      "name": "dolly babe",
+      "genre": "Hip-Hop/Rap"
+    },
+    {
+      "id": 25,
+      "name": "Jay Melody",
+      "city_region": "Dar es Salaam",
+      "genre": "Bongo Flava",
+      "biography": "Jay Melody, born Sharif Said Juma on June 12, 1997, is a Tanzanian singer based in Dar es Salaam. He trained with the Tanzania House of Talent before releasing his debut single \"Geroka\" under Epic Records in 2018, and gained wider recognition with his 2022 hit \"Nakupenda\". His music blends Bongo Flava with Afrobeats, Afro-soul and Afropop influences."
+    },
+    {
+      "id": 304,
+      "name": "Lil Baby",
+      "city_region": "Atlanta, Georgia",
+      "genre": "Hip Hop/Trap",
+      "biography": "Lil Baby, born Dominique Armani Jones on December 3, 1994 in Atlanta, Georgia, is an American rapper associated with the city's hip-hop scene. He rose to prominence with his 2017 mixtape Perfect Timing after a period of incarceration, and his sophomore album My Turn (2020) debuted atop the Billboard 200 and was certified triple-platinum by the RIAA."
+    },
+    {
+      "id": 3144,
+      "name": "MORDA",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "city_region": "Pretoria",
+      "genre": "Afro-house",
+      "biography": "MORDA, born Bongani Mohosana on June 9, 1987 in Pretoria, South Africa, is a South African DJ, record producer and songwriter known for Afro-house music. He co-founded the house duo Black Motion in 2009, and in 2022 launched his solo Asante album series and the independent label Asante Music, the latter alongside DJ Zinhle. He has received a Grammy Award nomination for his production work."
+    },
+    {
+      "id": 553,
+      "name": "Odeal",
+      "biography": "Odeal, born Hillary Dennis Udanoh on December 13, 1999, is a British-Nigerian singer-songwriter born in Germany and raised across Nigeria, Spain and the United Kingdom before settling in London. His music blends Afrobeats, R&B and UK dance and rap influences. He was named Billboard's African Rookie of the Year in 2025 and won Best Newcomer and Best R&B/Soul Act at the 2025 MOBO Awards."
+    },
+    {
+      "id": 459,
+      "name": "Runtown",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Enugu",
+      "genre": "Afrobeats",
+      "biography": "Runtown, born Douglas Jack Agu on August 19, 1989 in Enugu, Nigeria, is a Nigerian singer, songwriter and record producer. He gained wide recognition with his 2014 single \"Gallardo\" featuring Davido, and his 2016 single \"Mad Over You\" became one of the biggest African streaming hits of its time. His music combines Afrobeats with highlife, R&B, hip-hop and reggae influences."
+    },
+    {
+      "id": 1603,
+      "name": "Steve Lacy",
+      "biography": "Steve Lacy, born Steven Thomas Lacy-Moya on May 23, 1998 in Compton, California, is an American singer, songwriter and record producer. He first gained recognition as a member of the alternative R&B group The Internet before launching a solo career, and his second solo album Gemini Rights (2022) reached number seven on the Billboard 200 and won the Grammy Award for Best Progressive R&B Album."
+    },
+    {
+      "id": 2827,
+      "name": "Toxic Lyrikali",
+      "city_region": "Kayole, Nairobi",
+      "genre": "Trap/Dancehall",
+      "biography": "Toxic Lyrikali, born Timothy Omondi, is a Kenyan rapper from the Kayole neighborhood of Nairobi. He began writing lyrics in 2019 and launched his YouTube channel in January 2022, gaining wider recognition with tracks including \"Thugnificent\" and \"Chinje\". Spotify named him Kenya's top-discovered artist for 2025."
+    },
+    {
+      "id": 2972,
+      "name": "Valtieri Silva Serpa",
+      "genre": "Electronic"
+    },
+    {
+      "id": 2176,
+      "name": "Yemi Alade",
+      "biography": "Yemi Eberechi Alade, born March 13, 1989 in Ondo State, Nigeria, is a Nigerian Afropop singer-songwriter and actress. She rose to prominence after signing with Effyzzie Music Group and releasing the 2014 hit single \"Johnny\", and has since won multiple MTV Africa Music Awards. Her 2024 album Rebel Queen earned her a Grammy nomination for the track \"Tomorrow\"."
+    }
+  ],
+  "songs": [
+    {
+      "id": 22055,
+      "title": "I Know Who I Be",
+      "artist": "Davido",
+      "genre": "Afrobeats",
+      "label": "Davido Music Worldwide (DMW)",
+      "distributor": "Sony Music Entertainment UK Limited",
+      "producers": "JAZZWRLD, GL_CeeJay",
+      "release_year": 2026,
+      "release_date": "2026-06-26"
+    },
+    {
+      "id": 22905,
+      "title": "Kiwanza",
+      "artist": "ALEX KASAU KATOMBI",
+      "genre": "Benga",
+      "label": "Kisinga Sounds",
+      "release_year": 2026,
+      "release_date": "2026-07-03"
+    },
+    {
+      "id": 21627,
+      "title": "Malebo",
+      "artist": "Choppa strings",
+      "songwriters": "John Kihara",
+      "producers": "Choppa Strings"
+    },
+    {
+      "id": 23091,
+      "title": "Pink Blush",
+      "artist": "dolly babe",
+      "genre": "Hip-Hop/Rap",
+      "label": "Dolly Babe",
+      "release_year": 2026,
+      "release_date": "2026-06-30"
+    },
+    {
+      "id": 23055,
+      "title": "Hisia",
+      "artist": "Jay Melody",
+      "genre": "Bongo Flava",
+      "producers": "Aloneym",
+      "release_year": 2026,
+      "release_date": "2026-07-21"
+    },
+    {
+      "id": 22864,
+      "title": "Dead Fresh",
+      "artist": "Lil Baby",
+      "genre": "Hip Hop/Trap",
+      "producers": "Pharrell Williams",
+      "release_year": 2026,
+      "release_date": "2026-07-17"
+    },
+    {
+      "id": 18198,
+      "title": "Tamu",
+      "artist": "Mbosso",
+      "genre": "Bongo Flava",
+      "label": "Khan Music",
+      "producers": "Lizer Classic",
+      "release_year": 2020,
+      "release_date": "2020-01-17"
+    },
+    {
+      "id": 22721,
+      "title": "Mad over You",
+      "artist": "Runtown",
+      "genre": "Highlife/R&B",
+      "label": "Eric Many Entertainment",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "songwriters": "Douglas Jack",
+      "producers": "Runtown, Del B, T-Spize",
+      "release_year": 2016,
+      "release_date": "2016-11-04"
+    },
+    {
+      "id": 17288,
+      "title": "Bud Flowers",
+      "artist": "Toxic Lyrikali",
+      "distributor": "Mboka Doba Ltd"
+    },
+    {
+      "id": 22913,
+      "title": "when you belong",
+      "artist": "Valtieri Silva Serpa",
+      "genre": "Electronic",
+      "release_year": 2026
+    },
+    {
+      "id": 23057,
+      "title": "Kangaroo/Komasava",
+      "artist": "Willy Paul",
+      "genre": "Afro-Pop",
+      "label": "Saldido International / Willy Paul",
+      "distributor": "ONErpm",
+      "release_year": 2026,
+      "release_date": "2026-07-24"
+    },
+    {
+      "id": 21724,
+      "title": "Don't Be Shy",
+      "artist": "Yemi Alade",
+      "genre": "Afropop",
+      "label": "Effyzzie Music",
+      "producers": "De Yaso, Kobby Worldwide",
+      "release_year": 2026,
+      "release_date": "2026-06-19"
+    }
+  ],
+  "albums": [
+    {
+      "id": 23105,
+      "title": "Oriadé",
+      "artist": "Davido",
+      "genre": "Afrobeats",
+      "label": "Davido Music Worldwide (DMW)",
+      "distributor": "Sony Music Entertainment UK Limited",
+      "number_of_tracks": 13,
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    },
+    {
+      "id": 19530,
+      "title": "HIT ME HARD AND SOFT",
+      "artist": "Billie Eilish",
+      "genre": "Pop/Alternative Pop",
+      "label": "Darkroom Records",
+      "distributor": "Interscope Records",
+      "number_of_tracks": 10,
+      "upc": "602465223675",
+      "release_year": 2024,
+      "release_date": "2024-05-17"
+    },
+    {
+      "id": 23110,
+      "title": "Asante IV",
+      "artist": "MORDA",
+      "genre": "Afro-house",
+      "label": "Asante Music",
+      "country": "South Africa",
+      "country_code": "ZA",
+      "number_of_tracks": 19,
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    },
+    {
+      "id": 23104,
+      "title": "For A Good Time...",
+      "artist": "Odeal",
+      "genre": "Afro-R&B",
+      "label": "LVRN / OVMBR",
+      "number_of_tracks": 7,
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    },
+    {
+      "id": 21584,
+      "title": "Oh yeah?",
+      "artist": "Steve Lacy",
+      "genre": "R&B/Alternative R&B",
+      "label": "RCA Records",
+      "distributor": "Sony Music Entertainment",
+      "number_of_tracks": 10
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "artists": [
+    {
+      "id": 82,
+      "name": "Kabza De Small",
+      "city_region": "eMalahleni, Mpumalanga",
+      "genre": "Amapiano",
+      "biography": "Kabza De Small, born Kabelo Petrus Motha on 27 November 1992 in eMalahleni, Mpumalanga, is a South African DJ and record producer. Known as the \"King of Amapiano,\" he began his career as a DJ in 2009 and gained international recognition following the 2018 release of \"Umshove\". He is also a member of the production duo Scorpion Kings alongside DJ Maphorisa."
+    },
+    {
+      "id": 732,
+      "name": "Ben Pol",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "city_region": "Dar es Salaam",
+      "genre": "Bongo Flava",
+      "biography": "Ben Pol, born Benard Paul Mnyang'anga on 8 September 1989, is a Tanzanian singer and songwriter from Dar es Salaam known for blending Bongo Flava, Afrobeats, and R&B. He gained wider recognition after his 2015 hit \"Sophia\" and his participation in Coke Studio Africa. He has collaborated with artists including Nameless, Avril, and Fid Q, and released his third album \"Flamingo\" in January 2024."
+    },
+    {
+      "id": 262,
+      "name": "DJ Maphorisa",
+      "city_region": "Soshanguve, Pretoria",
+      "genre": "Amapiano",
+      "biography": "DJ Maphorisa, born Themba Sekowe on 15 November 1987 in Soshanguve, Pretoria, is a South African DJ, record producer and songwriter. He rose to prominence in 2013 after co-producing Mafikizolo's \"Khona\" and later gained global recognition as co-producer of Drake's \"One Dance\". He is a central figure in the amapiano genre and frequently collaborates with Kabza De Small."
+    },
+    {
+      "id": 106,
+      "name": "Gody Tennor",
+      "city_region": "Nairobi",
+      "genre": "Gengetone",
+      "biography": "Gody Tennor is a Kenyan singer and songwriter from Nairobi known for street-inspired anthems rooted in gengetone. He has been credited with helping develop the Arbantone sub-style, which blends genge with reggae and dancehall elements. His catalog includes tracks such as \"Mukuchu\" and \"Denda Ni Denda\"."
+    },
+    {
+      "id": 937,
+      "name": "Kamande Wa Kioi",
+      "country": "Kenya",
+      "country_code": "KE",
+      "city_region": "Kambiti, Murang'a",
+      "genre": "Mugithi",
+      "biography": "Kamande Wa Kioi, born Marc Kamande Kioi in 1972 in Kambiti, Murang'a, is a Kenyan musician known for Mugithi and Benga music. He began playing guitar in church as a child and later served as a guitarist with the Kenya Police Band before leaving to pursue music and the matatu business full-time. His songs include \"Kanyau Gakwa\" and \"Mararirira Kioro\"."
+    },
+    {
+      "id": 1085,
+      "name": "King Bubby",
+      "biography": "King Bubby is a Kenyan musician known for Swahili-language love songs. His single \"Nakutaka\", released in 2026, surpassed one million views within a month of its music video's release. He has also put out the singles \"Hatutoki\" and \"Princess\"."
+    },
+    {
+      "id": 201,
+      "name": "Lil Uzi Vert",
+      "city_region": "North Philadelphia, Pennsylvania",
+      "genre": "Hip Hop / Trap",
+      "biography": "Lil Uzi Vert, born Symere Bysil Woods on 31 July 1994 in North Philadelphia, Pennsylvania, is an American rapper known for blending trap production with a melodic, emo-influenced style. They broke through with the 2015 mixtape \"Luv Is Rage\" and scored a Billboard Hot 100 number one as a featured artist on Migos' \"Bad and Boujee\" in 2016. Their music is defined by dark, introspective themes paired with an eccentric personal style."
+    },
+    {
+      "id": 365,
+      "name": "Msanii Music Group",
+      "country": "Kenya",
+      "country_code": "KE",
+      "city_region": "Kayole, Nairobi",
+      "genre": "Gospel",
+      "biography": "Msanii Music Group is a Kenyan gospel choir and record label based in Kayole, Nairobi, led by Joash Nyamongo (Joe Msanii) through Msanii Records Ltd. The group produces multilingual gospel music in Swahili, English and other languages and built a large following through weekly video releases during the COVID-19 pandemic. Its catalog includes songs such as \"Mtuliza Bahari\"."
+    },
+    {
+      "id": 922,
+      "name": "OnlyMoh",
+      "city_region": "Donholm, Nairobi",
+      "genre": "Trap / Hip Hop",
+      "biography": "OnlyMoh is a Kenyan rapper from Donholm, Nairobi, known for blending trap production with Sheng-heavy lyricism aimed at Gen Z listeners. He is a member of the collective ThirtyFourBrick (34 Brick) alongside Mauru Gwash, JayLo and Unclean. His breakout track \"Osama\", released in early 2026, became a viral street anthem."
+    },
+    {
+      "id": 1228,
+      "name": "Shaboozey",
+      "city_region": "Woodbridge, Virginia",
+      "genre": "Country Rap / Americana",
+      "biography": "Shaboozey, born Collins Obinna Chibueze on 9 May 1995 in Woodbridge, Virginia, is an American singer, rapper and songwriter of Nigerian descent who blends country, Americana and hip-hop. His single \"A Bar Song (Tipsy)\" topped the Billboard Hot 100 for 19 weeks, tying the record for longest-running number one. His 2024 album \"Where I've Been, Isn't Where I'm Going\" brought him major mainstream success."
+    },
+    {
+      "id": 2012,
+      "name": "Teni",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "city_region": "Lagos",
+      "genre": "Afrobeats",
+      "biography": "Teni, born Teniola Apata on 23 December 1993 in Lagos, Nigeria, is a Nigerian singer known for fusing Afrobeats, pop and highlife. She gained major recognition in 2018 with the hit tracks \"Askamaya\", \"Case\" and \"Uyo Meyo\". In October 2022 she was awarded the national honour Member of the Order of the Niger (MON) by the Nigerian government."
+    },
+    {
+      "id": 1345,
+      "name": "Usmanial Vibez",
+      "biography": "Usmanial Vibez is a Nigerian hip-hop artist known for combining Afrobeat-influenced rhythms with lyrics exploring faith, resilience and gratitude. His releases include the albums \"Book of Hope\" and \"Struggle for the Good\", with tracks such as \"Talk to God\" and \"No Days Off\" building a growing streaming audience."
+    },
+    {
+      "id": 18,
+      "name": "Yammi",
+      "city_region": "Dar es Salaam",
+      "genre": "Bongo Flava",
+      "biography": "Yammi, born Yasirun Yasin Shaban on 12 May 2002 in Tanga, Tanzania, is a Tanzanian singer known for Bongo Flava and Afro-pop songs including \"Tiririka\", \"Hayanogi\" and \"Nampenda\". She gained early attention on TikTok in 2021 before releasing her debut EP \"Three Hearts\" in 2023, and has collaborated with artists such as Nandy, Rayvanny and Harmonize."
+    }
+  ],
+  "songs": [
+    {
+      "id": 17491,
+      "title": "Abalele",
+      "artist": "Kabza De Small",
+      "genre": "Amapiano",
+      "label": "Piano Hub",
+      "distributor": "Sony Music Entertainment Africa (Pty) Ltd",
+      "producers": "Kabza De Small, DJ Maphorisa",
+      "isrc": "ZB88P2100003",
+      "release_year": 2021,
+      "release_date": "2021-09-17"
+    },
+    {
+      "id": 18664,
+      "title": "Hatari",
+      "artist": "Alikiba",
+      "genre": "Bongo Flava",
+      "label": "Kings Music Africa Ltd",
+      "distributor": "Ziiki Media",
+      "songwriters": "Ally Salehe Kiba, Sharif Saidi Juma"
+    },
+    {
+      "id": 18527,
+      "title": "Moyo Mashine",
+      "artist": "Ben Pol",
+      "genre": "R&B",
+      "label": "Fireboys Classic",
+      "country": "Tanzania",
+      "country_code": "TZ",
+      "songwriters": "Lollipop",
+      "producers": "Lollipop, Nusder, Kidbway",
+      "isrc": "TCACP1634066",
+      "release_year": 2016,
+      "release_date": "2016-05-12"
+    },
+    {
+      "id": 23040,
+      "title": "Eja Meja",
+      "artist": "BNXN",
+      "genre": "Afrobeats",
+      "label": "T.Y.E. / EMPIRE",
+      "distributor": "EMPIRE",
+      "producers": "Blaisebeatz, Freshy",
+      "isrc": "USUYG1822798",
+      "release_year": 2026,
+      "release_date": "2026-07-29"
+    },
+    {
+      "id": 22890,
+      "title": "Top Shotta",
+      "artist": "Collo Blue",
+      "distributor": "ONErpm",
+      "songwriters": "Collo Blue",
+      "producers": "Vic West",
+      "isrc": "QZMZ92624171"
+    },
+    {
+      "id": 22013,
+      "title": "Ngibolekeni (feat. Sean 1401, Leemckrazy, Blxckie, Pcee, Madumane & Kabelo Sings)",
+      "artist": "DJ Maphorisa",
+      "isrc": "ZB1OS2500441"
+    },
+    {
+      "id": 23005,
+      "title": "Denda Ni Denda",
+      "artist": "Gody Tennor",
+      "genre": "Gengetone",
+      "label": "Ziiki Media",
+      "isrc": "ZA40S2600671",
+      "release_year": 2026,
+      "release_date": "2026-07-17"
+    },
+    {
+      "id": 22975,
+      "title": "Mararirira Kioro",
+      "artist": "Kamande Wa Kioi",
+      "genre": "Mugithi",
+      "label": "360 Music Publishing",
+      "country": "Kenya",
+      "country_code": "KE",
+      "release_year": 2015
+    },
+    {
+      "id": 19319,
+      "title": "Nakutaka",
+      "artist": "King Bubby",
+      "country": "Kenya",
+      "country_code": "KE"
+    },
+    {
+      "id": 17697,
+      "title": "Mtuliza Bahari",
+      "artist": "Msanii Music Group",
+      "genre": "Gospel",
+      "label": "Msanii Records",
+      "country": "Kenya",
+      "country_code": "KE",
+      "isrc": "TCAGR2201820",
+      "release_year": 2022,
+      "release_date": "2022-12-06"
+    },
+    {
+      "id": 22996,
+      "title": "Money",
+      "artist": "Teni",
+      "genre": "Afrobeats",
+      "label": "Sugar Mummy Records",
+      "country": "Nigeria",
+      "country_code": "NG",
+      "isrc": "QT2JK2400034",
+      "release_year": 2025,
+      "release_date": "2025-01-24"
+    },
+    {
+      "id": 17407,
+      "title": "LAST DANCE",
+      "artist": "Wakadinali",
+      "songwriters": "Churchill Mandela, Domani Munga, Salim Tangut",
+      "producers": "Obwar (Obwar Bwana)"
+    },
+    {
+      "id": 18509,
+      "title": "Tiririka (Acoustic)",
+      "artist": "Yammi",
+      "genre": "Bongo Flava",
+      "label": "Ziiki Media",
+      "isrc": "ZA41S2303953",
+      "release_year": 2023,
+      "release_date": "2023-09-22"
+    }
+  ],
+  "albums": [
+    {
+      "id": 23113,
+      "title": "Tutu",
+      "artist": "Kabza De Small",
+      "genre": "Amapiano",
+      "label": "Piano Hub (Pty) Ltd",
+      "distributor": "Sony Music Entertainment Africa (Pty) Ltd",
+      "number_of_tracks": 13,
+      "release_year": 2026,
+      "release_date": "2026-08-28"
+    },
+    {
+      "id": 23107,
+      "title": "Maverick “Almost Forever” Ep",
+      "artist": "Lil Uzi Vert",
+      "genre": "Rap/Hip Hop",
+      "label": "Cor(e)",
+      "distributor": "Roc Nation Distribution",
+      "number_of_tracks": 8,
+      "upc": "8721554073518",
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    },
+    {
+      "id": 21359,
+      "title": "Up Next",
+      "artist": "OnlyMoh",
+      "genre": "Hip Hop",
+      "label": "7023980 Records DK",
+      "number_of_tracks": 3
+    },
+    {
+      "id": 23109,
+      "title": "The Outlaw Cherie Lee & Other Western Tales",
+      "artist": "Shaboozey",
+      "genre": "Country",
+      "label": "American Dogwood / EMPIRE",
+      "distributor": "EMPIRE",
+      "number_of_tracks": 20,
+      "upc": "199316715569",
+      "release_year": 2026,
+      "release_date": "2026-07-31"
+    },
+    {
+      "id": 20108,
+      "title": "BOOK OF HOPE",
+      "artist": "Usmanial Vibez",
+      "genre": "Hip-Hop/Rap",
+      "label": "Usmanial Vibez",
+      "number_of_tracks": 22
+    }
+  ]
+}

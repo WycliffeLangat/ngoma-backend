@@ -1,0 +1,405 @@
+{
+  "artists": {
+    "30": {
+      "name": "Davido",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "395": {
+      "name": "ALEX KASAU KATOMBI",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "63": {
+      "name": "Billie Eilish",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2072": {
+      "name": "Choppa strings",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3131": {
+      "name": "dolly babe",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "25": {
+      "name": "Jay Melody",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3132": {
+      "name": "Kimkot",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "304": {
+      "name": "Lil Baby",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3144": {
+      "name": "MORDA",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "553": {
+      "name": "Odeal",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "459": {
+      "name": "Runtown",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1603": {
+      "name": "Steve Lacy",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "2827": {
+      "name": "Toxic Lyrikali",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2972": {
+      "name": "Valtieri Silva Serpa",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2176": {
+      "name": "Yemi Alade",
+      "missing_fields": [
+        "biography"
+      ]
+    }
+  },
+  "releases": {
+    "22055": {
+      "title": "I Know Who I Be",
+      "artist": "Davido",
+      "artist_id": 30,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23105": {
+      "title": "Oriadé",
+      "artist": "Davido",
+      "artist_id": 30,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22905": {
+      "title": "Kiwanza",
+      "artist": "ALEX KASAU KATOMBI",
+      "artist_id": 395,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "19530": {
+      "title": "HIT ME HARD AND SOFT",
+      "artist": "Billie Eilish",
+      "artist_id": 63,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21627": {
+      "title": "Malebo",
+      "artist": "Choppa strings",
+      "artist_id": 2072,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "23091": {
+      "title": "Pink Blush",
+      "artist": "dolly babe",
+      "artist_id": 3131,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23055": {
+      "title": "Hisia",
+      "artist": "Jay Melody",
+      "artist_id": 25,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23092": {
+      "title": "Ghanere mix song",
+      "artist": "Kimkot",
+      "artist_id": 3132,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22864": {
+      "title": "Dead Fresh",
+      "artist": "Lil Baby",
+      "artist_id": 304,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "18198": {
+      "title": "Tamu",
+      "artist": "Mbosso",
+      "artist_id": 37,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23110": {
+      "title": "Asante IV",
+      "artist": "MORDA",
+      "artist_id": 3144,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23104": {
+      "title": "For A Good Time...",
+      "artist": "Odeal",
+      "artist_id": 553,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22721": {
+      "title": "Mad over You",
+      "artist": "Runtown",
+      "artist_id": 459,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21584": {
+      "title": "Oh yeah?",
+      "artist": "Steve Lacy",
+      "artist_id": 1603,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks"
+      ]
+    },
+    "17288": {
+      "title": "Bud Flowers",
+      "artist": "Toxic Lyrikali",
+      "artist_id": 2827,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "producers"
+      ]
+    },
+    "22913": {
+      "title": "when you belong",
+      "artist": "Valtieri Silva Serpa",
+      "artist_id": 2972,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23057": {
+      "title": "Kangaroo/Komasava",
+      "artist": "Willy Paul",
+      "artist_id": 10,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21724": {
+      "title": "Don't Be Shy",
+      "artist": "Yemi Alade",
+      "artist_id": 2176,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "producers",
+        "release_year",
+        "release_date"
+      ]
+    }
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "artists": {
+    "1076": {
+      "name": "Ariana Grande",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2930": {
+      "name": "Bizze",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "9": {
+      "name": "Darassa",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "397": {
+      "name": "Enock Jonas",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3074": {
+      "name": "Kes",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "287": {
+      "name": "Kusslove",
+      "missing_fields": [
+        "city_region"
+      ]
+    },
+    "377": {
+      "name": "NG'ETHE STEVE",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "413": {
+      "name": "Rose Muhando",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "135": {
+      "name": "Stephen Kasolo",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "799": {
+      "name": "Thirtyfourbrick",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "312": {
+      "name": "Valiant",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "1677": {
+      "name": "William McDowell",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    }
+  },
+  "releases": {
+    "19549": {
+      "title": "eternal sunshine deluxe: brighter days ahead",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23036": {
+      "title": "hate that i made you love me",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23039": {
+      "title": "kiss me",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21573": {
+      "title": "petal",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23038": {
+      "title": "petal",
+      "artist": "Ariana Grande",
+      "artist_id": 1076,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22875": {
+      "title": "Sukuma Dole (feat. Mtalibani Halisi)",
+      "artist": "Bizze",
+      "artist_id": 2930,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22993": {
+      "title": "Love Design",
+      "artist": "Darassa",
+      "artist_id": 9,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17777": {
+      "title": "Bado Naendelea",
+      "artist": "Enock Jonas",
+      "artist_id": 397,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23106": {
+      "title": "Secrets of the WRLD",
+      "artist": "JAZZWRLD",
+      "artist_id": 263,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23004": {
+      "title": "Masterpiece",
+      "artist": "Kes",
+      "artist_id": 3074,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17395": {
+      "title": "Moyo",
+      "artist": "Kusslove",
+      "artist_id": 287,
+      "chart_type": "singles",
+      "missing_fields": [
+        "label",
+        "distributor",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "23012": {
+      "title": "Business",
+      "artist": "Mavo",
+      "artist_id": 1013,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22296": {
+      "title": "Mboka",
+      "artist": "Mejja",
+      "artist_id": 285,
+      "chart_type": "singles",
+      "missing_fields": [
+        "label",
+        "distributor",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "23075": {
+      "title": "Munyamurui",
+      "artist": "NG'ETHE STEVE",
+      "artist_id": 377,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "19424": {
+      "title": "Timeless Anthems",
+      "artist": "Prince Indah",
+      "artist_id": 35,
+      "chart_type": "albums",
+      "missing_fields": [
+        "distributor"
+      ]
+    },
+    "18181": {
+      "title": "Ombi Langu",
+      "artist": "Rose Muhando",
+      "artist_id": 413,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22900": {
+      "title": "Wathi Wa Muvea",
+      "artist": "Stephen Kasolo",
+      "artist_id": 135,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "19790": {
+      "title": "NO GUIDANCE",
+      "artist": "Thirtyfourbrick",
+      "artist_id": 799,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks"
+      ]
+    },
+    "19308": {
+      "title": "Woii",
+      "artist": "Valiant",
+      "artist_id": 312,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code"
+      ]
+    },
+    "23108": {
+      "title": "Dreams, Revelations & Moments",
+      "artist": "William McDowell",
+      "artist_id": 1677,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    }
+  }
+}

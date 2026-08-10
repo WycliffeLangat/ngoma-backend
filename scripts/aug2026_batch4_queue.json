@@ -1,0 +1,398 @@
+{
+  "artists": {
+    "55": {
+      "name": "Tyla",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3065": {
+      "name": "BevranZ",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "103": {
+      "name": "Breeder LW",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "94": {
+      "name": "DJ WIZZY 254",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "172": {
+      "name": "Gyptian",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2158": {
+      "name": "Kapitani",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "355": {
+      "name": "Koko Pee",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "603": {
+      "name": "Masego",
+      "missing_fields": [
+        "biography"
+      ]
+    },
+    "758": {
+      "name": "Mukololo",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "378": {
+      "name": "Patrick Kubuya",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "27": {
+      "name": "Shenseea",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "3130": {
+      "name": "Sunvera Scott",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "2084": {
+      "name": "Tuzo Jerome Tz",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "57": {
+      "name": "Watendawili",
+      "missing_fields": [
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    },
+    "313": {
+      "name": "Zee Nxumalo",
+      "missing_fields": [
+        "country",
+        "country_code",
+        "city_region",
+        "genre",
+        "biography"
+      ]
+    }
+  },
+  "releases": {
+    "21563": {
+      "title": "A*POP",
+      "artist": "Tyla",
+      "artist_id": 55,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22943": {
+      "title": "THAT GIRL",
+      "artist": "Tyla",
+      "artist_id": 55,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23011": {
+      "title": "M$NEY Live in London (Spotify Live)",
+      "artist": "Asake",
+      "artist_id": 33,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22989": {
+      "title": "Donkanye",
+      "artist": "BevranZ",
+      "artist_id": 3065,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23120": {
+      "title": "Bread Winner",
+      "artist": "Breeder LW",
+      "artist_id": 103,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22959": {
+      "title": "2026 Bongo mix",
+      "artist": "DJ WIZZY 254",
+      "artist_id": 94,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17770": {
+      "title": "Stunta",
+      "artist": "Gyptian",
+      "artist_id": 172,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor"
+      ]
+    },
+    "22945": {
+      "title": "Kitemeo",
+      "artist": "Kapitani",
+      "artist_id": 2158,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23062": {
+      "title": "Ogogoro",
+      "artist": "Koko Pee",
+      "artist_id": 355,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "22792": {
+      "title": "Fix Your Face",
+      "artist": "Masego",
+      "artist_id": 603,
+      "chart_type": "albums",
+      "missing_fields": [
+        "upc"
+      ]
+    },
+    "22917": {
+      "title": "Zwiya Deeper",
+      "artist": "Mukololo",
+      "artist_id": 758,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "17744": {
+      "title": "Moyo Wangu (Live)",
+      "artist": "Patrick Kubuya",
+      "artist_id": 378,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "23112": {
+      "title": "Never Gets Late Here",
+      "artist": "Shenseea",
+      "artist_id": 27,
+      "chart_type": "albums",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "number_of_tracks",
+        "upc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "23090": {
+      "title": "THIS IS NOT THE FIRST TIME",
+      "artist": "Sunvera Scott",
+      "artist_id": 3130,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    },
+    "21636": {
+      "title": "Nina Neno Moja Tu Asante",
+      "artist": "Tuzo Jerome Tz",
+      "artist_id": 2084,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "songwriters",
+        "producers",
+        "isrc"
+      ]
+    },
+    "18074": {
+      "title": "Only Gets Better (Forever)",
+      "artist": "Vybz Kartel",
+      "artist_id": 93,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "songwriters",
+        "producers"
+      ]
+    },
+    "22911": {
+      "title": "Kupendwa Na We",
+      "artist": "Watendawili",
+      "artist_id": 57,
+      "chart_type": "singles",
+      "missing_fields": [
+        "distributor",
+        "isrc"
+      ]
+    },
+    "22536": {
+      "title": "Ngithathiwe",
+      "artist": "Zee Nxumalo",
+      "artist_id": 313,
+      "chart_type": "singles",
+      "missing_fields": [
+        "genre",
+        "label",
+        "distributor",
+        "country",
+        "country_code",
+        "songwriters",
+        "producers",
+        "isrc",
+        "release_year",
+        "release_date"
+      ]
+    }
+  }
+}
