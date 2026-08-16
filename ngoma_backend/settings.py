@@ -39,6 +39,8 @@ def _env_bool(name, default=False):
 DEFAULT_ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'ngomacharts.com',
+    'www.ngomacharts.com',
     'web-production-0f6b5.up.railway.app',
     'candid-taffy-ccdbd5.netlify.app',
 ]
@@ -49,6 +51,8 @@ if DEBUG:
 
 # CSRF — needed for the Django admin to work over HTTPS in production
 DEFAULT_CSRF_TRUSTED_ORIGINS = [
+    'https://ngomacharts.com',
+    'https://www.ngomacharts.com',
     'https://web-production-0f6b5.up.railway.app',
     'https://candid-taffy-ccdbd5.netlify.app',
     'http://localhost:5173',
@@ -194,6 +198,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
+    'https://ngomacharts.com',
+    'https://www.ngomacharts.com',
     'https://candid-taffy-ccdbd5.netlify.app',
     'https://web-production-0f6b5.up.railway.app',
 ]
