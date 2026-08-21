@@ -6,7 +6,7 @@ from django.core.cache import cache
 from django.http import HttpResponse
 from django.db import transaction
 from django.db.models import Count, Min, Sum, Q
-from django.db.models.functions import Coalesce
+from django.db.models.functions import Coalesce, TruncDate
 from django.middleware.csrf import get_token
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -455,6 +455,55 @@ class CmsDashboardInsightsView(APIView):
             ).data,
         }
         cache.set(cache_key, data, 120)
+        return Response(data)
+
+
+_ANALYTICS_RANGE_DAYS = {'7d': 7, '30d': 30, '90d': 90}
+
+
+class CmsAnalyticsSummaryView(APIView):
+    """Aggregate pageview/click stats for the CMS Website Analytics page."""
+    permission_classes = [IsCmsUser]
+
+    def get(self, request):
+        range_param = request.query_params.get('range', '30d')
+        days = _ANALYTICS_RANGE_DAYS.get(range_param, 30)
+        since = timezone.now() - timezone.timedelta(days=days)
+
+        revision = SiteEvent.objects.values_list('id', flat=True).first() or 0
+        cache_key = f'cms_analytics_summary:{range_param}:{revision}'
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return Response(cached)
+
+        events = SiteEvent.objects.filter(created_at__gte=since)
+        pageviews = events.filter(event_type='pageview')
+        clicks = events.filter(event_type='click')
+        today_start = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+
+        data = {
+            'range': range_param,
+            'total_pageviews': pageviews.count(),
+            'unique_sessions': events.exclude(session_id='').values('session_id').distinct().count(),
+            'pageviews_today': SiteEvent.objects.filter(event_type='pageview', created_at__gte=today_start).count(),
+            'pageviews_by_day': list(
+                pageviews.annotate(day=TruncDate('created_at'))
+                .values('day')
+                .annotate(count=Count('id'))
+                .order_by('day')
+            ),
+            'top_pages': list(
+                pageviews.exclude(page='').values('page')
+                .annotate(count=Count('id'))
+                .order_by('-count')[:10]
+            ),
+            'top_clicks': list(
+                clicks.exclude(label='').values('label')
+                .annotate(count=Count('id'))
+                .order_by('-count')[:10]
+            ),
+        }
+        cache.set(cache_key, data, 60)
         return Response(data)
 
 
@@ -1823,6 +1872,16 @@ class AuditLogViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['action', 'module', 'object_type', 'object_repr', 'user__username', 'reason']
     ordering_fields = ['created_at', 'module', 'action']
+
+
+class SiteEventViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = SiteEvent.objects.all()
+    serializer_class = SiteEventSerializer
+    permission_classes = [IsCmsUser]
+    pagination_class = CmsPagination
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['event_type', 'page', 'path', 'label', 'session_id']
+    ordering_fields = ['created_at', 'event_type', 'page']
 
 
 class InternalNoteViewSet(CmsBaseViewSet):

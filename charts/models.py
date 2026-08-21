@@ -683,6 +683,31 @@ class AuditLog(models.Model):
         return f"{who} {self.action} {self.object_repr or self.object_type}"
 
 
+class SiteEvent(models.Model):
+    """A public-site pageview or click, recorded anonymously for the CMS
+    Website Analytics page. session_id is a client-generated id stored in
+    localStorage (no cookies), used as a rough unique-visitor proxy."""
+    event_type = models.CharField(max_length=20)  # 'pageview' | 'click'
+    page = models.CharField(max_length=80, blank=True, default='')
+    path = models.CharField(max_length=255, blank=True, default='')
+    label = models.CharField(max_length=120, blank=True, default='')
+    session_id = models.CharField(max_length=64, blank=True, default='')
+    referrer = models.CharField(max_length=500, blank=True, default='')
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
+    user_agent = models.TextField(blank=True, default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['event_type', '-created_at'], name='siteevent_type_created_idx'),
+            models.Index(fields=['page', '-created_at'], name='siteevent_page_created_idx'),
+        ]
+
+    def __str__(self):
+        return f"{self.event_type} {self.page or self.label} @ {self.created_at:%Y-%m-%d %H:%M}"
+
+
 class InternalNote(models.Model):
     module = models.CharField(max_length=80)
     object_id = models.CharField(max_length=80)

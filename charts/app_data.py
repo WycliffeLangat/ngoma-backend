@@ -7,6 +7,7 @@ from django.db.models.functions import Coalesce
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -25,10 +26,11 @@ from .models import (
     Platform,
     RegionalChartEntry,
     Release,
+    SiteEvent,
     SiteSetting,
 )
 from .artist_credits import release_credit_payload
-from .cms_utils import published_artist_entries
+from .cms_utils import client_ip, published_artist_entries
 from .methodology import HIDDEN_STATUSES, is_public_status, public_points
 from .news_media import news_media_payload
 
@@ -786,3 +788,35 @@ class PublicArtistDetailView(APIView):
             "chart_history": history,
             "releases": releases,
         }))
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class PublicTrackEventView(APIView):
+    """Records one anonymous pageview/click from the public site for the CMS
+    Website Analytics page. Anonymous visitors never go through the CMS's
+    auth/csrf/ cookie flow, so this endpoint must stay csrf-exempt — it's the
+    only public write endpoint. Never allowed to fail the caller: a bad or
+    missing payload still returns 200 without raising.
+    """
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        try:
+            event_type = str(request.data.get("event_type") or "").strip()[:20]
+            if event_type not in ("pageview", "click"):
+                return Response({"ok": False}, status=200)
+            SiteEvent.objects.create(
+                event_type=event_type,
+                page=str(request.data.get("page") or "")[:80],
+                path=str(request.data.get("path") or "")[:255],
+                label=str(request.data.get("label") or "")[:120],
+                session_id=str(request.data.get("session_id") or "")[:64],
+                referrer=str(request.data.get("referrer") or "")[:500],
+                ip_address=client_ip(request),
+                user_agent=request.META.get("HTTP_USER_AGENT", "")[:2000],
+            )
+        except Exception:
+            pass
+        return Response({"ok": True})

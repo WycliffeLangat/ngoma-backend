@@ -27,6 +27,7 @@ router.register('notifications', cms_views.AdminNotificationViewSet, basename='c
 router.register('backups', cms_views.BackupRecordViewSet, basename='cms-backups')
 router.register('reports', cms_views.DataQualityIssueViewSet, basename='cms-reports')
 router.register('future-modules', cms_views.PlaceholderModuleViewSet, basename='cms-future-modules')
+router.register('site-events', cms_views.SiteEventViewSet, basename='cms-site-events')
 
 urlpatterns = [
     path('auth/login/', cms_views.CmsLoginView.as_view()),
@@ -35,6 +36,7 @@ urlpatterns = [
     path('csrf/', cms_views.CsrfTokenView.as_view()),
     path('dashboard/insights/', cms_views.CmsDashboardInsightsView.as_view()),
     path('dashboard/', cms_views.CmsDashboardView.as_view()),
+    path('analytics/summary/', cms_views.CmsAnalyticsSummaryView.as_view()),
     path('search/', cms_views.GlobalSearchView.as_view()),
     path('debug/storage/', cms_views.StorageDebugView.as_view()),
 ] + router.urls

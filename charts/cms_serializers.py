@@ -847,6 +847,12 @@ class AuditLogSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class SiteEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SiteEvent
+        fields = '__all__'
+
+
 class InternalNoteSerializer(serializers.ModelSerializer):
     created_by_name = serializers.CharField(source='created_by.username', read_only=True)
 
