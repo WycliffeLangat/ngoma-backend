@@ -231,15 +231,31 @@ def process_job(job):
 
 
 def _mark_related_upload_failed(job, exc):
-    if job.job_type != ChartCalculationJob.JobType.PROCESS_WEEKLY_UPLOAD:
+    if job.job_type == ChartCalculationJob.JobType.PROCESS_WEEKLY_UPLOAD:
+        upload_id = (job.payload or {}).get('weekly_upload_id')
+        if not upload_id:
+            return
+        WeeklyUpload.objects.filter(pk=upload_id).update(
+            processed=False,
+            processing_notes=f'Error: {exc}',
+        )
         return
-    upload_id = (job.payload or {}).get('weekly_upload_id')
+
+    if (
+        job.job_type != ChartCalculationJob.JobType.PUBLISH_CHART_UPLOAD
+        or job.status != ChartCalculationJob.Status.FAILED
+    ):
+        return
+    upload_id = (job.payload or {}).get('chart_upload_id')
     if not upload_id:
         return
-    WeeklyUpload.objects.filter(pk=upload_id).update(
-        processed=False,
-        processing_notes=f'Error: {exc}',
-    )
+    upload = ChartUpload.objects.filter(pk=upload_id).first()
+    if not upload or upload.status == 'published':
+        return
+    message = f'Publish failed: {exc}'
+    upload.status = 'rejected'
+    upload.notes = f'{upload.notes}\n{message}'.strip()
+    upload.save(update_fields=['status', 'notes', 'updated_at'])
 
 
 def run_worker(*, once=False, sleep_seconds=2, worker_id=None, stdout=None):

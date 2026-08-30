@@ -1675,6 +1675,8 @@ class ChartUploadViewSet(CmsBaseViewSet):
                 'queued': _job_is_pending(publish_job),
                 'job_id': publish_job.id,
             }
+            if not _job_is_pending(publish_job):
+                upload.refresh_from_db()
         audit(request, 'edited_chart_workbook', module='uploads', obj=upload, new={
             'summary': summary,
             'published': publish_result,
@@ -1737,9 +1739,12 @@ class ChartUploadViewSet(CmsBaseViewSet):
             priority=25,
         )
         audit(request, 'queued_upload_publish', module='uploads', obj=upload, new={'job_id': job.id})
+        if not _job_is_pending(job):
+            upload.refresh_from_db()
+        result = job.result or {}
         return _job_response(
             job, request, upload=ChartUploadSerializer(upload).data,
-            chart=None, entries_created=0,
+            chart=result.get('chart_id'), entries_created=result.get('entries_created', 0),
         )
 
     @action(detail=True, methods=['post'])

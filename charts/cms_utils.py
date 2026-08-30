@@ -697,52 +697,54 @@ def detect_entry_status(row, chart_type, platform, year, month):
 
 def publish_chart_upload(upload, user=None):
     platform = upload.platform
-    chart, _ = MonthlyChart.objects.get_or_create(
-        year=upload.year,
-        month=upload.month,
-        chart_type=upload.chart_type,
-        defaults={'is_published': False, 'status': 'draft'},
-    )
-    MonthlyChartEntry.objects.filter(chart=chart, platform=platform).delete()
-    entries = []
-    for row in sorted(upload.rows_data or [], key=lambda r: int(r.get('rank') or 9999)):
-        raw_artist = normalize_name(row.get('artist'))
-        existing_artist = find_artist_by_name(raw_artist)
-        preserve_name = should_preserve_registered_artist_name(raw_artist, existing_artist)
-        primary_names, _ = parse_artist_credit(raw_artist, preserve_name=preserve_name)
-        artist = get_or_create_cms_artist(
-            primary_names[0] if primary_names else raw_artist,
-            row.get('country'),
-            row.get('country_code'),
+    with transaction.atomic():
+        chart, _ = MonthlyChart.objects.get_or_create(
+            year=upload.year,
+            month=upload.month,
+            chart_type=upload.chart_type,
+            defaults={'is_published': False, 'status': 'draft'},
         )
-        release = get_or_create_cms_release(row, artist, upload.chart_type)
-        rank = int(row.get('rank') or len(entries) + 1)
-        raw_points = row.get('total_points')
-        if raw_points is None:
-            raw_points = public_points(rank)
-        entries.append(MonthlyChartEntry(
-            chart=chart,
-            platform=platform,
-            release=release,
-            rank=rank,
-            total_points=public_points(rank),
-            raw_total_points=max(int(raw_points or 0), 0),
-            weeks_on_chart=int(row.get('weeks_on_chart') or 1),
-            platform_count=int(row.get('platform_count') or (1 if platform else 0)),
-            platform_max=1 if platform else platform_max_for(upload.chart_type),
-            peak_rank=int(row.get('peak_rank') or row.get('rank') or 1),
-            prev_rank=row.get('prev_rank') or None,
-        ))
-    MonthlyChartEntry.objects.bulk_create(entries, batch_size=500)
-    chart.is_published = True
-    chart.status = 'published'
-    chart.published_at = timezone.now()
-    chart.published_by = user
-    chart.save(update_fields=['is_published', 'status', 'published_at', 'published_by', 'updated_at'])
-    upload.status = 'published'
-    upload.published_by = user
-    upload.published_at = timezone.now()
-    upload.save(update_fields=['status', 'published_by', 'published_at', 'updated_at'])
+        MonthlyChartEntry.objects.filter(chart=chart, platform=platform).delete()
+        entries = []
+        for row in sorted(upload.rows_data or [], key=lambda r: int(r.get('rank') or 9999)):
+            raw_artist = normalize_name(row.get('artist'))
+            existing_artist = find_artist_by_name(raw_artist)
+            preserve_name = should_preserve_registered_artist_name(raw_artist, existing_artist)
+            primary_names, _ = parse_artist_credit(raw_artist, preserve_name=preserve_name)
+            artist = get_or_create_cms_artist(
+                primary_names[0] if primary_names else raw_artist,
+                row.get('country'),
+                row.get('country_code'),
+            )
+            release = get_or_create_cms_release(row, artist, upload.chart_type)
+            rank = int(row.get('rank') or len(entries) + 1)
+            raw_points = row.get('total_points')
+            if raw_points is None:
+                raw_points = public_points(rank)
+            entries.append(MonthlyChartEntry(
+                chart=chart,
+                platform=platform,
+                release=release,
+                rank=rank,
+                total_points=public_points(rank),
+                raw_total_points=max(int(raw_points or 0), 0),
+                weeks_on_chart=int(row.get('weeks_on_chart') or 1),
+                platform_count=int(row.get('platform_count') or (1 if platform else 0)),
+                platform_max=1 if platform else platform_max_for(upload.chart_type),
+                peak_rank=int(row.get('peak_rank') or row.get('rank') or 1),
+                prev_rank=row.get('prev_rank') or None,
+            ))
+        MonthlyChartEntry.objects.bulk_create(entries, batch_size=500)
+        now = timezone.now()
+        chart.is_published = True
+        chart.status = 'published'
+        chart.published_at = now
+        chart.published_by = user
+        chart.save(update_fields=['is_published', 'status', 'published_at', 'published_by', 'updated_at'])
+        upload.status = 'published'
+        upload.published_by = user
+        upload.published_at = now
+        upload.save(update_fields=['status', 'published_by', 'published_at', 'updated_at'])
     harmonize_chart_history(chart_ids=[chart.id])
     return chart, len(entries)
 

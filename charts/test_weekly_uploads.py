@@ -4,19 +4,23 @@ from unittest.mock import patch
 import openpyxl
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import override_settings
 from django.urls import reverse
 from rest_framework.test import APITestCase
 
 from .models import (
     Artist,
+    ChartCalculationJob,
     ChartUpload,
     ChartType,
+    MonthlyChart,
     MonthlyChartEntry,
     Platform,
     PlatformChartEntry,
     Release,
     WeeklyUpload,
 )
+from .jobs import process_job
 from .pipeline import get_or_create_release, process_weekly_upload
 
 
@@ -329,4 +333,67 @@ class CmsChartUploadWorkbookTests(APITestCase):
             self.assertEqual(downloaded_workbook['Notes']['C501'].value, 'Keep final chart tail')
         finally:
             downloaded_workbook.close()
+
+    @override_settings(CHART_JOBS_ASYNC=False)
+    def test_publish_marks_upload_published_when_entries_are_integrated(self):
+        upload = ChartUpload.objects.create(
+            chart_type=ChartType.SINGLES,
+            year=2026,
+            month=7,
+            status='pending_review',
+            rows_data=[{
+                'rank': 1,
+                'title': 'Integrated Song',
+                'artist': 'Integrated Artist',
+                'country': 'Kenya',
+                'country_code': 'KE',
+                'total_points': 50,
+            }],
+            row_count=1,
+            validation_summary={'can_publish': True, 'error_count': 0},
+        )
+
+        response = self.client.post(
+            reverse('cms-chart-uploads-publish', args=[upload.id]),
+            {},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, 200, response.data)
+        upload.refresh_from_db()
+        chart = MonthlyChart.objects.get(year=2026, month=7, chart_type=ChartType.SINGLES)
+        self.assertEqual(upload.status, 'published')
+        self.assertEqual(response.data['upload']['status'], 'published')
+        self.assertEqual(response.data['entries_created'], 1)
+        self.assertTrue(chart.is_published)
+        self.assertEqual(chart.status, 'published')
+        self.assertEqual(MonthlyChartEntry.objects.filter(chart=chart, platform__isnull=True).count(), 1)
+
+    def test_terminal_publish_failure_moves_upload_out_of_pending_review(self):
+        upload = ChartUpload.objects.create(
+            chart_type=ChartType.SINGLES,
+            year=2026,
+            month=7,
+            status='pending_review',
+            rows_data=[{'rank': 1, 'title': 'Broken Song', 'artist': 'Broken Artist'}],
+            row_count=1,
+            validation_summary={'can_publish': True, 'error_count': 0},
+        )
+        job = ChartCalculationJob.objects.create(
+            job_type=ChartCalculationJob.JobType.PUBLISH_CHART_UPLOAD,
+            status=ChartCalculationJob.Status.RUNNING,
+            payload={'chart_upload_id': upload.id, 'user_id': self.user.id},
+            attempts=1,
+            max_attempts=1,
+        )
+
+        with patch('charts.cms_utils.publish_chart_upload', side_effect=RuntimeError('integration exploded')):
+            processed = process_job(job)
+
+        self.assertFalse(processed)
+        job.refresh_from_db()
+        upload.refresh_from_db()
+        self.assertEqual(job.status, ChartCalculationJob.Status.FAILED)
+        self.assertEqual(upload.status, 'rejected')
+        self.assertIn('Publish failed: integration exploded', upload.notes)
 
