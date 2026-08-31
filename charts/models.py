@@ -687,12 +687,41 @@ class SiteEvent(models.Model):
     """A public-site pageview or click, recorded anonymously for the CMS
     Website Analytics page. session_id is a client-generated id stored in
     localStorage (no cookies), used as a rough unique-visitor proxy."""
-    event_type = models.CharField(max_length=20)  # 'pageview' | 'click'
+    event_type = models.CharField(max_length=32)
     page = models.CharField(max_length=80, blank=True, default='')
     path = models.CharField(max_length=255, blank=True, default='')
+    title = models.CharField(max_length=160, blank=True, default='')
+    search = models.CharField(max_length=500, blank=True, default='')
     label = models.CharField(max_length=120, blank=True, default='')
+    value = models.CharField(max_length=120, blank=True, default='')
     session_id = models.CharField(max_length=64, blank=True, default='')
     referrer = models.CharField(max_length=500, blank=True, default='')
+    referrer_domain = models.CharField(max_length=255, blank=True, default='')
+    utm_source = models.CharField(max_length=120, blank=True, default='')
+    utm_medium = models.CharField(max_length=120, blank=True, default='')
+    utm_campaign = models.CharField(max_length=160, blank=True, default='')
+    utm_term = models.CharField(max_length=160, blank=True, default='')
+    utm_content = models.CharField(max_length=160, blank=True, default='')
+    device_type = models.CharField(max_length=30, blank=True, default='')
+    browser = models.CharField(max_length=80, blank=True, default='')
+    os = models.CharField(max_length=80, blank=True, default='')
+    platform = models.CharField(max_length=80, blank=True, default='')
+    language = models.CharField(max_length=40, blank=True, default='')
+    timezone = models.CharField(max_length=80, blank=True, default='')
+    viewport_width = models.PositiveIntegerField(blank=True, null=True)
+    viewport_height = models.PositiveIntegerField(blank=True, null=True)
+    screen_width = models.PositiveIntegerField(blank=True, null=True)
+    screen_height = models.PositiveIntegerField(blank=True, null=True)
+    pixel_ratio = models.FloatField(blank=True, null=True)
+    color_depth = models.PositiveSmallIntegerField(blank=True, null=True)
+    connection_type = models.CharField(max_length=40, blank=True, default='')
+    effective_connection_type = models.CharField(max_length=40, blank=True, default='')
+    downlink_mbps = models.FloatField(blank=True, null=True)
+    save_data = models.BooleanField(blank=True, null=True)
+    page_load_ms = models.PositiveIntegerField(blank=True, null=True)
+    scroll_depth = models.PositiveSmallIntegerField(blank=True, null=True)
+    engagement_time_ms = models.PositiveIntegerField(blank=True, null=True)
+    metadata = models.JSONField(default=dict, blank=True)
     ip_address = models.GenericIPAddressField(blank=True, null=True)
     user_agent = models.TextField(blank=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -702,6 +731,8 @@ class SiteEvent(models.Model):
         indexes = [
             models.Index(fields=['event_type', '-created_at'], name='siteevent_type_created_idx'),
             models.Index(fields=['page', '-created_at'], name='siteevent_page_created_idx'),
+            models.Index(fields=['session_id', '-created_at'], name='siteevent_session_created_idx'),
+            models.Index(fields=['referrer_domain', '-created_at'], name='siteevent_ref_created_idx'),
         ]
 
     def __str__(self):

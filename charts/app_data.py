@@ -790,6 +790,55 @@ class PublicArtistDetailView(APIView):
         }))
 
 
+SITE_EVENT_TYPES = {"pageview", "click", "scroll_depth", "engagement", "performance", "outbound"}
+
+
+def _event_text(data, key, limit):
+    return str(data.get(key) or "")[:limit]
+
+
+def _event_int(data, key, min_value=0, max_value=None):
+    try:
+        value = int(round(float(data.get(key))))
+    except (TypeError, ValueError):
+        return None
+    if value < min_value:
+        return None
+    if max_value is not None:
+        value = min(value, max_value)
+    return value
+
+
+def _event_float(data, key, min_value=0, max_value=None):
+    try:
+        value = float(data.get(key))
+    except (TypeError, ValueError):
+        return None
+    if value < min_value:
+        return None
+    if max_value is not None:
+        value = min(value, max_value)
+    return value
+
+
+def _event_bool(data, key):
+    value = data.get(key)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        lowered = value.strip().lower()
+        if lowered in {"true", "1", "yes"}:
+            return True
+        if lowered in {"false", "0", "no"}:
+            return False
+    return None
+
+
+def _event_metadata(data):
+    value = data.get("metadata")
+    return value if isinstance(value, dict) else {}
+
+
 @method_decorator(csrf_exempt, name="dispatch")
 class PublicTrackEventView(APIView):
     """Records one anonymous pageview/click from the public site for the CMS
@@ -804,16 +853,45 @@ class PublicTrackEventView(APIView):
 
     def post(self, request):
         try:
-            event_type = str(request.data.get("event_type") or "").strip()[:20]
-            if event_type not in ("pageview", "click"):
+            event_type = str(request.data.get("event_type") or "").strip()[:32]
+            if event_type not in SITE_EVENT_TYPES:
                 return Response({"ok": False}, status=200)
             SiteEvent.objects.create(
                 event_type=event_type,
-                page=str(request.data.get("page") or "")[:80],
-                path=str(request.data.get("path") or "")[:255],
-                label=str(request.data.get("label") or "")[:120],
-                session_id=str(request.data.get("session_id") or "")[:64],
-                referrer=str(request.data.get("referrer") or "")[:500],
+                page=_event_text(request.data, "page", 80),
+                path=_event_text(request.data, "path", 255),
+                title=_event_text(request.data, "title", 160),
+                search=_event_text(request.data, "search", 500),
+                label=_event_text(request.data, "label", 120),
+                value=_event_text(request.data, "value", 120),
+                session_id=_event_text(request.data, "session_id", 64),
+                referrer=_event_text(request.data, "referrer", 500),
+                referrer_domain=_event_text(request.data, "referrer_domain", 255),
+                utm_source=_event_text(request.data, "utm_source", 120),
+                utm_medium=_event_text(request.data, "utm_medium", 120),
+                utm_campaign=_event_text(request.data, "utm_campaign", 160),
+                utm_term=_event_text(request.data, "utm_term", 160),
+                utm_content=_event_text(request.data, "utm_content", 160),
+                device_type=_event_text(request.data, "device_type", 30),
+                browser=_event_text(request.data, "browser", 80),
+                os=_event_text(request.data, "os", 80),
+                platform=_event_text(request.data, "platform", 80),
+                language=_event_text(request.data, "language", 40),
+                timezone=_event_text(request.data, "timezone", 80),
+                viewport_width=_event_int(request.data, "viewport_width", max_value=10000),
+                viewport_height=_event_int(request.data, "viewport_height", max_value=10000),
+                screen_width=_event_int(request.data, "screen_width", max_value=20000),
+                screen_height=_event_int(request.data, "screen_height", max_value=20000),
+                pixel_ratio=_event_float(request.data, "pixel_ratio", max_value=20),
+                color_depth=_event_int(request.data, "color_depth", max_value=128),
+                connection_type=_event_text(request.data, "connection_type", 40),
+                effective_connection_type=_event_text(request.data, "effective_connection_type", 40),
+                downlink_mbps=_event_float(request.data, "downlink_mbps", max_value=10000),
+                save_data=_event_bool(request.data, "save_data"),
+                page_load_ms=_event_int(request.data, "page_load_ms", max_value=600000),
+                scroll_depth=_event_int(request.data, "scroll_depth", max_value=100),
+                engagement_time_ms=_event_int(request.data, "engagement_time_ms", max_value=86400000),
+                metadata=_event_metadata(request.data),
                 ip_address=client_ip(request),
                 user_agent=request.META.get("HTTP_USER_AGENT", "")[:2000],
             )

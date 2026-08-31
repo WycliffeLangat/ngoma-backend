@@ -1,12 +1,12 @@
 import io
-from collections import defaultdict
+from collections import Counter, defaultdict
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.db import transaction
-from django.db.models import Count, Min, Sum, Q
-from django.db.models.functions import Coalesce, TruncDate
+from django.db.models import Count, Max, Min, Sum, Q
+from django.db.models.functions import Coalesce
 from django.middleware.csrf import get_token
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -458,51 +458,508 @@ class CmsDashboardInsightsView(APIView):
         return Response(data)
 
 
-_ANALYTICS_RANGE_DAYS = {'7d': 7, '30d': 30, '90d': 90}
+_ANALYTICS_RANGE_DELTAS = {
+    '24h': timezone.timedelta(hours=24),
+    '7d': timezone.timedelta(days=7),
+    '30d': timezone.timedelta(days=30),
+    '90d': timezone.timedelta(days=90),
+    '365d': timezone.timedelta(days=365),
+    'all': None,
+}
+_ANALYTICS_RANGE_LABELS = {
+    '24h': '24 hours',
+    '7d': '7 days',
+    '30d': '30 days',
+    '90d': '90 days',
+    '365d': '1 year',
+    'all': 'all time',
+}
+_WEEKDAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+
+def _analytics_rate(numerator, denominator):
+    return round((numerator / denominator) * 100, 1) if denominator else 0
+
+
+def _analytics_average(values):
+    numbers = [float(v) for v in values if v is not None]
+    return round(sum(numbers) / len(numbers), 1) if numbers else None
+
+
+def _analytics_percentile(values, percentile):
+    numbers = sorted(float(v) for v in values if v is not None)
+    if not numbers:
+        return None
+    index = int(round((len(numbers) - 1) * percentile))
+    return round(numbers[index], 1)
+
+
+def _analytics_page_label(row):
+    page = (row.get('page') or '').strip()
+    if page:
+        return page
+    path = (row.get('path') or '').strip()
+    if path:
+        return path.split('?', 1)[0] or path
+    return '(unknown)'
+
+
+def _analytics_counter_rows(counter, label_key='label', limit=10):
+    return [
+        {
+            label_key: label,
+            'label': label,
+            'count': count,
+        }
+        for label, count in counter.most_common(limit)
+        if label
+    ]
+
+
+def _analytics_top_field(queryset, field, label_key=None, limit=10):
+    label_key = label_key or field
+    return [
+        {
+            label_key: row[field],
+            'label': row[field],
+            'count': row['count'],
+            'unique_sessions': row['unique_sessions'],
+        }
+        for row in (
+            queryset.exclude(**{field: ''})
+            .values(field)
+            .annotate(
+                count=Count('id'),
+                unique_sessions=Count('session_id', filter=~Q(session_id=''), distinct=True),
+            )
+            .order_by('-count', field)[:limit]
+        )
+    ]
+
+
+def _analytics_day_rows(counter, since, now, range_param, session_counter=None):
+    session_counter = session_counter or {}
+    if since is None or range_param == '24h':
+        return [
+            {
+                'day': day,
+                'count': counter[day],
+                'unique_sessions': len(session_counter.get(day, set())),
+            }
+            for day in sorted(counter)
+        ]
+
+    rows = []
+    current = timezone.localtime(since).date()
+    end = timezone.localtime(now).date()
+    while current <= end:
+        key = current.isoformat()
+        rows.append({
+            'day': key,
+            'count': counter.get(key, 0),
+            'unique_sessions': len(session_counter.get(key, set())),
+        })
+        current += timezone.timedelta(days=1)
+    return rows
+
+
+def _analytics_dimension(width, height):
+    return f'{width}x{height}' if width and height else ''
+
+
+def _analytics_build_insights(top_pages, acquisition, devices, engagement, performance):
+    top_page = top_pages[0] if top_pages else None
+    top_source = (acquisition.get('referrer_domains') or acquisition.get('utm_sources') or [None])[0]
+    top_device = (devices.get('device_types') or [None])[0]
+    slowest = (performance.get('by_page') or [None])[0]
+    return [
+        {
+            'title': 'Most viewed page',
+            'value': top_page['page'] if top_page else '-',
+            'detail': f"{top_page['count']} views and {top_page['unique_sessions']} visitors." if top_page else 'No pageviews recorded in this range.',
+        },
+        {
+            'title': 'Traffic source',
+            'value': (top_source or {}).get('label') or 'Direct or unknown',
+            'detail': f"{(top_source or {}).get('count', 0)} visits came from this source." if top_source else 'Most visits arrived without referrer data.',
+        },
+        {
+            'title': 'Visitor quality',
+            'value': f"{engagement.get('engagement_rate', 0)}% engaged",
+            'detail': f"{engagement.get('bounce_rate', 0)}% bounce rate and {engagement.get('avg_pageviews_per_session', 0)} pages per visitor.",
+            'tone': 'good' if engagement.get('engagement_rate', 0) >= 50 else '',
+        },
+        {
+            'title': 'Main device',
+            'value': (top_device or {}).get('label') or '-',
+            'detail': f"{(top_device or {}).get('count', 0)} pageviews from this device type." if top_device else 'Device details fill from new pageviews.',
+        },
+        {
+            'title': 'Speed watch',
+            'value': f"{performance.get('avg_load_ms') or '-'} ms average",
+            'detail': f"Slowest page: {slowest['page']} at {slowest['avg_load_ms']} ms." if slowest else 'Page speed data fills from new visits.',
+            'tone': 'warn' if performance.get('avg_load_ms') and performance.get('avg_load_ms') > 3500 else '',
+        },
+    ]
 
 
 class CmsAnalyticsSummaryView(APIView):
-    """Aggregate pageview/click stats for the CMS Website Analytics page."""
+    """Aggregate public website analytics for the CMS Website Analytics page."""
     permission_classes = [IsCmsUser]
 
     def get(self, request):
         range_param = request.query_params.get('range', '30d')
-        days = _ANALYTICS_RANGE_DAYS.get(range_param, 30)
-        since = timezone.now() - timezone.timedelta(days=days)
+        if range_param not in _ANALYTICS_RANGE_DELTAS:
+            range_param = '30d'
+        now = timezone.now()
+        delta = _ANALYTICS_RANGE_DELTAS[range_param]
+        since = None if delta is None else now - delta
 
-        revision = SiteEvent.objects.values_list('id', flat=True).first() or 0
+        revision = SiteEvent.objects.aggregate(max_id=Max('id'))['max_id'] or 0
         cache_key = f'cms_analytics_summary:{range_param}:{revision}'
         cached = cache.get(cache_key)
         if cached is not None:
             return Response(cached)
 
-        events = SiteEvent.objects.filter(created_at__gte=since)
+        events = SiteEvent.objects.all()
+        if since is not None:
+            events = events.filter(created_at__gte=since)
         pageviews = events.filter(event_type='pageview')
         clicks = events.filter(event_type='click')
-        today_start = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        scrolls = events.filter(event_type='scroll_depth')
+        today_start = timezone.localtime(now).replace(hour=0, minute=0, second=0, microsecond=0)
+
+        fields = [
+            'id', 'event_type', 'page', 'path', 'label', 'value', 'session_id',
+            'referrer', 'referrer_domain', 'utm_source', 'utm_medium',
+            'utm_campaign', 'utm_term', 'utm_content', 'device_type', 'browser',
+            'os', 'platform', 'language', 'timezone', 'viewport_width',
+            'viewport_height', 'screen_width', 'screen_height', 'connection_type',
+            'effective_connection_type', 'page_load_ms', 'scroll_depth',
+            'engagement_time_ms', 'created_at',
+        ]
+        event_rows = list(events.order_by('created_at').values(*fields))
+        pageview_rows = [row for row in event_rows if row['event_type'] == 'pageview']
+
+        day_counter = Counter()
+        hour_counter = Counter()
+        weekday_counter = Counter()
+        day_sessions = defaultdict(set)
+        hour_sessions = defaultdict(set)
+        weekday_sessions = defaultdict(set)
+        page_stats = {}
+        session_stats = defaultdict(lambda: {
+            'events': 0,
+            'pageviews': 0,
+            'clicks': 0,
+            'scrolls': 0,
+            'max_scroll': 0,
+            'engagement_time_ms': 0,
+            'first_page': '',
+            'last_page': '',
+            'days': set(),
+        })
+        viewport_counter = Counter()
+        screen_counter = Counter()
+        connection_counter = Counter()
+
+        for row in event_rows:
+            event_type = row['event_type']
+            page_label = _analytics_page_label(row)
+            created = timezone.localtime(row['created_at'])
+            if page_label not in page_stats:
+                page_stats[page_label] = {
+                    'page': page_label,
+                    'path': row.get('path') or '',
+                    'count': 0,
+                    'sessions': set(),
+                    'clicks': 0,
+                    'depths': [],
+                    'loads': [],
+                    'engagements': [],
+                }
+            stat = page_stats[page_label]
+
+            session_id = row.get('session_id') or ''
+            if session_id:
+                session = session_stats[session_id]
+                session['events'] += 1
+                if event_type == 'pageview':
+                    session['pageviews'] += 1
+                    session['days'].add(created.date().isoformat())
+                    if not session['first_page']:
+                        session['first_page'] = page_label
+                    session['last_page'] = page_label
+                elif event_type == 'click':
+                    session['clicks'] += 1
+                elif event_type == 'scroll_depth':
+                    session['scrolls'] += 1
+                if row.get('scroll_depth') is not None:
+                    session['max_scroll'] = max(session['max_scroll'], row['scroll_depth'])
+                if event_type == 'engagement' and row.get('engagement_time_ms'):
+                    session['engagement_time_ms'] += row['engagement_time_ms']
+
+            if event_type == 'pageview':
+                stat['count'] += 1
+                if session_id:
+                    stat['sessions'].add(session_id)
+                day_counter[created.date().isoformat()] += 1
+                hour_counter[created.hour] += 1
+                weekday_label = _WEEKDAY_LABELS[created.weekday()]
+                weekday_counter[weekday_label] += 1
+                if session_id:
+                    day_sessions[created.date().isoformat()].add(session_id)
+                    hour_sessions[created.hour].add(session_id)
+                    weekday_sessions[weekday_label].add(session_id)
+                viewport = _analytics_dimension(row.get('viewport_width'), row.get('viewport_height'))
+                screen = _analytics_dimension(row.get('screen_width'), row.get('screen_height'))
+                connection = row.get('effective_connection_type') or row.get('connection_type') or ''
+                if viewport:
+                    viewport_counter[viewport] += 1
+                if screen:
+                    screen_counter[screen] += 1
+                if connection:
+                    connection_counter[connection] += 1
+                if row.get('page_load_ms') is not None:
+                    stat['loads'].append(row['page_load_ms'])
+            elif event_type == 'click':
+                stat['clicks'] += 1
+
+            if event_type in {'scroll_depth', 'engagement'} and row.get('scroll_depth') is not None:
+                stat['depths'].append(row['scroll_depth'])
+            if event_type == 'engagement' and row.get('engagement_time_ms'):
+                stat['engagements'].append(row['engagement_time_ms'])
+
+        session_ids = set(session_stats.keys())
+        pageview_sessions = [session for session in session_stats.values() if session['pageviews'] > 0]
+        if since is not None and session_ids:
+            returning_ids = set(
+                SiteEvent.objects
+                .filter(session_id__in=list(session_ids), created_at__lt=since)
+                .exclude(session_id='')
+                .values_list('session_id', flat=True)
+                .distinct()
+            )
+            returning_sessions = len(returning_ids)
+        else:
+            returning_sessions = sum(1 for session in pageview_sessions if len(session['days']) > 1)
+
+        bounced_sessions = sum(
+            1 for session in pageview_sessions
+            if session['pageviews'] == 1
+            and session['clicks'] == 0
+            and session['max_scroll'] < 50
+            and session['engagement_time_ms'] < 10000
+        )
+        engaged_sessions = sum(
+            1 for session in pageview_sessions
+            if session['pageviews'] > 1
+            or session['clicks'] > 0
+            or session['max_scroll'] >= 50
+            or session['engagement_time_ms'] >= 10000
+        )
+        landing_counter = Counter(session['first_page'] for session in pageview_sessions if session['first_page'])
+        exit_counter = Counter(session['last_page'] for session in pageview_sessions if session['last_page'])
+        max_scrolls = [session['max_scroll'] for session in pageview_sessions if session['max_scroll']]
+        engagement_times = [session['engagement_time_ms'] for session in pageview_sessions if session['engagement_time_ms']]
+
+        depth_bands = Counter()
+        for depth in max_scrolls:
+            if depth >= 90:
+                depth_bands['90-100%'] += 1
+            elif depth >= 75:
+                depth_bands['75-89%'] += 1
+            elif depth >= 50:
+                depth_bands['50-74%'] += 1
+            elif depth >= 25:
+                depth_bands['25-49%'] += 1
+            else:
+                depth_bands['0-24%'] += 1
+
+        top_pages = []
+        performance_by_page = []
+        page_depth = []
+        for stat in page_stats.values():
+            if stat['count']:
+                avg_load = _analytics_average(stat['loads'])
+                top_pages.append({
+                    'page': stat['page'],
+                    'path': stat['path'],
+                    'count': stat['count'],
+                    'views': stat['count'],
+                    'unique_sessions': len(stat['sessions']),
+                    'clicks': stat['clicks'],
+                    'avg_scroll_depth': _analytics_average(stat['depths']),
+                    'avg_load_ms': avg_load,
+                })
+                if avg_load is not None:
+                    performance_by_page.append({
+                        'page': stat['page'],
+                        'path': stat['path'],
+                        'avg_load_ms': avg_load,
+                        'p90_load_ms': _analytics_percentile(stat['loads'], 0.9),
+                        'samples': len(stat['loads']),
+                    })
+            if stat['depths']:
+                avg_depth = _analytics_average(stat['depths'])
+                page_depth.append({
+                    'page': stat['page'],
+                    'label': stat['page'],
+                    'count': avg_depth,
+                    'value': avg_depth,
+                    'samples': len(stat['depths']),
+                })
+
+        top_pages.sort(key=lambda item: (-item['count'], item['page']))
+        performance_by_page.sort(key=lambda item: (-item['avg_load_ms'], item['page']))
+        page_depth.sort(key=lambda item: (-(item['count'] or 0), item['page']))
+
+        load_values = [row['page_load_ms'] for row in pageview_rows if row.get('page_load_ms') is not None]
+        total_pageviews = pageviews.count()
+        total_clicks = clicks.count()
+        total_events = events.count()
+        unique_sessions = len(session_ids)
+        click_rate = _analytics_rate(total_clicks, total_pageviews)
+        pageviews_today = SiteEvent.objects.filter(event_type='pageview', created_at__gte=today_start)
+        unique_sessions_today = pageviews_today.exclude(session_id='').values('session_id').distinct().count()
+
+        acquisition = {
+            'direct_or_unknown': pageviews.filter(referrer_domain='', utm_source='').count(),
+            'referrer_domains': _analytics_top_field(pageviews, 'referrer_domain', 'referrer_domain', 12),
+            'referrers': _analytics_top_field(pageviews, 'referrer', 'referrer', 12),
+            'utm_sources': _analytics_top_field(pageviews, 'utm_source', 'utm_source', 12),
+            'utm_mediums': _analytics_top_field(pageviews, 'utm_medium', 'utm_medium', 12),
+            'utm_campaigns': _analytics_top_field(pageviews, 'utm_campaign', 'utm_campaign', 12),
+            'utm_terms': _analytics_top_field(pageviews, 'utm_term', 'utm_term', 12),
+            'utm_contents': _analytics_top_field(pageviews, 'utm_content', 'utm_content', 12),
+        }
+        devices = {
+            'device_types': _analytics_top_field(pageviews, 'device_type', 'device_type', 8),
+            'browsers': _analytics_top_field(pageviews, 'browser', 'browser', 8),
+            'operating_systems': _analytics_top_field(pageviews, 'os', 'os', 8),
+            'platforms': _analytics_top_field(pageviews, 'platform', 'platform', 8),
+            'languages': _analytics_top_field(pageviews, 'language', 'language', 12),
+            'timezones': _analytics_top_field(pageviews, 'timezone', 'timezone', 12),
+            'viewports': _analytics_counter_rows(viewport_counter, 'viewport', 12),
+            'screens': _analytics_counter_rows(screen_counter, 'screen', 12),
+            'connections': _analytics_counter_rows(connection_counter, 'connection', 12),
+        }
+        engagement = {
+            'pageview_sessions': len(pageview_sessions),
+            'new_sessions': max(unique_sessions - returning_sessions, 0),
+            'returning_sessions': returning_sessions,
+            'returning_session_rate': _analytics_rate(returning_sessions, unique_sessions),
+            'bounced_sessions': bounced_sessions,
+            'bounce_rate': _analytics_rate(bounced_sessions, len(pageview_sessions)),
+            'engaged_sessions': engaged_sessions,
+            'engagement_rate': _analytics_rate(engaged_sessions, len(pageview_sessions)),
+            'click_rate': click_rate,
+            'avg_pageviews_per_session': round(total_pageviews / len(pageview_sessions), 2) if pageview_sessions else 0,
+            'avg_scroll_depth': _analytics_average(max_scrolls),
+            'avg_engagement_time_ms': _analytics_average(engagement_times),
+            'scroll_events': scrolls.count(),
+            'scroll_distribution': _analytics_counter_rows(depth_bands, 'label', 10),
+            'page_depth': page_depth[:12],
+        }
+        performance = {
+            'avg_load_ms': _analytics_average(load_values),
+            'p50_load_ms': _analytics_percentile(load_values, 0.5),
+            'p75_load_ms': _analytics_percentile(load_values, 0.75),
+            'p90_load_ms': _analytics_percentile(load_values, 0.9),
+            'samples': len(load_values),
+            'by_page': performance_by_page[:12],
+            'slowest_page': performance_by_page[0] if performance_by_page else None,
+            'fastest_page': sorted(performance_by_page, key=lambda item: (item['avg_load_ms'], item['page']))[0] if performance_by_page else None,
+        }
 
         data = {
             'range': range_param,
-            'total_pageviews': pageviews.count(),
-            'unique_sessions': events.exclude(session_id='').values('session_id').distinct().count(),
-            'pageviews_today': SiteEvent.objects.filter(event_type='pageview', created_at__gte=today_start).count(),
-            'pageviews_by_day': list(
-                pageviews.annotate(day=TruncDate('created_at'))
-                .values('day')
-                .annotate(count=Count('id'))
-                .order_by('day')
+            'range_label': _ANALYTICS_RANGE_LABELS[range_param],
+            'since': since,
+            'generated_at': now,
+            'total_pageviews': total_pageviews,
+            'unique_sessions': unique_sessions,
+            'pageviews_today': pageviews_today.count(),
+            'total_clicks': total_clicks,
+            'totals': {
+                'events': total_events,
+                'pageviews': total_pageviews,
+                'clicks': total_clicks,
+                'scroll_depth_events': scrolls.count(),
+                'engagement_events': events.filter(event_type='engagement').count(),
+                'unique_sessions': unique_sessions,
+                'pageviews_today': pageviews_today.count(),
+                'unique_sessions_today': unique_sessions_today,
+            },
+            'pageviews_by_day': _analytics_day_rows(day_counter, since, now, range_param, day_sessions),
+            'unique_sessions_by_day': _analytics_day_rows(
+                Counter({day: len(sessions) for day, sessions in day_sessions.items()}),
+                since,
+                now,
+                range_param,
             ),
-            'top_pages': list(
-                pageviews.exclude(page='').values('page')
-                .annotate(count=Count('id'))
-                .order_by('-count')[:10]
-            ),
-            'top_clicks': list(
-                clicks.exclude(label='').values('label')
-                .annotate(count=Count('id'))
-                .order_by('-count')[:10]
+            'pageviews_by_hour': [
+                {
+                    'hour': hour,
+                    'hour_label': f'{hour:02d}:00',
+                    'count': hour_counter.get(hour, 0),
+                    'unique_sessions': len(hour_sessions.get(hour, set())),
+                }
+                for hour in range(24)
+            ],
+            'unique_sessions_by_hour': [
+                {
+                    'hour': hour,
+                    'hour_label': f'{hour:02d}:00',
+                    'count': len(hour_sessions.get(hour, set())),
+                    'unique_sessions': len(hour_sessions.get(hour, set())),
+                }
+                for hour in range(24)
+            ],
+            'pageviews_by_weekday': [
+                {
+                    'weekday': label,
+                    'label': label,
+                    'count': weekday_counter.get(label, 0),
+                    'unique_sessions': len(weekday_sessions.get(label, set())),
+                }
+                for label in _WEEKDAY_LABELS
+            ],
+            'unique_sessions_by_weekday': [
+                {
+                    'weekday': label,
+                    'label': label,
+                    'count': len(weekday_sessions.get(label, set())),
+                    'unique_sessions': len(weekday_sessions.get(label, set())),
+                }
+                for label in _WEEKDAY_LABELS
+            ],
+            'event_mix': _analytics_top_field(events, 'event_type', 'event_type', 10),
+            'top_pages': top_pages[:20],
+            'top_paths': _analytics_top_field(pageviews, 'path', 'path', 20),
+            'top_clicks': _analytics_top_field(clicks, 'label', 'label', 20),
+            'top_referrers': acquisition['referrer_domains'],
+            'landing_pages': _analytics_counter_rows(landing_counter, 'page', 12),
+            'exit_pages': _analytics_counter_rows(exit_counter, 'page', 12),
+            'acquisition': acquisition,
+            'devices': devices,
+            'engagement': engagement,
+            'performance': performance,
+            'latest_events': list(
+                events.order_by('-created_at').values(
+                    'id', 'created_at', 'event_type', 'page', 'path', 'label',
+                    'referrer_domain', 'utm_source', 'device_type', 'browser',
+                    'os', 'scroll_depth', 'page_load_ms',
+                )[:50]
             ),
         }
+        data['insights'] = _analytics_build_insights(
+            data['top_pages'],
+            acquisition,
+            devices,
+            engagement,
+            performance,
+        )
         cache.set(cache_key, data, 60)
         return Response(data)
 
