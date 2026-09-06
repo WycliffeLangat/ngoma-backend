@@ -13,7 +13,12 @@ ending in an ellipsis are not treated as artist names.
 
 ## Historical records / production rollout
 
-Deploy the backend changes, then run:
+Railway runs the backfill automatically after migrations in its pre-deploy
+command. If either step fails, the command exits unsuccessfully. The backfill
+covers every stored date, including 2025 onward, and is safe to repeat on later
+deployments. New imports and saves use the release-save hook.
+
+For a manual preview or a deployment outside Railway, run:
 
 ```sh
 python manage.py backfill_title_credits
@@ -32,3 +37,10 @@ run the backfill). Historical migration models also do not emit this signal.
 
 No frontend deployment is necessary: public and CMS serializers already expose
 the structured artist links and credit text.
+
+## Regression checks
+
+Run `python scripts/test_title_credits.py` from the backend environment. It uses
+an isolated in-memory database and the current schema, skipping workbook seed
+migrations. It checks title parsing, automatic saves/imports, historical
+backfill, repeated execution, and the public API regression suite.
