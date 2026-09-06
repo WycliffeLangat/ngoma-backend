@@ -837,6 +837,41 @@ class ArtistMergeLog(models.Model):
         ordering = ['-created_at']
 
 
+class MergeHistory(models.Model):
+    class MergeType(models.TextChoices):
+        ARTIST = 'artist', 'Artist'
+        RELEASE = 'release', 'Release'
+
+    class Status(models.TextChoices):
+        UNDOABLE = 'undoable', 'Undoable'
+        UNDONE = 'undone', 'Undone'
+        BLOCKED = 'blocked', 'Blocked'
+
+    merge_type = models.CharField(max_length=20, choices=MergeType.choices)
+    keeper_id = models.PositiveIntegerField()
+    keeper_label = models.CharField(max_length=255, blank=True, default='')
+    duplicate_id = models.PositiveIntegerField()
+    duplicate_label = models.CharField(max_length=255, blank=True, default='')
+    snapshot = models.JSONField(default=dict, blank=True)
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.UNDOABLE)
+    error = models.TextField(blank=True, default='')
+    merged_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='merge_histories')
+    undone_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='undone_merge_histories')
+    created_at = models.DateTimeField(auto_now_add=True)
+    undone_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['merge_type', 'status', '-created_at'], name='mergehist_type_status_idx'),
+            models.Index(fields=['keeper_id'], name='mergehist_keeper_idx'),
+            models.Index(fields=['duplicate_id'], name='mergehist_duplicate_idx'),
+        ]
+
+    def __str__(self):
+        return f"{self.get_merge_type_display()} merge: {self.duplicate_label} -> {self.keeper_label}"
+
+
 class PlaceholderModule(models.Model):
     """Phase 2/3 placeholders for future modules such as submissions, newsletter, awards, ads and AI assistant."""
     module = models.CharField(max_length=80)

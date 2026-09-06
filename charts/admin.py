@@ -294,6 +294,14 @@ class ArtistMergeLogAdmin(admin.ModelAdmin):
     search_fields = ['primary_artist__name', 'merged_artist_name']
 
 
+@admin.register(MergeHistory)
+class MergeHistoryAdmin(admin.ModelAdmin):
+    list_display = ['created_at', 'merge_type', 'duplicate_label', 'keeper_label', 'status', 'merged_by', 'undone_by']
+    list_filter = ['merge_type', 'status', 'created_at']
+    search_fields = ['duplicate_label', 'keeper_label', 'merged_by__username', 'undone_by__username']
+    readonly_fields = [field.name for field in MergeHistory._meta.fields]
+
+
 @admin.register(PlaceholderModule)
 class PlaceholderModuleAdmin(admin.ModelAdmin):
     list_display = ['module', 'title', 'status', 'updated_at']

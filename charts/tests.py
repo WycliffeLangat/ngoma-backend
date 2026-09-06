@@ -21,16 +21,19 @@ from .models import (
     CertificationRule,
     Country,
     MethodologySetting,
+    MergeHistory,
     MonthlyChart,
     MonthlyChartEntry,
     NewsArticle,
     PageContent,
     Platform,
+    PlatformChartEntry,
     RegionalChartEntry,
     Release,
     ReleaseArtistCredit,
     SiteSetting,
     ChartUpload,
+    WeeklyUpload,
 )
 
 
@@ -606,6 +609,141 @@ class PublicAppDataSyncTests(TestCase):
             format="json",
         )
         self.assertEqual(response.status_code, 403)
+
+    def test_release_merge_history_can_be_undone_from_cms(self):
+        self.client.force_authenticate(self.admin)
+        the_ben = Artist.objects.create(
+            name="The Ben",
+            slug="the-ben",
+            country="Rwanda",
+            country_code="RW",
+        )
+        justin = Artist.objects.create(
+            name="Justin Bieber",
+            slug="justin-bieber",
+            country="United States",
+            country_code="US",
+        )
+        keeper = Release.objects.create(
+            title="Baby",
+            artist=justin,
+            chart_type="singles",
+            canonical_title="baby",
+            label="Keeper label",
+        )
+        duplicate = Release.objects.create(
+            title="Baby",
+            artist=the_ben,
+            chart_type="singles",
+            canonical_title="baby",
+            label="Duplicate label",
+        )
+        MonthlyChartEntry.objects.create(
+            chart=self.chart,
+            release=keeper,
+            rank=2,
+            total_points=49,
+            raw_total_points=120,
+            weeks_on_chart=1,
+            platform_count=1,
+            platform_max=1,
+        )
+        MonthlyChartEntry.objects.create(
+            chart=self.chart,
+            release=duplicate,
+            rank=3,
+            total_points=48,
+            raw_total_points=80,
+            weeks_on_chart=1,
+            platform_count=1,
+            platform_max=1,
+        )
+
+        merge_response = self.client.post(
+            f"/api/v1/cms/releases/{duplicate.id}/merge/",
+            {"into_id": keeper.id},
+            format="json",
+        )
+        self.assertEqual(merge_response.status_code, 200, merge_response.content)
+        history = MergeHistory.objects.get(pk=merge_response.json()["merge_history_id"])
+        self.assertEqual(history.duplicate_label, "Baby by The Ben")
+        self.assertFalse(Release.objects.filter(pk=duplicate.id).exists())
+        self.assertEqual(
+            MonthlyChartEntry.objects.get(release=keeper, chart=self.chart, platform__isnull=True).raw_total_points,
+            200,
+        )
+
+        undo_response = self.client.post(f"/api/v1/cms/merge-history/{history.id}/undo/", {}, format="json")
+        self.assertEqual(undo_response.status_code, 200, undo_response.content)
+        history.refresh_from_db()
+        self.assertEqual(history.status, MergeHistory.Status.UNDONE)
+        self.assertTrue(Release.objects.filter(pk=duplicate.id, artist=the_ben).exists())
+        self.assertTrue(MonthlyChartEntry.objects.filter(release_id=duplicate.id, chart=self.chart).exists())
+        self.assertEqual(
+            MonthlyChartEntry.objects.get(release=keeper, chart=self.chart, platform__isnull=True).raw_total_points,
+            120,
+        )
+
+    def test_repair_baby_the_ben_merge_command_moves_raw_weekly_rows(self):
+        apple = Platform.objects.create(
+            name="Apple Music",
+            slug="apple-music",
+            short_name="Apple",
+            supports_singles=True,
+        )
+        the_ben = Artist.objects.create(
+            name="The Ben",
+            slug="the-ben",
+            country="Rwanda",
+            country_code="RW",
+        )
+        justin = Artist.objects.create(
+            name="Justin Bieber",
+            slug="justin-bieber",
+            country="United States",
+            country_code="US",
+        )
+        keeper = Release.objects.create(
+            title="Baby",
+            artist=justin,
+            chart_type="singles",
+            canonical_title="baby",
+        )
+        upload = WeeklyUpload.objects.create(
+            chart_type="singles",
+            year=2026,
+            month=7,
+            week=2,
+            file="uploads/weekly/baby.xlsx",
+            processed=True,
+        )
+        platform_entry = PlatformChartEntry.objects.create(
+            upload=upload,
+            platform=apple,
+            release=keeper,
+            position=12,
+            points=89,
+            raw_title="Baby",
+            raw_artist="The Ben",
+        )
+
+        call_command("repair_baby_the_ben_merge", "--apply", stdout=io.StringIO())
+
+        correct_release = Release.objects.get(
+            title="Baby",
+            artist=the_ben,
+            chart_type="singles",
+        )
+        platform_entry.refresh_from_db()
+        self.assertEqual(platform_entry.release_id, correct_release.id)
+        self.assertTrue(
+            MonthlyChartEntry.objects.filter(
+                chart__year=2026,
+                chart__month=7,
+                chart__chart_type="singles",
+                release=correct_release,
+            ).exists()
+        )
 
     def test_multiple_main_and_featured_artists_are_structured_and_formatted(self):
         response = self.patch_cms(

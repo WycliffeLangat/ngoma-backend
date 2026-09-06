@@ -30,6 +30,12 @@ from .cms_alerts import build_dashboard_alerts, summarize_alerts
 from .methodology import platforms_for
 from .pipeline import process_weekly_upload, rebuild_monthly_chart
 from .jobs import enqueue_chart_job, enqueue_harmonize_job
+from .merge_history import (
+    MergeUndoError,
+    create_artist_merge_history,
+    create_release_merge_history,
+    undo_merge_history,
+)
 
 
 WORKBOOK_MAX_ROWS = 500
@@ -1194,8 +1200,11 @@ class CmsArtistViewSet(CmsBaseViewSet):
         ids = request.data.get('artist_ids') or []
         aliases = set(primary.aliases or [])
         moved = 0
+        merge_history_ids = []
         with transaction.atomic():
             for artist in Artist.objects.filter(id__in=ids).exclude(id=primary.id):
+                history = create_artist_merge_history(primary, artist, request.user)
+                merge_history_ids.append(history.id)
                 aliases.add(artist.name)
                 for alias in artist.aliases or []:
                     aliases.add(alias)
@@ -1298,7 +1307,10 @@ class CmsArtistViewSet(CmsBaseViewSet):
             primary.aliases = sorted(aliases)
             primary.save(update_fields=['aliases', 'updated_at'])
 
-        audit(request, 'merged_artists', module='artists', obj=primary, new={'merged_ids': ids})
+        audit(request, 'merged_artists', module='artists', obj=primary, new={
+            'merged_ids': ids,
+            'merge_history_ids': merge_history_ids,
+        })
         bump_public_revision()
         primary.refresh_from_db()
         return Response(CmsArtistSerializer(primary, context={'request': request}).data)
@@ -1471,6 +1483,7 @@ class CmsReleaseViewSet(CmsBaseViewSet):
             return Response({'detail': 'Cannot merge a release into itself.'}, status=400)
 
         with transaction.atomic():
+            history = create_release_merge_history(duplicate, keeper, request.user)
             mce_moved = mce_summed = 0
             for entry in list(MonthlyChartEntry.objects.filter(release=duplicate)):
                 keeper_entry = MonthlyChartEntry.objects.filter(
@@ -1537,12 +1550,14 @@ class CmsReleaseViewSet(CmsBaseViewSet):
         harmonize_chart_history(chart_type=keeper.chart_type)
         audit(request, 'merged_release', module='releases', obj=keeper, new={
             'merged_id': dup_id, 'merged_repr': dup_repr,
+            'merge_history_id': history.id,
             'mce_moved': mce_moved, 'mce_summed': mce_summed, 'pce_moved': pce_moved, 'pce_dropped': pce_dropped,
         })
         bump_public_revision()
         keeper.refresh_from_db()
         return Response({
             'keeper': CmsReleaseSerializer(keeper, context={'request': request}).data,
+            'merge_history_id': history.id,
             'mce_moved': mce_moved, 'mce_summed': mce_summed, 'pce_moved': pce_moved, 'pce_dropped': pce_dropped,
         })
 
@@ -2325,6 +2340,46 @@ class MethodologySettingViewSet(CmsBaseViewSet):
     serializer_class = MethodologySettingSerializer
     search_fields = ['version', 'name']
     module_name = 'methodology'
+
+
+class MergeHistoryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = MergeHistory.objects.select_related('merged_by', 'undone_by').all()
+    serializer_class = MergeHistorySerializer
+    permission_classes = [CmsRolePermission]
+    pagination_class = CmsPagination
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['keeper_label', 'duplicate_label', 'merge_type', 'status', 'error', 'merged_by__username']
+    ordering_fields = ['created_at', 'undone_at', 'merge_type', 'status']
+    module_name = 'merge_history'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        merge_type = self.request.query_params.get('merge_type')
+        status_param = self.request.query_params.get('status')
+        if merge_type:
+            qs = qs.filter(merge_type=merge_type)
+        if status_param:
+            qs = qs.filter(status=status_param)
+        return qs
+
+    @action(detail=True, methods=['post'])
+    def undo(self, request, pk=None):
+        history = self.get_object()
+        try:
+            result = undo_merge_history(history, request.user)
+        except MergeUndoError as exc:
+            history.status = MergeHistory.Status.BLOCKED
+            history.error = str(exc)
+            history.save(update_fields=['status', 'error'])
+            audit(request, 'merge_undo_blocked', module='merge_history', obj=history, new={'error': str(exc)})
+            return Response({'detail': str(exc), 'history': self.get_serializer(history).data}, status=400)
+        except Exception as exc:
+            audit(request, 'merge_undo_failed', module='merge_history', obj=history, new={'error': str(exc)})
+            return Response({'detail': str(exc)}, status=500)
+
+        history.refresh_from_db()
+        audit(request, 'merge_undone', module='merge_history', obj=history, new=result)
+        return Response({'history': self.get_serializer(history).data, 'result': result})
 
 
 class AuditLogViewSet(viewsets.ReadOnlyModelViewSet):

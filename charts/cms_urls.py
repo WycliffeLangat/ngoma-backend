@@ -21,6 +21,7 @@ router.register('page-content', cms_views.CmsPageContentViewSet, basename='cms-p
 router.register('certifications', cms_views.CmsCertificationViewSet, basename='cms-certifications')
 router.register('certification-rules', cms_views.CertificationRuleViewSet, basename='cms-certification-rules')
 router.register('methodology', cms_views.MethodologySettingViewSet, basename='cms-methodology')
+router.register('merge-history', cms_views.MergeHistoryViewSet, basename='cms-merge-history')
 router.register('audit-logs', cms_views.AuditLogViewSet, basename='cms-audit-logs')
 router.register('notes', cms_views.InternalNoteViewSet, basename='cms-notes')
 router.register('notifications', cms_views.AdminNotificationViewSet, basename='cms-notifications')

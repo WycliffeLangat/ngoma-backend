@@ -20,7 +20,7 @@ NEWS_MODULES = {'news'}
 DATA_MODULES = {
     'artists', 'releases', 'countries', 'platforms', 'charts', 'chart_entries',
     'chart_uploads', 'uploads', 'certifications', 'certification_rules',
-    'methodology', 'reports',
+    'methodology', 'merge_history', 'reports',
 }
 EDITORIAL_MODULES = {'media', 'page_content', 'notes', 'notifications'}
 ADMIN_MODULES = {'users', 'settings', 'backups', 'future_modules'}

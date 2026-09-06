@@ -847,6 +847,24 @@ class AuditLogSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class MergeHistorySerializer(serializers.ModelSerializer):
+    merged_by_name = serializers.CharField(source='merged_by.username', read_only=True)
+    undone_by_name = serializers.CharField(source='undone_by.username', read_only=True)
+    can_undo = serializers.SerializerMethodField()
+
+    class Meta:
+        model = MergeHistory
+        fields = '__all__'
+        read_only_fields = [
+            'id', 'merge_type', 'keeper_id', 'keeper_label', 'duplicate_id',
+            'duplicate_label', 'snapshot', 'status', 'error', 'merged_by',
+            'undone_by', 'created_at', 'undone_at',
+        ]
+
+    def get_can_undo(self, obj):
+        return obj.status == MergeHistory.Status.UNDOABLE
+
+
 class SiteEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteEvent

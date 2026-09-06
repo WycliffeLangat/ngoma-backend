@@ -45,6 +45,7 @@ PUBLIC_DATA_AUDIT_MODULES = {
     "certifications",
     "certification_rules",
     "methodology",
+    "merge_history",
 }
 
 
